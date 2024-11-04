@@ -10,7 +10,7 @@ with open("arranger_automation/_version.py", "r") as version_file:
     package_version = contents.strip().split('"')[-2]
 
 setuptools.setup(
-    name="eusy_automation",
+    name="arranger_automation",
     version=package_version,
     author="devops",
     author_email="vsevolod@velox-solution.com",

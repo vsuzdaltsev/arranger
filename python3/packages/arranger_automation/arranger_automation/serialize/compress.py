@@ -5,7 +5,7 @@ import json
 from typing import Union
 import zlib
 
-from eusy_automation.sdlc import CustomTyping
+from arranger_automation.sdlc import CustomTyping
 
 
 def zip_json(

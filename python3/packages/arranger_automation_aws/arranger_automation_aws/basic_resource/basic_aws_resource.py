@@ -5,7 +5,7 @@ from typing import Union
 
 from boto3 import client
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class BasicAwsResource:

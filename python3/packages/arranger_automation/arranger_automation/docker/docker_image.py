@@ -6,7 +6,7 @@ from typing import Dict, Generator, NoReturn, Union
 
 import docker
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class DockerException(Exception):

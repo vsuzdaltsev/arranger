@@ -1,7 +1,7 @@
 from typing import List, Union
 
-from eusy_automation_aws.client import AwsClient
-from eusy_automation.log import Log
+from arranger_automation_aws.client import AwsClient
+from arranger_automation.log import Log
 
 
 class S3File:

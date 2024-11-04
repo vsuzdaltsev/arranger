@@ -4,8 +4,8 @@ import time
 
 from typing import Dict, List, Tuple, Union
 
-from eusy_automation.log import Log
-from eusy_automation_aws.client import AwsClient
+from arranger_automation.log import Log
+from arranger_automation_aws.client import AwsClient
 
 
 def _env_var(name: str, value: str) -> Dict[str, str]:

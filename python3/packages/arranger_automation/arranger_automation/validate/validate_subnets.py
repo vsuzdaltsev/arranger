@@ -1,7 +1,7 @@
 import ipaddress
 from typing import Dict, List, NoReturn
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class InvalidSubnet(Exception):
@@ -105,8 +105,8 @@ class ValidateSubnets:
 if __name__ == "__main__":
     import json
 
-    from eusy_conf.app_conf import AppConf
-    from eusy_globals import CdktfGlobals
+    from arranger_conf.app_conf import AppConf
+    from arranger_globals import CdktfGlobals
 
     aggr = {}
     for cluster in sorted(AppConf.CLUSTERS.keys()):

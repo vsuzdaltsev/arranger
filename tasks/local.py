@@ -71,8 +71,8 @@ def black(ctx):
     scripts = "python3/scripts"
     all_dirs = (
         [f"python3/packages/{pkg}" for pkg in PYTHON3_PACKAGES]
-        + [f"{scripts}/eusy_cdk8s"]
-        + [f"{scripts}/eusy_cdktf"]
+        # + [f"{scripts}/arranger_cdk8s"]
+        # + [f"{scripts}/arranger_cdktf"]
     )
     sources = (directory for directory in all_dirs)
     for pwd in sources:

@@ -12,8 +12,8 @@ class EcrAccessCredentials:
         import base64
         from urllib.parse import urlparse
 
-        from eusy_automation_aws.client import AwsClient
-        from eusy_globals.cdktf_globals import CdktfGlobals
+        from arranger_automation_aws.client import AwsClient
+        from arranger_globals.cdktf_globals import CdktfGlobals
 
         _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
         _region = _globals.aws_region

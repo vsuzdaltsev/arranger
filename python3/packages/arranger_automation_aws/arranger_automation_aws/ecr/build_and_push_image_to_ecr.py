@@ -13,7 +13,7 @@ class MultiPlatformBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrFront)
 
 
 if __name__ == "__main__":
-    from eusy_automation_aws.ecr import EcrAccessCredentials
+    from arranger_automation_aws.ecr import EcrAccessCredentials
 
     docker_credentials = [
         EcrAccessCredentials(cluster_name_alias="switchdev1").ecr_access_credentials()

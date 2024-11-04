@@ -1,7 +1,7 @@
 import json
 from typing import Dict, List, Union
 
-from eusy_automation_aws.client import AwsClient
+from arranger_automation_aws.client import AwsClient
 
 
 class CognitoHelper:

@@ -1,7 +1,7 @@
 from typing import Dict
 
-from eusy_automation_aws.client import AwsClient
-from eusy_automation_aws.basic_resource import BasicAwsResource
+from arranger_automation_aws.client import AwsClient
+from arranger_automation_aws.basic_resource import BasicAwsResource
 
 
 class DBHelper(BasicAwsResource):

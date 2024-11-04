@@ -3,7 +3,7 @@ from typing import NoReturn, Union
 
 from git import exc, Repo, Submodule
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class CannotCheckoutToGivenRef(BaseException):

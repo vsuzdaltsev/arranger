@@ -7,7 +7,7 @@ from typing import Any, Dict, List, NoReturn, Union
 
 from kubernetes import client, config
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class BasicJob:

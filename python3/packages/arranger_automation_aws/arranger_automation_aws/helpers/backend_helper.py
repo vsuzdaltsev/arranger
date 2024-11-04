@@ -3,7 +3,7 @@ from typing import Dict, NoReturn, Union
 from boto3 import session as ses
 from botocore.exceptions import ClientError
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class BackendHelperAws:

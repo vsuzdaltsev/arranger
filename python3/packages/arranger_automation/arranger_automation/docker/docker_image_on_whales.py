@@ -5,7 +5,7 @@ from typing import Dict, List, Tuple, Union
 
 from python_on_whales import docker
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class BasicDockerImageOnWhales(ABC):
@@ -111,7 +111,7 @@ class MultiPlatformDockerImageOnWhales(BasicDockerImageOnWhales):
 
 
 if __name__ == "__main__":
-    from eusy_automation_aws.ecr import EcrAccessCredentials
+    from arranger_automation_aws.ecr import EcrAccessCredentials
 
     docker_credentials = [
         EcrAccessCredentials(cluster_name_alias="switchdev1").ecr_access_credentials()

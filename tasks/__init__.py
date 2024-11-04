@@ -25,7 +25,7 @@ cdk8s = Collection("k8s")
 codebuild = Collection("codebuild")
 container = Collection("container")
 docker = Collection("docker")
-eusy_app = Collection("eusy_app")
+arranger_app = Collection("arranger_app")
 hc_vault = Collection("hc_vault")
 local = Collection("local")
 python3 = Collection("python3")
@@ -33,7 +33,7 @@ secrets = Collection("secrets")
 services = Collection("services")
 spec = Collection("spec")
 
-cdk8s.add_collection(eusy_app)
+cdk8s.add_collection(arranger_app)
 
 local.add_collection(container)
 

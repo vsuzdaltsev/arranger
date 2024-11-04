@@ -3,7 +3,7 @@
 import os
 from typing import Optional
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 from .sem_ver import SemVer
 

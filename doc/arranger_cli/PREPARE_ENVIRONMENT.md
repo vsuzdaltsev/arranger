@@ -42,7 +42,7 @@ Automation tasks (command line interface) for orchestrating Eusy application ins
    $ pip install -r requirements.txt
    ```
 
-4. (**OPTIONAL**) Download all dependencies and install all eusy_automation packages (for some IDEs autocompletion to
+4. (**OPTIONAL**) Download all dependencies and install all arranger_automation packages (for some IDEs autocompletion to
    work
    primarily):
 

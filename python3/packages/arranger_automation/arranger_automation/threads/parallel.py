@@ -9,7 +9,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 from threading import Thread
 from typing import NoReturn
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 MAX_THREADS = int(os.getenv("MAX_THREADS")) if os.getenv("MAX_THREADS") else cpu_count()

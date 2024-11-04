@@ -7,7 +7,7 @@ from typing import List, NoReturn, Union
 from boto3 import client as ecr
 from boto3 import session as ecr_session
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class BasicEcr:

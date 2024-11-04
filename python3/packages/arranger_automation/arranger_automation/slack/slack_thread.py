@@ -6,8 +6,8 @@ from typing import Dict, NoReturn
 
 from slack_sdk import WebClient
 
-from eusy_conf import AppConf
-from eusy_automation.log import Log
+from arranger_conf import AppConf
+from arranger_automation.log import Log
 
 
 GREEN = "#007C1A"

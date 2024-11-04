@@ -5,7 +5,7 @@ from typing import Any, List
 
 from kubernetes import client, config
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class BasicLoadBalancers:

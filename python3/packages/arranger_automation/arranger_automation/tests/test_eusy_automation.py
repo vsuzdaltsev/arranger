@@ -1,6 +1,6 @@
 import pytest
 
-from eusy_automation.validate import InvalidSubnet, ValidateSubnets
+from arranger_automation.validate import InvalidSubnet, ValidateSubnets
 
 
 VALID_RANGES = {
