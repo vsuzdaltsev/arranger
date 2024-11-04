@@ -12,14 +12,11 @@ CURRENT_TF_PROJECT = "tf"
 
 try:
     from arranger_conf import AppConf
-
-    # from arranger_conf import K8sConf
     from arranger_conf.arranger_cdktf_conf import BasicConf
 
     VALID_CLUSTERS = AppConf.CLUSTERS
     VALID_EKS_STACKS = BasicConf.VALID_STACKS[CURRENT_TF_PROJECT]
     KUBERNETES_VERSION = AppConf.CDK8S_KUBERNETES_VERSION
-    # VALID_ENVIRONMENTS = sorted(env.lower() for env in K8sConf.ALL_ENVIRONMENTS)
 
 except BaseException as warn:
     msg = (

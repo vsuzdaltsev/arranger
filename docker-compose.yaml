@@ -1,18 +1,18 @@
 ---
-version: '3.2'
+# version: '3.2'
 services:
   cli:
     tty: true
-    container_name: switch
+    container_name: arranger
     command: tail -f /dev/null
 
     volumes:
-      - $HOME/.kube:/root/.kube
+      # - $HOME/.kube:/root/.kube
       - .:/opt/meta
       - ./templates/.zshrc:/root/.zshrc
       - ./templates/ssh_config:/root/.ssh/config
-      - /var/run/docker.sock:/var/run/docker.sock
-      - $HOME/.aws:/root/.aws
+#      - /var/run/docker.sock:/var/run/docker.sock
+      # - $HOME/.aws:/root/.aws
 
     environment:
       - SSH_AUTH_SOCK=/ssh-agent
