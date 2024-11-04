@@ -10,27 +10,27 @@ from jinja2 import ChoiceLoader, Environment, FileSystemLoader
 
 CURRENT_TF_PROJECT = "tf"
 
+try:
+    from arranger_conf import AppConf
+    from arranger_conf import K8sConf
+    from arranger_conf.arranger_cdktf_conf import BasicConf
 
-from arranger_conf import AppConf
-from arranger_conf import K8sConf
-from arranger_conf.arranger_cdktf_conf import BasicConf
+    VALID_CLUSTERS = AppConf.CLUSTERS
+    VALID_EKS_STACKS = BasicConf.VALID_STACKS[CURRENT_TF_PROJECT]
+    KUBERNETES_VERSION = AppConf.CDK8S_KUBERNETES_VERSION
+    VALID_ENVIRONMENTS = sorted(env.lower() for env in K8sConf.ALL_ENVIRONMENTS)
 
-VALID_CLUSTERS = AppConf.CLUSTERS
-VALID_EKS_STACKS = BasicConf.VALID_STACKS[CURRENT_TF_PROJECT]
-KUBERNETES_VERSION = AppConf.CDK8S_KUBERNETES_VERSION
-VALID_ENVIRONMENTS = sorted(env.lower() for env in K8sConf.ALL_ENVIRONMENTS)
-
-# except BaseException as warn:
-#     msg = (
-#         ">> WARNING: Not all modules were properly loaded.\n"
-#         "This is a workaround for initial run of invoke task. No worries.\n"
-#         f"Error is: {warn}."
-#         "There are two options for using the bunch of the eusy_automation invoke tasks:\n"
-#         "1. Build CLI image <inv local.container.build; inv local.container.run>\n"
-#         "or"
-#         "2. Build and install eusy_automation packages <inv python3.build-and-install>.\n"
-#     )
-#   print(msg)
+except BaseException as warn:
+    msg = (
+        ">> WARNING: Not all modules were properly loaded.\n"
+        "This is a workaround for initial run of invoke task. No worries.\n"
+        f"Error is: {warn}."
+        "There are two options for using the bunch of the eusy_automation invoke tasks:\n"
+        "1. Build CLI image <inv local.container.build; inv local.container.run>\n"
+        "or"
+        "2. Build and install eusy_automation packages <inv python3.build-and-install>.\n"
+    )
+    print(msg)
 
 CONTAINER_NAME = "cli"
 DOCKER_COMPOSE = "docker-compose -f docker-compose.yaml"
