@@ -8,12 +8,6 @@ services:
     volumes:
       - $HOME/.kube:/root/.kube
       - .:/opt/meta
-      - ./python3/packages/eusy_automation/eusy_automation:/opt/site-packages/eusy_automation
-      - ./python3/packages/eusy_automation_aws/eusy_automation_aws:/opt/site-packages/eusy_automation_aws
-      - ./python3/packages/eusy_cdk8s/eusy_cdk8s:/opt/site-packages/eusy_cdk8s
-      - ./python3/packages/eusy_cdktf/eusy_cdktf:/opt/site-packages/eusy_cdktf
-      - ./python3/packages/eusy_conf/eusy_conf:/opt/site-packages/eusy_conf
-      - ./python3/packages/eusy_globals/eusy_globals:/opt/site-packages/eusy_globals
       - ./templates/.zshrc:/root/.zshrc
       - ./templates/ssh_config:/root/.ssh/config
       - /var/run/docker.sock:/var/run/docker.sock
