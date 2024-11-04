@@ -14,5 +14,5 @@ class AppConf:
     DEFAULT_ALPINE_IMAGE = "3.16"
     SLACK_CHANNELS = {}
 
-    ORCHESTRA_ACCOUNT = "orchestra1"
+    ORCHESTRA_ACCOUNT = "head1"
     ORCHESTRA_SUBORDINATE_ACCOUNTS = ["sandbox1", "develop1"]
