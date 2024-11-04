@@ -15,4 +15,4 @@ class AppConf:
     SLACK_CHANNELS = {}
 
     ORCHESTRA_ACCOUNT = "head1"
-    ORCHESTRA_SUBORDINATE_ACCOUNTS = ["sandbox1", "develop1"]
+    ORCHESTRA_SUBORDINATE_ACCOUNTS = ["staging1", "develop1"]
