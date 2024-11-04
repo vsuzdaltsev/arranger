@@ -12,7 +12,6 @@ services:
       - ./templates/ssh_config:/root/.ssh/config
       - /var/run/docker.sock:/var/run/docker.sock
       - $HOME/.aws:/root/.aws
-      # - ${SSH_AUTH_SOCK}:/ssh-agent
 
     environment:
       - SSH_AUTH_SOCK=/ssh-agent
