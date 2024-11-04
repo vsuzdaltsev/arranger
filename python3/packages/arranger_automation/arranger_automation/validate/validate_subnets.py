@@ -100,18 +100,3 @@ class ValidateSubnets:
             )
 
         return self.ranges
-
-
-if __name__ == "__main__":
-    import json
-
-    from arranger_conf.app_conf import AppConf
-    from arranger_globals import CdktfGlobals
-
-    aggr = {}
-    for cluster in sorted(AppConf.CLUSTERS.keys()):
-        _globals = CdktfGlobals(cluster_name_alias=cluster)
-
-        aggr.update({cluster: ValidateSubnets(ranges=_globals.ip_ranges).validate()})
-
-    print(json.dumps(aggr))

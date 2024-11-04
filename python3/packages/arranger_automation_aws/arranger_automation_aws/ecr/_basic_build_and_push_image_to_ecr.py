@@ -77,20 +77,6 @@ class BasicBuildAndPushImageToEcrMixin(ABC):
             prefix=f"{self.image_name}-build", dir=self.build_root
         )
 
-    def _aws_region(self) -> str:
-        from arranger_globals.cdktf_globals import CdktfGlobals
-
-        _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
-
-        return _globals.aws_region
-
-    def _aws_profile(self) -> str:
-        from arranger_globals.cdktf_globals import CdktfGlobals
-
-        _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
-
-        return _globals.aws_profile
-
     def _accounts_to_create_ecr_within(self) -> List[str]:
         if self._aws_profile() == AppConf.ORCHESTRA_ACCOUNT:
             return [
