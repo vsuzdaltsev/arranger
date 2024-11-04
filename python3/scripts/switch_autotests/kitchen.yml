@@ -1,0 +1,46 @@
+driver:
+  name: ec2
+  region: eu-west-2
+  user_data: init.sh
+  shared_credentials_profile: <%= ENV['PROFILE_NAME'] %>
+  aws_ssh_key_id: kitchen-codebuild-<%= ENV['PROFILE_NAME'] %>
+  instance_type: t2.small
+  subnet_id: <%= ENV['KITCHEN_SUBNET_ID'] %>
+  tags:
+    Name: 'test-kitchen'
+    Environment: <%= ENV['PROFILE_NAME'] %>
+    Project: 'Codebuild auto_tests'
+    Platform: 'Ubuntu'
+    Owner: 'AQA'
+    Created: <%= Time.now.utc %>
+
+platforms:
+  - name: test-kitchen
+    driver:
+       image_id: ami-0eb260c4d5475b901
+transport:
+  ssh_key: kitchen-codebuild-<%= ENV['PROFILE_NAME'] %>.pem
+  username: ubuntu
+  connection_timeout: 10
+  connection_retries: 5
+  max_ssh_sessions: 6
+
+provisioner:
+  name: shell
+  script: 'scripts/setup.sh'
+  root_path: '/tmp/kitchen'
+  sudo: true
+  sudo_command: 'sudo -E'
+  retry_on_exit_code: []
+  max_retries: 1
+  wait_for_retry: 30
+  uploads:
+    "switchdev1_kube_config.yaml": "/tmp"
+    "scripts/setup.sh": "setup.sh"
+    "aws_credentials": "aws_credentials"
+    "autotests": "/tmp"
+
+suites:
+  - name: default
+    provisioner:
+      shell: 'test/scripts/setup.sh'

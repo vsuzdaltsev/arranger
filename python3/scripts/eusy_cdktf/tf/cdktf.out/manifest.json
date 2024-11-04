@@ -1,0 +1,14 @@
+{
+  "version": "0.20.2",
+  "stacks": {
+    "prometheus-grafana-stack": {
+      "name": "prometheus-grafana-stack",
+      "constructPath": "prometheus-grafana-stack",
+      "workingDirectory": "stacks/prometheus-grafana-stack",
+      "synthesizedStackPath": "stacks/prometheus-grafana-stack/cdk.tf.json",
+      "stackMetadataPath": "stacks/prometheus-grafana-stack/metadata.json",
+      "annotations": [],
+      "dependencies": []
+    }
+  }
+}
