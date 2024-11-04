@@ -97,15 +97,3 @@ def template_env() -> type(Environment):
 def kubeconfig_name(cluster_name_alias: str) -> str:
     return f"{cluster_name_alias}_kube_config.yaml"
 
-
-def codebuild_run_url(globals_instance, build_id):
-    _name = build_id.split(":")[0]
-    _id = build_id.split(":")[1]
-
-    url_parts = [
-        f"https://{globals_instance.aws_region}.console.aws.amazon.com",
-        f"codesuite/codebuild/{globals_instance.aws_account_id}/projects",
-        f"{_name}/build/{_name}%3A{_id}/?region={globals_instance.aws_region}",
-    ]
-
-    return "/".join(url_parts)
