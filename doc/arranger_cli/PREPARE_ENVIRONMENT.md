@@ -1,4 +1,4 @@
-# Prepare meta-cli environment
+# Prepare arranger_cli environment
 
 ## NB: all the commands are run within the meta-cli repo root directory
 ## Table of contents
