@@ -1,3 +1,4 @@
+---
 version: '3.2'
 services:
   cli:
@@ -27,6 +28,7 @@ services:
         CDK8S_CLI_VERSION: 2.198.9
         DYFF_VERSION: 1.5.6
         HELM_VERSION: 3.8.0
+        # yamllint disable-line
         IAM_AUTH_LINK: "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.5.9/aws-iam-authenticator_0.5.9_linux_amd64"
         INSPEC_VERSION: 5.18.14
         ISTIO_VERSION: 1.17.2
