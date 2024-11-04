@@ -1,4 +1,0 @@
-language: python
-app: python main.py revenue-authority-ui-ms d1 None
-imports:
-  - k8s@1.27
