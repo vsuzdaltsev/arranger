@@ -11,7 +11,7 @@
 
 ## About <div id='about'/>
 
-Automation tasks (command line interface) for orchestrating Eusy application instances.
+Automation tasks (command line interface) for orchestrating Arranger application instances.
 
 ## Prerequisites <div id='prerequisites'/>
 

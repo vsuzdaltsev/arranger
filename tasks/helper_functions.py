@@ -1,4 +1,4 @@
-"""Eusy Automation CLI."""
+"""Arranger Automation CLI."""
 
 import glob
 from logging import Logger
