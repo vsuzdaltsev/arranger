@@ -23,18 +23,19 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        ALPINE_VERSION: 3.18
-        CDKTF_CLI_VERSION: 0.20.2
-        CDK8S_CLI_VERSION: 2.198.9
-        DYFF_VERSION: 1.5.6
-        HELM_VERSION: 3.8.0
-        # yamllint disable-line
-        IAM_AUTH_LINK: "https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.5.9/aws-iam-authenticator_0.5.9_linux_amd64"
+        ALPINE_VERSION: 3.20
+        CDKTF_CLI_VERSION: 0.20.9
+        CDK8S_CLI_VERSION: 2.198.254
+        DYFF_VERSION: 1.9.2
+        HELM_VERSION: 3.16.2
+        IAM_AUTH_VERSION: 0.6.27
         INSPEC_VERSION: 5.18.14
-        ISTIO_VERSION: 1.17.2
-        KUBECTL_VERSION: 1.26.1
-        PIPENV_PACKAGE_VERSION: 2022.1.8
+        ISTIO_VERSION: 1.23.3
+        KUBECTL_VERSION: 1.31.0
+        PIPENV_PACKAGE_VERSION: 2024.4.0
         PYCALL_VERSION: 1.4.1
-        PYTHON_CUSTOM_VERSION: 3.9
-        PYTHON_SETUPTOOLS_VERSION: 50.3.0
-        TERRAFORM_VERSION: 1.4.6
+        PYTHON_CUSTOM_VERSION: 3.11.10
+        PYTHON_SETUPTOOLS_VERSION: 75.3.0
+        TERRAFORM_VERSION: 1.9.8
+        TFENV_REMOTE: "https://hashicorp-releases.yandexcloud.net"
+#3.13.0-alpine3.20
