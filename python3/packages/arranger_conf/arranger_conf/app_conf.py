@@ -11,7 +11,6 @@ class AppConf:
     }
 
     CDK8S_KUBERNETES_VERSION = "1.27"
-    DEFAULT_ALPINE_IMAGE = "3.16"
     SLACK_CHANNELS = {}
 
     ORCHESTRA_ACCOUNT = "head1"
