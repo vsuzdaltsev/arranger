@@ -23,7 +23,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        ALPINE_VERSION: 3.20
+        ALPINE_VERSION: "3.20"
         CDKTF_CLI_VERSION: 0.20.9
         CDK8S_CLI_VERSION: 2.198.254
         DYFF_VERSION: 1.9.2
@@ -38,4 +38,3 @@ services:
         PYTHON_SETUPTOOLS_VERSION: 75.3.0
         TERRAFORM_VERSION: 1.9.8
         TFENV_REMOTE: "https://hashicorp-releases.yandexcloud.net"
-#3.13.0-alpine3.20
