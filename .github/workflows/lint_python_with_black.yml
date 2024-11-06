@@ -1,4 +1,4 @@
-name: Lint Docker Compose YAML
+name: Lint Python Code with Black
 
 on:
   pull_request:
@@ -8,17 +8,21 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.9.20'
-      - name: Install yamllint
+
+      - name: Install Black
         run: |
-          pip install yamllint
-      - name: Lint docker-compose.yml
+          python -m pip install --upgrade pip
+          pip install black
+
+      - name: Lint code
         run: |
-          docker compose -f docker-compose.yml config --quiet
-          yamllint docker-compose.yml
+          black --check tasks/ python3/packages/*

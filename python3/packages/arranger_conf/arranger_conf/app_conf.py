@@ -11,7 +11,6 @@ class AppConf:
     }
 
     CDK8S_KUBERNETES_VERSION = "1.27"
-    SLACK_CHANNELS = {}
 
     ORCHESTRA_ACCOUNT = "head1"
     ORCHESTRA_SUBORDINATE_ACCOUNTS = ["staging1", "develop1"]

@@ -1,6 +1,6 @@
 # Prepare arranger_cli environment
 
-## NB: all the commands are run within the Arranger repo root directory
+## NB: all the commands are to be run within the Arranger repo's root directory
 ## Table of contents
 
 * [About](#about)
@@ -77,5 +77,5 @@ minor changes under Windows as well).
 
 ## Maintainers <div id='maintainers'/>
 
-* [vsevolod.suzdaltsev@gmail.com](mailto:vsevolod.suzdaltsev@gmail.com?subject=prepare-arranger-cli)
 * [iskander.ignatev@gmail.com](mailto:iskander.ignatev@gmail.com?subject=prepare-arranger-cli)
+* [vsevolod.suzdaltsev@gmail.com](mailto:vsevolod.suzdaltsev@gmail.com?subject=prepare-arranger-cli)

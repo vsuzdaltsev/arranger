@@ -8,7 +8,7 @@ from typing import Any, Iterable
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader
 import yaml
 
-# TODO: currently the only project because of flat structure of TF stack libs
+# TODO: currently this is the only project, because of flat structure of TF stack libs
 CURRENT_TF_PROJECT = "tf"
 
 try:
@@ -29,11 +29,11 @@ except BaseException as warn:
     )
     print(msg)
 
-with open('./docker-compose.yaml', 'r') as file:
+with open("./docker-compose.yml", "r") as file:
     docker_compose_data = yaml.safe_load(file)
 
-CONTAINER_NAME = list(docker_compose_data['services'].keys())[0]
-DOCKER_COMPOSE = "docker-compose -f docker-compose.yaml"
+CONTAINER_NAME = list(docker_compose_data["services"].keys())[0]
+DOCKER_COMPOSE = "docker-compose -f docker-compose.yml"
 IN_DOCKER = f"{DOCKER_COMPOSE} exec -T {CONTAINER_NAME} pipenv run"
 RENDERED_TEMPLATES = "rendered_templates"
 PYTHON3_PACKAGES = [

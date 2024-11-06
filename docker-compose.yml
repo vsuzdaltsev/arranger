@@ -1,14 +1,14 @@
----
-version: '3.2'
 services:
   cli:
     tty: true
+    image: arranger
     container_name: arranger
     command: tail -f /dev/null
 
     volumes:
       - $HOME/.kube:/root/.kube
       - .:/opt/arranger
+      - ./python3/packages/arranger_conf/arranger_conf:/opt/site-packages/arranger_conf
       - ./templates/.zshrc:/root/.zshrc
       - ./templates/ssh_config:/root/.ssh/config
       - /var/run/docker.sock:/var/run/docker.sock
@@ -34,7 +34,7 @@ services:
         KUBECTL_VERSION: "1.31.0"
         PIPENV_PACKAGE_VERSION: "2024.4.0"
         PYCALL_VERSION: "1.4.1"
-        PYTHON_CUSTOM_VERSION: "3.11.10"
+        PYTHON_CUSTOM_VERSION: "3.11"
         PYTHON_SETUPTOOLS_VERSION: "75.3.0"
         TERRAFORM_VERSION: "1.9.8"
         TFENV_REMOTE: "https://hashicorp-releases.yandexcloud.net"

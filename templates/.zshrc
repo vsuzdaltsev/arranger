@@ -25,7 +25,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 if [[ "$UID" != "0" ]]; then 
   export PS1="$(print '%{\e[1;32m%}%n%{\e[0m%}@%{\e[1;34m%}%$%m%{\e[0;38m%}%{\e[0;38m%}$') "
 else
-  export PS1="$(print '%{\e[1;31m%}%n%{\e[0m%}@%{\e[1;35m%}%$arranger%{\e[0;38m%$%}#') "
+  export PS1="$(print '%{\e[1;31m%}%n%{\e[0m%}@%{\e[1;35m%}%$cli%{\e[0;38m%$%}#') "
 fi
 
 case $TERM in
@@ -387,8 +387,5 @@ setcap cap_ipc_lock= /usr/sbin/vault
 export VAULT_FORMAT="json"
 
 cd_to_cdktf_cache(){
-  cd python3/scripts/eusy_cdktf/tf/cdktf.out/stacks/
+  cd python3/scripts/arranger_cdktf/tf/cdktf.out/stacks/
 }
-
-# export AAD_SERVICE_PRINCIPAL_CLIENT_ID=$ARM_CLIENT_ID
-# export AAD_SERVICE_PRINCIPAL_CLIENT_SECRET=$ARM_CLIENT_SECRET
