@@ -6,6 +6,7 @@ import os
 from typing import Any, Iterable
 
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader
+import yaml
 
 # TODO: currently the only project because of flat structure of TF stack libs
 CURRENT_TF_PROJECT = "tf"
@@ -28,7 +29,10 @@ except BaseException as warn:
     )
     print(msg)
 
-CONTAINER_NAME = "cli"
+with open('./docker-compose.yaml', 'r') as file:
+    compose_data = yaml.safe_load(file)
+
+CONTAINER_NAME = list(compose_data['services'].keys())[0]
 DOCKER_COMPOSE = "docker-compose -f docker-compose.yaml"
 IN_DOCKER = f"{DOCKER_COMPOSE} exec -T {CONTAINER_NAME} pipenv run"
 RENDERED_TEMPLATES = "rendered_templates"
