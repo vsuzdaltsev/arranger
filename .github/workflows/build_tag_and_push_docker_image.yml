@@ -31,5 +31,6 @@ jobs:
           IMAGE_NAME="ghcr.io/${{ github.repository }}"
           GIT_REF=${GITHUB_REF##*/}
           TAG="${GIT_REF//\//-}"
+          docker images
           docker tag arranger:latest $IMAGE_NAME:$TAG
           docker push $IMAGE_NAME:$TAG
