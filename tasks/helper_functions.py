@@ -7,7 +7,7 @@ from typing import Any, Iterable
 
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader
 
-
+# TODO: currently the only project because of flat structure of TF stack libs
 CURRENT_TF_PROJECT = "tf"
 
 try:
