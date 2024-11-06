@@ -28,8 +28,8 @@ jobs:
 
       - name: Tag and Push Docker image
         run: |
-          IMAGE_NAME="ghcr.io/${{ github.repository }}/your-image-name"  # Replace with your image name
-          GIT_REF=${GITHUB_REF##*/}  # Get the git reference (branch or tag)
-          TAG="${GIT_REF//\//-}"  # Replace slashes with dashes for the tag
-          docker tag your-image-name:latest $IMAGE_NAME:$TAG  # Replace 'your-image-name' with the actual name used in docker-compose
+          IMAGE_NAME="ghcr.io/${{ github.repository }}/arranger"
+          GIT_REF=${GITHUB_REF##*/}
+          TAG="${GIT_REF//\//-}"
+          docker tag your-image-name:latest $IMAGE_NAME:$TAG
           docker push $IMAGE_NAME:$TAG
