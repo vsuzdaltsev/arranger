@@ -389,6 +389,3 @@ export VAULT_FORMAT="json"
 cd_to_cdktf_cache(){
   cd python3/scripts/eusy_cdktf/tf/cdktf.out/stacks/
 }
-
-# export AAD_SERVICE_PRINCIPAL_CLIENT_ID=$ARM_CLIENT_ID
-# export AAD_SERVICE_PRINCIPAL_CLIENT_SECRET=$ARM_CLIENT_SECRET
