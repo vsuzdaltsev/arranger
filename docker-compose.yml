@@ -38,3 +38,5 @@ services:
         PYTHON_SETUPTOOLS_VERSION: "75.3.0"
         TERRAFORM_VERSION: "1.9.8"
         TFENV_REMOTE: "https://hashicorp-releases.yandexcloud.net"
+
+    image: arranger
