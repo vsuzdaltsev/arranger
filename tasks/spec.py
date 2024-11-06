@@ -21,13 +21,13 @@ def python(ctx, packages="all-packages"):
         if packages:
             return sorted(p.strip() for p in packages.split(","))
 
-    def package_dir(name):
+    def package_dir(name: str) -> str:
         return f"{repo_root()}/python3/packages/{name}/{name}"
 
-    def specs_exist(package_name):
+    def specs_exist(package_name: str) -> bool:
         return all(
             os.path.exists(f"{package_dir(name=package_name)}/{e}")
-            for e in ["tests", "pytest.ini"]
+            for e in ("tests", "pytest.ini")
         )
 
     for package in packages_to_process():
