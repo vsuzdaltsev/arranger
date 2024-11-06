@@ -11,7 +11,7 @@
 
 ## About <div id='about'/>
 
-Automation tasks (command line interface) for orchestrating Arranger application instances.
+Automation tasks (command line interface) for orchestrating Infra parts.
 
 ## Prerequisites <div id='prerequisites'/>
 
