@@ -18,6 +18,6 @@ jobs:
       - name: Install yamllint
         run: |
           pip install yamllint
-      - name: Lint docker-compose.yaml
+      - name: Lint docker-compose.yml
         run: |
-          yamllint docker-compose.yaml
+          yamllint docker-compose.yml
