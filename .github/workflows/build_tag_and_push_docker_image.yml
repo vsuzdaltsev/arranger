@@ -1,0 +1,35 @@
+name: Build and Push Docker Image to GitHub Container Registry
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build Docker image
+        run: |
+          docker-compose -f docker-compose.yaml build
+
+      - name: Tag and Push Docker image
+        run: |
+          IMAGE_NAME="ghcr.io/${{ github.repository }}/your-image-name"  # Replace with your image name
+          GIT_REF=${GITHUB_REF##*/}  # Get the git reference (branch or tag)
+          TAG="${GIT_REF//\//-}"  # Replace slashes with dashes for the tag
+          docker tag your-image-name:latest $IMAGE_NAME:$TAG  # Replace 'your-image-name' with the actual name used in docker-compose
+          docker push $IMAGE_NAME:$TAG
