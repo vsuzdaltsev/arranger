@@ -1,4 +1,3 @@
----
 services:
   cli:
     tty: true
