@@ -29,10 +29,10 @@ except BaseException as warn:
     )
     print(msg)
 
-with open('./docker-compose.yaml', 'r') as file:
+with open("./docker-compose.yaml", "r") as file:
     docker_compose_data = yaml.safe_load(file)
 
-CONTAINER_NAME = list(docker_compose_data['services'].keys())[0]
+CONTAINER_NAME = list(docker_compose_data["services"].keys())[0]
 DOCKER_COMPOSE = "docker-compose -f docker-compose.yaml"
 IN_DOCKER = f"{DOCKER_COMPOSE} exec -T {CONTAINER_NAME} pipenv run"
 RENDERED_TEMPLATES = "rendered_templates"
