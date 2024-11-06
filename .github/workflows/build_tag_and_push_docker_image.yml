@@ -38,4 +38,4 @@ jobs:
           docker tag arranger:latest $IMAGE_NAME:$TAG
  
           echo -e ">> RUN: push $IMAGE_NAME:$TAG"
-          docker push $IMAGE_NAME:$TAG
+          docker push $IMAGE_NAME
