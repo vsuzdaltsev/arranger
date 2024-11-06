@@ -16,7 +16,6 @@ try:
 
     VALID_CLUSTERS = AppConf.CLUSTERS
     KUBERNETES_VERSION = AppConf.CDK8S_KUBERNETES_VERSION
-
 except BaseException as warn:
     msg = (
         ">> WARNING: Not all modules were properly loaded.\n"
