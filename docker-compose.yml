@@ -2,6 +2,7 @@
 services:
   cli:
     tty: true
+    image: arranger
     container_name: arranger
     command: tail -f /dev/null
 
@@ -39,4 +40,3 @@ services:
         TERRAFORM_VERSION: "1.9.8"
         TFENV_REMOTE: "https://hashicorp-releases.yandexcloud.net"
 
-    image: arranger
