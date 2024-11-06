@@ -25,10 +25,18 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: arranger
 
-      - name: Build and push Docker image
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          docker compose -f docker-compose.yml build
-          docker tag arranger "ghcr.io/vsuzdaltsev/arranger:latest"
-          docker push ghcr.io/vsuzdaltsev/arranger:latest
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: {context}/docker-compose.yml
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
