@@ -64,7 +64,7 @@ def black(ctx):
     cmd = "find . -name \\*\\.py | grep -v '/imports/' | xargs black "
     log("warning", ">> Autocorrect python files according to styleguide.")
     ctx.run(cmd)
-    scripts = "python3/scripts"
+    # scripts = "python3/scripts"
     all_dirs = (
         [f"python3/packages/{pkg}" for pkg in PYTHON3_PACKAGES]
         # + [f"{scripts}/arranger_cdk8s"]
