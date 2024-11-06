@@ -39,7 +39,7 @@ def python(ctx, packages="all-packages"):
             else:
                 log(
                     "warning",
-                    f">> Seems like no tests has been created for package {package}.",
+                    f">> Seems like no tests has been created for package '{package}'.",
                 )
         finally:
             os.chdir(repo_root())
