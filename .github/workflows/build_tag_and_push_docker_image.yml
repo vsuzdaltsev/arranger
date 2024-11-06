@@ -1,12 +1,9 @@
-name: Build and Push Docker Image to GitHub Container Registry
+name: Build and Push Docker Image
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
-      - main
+      - main  # This triggers the workflow on pull requests to the main branch
 
 jobs:
   build:
@@ -16,32 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
       - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Docker image
-        run: |
-          docker compose -f docker-compose.yml build
-
-      - name: Tag and Push Docker image
-        run: |
-          IMAGE_NAME="ghcr.io/${{ github.repository }}"
-          echo -e ">> IMAGE NAME: ${IMAGE_NAME}"
-          
-          GIT_REF=${GITHUB_REF##*/}
-          echo -e ">> GIT_REF: ${GIT_REF}"
-
-          TAG="${GIT_REF//\//-}"
-          echo -e ">> TAG: ${TAG}"
-          
-          echo -e ">> DOCKER IMAGES:"
-          docker images
-          
-          echo -e ">> RUN: docker tag arranger:latest $IMAGE_NAME:$TAG"
-          docker tag arranger:latest $IMAGE_NAME/arranger:latest
- 
-          echo -e ">> RUN: push $IMAGE_NAME:$TAG"
-          docker push $IMAGE_NAME/arranger:latest
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./docker-compose.yml
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/arranger:latest
