@@ -77,4 +77,5 @@ minor changes under Windows as well).
 
 ## Maintainers <div id='maintainers'/>
 
-* [vsevolod.suzdaltsev@gmail.com](mailto:vsevolod.suzdaltsev@gmail.com?subject=prepare-meta-cli)
+* [vsevolod.suzdaltsev@gmail.com](mailto:vsevolod.suzdaltsev@gmail.com?subject=prepare-arranger-cli)
+* [iskander.ignatev@gmail.com](mailto:iskander.ignatev@gmail.com?subject=prepare-arranger-cli)

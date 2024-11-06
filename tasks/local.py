@@ -23,7 +23,7 @@ def build_docker_compose(ctx):
 
 @task
 def exec_container(_ctx, shell="zsh"):
-    """>> Enter meta service container shell."""
+    """>> Enter arranger service container shell."""
     available_shells = ["bash", "zsh"]
     log("warning", f">> Entering {CONTAINER_NAME} container's {shell}...")
 

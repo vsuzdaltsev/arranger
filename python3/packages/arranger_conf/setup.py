@@ -13,11 +13,11 @@ setuptools.setup(
     name="arranger_conf",
     version=package_version,
     author="devops",
-    author_email="vsevolod@velox-solution.com",
+    author_email="vsevolod.suzdaltsev@gmail.com",
     description="Arranger automation configuration.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="meta.git",
+    url="https://github.com/vsuzdaltsev/arranger",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
