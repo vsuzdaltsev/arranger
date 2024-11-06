@@ -6,8 +6,9 @@ import os
 from typing import Any, Iterable
 
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader
+import yaml
 
-
+# TODO: currently the only project because of flat structure of TF stack libs
 CURRENT_TF_PROJECT = "tf"
 
 try:
@@ -15,9 +16,7 @@ try:
     from arranger_conf.arranger_cdktf_conf import BasicConf
 
     VALID_CLUSTERS = AppConf.CLUSTERS
-    VALID_EKS_STACKS = BasicConf.VALID_STACKS[CURRENT_TF_PROJECT]
     KUBERNETES_VERSION = AppConf.CDK8S_KUBERNETES_VERSION
-
 except BaseException as warn:
     msg = (
         ">> WARNING: Not all modules were properly loaded.\n"
@@ -30,7 +29,10 @@ except BaseException as warn:
     )
     print(msg)
 
-CONTAINER_NAME = "cli"
+with open('./docker-compose.yaml', 'r') as file:
+    docker_compose_data = yaml.safe_load(file)
+
+CONTAINER_NAME = list(docker_compose_data['services'].keys())[0]
 DOCKER_COMPOSE = "docker-compose -f docker-compose.yaml"
 IN_DOCKER = f"{DOCKER_COMPOSE} exec -T {CONTAINER_NAME} pipenv run"
 RENDERED_TEMPLATES = "rendered_templates"
@@ -39,8 +41,6 @@ PYTHON3_PACKAGES = [
 ]
 TERRAFORM_PROJECTS = [CURRENT_TF_PROJECT]
 TOGGLE = ("true", "false")
-VALID_MANIFEST_ACTIONS = ("apply", "delete")
-WHERE_CDKTF_WD = "python3/scripts/arranger_cdktf"
 
 
 def validate_input(
@@ -89,7 +89,3 @@ def template_env() -> type(Environment):
     env.trim_blocks = env.lstrip_blocks = env.rstrip_blocks = True
 
     return env
-
-
-def kubeconfig_name(cluster_name_alias: str) -> str:
-    return f"{cluster_name_alias}_kube_config.yaml"

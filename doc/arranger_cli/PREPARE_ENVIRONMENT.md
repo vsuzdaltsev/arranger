@@ -11,7 +11,7 @@
 
 ## About <div id='about'/>
 
-Automation tasks (command line interface) for orchestrating Arranger application instances.
+Automation tasks (command line interface) for orchestrating Infra parts.
 
 ## Prerequisites <div id='prerequisites'/>
 
@@ -21,7 +21,7 @@ Automation tasks (command line interface) for orchestrating Arranger application
 
 ## Setup <div id='setup'/>
 
-1. Create Python virtual environment (where '3.9.2' is your installed python3 version, see Pipfile for details):
+1. Create Python virtual environment (where '3.9.2' is your python3 version, see Pipfile for the details):
 
    ```shell
    $ pyenv install 3.9.2

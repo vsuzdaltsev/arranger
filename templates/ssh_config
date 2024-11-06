@@ -1,0 +1,3 @@
+Host *
+  StrictHostKeyChecking accept-new
+  UserKnownHostsFile=/dev/null

@@ -22,31 +22,19 @@ ns = Collection()
 
 cdktf = Collection("tf")
 cdk8s = Collection("k8s")
-codebuild = Collection("codebuild")
 container = Collection("container")
-docker = Collection("docker")
 arranger_app = Collection("arranger_app")
-hc_vault = Collection("hc_vault")
 local = Collection("local")
 python3 = Collection("python3")
-secrets = Collection("secrets")
-services = Collection("services")
 spec = Collection("spec")
 
 cdk8s.add_collection(arranger_app)
 
 local.add_collection(container)
 
-secrets.add_collection(hc_vault)
-hc_vault.add_collection(services)
-
 ns.add_collection(cdktf)
-ns.add_collection(cdk8s)
-ns.add_collection(codebuild)
-ns.add_collection(docker)
 ns.add_collection(local)
 ns.add_collection(python3)
-ns.add_collection(secrets)
 ns.add_collection(spec)
 
 container.add_task(build_docker_compose, "build")
