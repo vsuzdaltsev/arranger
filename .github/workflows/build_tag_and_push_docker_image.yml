@@ -1,19 +1,16 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
     permissions:
       packages: write
+
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -29,18 +26,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: arranger
-
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./docker-compose.yml
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      - name: Build and push Docker image
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          docker compose -f docker-compose.yml build
+          docker tag arranger "ghcr.io/vsuzdaltsev/arranger:latest"
+          docker push ghcr.io/vsuzdaltsev/arranger:latest
