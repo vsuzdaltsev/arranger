@@ -39,7 +39,6 @@ PYTHON3_PACKAGES = [
 TERRAFORM_PROJECTS = [CURRENT_TF_PROJECT]
 TOGGLE = ("true", "false")
 VALID_MANIFEST_ACTIONS = ("apply", "delete")
-WHERE_CDKTF_WD = "python3/scripts/arranger_cdktf"
 
 
 def validate_input(
