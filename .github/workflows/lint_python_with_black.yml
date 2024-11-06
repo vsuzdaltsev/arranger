@@ -26,3 +26,4 @@ jobs:
       - name: Lint code
         run: |
           black --check tasks/
+          black --check python3/packages/*
