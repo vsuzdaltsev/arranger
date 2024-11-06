@@ -88,7 +88,3 @@ def template_env() -> type(Environment):
     env.trim_blocks = env.lstrip_blocks = env.rstrip_blocks = True
 
     return env
-
-
-def kubeconfig_name(cluster_name_alias: str) -> str:
-    return f"{cluster_name_alias}_kube_config.yaml"

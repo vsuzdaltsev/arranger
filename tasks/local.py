@@ -1,16 +1,12 @@
 import os
 from invoke import task
 
-# import ipdb; ipdb.set_trace(context=5)
-
 from .helper_functions import (
     CONTAINER_NAME,
     DOCKER_COMPOSE,
     IN_DOCKER,
-    # kubeconfig_name,
     log,
     PYTHON3_PACKAGES,
-    # validate_input,
 )
 
 
