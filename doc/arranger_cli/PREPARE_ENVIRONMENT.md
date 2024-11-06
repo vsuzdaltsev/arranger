@@ -1,6 +1,6 @@
 # Prepare arranger_cli environment
 
-## NB: all the commands are to be run within the Arranger repo root directory
+## NB: all the commands are to be run within the Arranger repo's root directory
 ## Table of contents
 
 * [About](#about)
