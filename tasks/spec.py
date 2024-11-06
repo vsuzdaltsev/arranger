@@ -12,7 +12,7 @@ def python(ctx, packages="all-packages"):
 
     assert (
         os.getcwd() == repo_root()
-    ), f">> The invoke task should be executed from {repo_root()}."
+    ), f">> The invoke task should be executed in {repo_root()}."
 
     def packages_to_process() -> List[str]:
         if packages == "all-packages":
