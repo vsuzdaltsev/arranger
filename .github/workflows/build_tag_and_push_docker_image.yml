@@ -29,8 +29,14 @@ jobs:
       - name: Tag and Push Docker image
         run: |
           IMAGE_NAME="ghcr.io/${{ github.repository }}"
+          echo -e ">> IMAGE NAME: ${IMAGE_NAME}"
+          
           GIT_REF=${GITHUB_REF##*/}
+          echo -e ">> GIT_REF: ${GIT_REF}"
+
           TAG="${GIT_REF//\//-}"
+          echo -e ">> TAG: ${TAG}"
+          
           echo -e ">> DOCKER IMAGES:"
           docker images
           
