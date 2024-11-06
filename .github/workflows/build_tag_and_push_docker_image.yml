@@ -28,7 +28,7 @@ jobs:
 
       - name: Tag and Push Docker image
         run: |
-          IMAGE_NAME="ghcr.io/${{ github.repository }}/arranger"
+          IMAGE_NAME="ghcr.io/${{ github.repository }}"
           GIT_REF=${GITHUB_REF##*/}
           TAG="${GIT_REF//\//-}"
           docker tag arranger:latest $IMAGE_NAME:$TAG
