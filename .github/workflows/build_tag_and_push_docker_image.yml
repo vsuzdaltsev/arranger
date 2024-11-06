@@ -1,16 +1,16 @@
 name: Build and Push Docker Image
 
 on:
-  pull_request:
+  [push, pull_request]:
     branches:
       - main
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+
     permissions:
       packages: write
-
-    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -27,6 +27,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
+        if: ${{ github.event_name == 'push' }}
         run: |
           docker compose -f docker-compose.yml build
           docker tag arranger "ghcr.io/vsuzdaltsev/arranger:latest"
