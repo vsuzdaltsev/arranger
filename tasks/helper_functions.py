@@ -15,7 +15,6 @@ try:
     from arranger_conf.arranger_cdktf_conf import BasicConf
 
     VALID_CLUSTERS = AppConf.CLUSTERS
-    VALID_EKS_STACKS = BasicConf.VALID_STACKS[CURRENT_TF_PROJECT]
     KUBERNETES_VERSION = AppConf.CDK8S_KUBERNETES_VERSION
 
 except BaseException as warn:
