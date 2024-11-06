@@ -1,6 +1,12 @@
 name: Build and Push Docker Image
 
 on:
+  workflow_run:
+    workflows: ["Lint Python Code with Black", "Lint Docker Compose YAML"]
+    branches:
+      - main
+    types:
+      - completed
   pull_request:
     branches:
       - main
@@ -10,10 +16,10 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+
     permissions:
       packages: write
-
-    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
