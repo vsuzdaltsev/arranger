@@ -1,6 +1,6 @@
 # Prepare arranger_cli environment
 
-## NB: all the commands are run within the meta-cli repo root directory
+## NB: all the commands are run within the Arranger repo root directory
 ## Table of contents
 
 * [About](#about)
@@ -11,7 +11,7 @@
 
 ## About <div id='about'/>
 
-Automation tasks (command line interface) for orchestrating Eusy application instances.
+Automation tasks (command line interface) for orchestrating Arranger application instances.
 
 ## Prerequisites <div id='prerequisites'/>
 
@@ -42,7 +42,7 @@ Automation tasks (command line interface) for orchestrating Eusy application ins
    $ pip install -r requirements.txt
    ```
 
-4. (**OPTIONAL**) Download all dependencies and install all eusy_automation packages (for some IDEs autocompletion to
+4. (**OPTIONAL**) Download all dependencies and install all arranger_automation packages (for some IDEs autocompletion to
    work
    primarily):
 
@@ -77,4 +77,5 @@ minor changes under Windows as well).
 
 ## Maintainers <div id='maintainers'/>
 
-* [vsevolod.suzdaltsev@gmail.com](mailto:vsevolod.suzdaltsev@gmail.com?subject=prepare-meta-cli)
+* [vsevolod.suzdaltsev@gmail.com](mailto:vsevolod.suzdaltsev@gmail.com?subject=prepare-arranger-cli)
+* [iskander.ignatev@gmail.com](mailto:iskander.ignatev@gmail.com?subject=prepare-arranger-cli)

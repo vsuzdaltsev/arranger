@@ -3,13 +3,13 @@ ARG PYTHON_CUSTOM_VERSION
 
 FROM python:${PYTHON_CUSTOM_VERSION}-alpine${ALPINE_VERSION}
 
-WORKDIR /opt/meta
+WORKDIR /opt/arranger
 
 ARG PYTHON_CUSTOM_VERSION
 ENV PYTHON_CUSTOM_VERSION $PYTHON_CUSTOM_VERSION
 
 ARG AWS_CLI_VERSION
-ARG IAM_AUTH_LINK
+ARG IAM_AUTH_VERSION
 ARG CDKTF_CLI_VERSION
 ARG CDK8S_CLI_VERSION
 ARG DYFF_VERSION
@@ -20,7 +20,10 @@ ARG ISTIO_VERSION
 ARG PYCALL_VERSION
 ARG PIPENV_PACKAGE_VERSION
 ARG PYTHON_SETUPTOOLS_VERSION
+
 ARG TERRAFORM_VERSION
+ARG TFENV_REMOTE
+ENV TFENV_REMOTE $TFENV_REMOTE
 
 COPY Pipfile* ./
 
@@ -61,12 +64,13 @@ RUN apk add --no-cache \
     curl -sLO https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl && \
     mv kubectl /usr/bin/kubectl && \
     chmod +x /usr/bin/kubectl && \
-    curl -sL $IAM_AUTH_LINK --output aws-iam-authenticator && \
+    curl -sL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v${IAM_AUTH_VERSION}/aws-iam-authenticator_${IAM_AUTH_VERSION}_linux_amd64 --output aws-iam-authenticator && \
     mv aws-iam-authenticator /usr/bin/aws-iam-authenticator && \
     chmod +x /usr/bin/aws-iam-authenticator && \
     git clone https://github.com/tfutils/tfenv.git ~/.tfenv && \
     $HOME/.tfenv/bin/tfenv install $TERRAFORM_VERSION && \
     $HOME/.tfenv/bin/tfenv use $TERRAFORM_VERSION && \
+    python -m ensurepip --upgrade && \
     pip install pipenv==${PIPENV_PACKAGE_VERSION} && \
     export PIPENV_VERBOSITY=1 && \
     pipenv --python $PYTHON_CUSTOM_VERSION && \

@@ -1,0 +1,11 @@
+*_kube_config.yml
+*tar.gz
+.secrets/*
+*_secrets_*.py
+.git*
+build_tmp/
+sync_tmp/
+downloaded_seeds/
+.idea/*
+arranger.iml
+.zsh*
