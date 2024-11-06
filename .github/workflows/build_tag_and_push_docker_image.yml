@@ -24,7 +24,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker-compose -f docker-compose.yaml build
+          docker compose -f docker-compose.yaml build
 
       - name: Tag and Push Docker image
         run: |
