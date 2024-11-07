@@ -22,7 +22,7 @@ jobs:
           pip install wheel
           pipenv sync -d
           pip install pyyaml pytest
-          inv python3.build-and-install
+          pipenv run inv python3.build-and-install
 
       - name: Run invoke task
         run: |
