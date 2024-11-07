@@ -1,4 +1,4 @@
-"""Eusy automation libraries."""
+"""Arranger automation libraries."""
 
 from ._version import __version__
 

@@ -1,4 +1,4 @@
-"""Eusy automation libraries. Build script."""
+"""Arranger automation libraries. Build script."""
 
 import setuptools
 
@@ -14,7 +14,7 @@ setuptools.setup(
     version=package_version,
     author="devops",
     author_email="vsevolod.suzdaltsev@gmail.com",
-    description="Eusy globals.",
+    description="Arranger globals.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="meta.git",

@@ -22,4 +22,6 @@ jobs:
           pip install pyyaml pytest
 
       - name: Run invoke task
-        run: inv spec.python
+        run: |
+          inv python3.build-and-install
+          inv spec.python
