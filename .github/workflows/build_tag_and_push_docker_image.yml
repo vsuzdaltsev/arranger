@@ -2,7 +2,7 @@ name: Build and Push Docker Image
 
 on:
   workflow_run:
-    workflows: ["Lint Python Code with Black", "Lint Docker Compose YAML"]
+    workflows: ["Lint Docker Compose YAML", "Lint Python Code with Black"]
     branches:
       - main
     types:
