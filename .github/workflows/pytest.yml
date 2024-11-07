@@ -22,6 +22,6 @@ jobs:
           pipenv sync -d
           pipenv run inv python3.build-and-install
 
-      - name: Run invoke task
+      - name: Run Spec Invoke task
         run: |
           pipenv run inv spec.python
