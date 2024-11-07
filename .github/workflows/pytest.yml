@@ -20,8 +20,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install pyyaml pytest
+          inv python3.build-and-install
 
       - name: Run invoke task
         run: |
-          inv python3.build-and-install
           inv spec.python
