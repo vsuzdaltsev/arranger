@@ -37,7 +37,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
           docker compose -f docker-compose.yml build
 
