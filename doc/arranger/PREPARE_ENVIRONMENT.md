@@ -24,10 +24,10 @@ Automation tasks (command line interface) for orchestrating Infra parts.
 1. Create Python virtual environment (where '3.9.2' is your python3 version, see Pipfile for the details):
 
    ```shell
-   $ pyenv install 3.9.2
-   $ pyenv local 3.9.2
+   $ pyenv install 3.11
+   $ pyenv local 3.11
    $ eval "$(pyenv init --path)"
-   $ pipenv --python 3.9.2
+   $ pipenv --python 3.11
    ```
 
 2. Enter the virtual environment's context:
