@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  lint:
+  lint_docker_compose:
     runs-on: ubuntu-latest
 
     steps:
