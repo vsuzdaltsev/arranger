@@ -1,4 +1,4 @@
-name: Run Specs
+name: Pytest Specs
 
 on: [pull_request]
 
