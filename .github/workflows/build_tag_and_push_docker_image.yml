@@ -1,16 +1,19 @@
 name: Build and Push Docker Image
 
 on:
-  pull_request:
+  workflow_run:
+    workflows: ["Lint Docker Compose YAML", "Lint Python Code with Black"]
     branches:
       - main
+    types:
+      - completed
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+
     permissions:
       packages: write
-
-    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -27,6 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
           docker compose -f docker-compose.yml build
           docker tag arranger "ghcr.io/vsuzdaltsev/arranger:latest"
