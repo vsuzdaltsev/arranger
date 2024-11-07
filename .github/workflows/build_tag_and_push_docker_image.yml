@@ -36,9 +36,12 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Docker image
-        run: |
-          docker compose -f docker-compose.yml build
+      - name: Build and push
+        uses: docker/bake-action@v5
+        with:
+          files:
+            - docker-compose.yml
+          push: false
 
       - name: Tag and Push Docker image
         if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name == 'push' }}
