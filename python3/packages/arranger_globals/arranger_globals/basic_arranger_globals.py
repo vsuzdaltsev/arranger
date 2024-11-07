@@ -2,7 +2,6 @@
 
 from abc import ABC
 import ipaddress
-from typing import Any, Dict, List, Union
 
 
 class NotIPv4Error(Exception):
