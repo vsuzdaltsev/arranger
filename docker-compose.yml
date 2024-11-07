@@ -10,6 +10,7 @@ services:
       - $HOME/.kube:/root/.kube
       - .:/opt/arranger
       - ./python3/packages/arranger_conf/arranger_conf:/opt/site-packages/arranger_conf
+      - ./python3/packages/arranger_globals/arranger_globals:/opt/site-packages/arranger_globals
       - ./templates/.zshrc:/root/.zshrc
       - ./templates/ssh_config:/root/.ssh/config
       - /var/run/docker.sock:/var/run/docker.sock
