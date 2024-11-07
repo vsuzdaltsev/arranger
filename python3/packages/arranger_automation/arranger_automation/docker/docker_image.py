@@ -162,7 +162,3 @@ class DockerImage:
     def remove_image(self, image: str) -> NoReturn:
         """Remove Docker image from the local Repository."""
         self.docker_client.images.remove(image, force=False)
-
-    # def list_images(self) -> List:
-    #     """List local Docker images within the given Repository."""
-    #     return self.docker_client.images.list()
