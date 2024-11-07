@@ -19,7 +19,7 @@ services:
       - SSH_AUTH_SOCK=/ssh-agent
       - LOG_LEVEL=ERROR
       - DOCKER_BUILDKIT=1
-+++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     build:
       context: .
       dockerfile: Dockerfile
