@@ -37,10 +37,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        uses: docker/bake-action@v5
-        with:
-          files: docker-compose.yml
-          push: false
+        run: |
+          docker compose -f docker-compose.yml build
 
       - name: Tag and Push Docker image
         run: |
