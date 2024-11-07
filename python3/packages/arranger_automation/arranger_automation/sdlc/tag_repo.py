@@ -11,7 +11,7 @@ from .sem_ver import SemVer
 class TagRepo:
     """Update repo's tag."""
 
-    GIT_EMAIL = "automation@eusy.eu"
+    GIT_EMAIL = "vsevolod.suzdaltsev@gmail.com"
     GIT_USER = "automation"
 
     def __init__(
