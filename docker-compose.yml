@@ -9,6 +9,7 @@ services:
     volumes:
       - $HOME/.kube:/root/.kube
       - .:/opt/arranger
+      - ./python3/packages/arranger_automation/arranger_automation:/opt/site-packages/arranger_automation
       - ./python3/packages/arranger_conf/arranger_conf:/opt/site-packages/arranger_conf
       - ./python3/packages/arranger_globals/arranger_globals:/opt/site-packages/arranger_globals
       - ./templates/.zshrc:/root/.zshrc
