@@ -39,8 +39,7 @@ jobs:
       - name: Build and push
         uses: docker/bake-action@v5
         with:
-          files:
-            - docker-compose.yml
+          files: docker-compose.yml
           push: false
 
       - name: Tag and Push Docker image
