@@ -41,6 +41,7 @@ jobs:
           docker compose -f docker-compose.yml build
 
       - name: Tag and Push Docker image
+        if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name == 'push' }}
         run: |
           docker tag arranger "ghcr.io/vsuzdaltsev/arranger:latest"
           docker push ghcr.io/vsuzdaltsev/arranger:latest
