@@ -19,8 +19,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pyyaml
-          pip install pytest invoke  # Install pytest and invoke
+          pip install pyyaml pytest invoke
 
       - name: Run invoke task
         run: inv spec.python
