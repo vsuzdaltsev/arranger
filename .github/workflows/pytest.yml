@@ -3,7 +3,7 @@ name: Run Specs
 on: [pull_request]
 
 jobs:
-  test:
+  pytest:
     runs-on: ubuntu-latest
 
     steps:
