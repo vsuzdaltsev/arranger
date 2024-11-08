@@ -77,17 +77,18 @@ Automation tasks (command line interface) for orchestrating Infra parts.
    (arranger) root@cli#  inv -l
    Available tasks:
 
-   local.autocorrect-black      >> Run autocorrection on python files (black).
-   local.cleanup-repo           >> Clean the repo from temporary files.
-   local.container.build        >> Build dockerized environment.
+   local.autocorrect-black      >> Run autocorrection on Python files (using Black).
+   local.cleanup-repo           >> Clean the environment from within the Dockerized CLI.
+   local.container.build        >> Build the Dockerized environment.
    local.container.clean-repo   >> Clean environment from within the dockerized CLI.
-   local.container.enter        >> Enter arranger service container shell.
-   local.container.run          >> Run dockerized environment.
-   local.container.stop         >> Stop dockerized environment.
-   python3.build                >> Build given python3 package.
-   python3.build-and-install    >> Build given python3 package, install it and clean up the repo.
-   python3.install              >> Install given python3 package.
-   spec.python                  >> Run specs for given Python package.
+   local.container.enter        >> Enter the Arranger service container shell.
+   local.container.run          >> Run the Dockerized environment.
+   local.container.stop         >> Stop the Dockerized environment.
+   python3.build                >> Build the specified Python 3 package.
+   python3.build-and-install    >> Build the specified Python 3 package, install it, and clean up the repository.
+   python3.install              >> Install the specified Python 3 package.
+   spec.python                  >> Run specifications for the specified Python package.
+
    ```
 
 ## Known limitations <div id='known-limitations'/>
