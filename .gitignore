@@ -1,2 +1,4 @@
 .idea
 .python-version
+.zsh_history
+**__pycache__

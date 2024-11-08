@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a9ed90ab9b6101868914e096ac42de4d4cdb3c6214f050c3228ee8f9b8bed719"
+            "sha256": "ae430fa72ce7f5212b32171e8c16dda1572567bfc143de3632bb73cba4a9330c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -676,14 +676,6 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2'",
             "version": "==2.9.0.post0"
-        },
-        "python-ldap": {
-            "hashes": [
-                "sha256:7edb0accec4e037797705f3a05cbf36a9fde50d08c8f67f2aef99a2628fab828"
-            ],
-            "index": "pypi",
-            "markers": "python_version >= '3.6'",
-            "version": "==3.4.4"
         },
         "python-on-whales": {
             "hashes": [

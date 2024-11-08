@@ -8,7 +8,7 @@ from .helper_functions import log, PYTHON3_PACKAGES, repo_root
 
 @task
 def python(ctx, packages="all-packages"):
-    """>> Run specs for given Python package."""
+    """>> Run specifications for the specified Python package."""
 
     assert (
         os.getcwd() == repo_root()

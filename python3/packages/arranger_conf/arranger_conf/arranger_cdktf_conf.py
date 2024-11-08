@@ -1,6 +1,3 @@
-# from arranger_globals.cdktf_globals import CdktfGlobals
-
-
 class BasicConf:
     DEFAULT_TIMEOUTS = {"create": "45m", "delete": "45m"}
     AWS_GLOBAL_REGION = "us-east-1"
@@ -18,5 +15,11 @@ class BasicConf:
 
 
 class TfConf:
+    class Develop1(BasicConf):
+        ALL_STACKS = ["acm-stack"]
+
     class Local(BasicConf):
-        pass
+        ALL_STACKS = ["acm-stack"]
+
+    class Staging1(BasicConf):
+        ALL_STACKS = ["acm-stack"]
