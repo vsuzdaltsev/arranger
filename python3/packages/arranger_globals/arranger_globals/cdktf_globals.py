@@ -20,7 +20,7 @@ class CdktfGlobals(ByTenant):
         }
 
     @staticmethod
-    def archive_provider(scope) -> Any:
+    def archive_provider(scope: Construct) -> Any:
         from arranger_cdktf.imports.archive.provider import ArchiveProvider
 
         return ArchiveProvider(scope=scope, id="archive")
@@ -39,7 +39,7 @@ class CdktfGlobals(ByTenant):
 
     def k8s_provider(
         self,
-        scope: type(cdktf.TerraformStack),
+        scope: Construct,
         where_kube_config: Union[str, None] = None,
     ) -> Any:
         from arranger_cdktf.imports.kubernetes.provider import (
