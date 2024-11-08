@@ -24,7 +24,7 @@ interface. For creating/managing infrastructure, CDKTF and CDK8s are primarily u
 
 ## Setup <div id='setup'/>
 
-1. Create Python virtual environment (where '3.9.2' is your python3 version, see Pipfile for the details):
+1. Create Python virtual environment (where '3.11' is your python3 version, see Pipfile for the details):
 
    ```shell
    $ pyenv install 3.11
