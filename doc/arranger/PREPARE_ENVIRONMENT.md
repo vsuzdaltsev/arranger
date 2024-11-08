@@ -4,17 +4,10 @@
 
 ## Table of contents
 
-* [About](#about)
 * [Prerequisites](#prerequisites)
 * [Setup](#setup)
 * [Known limitations](#known-limitations)
 * [Maintainers](#maintainers)
-
-## About <div id='about'/>
-
-A toolkit designed for managing infrastructure described as an object model using Python. It is a Dockerized environment
-that includes most of the necessary tools for development and testing. The PyInvoke library is used to create the CLI
-interface. For creating/managing infrastructure, CDKTF and CDK8s are primarily used in conjunction with the SDK.
 
 ## Prerequisites <div id='prerequisites'/>
 
