@@ -5,7 +5,13 @@ class AppConf:
     """Globals."""
 
     CLUSTERS = {
+        "develop1": {
+            "cluster_name": "local-k8s",
+        },
         "local": {
+            "cluster_name": "local-k8s",
+        },
+        "staging1": {
             "cluster_name": "local-k8s",
         },
     }
