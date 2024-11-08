@@ -13,7 +13,8 @@ class CdktfGlobals(ByTenant):
         return {
             "created_by": "cdktf",
             "caution": "do not modify manually",
-            "code": "git@git.velox-solution.com:eusy/meta-cli-switch.git",
+            # FIXME: add source
+            "code": "",
             "tenant": self.tenant,
             "created_at": time.ctime(),
         }
