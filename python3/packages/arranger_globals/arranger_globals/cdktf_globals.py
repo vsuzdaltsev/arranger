@@ -4,7 +4,6 @@ from typing import Any, Dict, List, Union
 
 import cdktf
 
-import arranger_conf
 from basic_arranger_globals import ByTenant, validate_subnets
 
 
@@ -27,7 +26,9 @@ class CdktfGlobals(ByTenant):
 
     @property
     def cloud(self) -> str:
-        return arranger_conf.AppConf.CLUSTERS[self.tenant]["cloud_attributes"]["cloud"]
+        from arranger_conf import AppConf
+
+        return AppConf.CLUSTERS[self.tenant]["cloud_attributes"]["cloud"]
 
     @staticmethod
     def external_provider(scope: Any) -> Any:
