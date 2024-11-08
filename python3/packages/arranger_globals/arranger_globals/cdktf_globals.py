@@ -195,7 +195,8 @@ class CdktfGlobals(ByTenant):
             profile=self.aws_profile,
             region=region,
         )
-        bucket_name = f"velox-terraform-remote-states-{self.tenant}"
+        # FIXME: randomize name
+        bucket_name = f"arranger-terraform-remote-states-{self.tenant}"
         BackendHelperAws.BUCKET_NAME = bucket_name
         state_s3bucket = BackendHelperAws.create_bucket(
             profile=self.aws_profile, location_constraint=region
