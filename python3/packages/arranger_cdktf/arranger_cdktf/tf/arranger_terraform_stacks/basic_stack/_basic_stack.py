@@ -9,18 +9,21 @@ from constructs import Construct
 
 from eusy_automation.log import Log
 
-from eusy_cdktf.imports.aws.data_aws_subnets import DataAwsSubnets, DataAwsSubnetsFilter
-from eusy_cdktf.imports.aws.data_aws_vpc import DataAwsVpc, DataAwsVpcFilter
+from arranger_cdktf.imports.aws.data_aws_subnets import (
+    DataAwsSubnets,
+    DataAwsSubnetsFilter,
+)
+from arranger_cdktf.imports.aws.data_aws_vpc import DataAwsVpc, DataAwsVpcFilter
 
-from eusy_cdktf.imports.aws.data_aws_secretsmanager_secret import (
+from arranger_cdktf.imports.aws.data_aws_secretsmanager_secret import (
     DataAwsSecretsmanagerSecret,
 )
-from eusy_cdktf.imports.aws.data_aws_secretsmanager_secret_version import (
+from arranger_cdktf.imports.aws.data_aws_secretsmanager_secret_version import (
     DataAwsSecretsmanagerSecretVersion,
 )
 
-from eusy_cdktf.imports.null import Resource as NullResource
-from eusy_conf.eusy_cdktf_conf import TfConf
+from arranger_cdktf.imports.null import Resource as NullResource
+from arranger_conf.arranger_cdktf_conf import TfConf
 from eusy_globals.cdktf_globals import CdktfGlobals
 
 
@@ -30,9 +33,7 @@ class BasicStack(TerraformStack):
 
         self.log = Log().logger(desc=self.__class__.__name__)
         self.config = config
-        self.globals = CdktfGlobals(
-            tenant=self.config.TENANT, config=self.config
-        )
+        self.globals = CdktfGlobals(tenant=self.config.TENANT, config=self.config)
         self.backend = self._setup_backend()
         self.stack_tags = self.globals.common_tags() | {
             "stack": self.__class__.__name__
@@ -49,6 +50,7 @@ class BasicStack(TerraformStack):
 
     def _setup_backend(self, scope):
         raise NotImplementedError("")
+
 
 class AWSBasicStack(BasicStack):
     def _setup_backend(self):

@@ -23,7 +23,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Operating System :: POSIX :: LINUX",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.11",
     install_requires=[
         "docker==4.4.1",
         "GitPython==3.1.24",

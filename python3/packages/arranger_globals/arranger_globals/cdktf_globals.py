@@ -258,7 +258,7 @@ class CdktfGlobals(ByTenant):
 
     @property
     def sub_environments(self) -> List[str]:
-        from eusy_conf.app_conf import AppConf
+        from arranger_conf.app_conf import AppConf
 
         return AppConf.CLUSTERS[self.cluster_name_alias]["sub_environments"]
 
