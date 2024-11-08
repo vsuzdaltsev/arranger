@@ -84,16 +84,16 @@ Automation tasks (command line interface) for orchestrating Infra parts.
    local.container.enter        >> Enter the Arranger service container shell.
    local.container.run          >> Run the Dockerized environment.
    local.container.stop         >> Stop the Dockerized environment.
-   python3.build                >> Build the specified Python 3 package.
-   python3.build-and-install    >> Build the specified Python 3 package, install it, and clean up the repository.
-   python3.install              >> Install the specified Python 3 package.
+   python3.build                >> Build the specified Python package.
+   python3.build-and-install    >> Build the specified Python package, install it, and clean up the repository.
+   python3.install              >> Install the specified Python package.
    spec.python                  >> Run specifications for the specified Python package.
    ```
 
 ## Known limitations <div id='known-limitations'/>
 
-This setup and all the automation tasks were tested under macOS, but they should also work under Linux (and with obvious
-minor changes under Windows as well).
+This setup and all associated automation tasks were tested on macOS; however, they should also function on Linux, with only minor adjustments needed for Windows.
+
 
 ## Maintainers <div id='maintainers'/>
 

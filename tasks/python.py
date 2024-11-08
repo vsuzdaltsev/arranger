@@ -9,7 +9,7 @@ from .local import cleanup_repo
 
 @task
 def build(ctx, package):
-    """>> Build the specified Python 3 package."""
+    """>> Build the specified Python package."""
     validate_package_name(package=package)
 
     with ctx.cd(f"{repo_root()}/python3/packages/{package}"):
@@ -18,7 +18,7 @@ def build(ctx, package):
 
 @task
 def install(ctx, package):
-    """>> Install the specified Python 3 package."""
+    """>> Install the specified Python package."""
     validate_package_name(package=package)
 
     archive = glob.glob(f"{repo_root()}/python3/packages/{package}/dist/*.tar.gz")[0]
@@ -27,7 +27,7 @@ def install(ctx, package):
 
 @task(pre=[cleanup_repo])
 def build_and_install(ctx, packages="all-packages"):
-    """>> Build the specified Python 3 package, install it, and clean up the repository."""
+    """>> Build the specified Python package, install it, and clean up the repository."""
 
     def list_packages(packages_string: str) -> List[str]:
         if packages_string == "all-packages":
