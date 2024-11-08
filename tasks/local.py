@@ -12,14 +12,14 @@ from .helper_functions import (
 
 @task
 def build_docker_compose(ctx):
-    """>> Build dockerized environment."""
+    """>> Build the Dockerized environment."""
     log("debug", ">> Build applications...")
     ctx.run(f"{DOCKER_COMPOSE} build")
 
 
 @task
 def exec_container(_ctx, shell="zsh"):
-    """>> Enter arranger service container shell."""
+    """>> Enter the Arranger service container shell."""
     available_shells = ["bash", "zsh"]
     log("warning", f">> Entering {CONTAINER_NAME} container's {shell}...")
 
@@ -33,7 +33,7 @@ def exec_container(_ctx, shell="zsh"):
 
 @task(post=[exec_container])
 def run_docker_compose(ctx):
-    """>> Run dockerized environment."""
+    """>> Run the Dockerized environment."""
     log(
         "debug",
         ">> Please ensure adding your ssh key to ssh-agent before running the container: eval $(ssh-agent -s).",
@@ -44,7 +44,7 @@ def run_docker_compose(ctx):
 
 @task
 def stop_docker_compose(ctx, remove_container=True):
-    """>> Stop dockerized environment."""
+    """>> Stop the Dockerized environment."""
     log("debug", f">> Stopping {DOCKER_COMPOSE}...")
     ctx.run(f"{DOCKER_COMPOSE} stop")
     if remove_container:
@@ -60,7 +60,7 @@ def clean_in_docker(ctx):
 
 @task
 def black(ctx):
-    """>> Run autocorrection on python files (black)."""
+    """>> Run autocorrection on Python files (using Black)."""
     cmd = "find . -name \\*\\.py | grep -v '/imports/' | xargs black "
     log("warning", ">> Autocorrect python files according to styleguide.")
     ctx.run(cmd)
@@ -88,7 +88,7 @@ def clean(ctx, patterns):
 
 @task
 def cleanup_repo(ctx):
-    """>> Clean the repo from temporary files."""
+    """>> Clean the environment from within the Dockerized CLI."""
     log("debug", ">> Remove temporary files")
     to_delete = ["Pipfile*"]
     for microservice in []:

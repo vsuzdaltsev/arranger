@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  lint:
+  lint_docker_compose:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9.20'
+          python-version: '3.11'
       - name: Install yamllint
         run: |
           pip install yamllint

@@ -1,0 +1,4 @@
+language: python
+app: python {{ file }} {{ inputs }} {{ environment }} {{ overrides }}
+imports:
+  - k8s@{{ kubernetes_version }}
