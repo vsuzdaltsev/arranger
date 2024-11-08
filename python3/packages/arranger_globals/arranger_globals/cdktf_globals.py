@@ -26,9 +26,7 @@ class CdktfGlobals(ByTenant):
 
     @property
     def cloud(self) -> str:
-        return arranger_cdktf.AppConf.CLUSTERS[self.cluster_name_alias][
-            "cloud_attributes"
-        ]["cloud"]
+        return arranger_cdktf.AppConf.CLUSTERS[self.tenant]["cloud_attributes"]["cloud"]
 
     @staticmethod
     def external_provider(scope: Any) -> Any:
@@ -73,7 +71,7 @@ class CdktfGlobals(ByTenant):
 
     @property
     @validate_subnets
-    def ip_ranges(self, cluster_name_alias: str = None) -> Dict[str, Any]:
+    def ip_ranges(self, tenant: str = None) -> Dict[str, Any]:
         registry = {
             "develop1": {
                 "vpc-main": {
@@ -171,18 +169,18 @@ class CdktfGlobals(ByTenant):
             },
         }
 
-        if not cluster_name_alias:
-            return registry.get(self.cluster_name_alias)
+        if not tenant:
+            return registry.get(self.tenant)
 
-        return registry.get(cluster_name_alias)
+        return registry.get(tenant)
 
     def aws_backend(self, scope, region=None) -> type(Any):
         from cdktf import S3Backend
-        from eusy_automation_aws.helpers import BackendHelperAws
+        from arranger_automation_aws.helpers import BackendHelperAws
 
         def item_name():
             stack_class_name = scope.__class__.__name__
-            config_class_name = self.cluster_name_alias.capitalize()
+            config_class_name = self.tenant.capitalize()
 
             if stack_class_name.startswith(config_class_name):
                 return scope.__class__.__name__.split(config_class_name)[1].lower()
@@ -197,7 +195,7 @@ class CdktfGlobals(ByTenant):
             profile=self.aws_profile,
             region=region,
         )
-        bucket_name = f"velox-terraform-remote-states-{self.cluster_name_alias}"
+        bucket_name = f"velox-terraform-remote-states-{self.tenant}"
         BackendHelperAws.BUCKET_NAME = bucket_name
         state_s3bucket = BackendHelperAws.create_bucket(
             profile=self.aws_profile, location_constraint=region
@@ -261,7 +259,7 @@ class CdktfGlobals(ByTenant):
     def sub_environments(self) -> List[str]:
         from arranger_conf.app_conf import AppConf
 
-        return AppConf.CLUSTERS[self.cluster_name_alias]["sub_environments"]
+        return AppConf.CLUSTERS[self.tenant]["sub_environments"]
 
     @staticmethod
     def run_cmd(cmds: List[str]):
