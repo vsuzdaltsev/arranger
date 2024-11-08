@@ -1,6 +1,7 @@
 # Prepare Arranger environment
 
 ## NB: all the commands are to be run within the Arranger repo's root directory
+
 ## Table of contents
 
 * [About](#about)
@@ -42,7 +43,8 @@ Automation tasks (command line interface) for orchestrating Infra parts.
    $ pip install -r requirements.txt
    ```
 
-4. (**OPTIONAL**) Download all dependencies and install all arranger_automation packages (for some IDEs autocompletion to
+4. (**OPTIONAL**) Download all dependencies and install all arranger_automation packages (for some IDEs autocompletion
+   to
    work
    primarily):
 
@@ -68,6 +70,24 @@ Automation tasks (command line interface) for orchestrating Infra parts.
 
    ```shell
    $ inv local.container.run
+   ```
+8. Observe the list of Invoke tasks
+
+   ```shell
+   (arranger) root@cli#  inv -l
+   Available tasks:
+
+   local.autocorrect-black      >> Run autocorrection on python files (black).
+   local.cleanup-repo           >> Clean the repo from temporary files.
+   local.container.build        >> Build dockerized environment.
+   local.container.clean-repo   >> Clean environment from within the dockerized CLI.
+   local.container.enter        >> Enter arranger service container shell.
+   local.container.run          >> Run dockerized environment.
+   local.container.stop         >> Stop dockerized environment.
+   python3.build                >> Build given python3 package.
+   python3.build-and-install    >> Build given python3 package, install it and clean up the repo.
+   python3.install              >> Install given python3 package.
+   spec.python                  >> Run specs for given Python package.
    ```
 
 ## Known limitations <div id='known-limitations'/>
