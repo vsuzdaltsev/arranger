@@ -80,12 +80,6 @@ if __name__ == "__main__":
     backup_bucket = "backup-ldap-staging1"
     s3 = S3File(aws_profile="sandbox1", region="eu-west-2", bucket_name=backup_bucket)
     s3.list_objects()
-    # s3.copy_file_from_s3(
-    #     input_file="Pipfile",
-    #     output_file="Pipfile.bak",
-    #     version="LSwb0b.LeQij78lHmRFXlhX9RmRSdaSE",
-    # )
-    # s3.copy_local_file_to_s3(input_file="neoswitch.net.backup.ldif", output_file="neoswitch.net.backup.ldif.new")
     s3.copy_file_from_s3(
         input_file="mydomain.net.backup.ldif",
         output_file="mydomain.net.backup.ldif.new",
