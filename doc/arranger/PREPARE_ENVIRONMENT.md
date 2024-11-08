@@ -71,7 +71,7 @@ Automation tasks (command line interface) for orchestrating Infra parts.
    ```shell
    $ inv local.container.run
    ```
-8. Observe the list of Invoke tasks
+8. Observe the list of existing Invoke tasks:
 
    ```shell
    (arranger) root@cli#  inv -l
