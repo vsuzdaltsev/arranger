@@ -2,7 +2,6 @@ import ipaddress
 import time
 from typing import Any, Dict, List, Union
 
-import cdktf
 from constructs import Construct
 
 from basic_arranger_globals import ByTenant, validate_subnets
