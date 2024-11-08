@@ -1,4 +1,7 @@
 # from arranger_globals.cdktf_globals import CdktfGlobals
+from python3.packages.arranger_automation.arranger_automation.threads.parallel import (
+    BasicParallel,
+)
 
 
 class BasicConf:
@@ -19,4 +22,10 @@ class BasicConf:
 
 class TfConf:
     class Local(BasicConf):
+        pass
+
+    class Develop1(BasicConf):
+        pass
+
+    class Staging1(BasicConf):
         pass
