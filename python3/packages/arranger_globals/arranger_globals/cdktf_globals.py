@@ -67,7 +67,7 @@ class CdktfGlobals(ByTenant):
         return False
 
     @staticmethod
-    def _new_subnet(supernet_cidr, subnet_prefix, subnet_index):
+    def _new_subnet(supernet_cidr: ipaddress.ip_network, subnet_prefix: int, subnet_index: int) -> str:
         supernet_cidr = ipaddress.ip_network(supernet_cidr)
 
         return str(list(supernet_cidr.subnets(new_prefix=subnet_prefix))[subnet_index])
