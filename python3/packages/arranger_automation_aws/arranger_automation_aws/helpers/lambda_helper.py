@@ -1,5 +1,5 @@
-from eusy_automation_aws.basic_resource import BasicAwsResource
-from eusy_automation_aws.client import AwsClient
+from arranger_automation_aws.basic_resource import BasicAwsResource
+from arranger_automation_aws.client import AwsClient
 
 
 class LambdaHelper(BasicAwsResource):

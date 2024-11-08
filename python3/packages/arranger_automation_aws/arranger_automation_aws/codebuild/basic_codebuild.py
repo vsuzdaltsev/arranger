@@ -4,8 +4,8 @@ import time
 
 from typing import Dict, List, Tuple, Union
 
-from eusy_automation.log import Log
-from eusy_automation_aws.client import AwsClient
+from arranger_automation.log import Log
+from arranger_automation_aws.client import AwsClient
 
 
 def _env_var(name: str, value: str) -> Dict[str, str]:
@@ -126,13 +126,13 @@ class BasicCodebuild:
 
 if __name__ == "__main__":
     client = AwsClient(
-        name="codebuild", region="eu-west-2", aws_profile="switchdev1"
+        name="codebuild", region="eu-west-2", aws_profile="develop1"
     ).client
 
     print(f">> Codebuild_projects: {BasicCodebuild.projects(boto_client=client)}.")
     print(
         BasicCodebuild(
-            project_name="universal_build_back_switchdev1",
+            project_name="universal_build_back_develop1",
             boto_client=client,
             environment_variables_overrides=[
                 {

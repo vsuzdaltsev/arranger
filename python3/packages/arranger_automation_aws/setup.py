@@ -1,4 +1,4 @@
-"""Eusy automation libraries. Build script."""
+"""Arranger automation libraries. Build script."""
 
 import setuptools
 

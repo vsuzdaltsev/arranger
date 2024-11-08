@@ -1,7 +1,7 @@
 from typing import Dict, List, Union
 
-from eusy_automation_aws.basic_resource import BasicAwsResource
-from eusy_automation_aws.client import AwsClient
+from arranger_automation_aws.basic_resource import BasicAwsResource
+from arranger_automation_aws.client import AwsClient
 
 
 class MskHelper(BasicAwsResource):
@@ -58,9 +58,9 @@ class MskHelper(BasicAwsResource):
 
 if __name__ == "__main__":
     client = AwsClient(
-        name="kafka", region="eu-west-2", aws_profile="switchdev1"
+        name="kafka", region="eu-west-2", aws_profile="develop1"
     ).client
     result = MskHelper(
-        boto_client=client, cluster_name="kafka-cluster-switchdev1"
+        boto_client=client, cluster_name="kafka-cluster-develop1"
     ).kafka_brokers(protocol_prefix=False)
     print(result)

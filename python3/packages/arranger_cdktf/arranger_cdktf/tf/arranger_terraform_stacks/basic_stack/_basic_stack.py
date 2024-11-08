@@ -7,7 +7,7 @@ import yaml
 from cdktf import Fn, TerraformLocal, TerraformResourceLifecycle, TerraformStack
 from constructs import Construct
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 from arranger_cdktf.imports.aws.data_aws_subnets import (
     DataAwsSubnets,
@@ -24,7 +24,7 @@ from arranger_cdktf.imports.aws.data_aws_secretsmanager_secret_version import (
 
 from arranger_cdktf.imports.null import Resource as NullResource
 from arranger_conf.arranger_cdktf_conf import TfConf
-from eusy_globals.cdktf_globals import CdktfGlobals
+from arranger_globals.cdktf_globals import CdktfGlobals
 
 
 class BasicStack(TerraformStack):

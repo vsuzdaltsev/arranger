@@ -6,9 +6,9 @@ import shutil
 import tempfile
 from typing import Any, Dict, List, Tuple, Union
 
-from eusy_automation.log import Log
-from eusy_automation_aws.codeartifactory import MvnCodeartifactory
-from eusy_conf.app_conf import AppConf
+from arranger_automation.log import Log
+from arranger_automation_aws.codeartifactory import MvnCodeartifactory
+from arranger_conf.app_conf import AppConf
 
 
 def build_dockerfile() -> str:
@@ -78,14 +78,14 @@ class BasicBuildAndPushImageToEcrMixin(ABC):
         )
 
     def _aws_region(self) -> str:
-        from eusy_globals.cdktf_globals import CdktfGlobals
+        from arranger_globals.cdktf_globals import CdktfGlobals
 
         _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
 
         return _globals.aws_region
 
     def _aws_profile(self) -> str:
-        from eusy_globals.cdktf_globals import CdktfGlobals
+        from arranger_globals.cdktf_globals import CdktfGlobals
 
         _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
 
@@ -99,7 +99,7 @@ class BasicBuildAndPushImageToEcrMixin(ABC):
         return [self._aws_profile()]
 
     def _create_ecr_repo(self) -> Any:
-        from eusy_automation_aws.ecr import BasicEcr
+        from arranger_automation_aws.ecr import BasicEcr
 
         if self.create_ecr_repo:
             for aws_profile in self._accounts_to_create_ecr_within():
@@ -162,7 +162,7 @@ class BasicBuildAndPushImageToEcrBack(BasicBuildAndPushImageToEcrMixin):
     def _build_and_publish_to_ecr(
         self, docker_credentials: List[Tuple[str, str, str]]
     ) -> Any:
-        from eusy_automation.docker import MultiPlatformDockerImageOnWhales
+        from arranger_automation.docker import MultiPlatformDockerImageOnWhales
 
         image = MultiPlatformDockerImageOnWhales(
             image_name=self.image_name,
@@ -181,7 +181,7 @@ class BasicBuildAndPushImageToEcrBack(BasicBuildAndPushImageToEcrMixin):
         return image_metadata
 
     def run(self, docker_credentials: List[Tuple[str, str, str]]) -> Dict:
-        from eusy_automation_aws.ecr.ecr_credentials import EcrAccessCredentials
+        from arranger_automation_aws.ecr.ecr_credentials import EcrAccessCredentials
 
         if not docker_credentials:
             docker_credentials = EcrAccessCredentials(
@@ -230,7 +230,7 @@ class BasicBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrMixin):
         self.current_commit_sha = None
 
     def run(self, docker_credentials: List[Tuple[str, str, str]]) -> Dict:
-        from eusy_automation_aws.ecr.ecr_credentials import EcrAccessCredentials
+        from arranger_automation_aws.ecr.ecr_credentials import EcrAccessCredentials
 
         if not docker_credentials:
             docker_credentials = [
@@ -250,8 +250,8 @@ class BasicBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrMixin):
         return output
 
     def _git_clone_checkout(self) -> type(None):
-        from eusy_automation.eusy_git.basic_git_repo import BasicGitcommitRepo
-        from eusy_globals.cdktf_globals import CdktfGlobals
+        from arranger_automation.arranger_git.basic_git_repo import BasicGitcommitRepo
+        from arranger_globals.cdktf_globals import CdktfGlobals
 
         _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
 
@@ -270,7 +270,7 @@ class BasicBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrMixin):
     def _build_and_publish_to_ecr(
         self, docker_credentials: List[Tuple[str, str, str]]
     ) -> Dict:
-        from eusy_automation.docker import MultiPlatformDockerImageOnWhales
+        from arranger_automation.docker import MultiPlatformDockerImageOnWhales
 
         image = MultiPlatformDockerImageOnWhales(
             image_name=self.app,

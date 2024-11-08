@@ -1,6 +1,6 @@
 from typing import List
 
-from eusy_automation_aws.helpers import Route53Helper
+from arranger_automation_aws.helpers import Route53Helper
 from arranger_cdktf.imports.aws.acm_certificate import AcmCertificate
 from arranger_cdktf.imports.aws.acm_certificate_validation import (
     AcmCertificateValidation,

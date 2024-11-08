@@ -8,8 +8,8 @@ from boto3 import client as sm
 from boto3 import session as sm_session
 from botocore.exceptions import ClientError
 
-from eusy_automation_aws.credentials import DefaultCredentials
-from eusy_automation.log import Log
+from arranger_automation_aws.credentials import DefaultCredentials
+from arranger_automation.log import Log
 
 
 class SecretsManagerItem:

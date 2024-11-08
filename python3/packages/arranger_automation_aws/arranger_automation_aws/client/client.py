@@ -7,7 +7,7 @@ from botocore.config import Config
 from boto3 import client
 from boto3 import session
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 class AwsClient:

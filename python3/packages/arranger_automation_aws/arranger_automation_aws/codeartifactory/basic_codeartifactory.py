@@ -1,7 +1,7 @@
 import subprocess
 
-from eusy_automation_aws.client import AwsClient
-from eusy_automation.log import Log
+from arranger_automation_aws.client import AwsClient
+from arranger_automation.log import Log
 
 
 class MvnCodeartifactory:
@@ -100,12 +100,12 @@ class MvnCodeartifactory:
 
 if __name__ == "__main__":
     mvn = MvnCodeartifactory(
-        aws_profile="switchdev1", region="eu-west-2", domain="switchdev1"
+        aws_profile="develop1", region="eu-west-2", domain="develop1"
     )
     print(f">> EXISTING JARS: {mvn.jars()}")
     mvn.download_jar(
-        namespace="com.velox.switchpay",
-        package="bank-gate-ms",
+        namespace="com.mydomain.myproject",
+        package="gate-ms",
         package_version="0.0.1-SNAPSHOT",
         output_file=None,
     )

@@ -1,8 +1,8 @@
 from typing import Dict
 from urllib.parse import urlparse
 
-from eusy_automation_aws.client import AwsClient
-from eusy_automation_aws.basic_resource import BasicAwsResource
+from arranger_automation_aws.client import AwsClient
+from arranger_automation_aws.basic_resource import BasicAwsResource
 
 
 class EksHelper(BasicAwsResource):
@@ -31,7 +31,7 @@ class EksHelper(BasicAwsResource):
 if __name__ == "__main__":
     import json
 
-    client = AwsClient(name="eks", region="eu-west-2", aws_profile="switchdev1").client
-    result = EksHelper(boto_client=client, cluster_name="switchdev1")
+    client = AwsClient(name="eks", region="eu-west-2", aws_profile="develop1").client
+    result = EksHelper(boto_client=client, cluster_name="develop1")
 
     print(json.dumps({"URL": result.endpoint_id}))

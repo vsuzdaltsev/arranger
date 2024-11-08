@@ -2,7 +2,7 @@ from typing import List, Union
 
 from invoke import Context, Result
 
-from eusy_automation.log import Log
+from arranger_automation.log import Log
 
 
 def _validate_context(ctx: type(Context)):

@@ -13,17 +13,17 @@ class MultiPlatformBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrFront)
 
 
 if __name__ == "__main__":
-    from eusy_automation_aws.ecr import EcrAccessCredentials
+    from arranger_automation_aws.ecr import EcrAccessCredentials
 
     docker_credentials = [
-        EcrAccessCredentials(cluster_name_alias="switchdev1").ecr_access_credentials()
+        EcrAccessCredentials(cluster_name_alias="develop1").ecr_access_credentials()
     ]
 
     params = {
-        "cluster_name_alias": "switchdev1",
+        "cluster_name_alias": "develop1",
         "mvn": {
             "package": "bank-gate-ms",
-            "namespace": "com.velox.switchpay",
+            "namespace": "com.mydomain.myproject",
             "package_version": "0.0.1-SNAPSHOT",
             "create_ecr_repo": True,
         },
