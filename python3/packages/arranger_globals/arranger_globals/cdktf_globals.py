@@ -4,70 +4,43 @@ from typing import Any, Dict, List, Union
 
 import cdktf
 
-import eusy_conf
-
-from arranger_globals.basic_arranger_globals import ByTenant, validate_subnets
+from basic_arranger_globals import ByTenant, validate_subnets
 
 
 class CdktfGlobals(ByTenant):
-    DEFAULT_CODEBUILD_COMPUTE_TYPE = "BUILD_GENERAL1_SMALL"
-    FRONT_CODEBUILD_COMPUTE_TYPE = "BUILD_GENERAL1_SMALL"  # "BUILD_GENERAL1_LARGE"
-
-    @property
-    def cluster_name_short(self) -> str:
-        return self.cluster_name.split("/")[-1]
-
     def common_tags(self) -> Dict[str, str]:
         return {
             "created_by": "cdktf",
             "caution": "do not modify manually",
             "code": "git@git.velox-solution.com:eusy/meta-cli-switch.git",
-            "cluster_name_alias": self.cluster_name_alias,
+            "tenant": self.tenant,
             "created_at": time.ctime(),
         }
 
     @staticmethod
     def archive_provider(scope) -> Any:
-        from eusy_cdktf.imports.archive.provider import ArchiveProvider
+        from arranger_cdktf.imports.archive.provider import ArchiveProvider
 
         return ArchiveProvider(scope=scope, id="archive")
 
     @property
     def cloud(self) -> str:
-        return eusy_conf.AppConf.CLUSTERS[self.cluster_name_alias]["cloud_attributes"][
-            "cloud"
-        ]
+        return arranger_cdktf.AppConf.CLUSTERS[self.cluster_name_alias][
+            "cloud_attributes"
+        ]["cloud"]
 
     @staticmethod
     def external_provider(scope: Any) -> Any:
-        from eusy_cdktf.imports.external import ExternalProvider
+        from arranger_cdktf.imports.external import ExternalProvider
 
         return ExternalProvider(scope=scope, id="external-provider")
-
-    def helm_provider(
-        self,
-        scope: type(cdktf.TerraformStack),
-        where_kube_config: Union[str, None] = None,
-    ) -> Any:
-        from eusy_cdktf.imports.helm.provider import (
-            HelmProvider,
-            HelmProviderKubernetes,
-        )
-
-        return HelmProvider(
-            scope=scope,
-            id="helm-provider",
-            kubernetes=HelmProviderKubernetes(
-                config_path=where_kube_config or self.where_kubeconfig,
-            ),
-        )
 
     def k8s_provider(
         self,
         scope: type(cdktf.TerraformStack),
         where_kube_config: Union[str, None] = None,
     ) -> Any:
-        from eusy_cdktf.imports.kubernetes.provider import (
+        from arranger_cdktf.imports.kubernetes.provider import (
             KubernetesProvider,
         )
 
@@ -80,7 +53,7 @@ class CdktfGlobals(ByTenant):
 
     @staticmethod
     def null_provider(scope: Any) -> Any:
-        from eusy_cdktf.imports.null import NullProvider
+        from arranger_cdktf.imports.null import NullProvider
 
         return NullProvider(scope=scope, id="null-provider")
 
@@ -243,7 +216,7 @@ class CdktfGlobals(ByTenant):
         )
 
     def provider(self, scope, profile: str, provider_id: str, region=None):
-        from eusy_cdktf.imports.aws.provider import AwsProvider
+        from arranger_cdktf.imports.aws.provider import AwsProvider
 
         if not region:
             region = self.aws_region
@@ -257,7 +230,7 @@ class CdktfGlobals(ByTenant):
         )
 
     def global_automation(self, scope):
-        from eusy_cdktf.imports.aws.provider import AwsProvider
+        from arranger_cdktf.imports.aws.provider import AwsProvider
 
         return AwsProvider(
             scope=scope,
