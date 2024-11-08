@@ -53,3 +53,11 @@ class ArrangerMixin(ABC):
     @property
     def cli_container_root(self) -> str:
         return "/opt/arranger"
+
+
+class BySubEnvironment(ArrangerMixin):
+    pass
+
+
+class ByTenant(ArrangerMixin):
+    pass
