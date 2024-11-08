@@ -88,7 +88,6 @@ Automation tasks (command line interface) for orchestrating Infra parts.
    python3.build-and-install    >> Build the specified Python 3 package, install it, and clean up the repository.
    python3.install              >> Install the specified Python 3 package.
    spec.python                  >> Run specifications for the specified Python package.
-
    ```
 
 ## Known limitations <div id='known-limitations'/>
