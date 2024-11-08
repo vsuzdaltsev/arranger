@@ -22,10 +22,10 @@ class BasicConf:
 
 class TfConf:
     class Develop1(BasicConf):
-        pass
+        ALL_STACKS = ["acm-stack"]
 
     class Local(BasicConf):
-        pass
+        ALL_STACKS = ["acm-stack"]
 
     class Staging1(BasicConf):
-        pass
+        ALL_STACKS = ["acm-stack"]
