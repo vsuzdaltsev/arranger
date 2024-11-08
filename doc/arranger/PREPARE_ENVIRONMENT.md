@@ -12,7 +12,9 @@
 
 ## About <div id='about'/>
 
-Automation tasks (command line interface) for orchestrating Infra parts.
+A toolkit designed for managing infrastructure described as an object model using Python. It is a Dockerized environment
+that includes most of the necessary tools for development and testing. The PyInvoke library is used to create the CLI
+interface. For creating/managing infrastructure, CDKTF and CDK8s are primarily used in conjunction with the SDK.
 
 ## Prerequisites <div id='prerequisites'/>
 
@@ -92,8 +94,8 @@ Automation tasks (command line interface) for orchestrating Infra parts.
 
 ## Known limitations <div id='known-limitations'/>
 
-This setup and all associated automation tasks were tested on macOS; however, they should also function on Linux, with only minor adjustments needed for Windows.
-
+This setup and all associated automation tasks were tested on macOS; however, they should also function on Linux, with
+only minor adjustments needed for Windows.
 
 ## Maintainers <div id='maintainers'/>
 
