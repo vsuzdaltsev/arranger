@@ -2,14 +2,14 @@
 
 from abc import ABC
 import ipaddress
-from typing import Dict
+from typing import Callable, Dict
 
 
 class NotIPv4Error(Exception):
     pass
 
 
-def validate_subnets(func):
+def validate_subnets(func: Callable) -> Callable:
     def check(*args):
         from arranger_automation.validate import ValidateSubnets
 
@@ -18,7 +18,7 @@ def validate_subnets(func):
     return check
 
 
-def validate_ipv4(func):
+def validate_ipv4(func: Callable) -> Callable:
     def is_ip_v4(value):
         try:
             ipaddress.ip_address(address=value)
