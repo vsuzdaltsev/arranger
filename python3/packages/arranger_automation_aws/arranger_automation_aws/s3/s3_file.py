@@ -78,7 +78,7 @@ class S3File:
 if __name__ == "__main__":
 
     backup_bucket = "backup-ldap-staging1"
-    s3 = S3File(aws_profile="sandbox1", region="eu-west-2", bucket_name=backup_bucket)
+    s3 = S3File(aws_profile="staging1", region="eu-west-2", bucket_name=backup_bucket)
     s3.list_objects()
     s3.copy_file_from_s3(
         input_file="mydomain.net.backup.ldif",
