@@ -3,6 +3,7 @@ import time
 from typing import Any, Dict, List, Union
 
 import cdktf
+from constructs import Construct
 
 from basic_arranger_globals import ByTenant, validate_subnets
 
@@ -67,7 +68,9 @@ class CdktfGlobals(ByTenant):
         return False
 
     @staticmethod
-    def _new_subnet(supernet_cidr: ipaddress.ip_network, subnet_prefix: int, subnet_index: int) -> str:
+    def _new_subnet(
+        supernet_cidr: ipaddress.ip_network, subnet_prefix: int, subnet_index: int
+    ) -> str:
         supernet_cidr = ipaddress.ip_network(supernet_cidr)
 
         return str(list(supernet_cidr.subnets(new_prefix=subnet_prefix))[subnet_index])
@@ -218,7 +221,7 @@ class CdktfGlobals(ByTenant):
             profile=self.aws_profile,
         )
 
-    def provider(self, scope, profile: str, provider_id: str, region=None):
+    def provider(self, scope: Construct, profile: str, provider_id: str, region=None):
         from arranger_cdktf.imports.aws.provider import AwsProvider
 
         if not region:
@@ -244,7 +247,7 @@ class CdktfGlobals(ByTenant):
             max_retries=self.config.MAX_RETRIES,
         )
 
-    def automation(self, scope, region=None, provider_id="aws"):
+    def automation(self, scope: Construct, region=None, provider_id="aws"):
         return self.provider(
             scope=scope,
             profile=self.aws_profile,
