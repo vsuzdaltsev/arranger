@@ -23,9 +23,9 @@ class BasicConf:
 class TfConf:
     class Develop1(BasicConf):
         pass
+
     class Local(BasicConf):
         pass
-
 
     class Staging1(BasicConf):
         pass
