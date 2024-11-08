@@ -47,6 +47,7 @@ class CdktfGlobals(ByTenant):
         return KubernetesProvider(
             scope=scope,
             id="k8s-provider",
+            # FIXME: add cluster_name attr & where_kubeconfig attr
             config_path=where_kube_config or self.where_kubeconfig,
             config_context=self.cluster_name,
         )
