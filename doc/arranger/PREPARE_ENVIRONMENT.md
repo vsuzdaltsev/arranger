@@ -83,6 +83,7 @@
    python3.build-and-install    >> Build the specified Python package, install it, and clean up the repository.
    python3.install              >> Install the specified Python package.
    spec.python                  >> Run specifications for the specified Python package.
+   ...
    ```
 
 ## Known limitations <div id='known-limitations'/>
