@@ -1,0 +1,1121 @@
+"""
+# `data_keycloak_saml_client`
+
+Refer to the Terraform Registory for docs: [`data_keycloak_saml_client`](https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client).
+"""
+import abc
+import builtins
+import datetime
+import enum
+import typing
+
+import jsii
+import publication
+import typing_extensions
+
+from typeguard import check_type
+
+from .._jsii import *
+
+import cdktf as _cdktf_9a9027ec
+import constructs as _constructs_77d1e7e8
+
+
+class DataKeycloakSamlClient(
+    _cdktf_9a9027ec.TerraformDataSource,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="keycloak.dataKeycloakSamlClient.DataKeycloakSamlClient",
+):
+    """Represents a {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client keycloak_saml_client}."""
+
+    def __init__(
+        self,
+        scope: _constructs_77d1e7e8.Construct,
+        id_: builtins.str,
+        *,
+        client_id: builtins.str,
+        realm_id: builtins.str,
+        id: typing.Optional[builtins.str] = None,
+        connection: typing.Optional[
+            typing.Union[
+                typing.Union[
+                    _cdktf_9a9027ec.SSHProvisionerConnection,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+                typing.Union[
+                    _cdktf_9a9027ec.WinrmProvisionerConnection,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+            ]
+        ] = None,
+        count: typing.Optional[
+            typing.Union[jsii.Number, _cdktf_9a9027ec.TerraformCount]
+        ] = None,
+        depends_on: typing.Optional[
+            typing.Sequence[_cdktf_9a9027ec.ITerraformDependable]
+        ] = None,
+        for_each: typing.Optional[_cdktf_9a9027ec.ITerraformIterator] = None,
+        lifecycle: typing.Optional[
+            typing.Union[
+                _cdktf_9a9027ec.TerraformResourceLifecycle,
+                typing.Dict[builtins.str, typing.Any],
+            ]
+        ] = None,
+        provider: typing.Optional[_cdktf_9a9027ec.TerraformProvider] = None,
+        provisioners: typing.Optional[
+            typing.Sequence[
+                typing.Union[
+                    typing.Union[
+                        _cdktf_9a9027ec.FileProvisioner,
+                        typing.Dict[builtins.str, typing.Any],
+                    ],
+                    typing.Union[
+                        _cdktf_9a9027ec.LocalExecProvisioner,
+                        typing.Dict[builtins.str, typing.Any],
+                    ],
+                    typing.Union[
+                        _cdktf_9a9027ec.RemoteExecProvisioner,
+                        typing.Dict[builtins.str, typing.Any],
+                    ],
+                ]
+            ]
+        ] = None,
+    ) -> None:
+        """Create a new {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client keycloak_saml_client} Data Source.
+
+        :param scope: The scope in which to define this construct.
+        :param id_: The scoped construct ID. Must be unique amongst siblings in the same scope
+        :param client_id: Docs at Terraform Registry: {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client#client_id DataKeycloakSamlClient#client_id}.
+        :param realm_id: Docs at Terraform Registry: {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client#realm_id DataKeycloakSamlClient#realm_id}.
+        :param id: Docs at Terraform Registry: {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client#id DataKeycloakSamlClient#id}. Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2. If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable.
+        :param connection:
+        :param count:
+        :param depends_on:
+        :param for_each:
+        :param lifecycle:
+        :param provider:
+        :param provisioners:
+        """
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__4b734fa86b18aa1e0fad24508f500833a7b672c832083e7b2dccb3d450f3de42
+            )
+            check_type(
+                argname="argument scope", value=scope, expected_type=type_hints["scope"]
+            )
+            check_type(
+                argname="argument id_", value=id_, expected_type=type_hints["id_"]
+            )
+        config = DataKeycloakSamlClientConfig(
+            client_id=client_id,
+            realm_id=realm_id,
+            id=id,
+            connection=connection,
+            count=count,
+            depends_on=depends_on,
+            for_each=for_each,
+            lifecycle=lifecycle,
+            provider=provider,
+            provisioners=provisioners,
+        )
+
+        jsii.create(self.__class__, self, [scope, id_, config])
+
+    @jsii.member(jsii_name="resetId")
+    def reset_id(self) -> None:
+        return typing.cast(None, jsii.invoke(self, "resetId", []))
+
+    @jsii.member(jsii_name="synthesizeAttributes")
+    def _synthesize_attributes(self) -> typing.Mapping[builtins.str, typing.Any]:
+        return typing.cast(
+            typing.Mapping[builtins.str, typing.Any],
+            jsii.invoke(self, "synthesizeAttributes", []),
+        )
+
+    @jsii.python.classproperty
+    @jsii.member(jsii_name="tfResourceType")
+    def TF_RESOURCE_TYPE(cls) -> builtins.str:
+        return typing.cast(builtins.str, jsii.sget(cls, "tfResourceType"))
+
+    @builtins.property
+    @jsii.member(jsii_name="assertionConsumerPostUrl")
+    def assertion_consumer_post_url(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "assertionConsumerPostUrl"))
+
+    @builtins.property
+    @jsii.member(jsii_name="assertionConsumerRedirectUrl")
+    def assertion_consumer_redirect_url(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "assertionConsumerRedirectUrl"))
+
+    @builtins.property
+    @jsii.member(jsii_name="authenticationFlowBindingOverrides")
+    def authentication_flow_binding_overrides(
+        self,
+    ) -> "DataKeycloakSamlClientAuthenticationFlowBindingOverridesList":
+        return typing.cast(
+            "DataKeycloakSamlClientAuthenticationFlowBindingOverridesList",
+            jsii.get(self, "authenticationFlowBindingOverrides"),
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="baseUrl")
+    def base_url(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "baseUrl"))
+
+    @builtins.property
+    @jsii.member(jsii_name="canonicalizationMethod")
+    def canonicalization_method(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "canonicalizationMethod"))
+
+    @builtins.property
+    @jsii.member(jsii_name="clientSignatureRequired")
+    def client_signature_required(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(
+            _cdktf_9a9027ec.IResolvable, jsii.get(self, "clientSignatureRequired")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="description")
+    def description(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "description"))
+
+    @builtins.property
+    @jsii.member(jsii_name="enabled")
+    def enabled(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(_cdktf_9a9027ec.IResolvable, jsii.get(self, "enabled"))
+
+    @builtins.property
+    @jsii.member(jsii_name="encryptAssertions")
+    def encrypt_assertions(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(
+            _cdktf_9a9027ec.IResolvable, jsii.get(self, "encryptAssertions")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="encryptionCertificate")
+    def encryption_certificate(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "encryptionCertificate"))
+
+    @builtins.property
+    @jsii.member(jsii_name="encryptionCertificateSha1")
+    def encryption_certificate_sha1(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "encryptionCertificateSha1"))
+
+    @builtins.property
+    @jsii.member(jsii_name="extraConfig")
+    def extra_config(self) -> _cdktf_9a9027ec.StringMap:
+        return typing.cast(_cdktf_9a9027ec.StringMap, jsii.get(self, "extraConfig"))
+
+    @builtins.property
+    @jsii.member(jsii_name="forceNameIdFormat")
+    def force_name_id_format(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(
+            _cdktf_9a9027ec.IResolvable, jsii.get(self, "forceNameIdFormat")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="forcePostBinding")
+    def force_post_binding(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(
+            _cdktf_9a9027ec.IResolvable, jsii.get(self, "forcePostBinding")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="frontChannelLogout")
+    def front_channel_logout(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(
+            _cdktf_9a9027ec.IResolvable, jsii.get(self, "frontChannelLogout")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="fullScopeAllowed")
+    def full_scope_allowed(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(
+            _cdktf_9a9027ec.IResolvable, jsii.get(self, "fullScopeAllowed")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="idpInitiatedSsoRelayState")
+    def idp_initiated_sso_relay_state(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "idpInitiatedSsoRelayState"))
+
+    @builtins.property
+    @jsii.member(jsii_name="idpInitiatedSsoUrlName")
+    def idp_initiated_sso_url_name(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "idpInitiatedSsoUrlName"))
+
+    @builtins.property
+    @jsii.member(jsii_name="includeAuthnStatement")
+    def include_authn_statement(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(
+            _cdktf_9a9027ec.IResolvable, jsii.get(self, "includeAuthnStatement")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="loginTheme")
+    def login_theme(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "loginTheme"))
+
+    @builtins.property
+    @jsii.member(jsii_name="logoutServicePostBindingUrl")
+    def logout_service_post_binding_url(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "logoutServicePostBindingUrl"))
+
+    @builtins.property
+    @jsii.member(jsii_name="logoutServiceRedirectBindingUrl")
+    def logout_service_redirect_binding_url(self) -> builtins.str:
+        return typing.cast(
+            builtins.str, jsii.get(self, "logoutServiceRedirectBindingUrl")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="masterSamlProcessingUrl")
+    def master_saml_processing_url(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "masterSamlProcessingUrl"))
+
+    @builtins.property
+    @jsii.member(jsii_name="name")
+    def name(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "name"))
+
+    @builtins.property
+    @jsii.member(jsii_name="nameIdFormat")
+    def name_id_format(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "nameIdFormat"))
+
+    @builtins.property
+    @jsii.member(jsii_name="rootUrl")
+    def root_url(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "rootUrl"))
+
+    @builtins.property
+    @jsii.member(jsii_name="samlSignatureKeyName")
+    def saml_signature_key_name(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "samlSignatureKeyName"))
+
+    @builtins.property
+    @jsii.member(jsii_name="signAssertions")
+    def sign_assertions(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(
+            _cdktf_9a9027ec.IResolvable, jsii.get(self, "signAssertions")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="signatureAlgorithm")
+    def signature_algorithm(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "signatureAlgorithm"))
+
+    @builtins.property
+    @jsii.member(jsii_name="signatureKeyName")
+    def signature_key_name(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "signatureKeyName"))
+
+    @builtins.property
+    @jsii.member(jsii_name="signDocuments")
+    def sign_documents(self) -> _cdktf_9a9027ec.IResolvable:
+        return typing.cast(_cdktf_9a9027ec.IResolvable, jsii.get(self, "signDocuments"))
+
+    @builtins.property
+    @jsii.member(jsii_name="signingCertificate")
+    def signing_certificate(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "signingCertificate"))
+
+    @builtins.property
+    @jsii.member(jsii_name="signingCertificateSha1")
+    def signing_certificate_sha1(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "signingCertificateSha1"))
+
+    @builtins.property
+    @jsii.member(jsii_name="signingPrivateKey")
+    def signing_private_key(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "signingPrivateKey"))
+
+    @builtins.property
+    @jsii.member(jsii_name="signingPrivateKeySha1")
+    def signing_private_key_sha1(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "signingPrivateKeySha1"))
+
+    @builtins.property
+    @jsii.member(jsii_name="validRedirectUris")
+    def valid_redirect_uris(self) -> typing.List[builtins.str]:
+        return typing.cast(
+            typing.List[builtins.str], jsii.get(self, "validRedirectUris")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="clientIdInput")
+    def client_id_input(self) -> typing.Optional[builtins.str]:
+        return typing.cast(
+            typing.Optional[builtins.str], jsii.get(self, "clientIdInput")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="idInput")
+    def id_input(self) -> typing.Optional[builtins.str]:
+        return typing.cast(typing.Optional[builtins.str], jsii.get(self, "idInput"))
+
+    @builtins.property
+    @jsii.member(jsii_name="realmIdInput")
+    def realm_id_input(self) -> typing.Optional[builtins.str]:
+        return typing.cast(
+            typing.Optional[builtins.str], jsii.get(self, "realmIdInput")
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="clientId")
+    def client_id(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "clientId"))
+
+    @client_id.setter
+    def client_id(self, value: builtins.str) -> None:
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__a93e31570364d5a3f3a71b1f86893b456d4595b9a7baabccb986e0c543b93d6c
+            )
+            check_type(
+                argname="argument value", value=value, expected_type=type_hints["value"]
+            )
+        jsii.set(self, "clientId", value)
+
+    @builtins.property
+    @jsii.member(jsii_name="id")
+    def id(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "id"))
+
+    @id.setter
+    def id(self, value: builtins.str) -> None:
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__5581259f3f43e44c8e76a66dc8efb0769fdcad687185c0cbb95fd0fed118d3d9
+            )
+            check_type(
+                argname="argument value", value=value, expected_type=type_hints["value"]
+            )
+        jsii.set(self, "id", value)
+
+    @builtins.property
+    @jsii.member(jsii_name="realmId")
+    def realm_id(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "realmId"))
+
+    @realm_id.setter
+    def realm_id(self, value: builtins.str) -> None:
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__9ec73ac534a040420f47ff2a11752b3b3d62c912b0922f9b6832f2f2b7ec5ba7
+            )
+            check_type(
+                argname="argument value", value=value, expected_type=type_hints["value"]
+            )
+        jsii.set(self, "realmId", value)
+
+
+@jsii.data_type(
+    jsii_type="keycloak.dataKeycloakSamlClient.DataKeycloakSamlClientAuthenticationFlowBindingOverrides",
+    jsii_struct_bases=[],
+    name_mapping={},
+)
+class DataKeycloakSamlClientAuthenticationFlowBindingOverrides:
+    def __init__(self) -> None:
+        self._values: typing.Dict[builtins.str, typing.Any] = {}
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return (
+            "DataKeycloakSamlClientAuthenticationFlowBindingOverrides(%s)"
+            % ", ".join(k + "=" + repr(v) for k, v in self._values.items())
+        )
+
+
+class DataKeycloakSamlClientAuthenticationFlowBindingOverridesList(
+    _cdktf_9a9027ec.ComplexList,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="keycloak.dataKeycloakSamlClient.DataKeycloakSamlClientAuthenticationFlowBindingOverridesList",
+):
+    def __init__(
+        self,
+        terraform_resource: _cdktf_9a9027ec.IInterpolatingParent,
+        terraform_attribute: builtins.str,
+        wraps_set: builtins.bool,
+    ) -> None:
+        """
+        :param terraform_resource: The parent resource.
+        :param terraform_attribute: The attribute on the parent resource this class is referencing.
+        :param wraps_set: whether the list is wrapping a set (will add tolist() to be able to access an item via an index).
+        """
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__8a6b23fb5928edd2036c8b0dc55b4012748cf96fe28b3c29e9298cebca9bbaf6
+            )
+            check_type(
+                argname="argument terraform_resource",
+                value=terraform_resource,
+                expected_type=type_hints["terraform_resource"],
+            )
+            check_type(
+                argname="argument terraform_attribute",
+                value=terraform_attribute,
+                expected_type=type_hints["terraform_attribute"],
+            )
+            check_type(
+                argname="argument wraps_set",
+                value=wraps_set,
+                expected_type=type_hints["wraps_set"],
+            )
+        jsii.create(
+            self.__class__, self, [terraform_resource, terraform_attribute, wraps_set]
+        )
+
+    @jsii.member(jsii_name="get")
+    def get(
+        self,
+        index: jsii.Number,
+    ) -> "DataKeycloakSamlClientAuthenticationFlowBindingOverridesOutputReference":
+        """
+        :param index: the index of the item to return.
+        """
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__f64d2f2ffb891060d2e2ed31cad06602e8a32dc803a9a9ca222f83d9d312b60a
+            )
+            check_type(
+                argname="argument index", value=index, expected_type=type_hints["index"]
+            )
+        return typing.cast(
+            "DataKeycloakSamlClientAuthenticationFlowBindingOverridesOutputReference",
+            jsii.invoke(self, "get", [index]),
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="terraformAttribute")
+    def _terraform_attribute(self) -> builtins.str:
+        """The attribute on the parent resource this class is referencing."""
+        return typing.cast(builtins.str, jsii.get(self, "terraformAttribute"))
+
+    @_terraform_attribute.setter
+    def _terraform_attribute(self, value: builtins.str) -> None:
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__ca9e1c1efd51b16b8e175e85d275afc84218eb3c9ddafa1ff4bb03b4878303c6
+            )
+            check_type(
+                argname="argument value", value=value, expected_type=type_hints["value"]
+            )
+        jsii.set(self, "terraformAttribute", value)
+
+    @builtins.property
+    @jsii.member(jsii_name="terraformResource")
+    def _terraform_resource(self) -> _cdktf_9a9027ec.IInterpolatingParent:
+        """The parent resource."""
+        return typing.cast(
+            _cdktf_9a9027ec.IInterpolatingParent, jsii.get(self, "terraformResource")
+        )
+
+    @_terraform_resource.setter
+    def _terraform_resource(self, value: _cdktf_9a9027ec.IInterpolatingParent) -> None:
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__a1d608b23db95cd47959603e616969bf534cf9921175718ed09a4cc794402b15
+            )
+            check_type(
+                argname="argument value", value=value, expected_type=type_hints["value"]
+            )
+        jsii.set(self, "terraformResource", value)
+
+    @builtins.property
+    @jsii.member(jsii_name="wrapsSet")
+    def _wraps_set(self) -> builtins.bool:
+        """whether the list is wrapping a set (will add tolist() to be able to access an item via an index)."""
+        return typing.cast(builtins.bool, jsii.get(self, "wrapsSet"))
+
+    @_wraps_set.setter
+    def _wraps_set(self, value: builtins.bool) -> None:
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__f414260cec46603e16ded08b276acb87cf779b79dc32991dff9c7d7abeaec409
+            )
+            check_type(
+                argname="argument value", value=value, expected_type=type_hints["value"]
+            )
+        jsii.set(self, "wrapsSet", value)
+
+
+class DataKeycloakSamlClientAuthenticationFlowBindingOverridesOutputReference(
+    _cdktf_9a9027ec.ComplexObject,
+    metaclass=jsii.JSIIMeta,
+    jsii_type="keycloak.dataKeycloakSamlClient.DataKeycloakSamlClientAuthenticationFlowBindingOverridesOutputReference",
+):
+    def __init__(
+        self,
+        terraform_resource: _cdktf_9a9027ec.IInterpolatingParent,
+        terraform_attribute: builtins.str,
+        complex_object_index: jsii.Number,
+        complex_object_is_from_set: builtins.bool,
+    ) -> None:
+        """
+        :param terraform_resource: The parent resource.
+        :param terraform_attribute: The attribute on the parent resource this class is referencing.
+        :param complex_object_index: the index of this item in the list.
+        :param complex_object_is_from_set: whether the list is wrapping a set (will add tolist() to be able to access an item via an index).
+        """
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__3e926a2d4398005f77b6694599e5dbccc3365e4d575d3cfbb1bfc00936ef22df
+            )
+            check_type(
+                argname="argument terraform_resource",
+                value=terraform_resource,
+                expected_type=type_hints["terraform_resource"],
+            )
+            check_type(
+                argname="argument terraform_attribute",
+                value=terraform_attribute,
+                expected_type=type_hints["terraform_attribute"],
+            )
+            check_type(
+                argname="argument complex_object_index",
+                value=complex_object_index,
+                expected_type=type_hints["complex_object_index"],
+            )
+            check_type(
+                argname="argument complex_object_is_from_set",
+                value=complex_object_is_from_set,
+                expected_type=type_hints["complex_object_is_from_set"],
+            )
+        jsii.create(
+            self.__class__,
+            self,
+            [
+                terraform_resource,
+                terraform_attribute,
+                complex_object_index,
+                complex_object_is_from_set,
+            ],
+        )
+
+    @builtins.property
+    @jsii.member(jsii_name="browserId")
+    def browser_id(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "browserId"))
+
+    @builtins.property
+    @jsii.member(jsii_name="directGrantId")
+    def direct_grant_id(self) -> builtins.str:
+        return typing.cast(builtins.str, jsii.get(self, "directGrantId"))
+
+    @builtins.property
+    @jsii.member(jsii_name="internalValue")
+    def internal_value(
+        self,
+    ) -> typing.Optional[DataKeycloakSamlClientAuthenticationFlowBindingOverrides]:
+        return typing.cast(
+            typing.Optional[DataKeycloakSamlClientAuthenticationFlowBindingOverrides],
+            jsii.get(self, "internalValue"),
+        )
+
+    @internal_value.setter
+    def internal_value(
+        self,
+        value: typing.Optional[
+            DataKeycloakSamlClientAuthenticationFlowBindingOverrides
+        ],
+    ) -> None:
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__c5ee3bd9c86ed374e319c02c2bdaeec51450a529a7a01f2988f7717720a0f81a
+            )
+            check_type(
+                argname="argument value", value=value, expected_type=type_hints["value"]
+            )
+        jsii.set(self, "internalValue", value)
+
+
+@jsii.data_type(
+    jsii_type="keycloak.dataKeycloakSamlClient.DataKeycloakSamlClientConfig",
+    jsii_struct_bases=[_cdktf_9a9027ec.TerraformMetaArguments],
+    name_mapping={
+        "connection": "connection",
+        "count": "count",
+        "depends_on": "dependsOn",
+        "for_each": "forEach",
+        "lifecycle": "lifecycle",
+        "provider": "provider",
+        "provisioners": "provisioners",
+        "client_id": "clientId",
+        "realm_id": "realmId",
+        "id": "id",
+    },
+)
+class DataKeycloakSamlClientConfig(_cdktf_9a9027ec.TerraformMetaArguments):
+    def __init__(
+        self,
+        *,
+        connection: typing.Optional[
+            typing.Union[
+                typing.Union[
+                    _cdktf_9a9027ec.SSHProvisionerConnection,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+                typing.Union[
+                    _cdktf_9a9027ec.WinrmProvisionerConnection,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+            ]
+        ] = None,
+        count: typing.Optional[
+            typing.Union[jsii.Number, _cdktf_9a9027ec.TerraformCount]
+        ] = None,
+        depends_on: typing.Optional[
+            typing.Sequence[_cdktf_9a9027ec.ITerraformDependable]
+        ] = None,
+        for_each: typing.Optional[_cdktf_9a9027ec.ITerraformIterator] = None,
+        lifecycle: typing.Optional[
+            typing.Union[
+                _cdktf_9a9027ec.TerraformResourceLifecycle,
+                typing.Dict[builtins.str, typing.Any],
+            ]
+        ] = None,
+        provider: typing.Optional[_cdktf_9a9027ec.TerraformProvider] = None,
+        provisioners: typing.Optional[
+            typing.Sequence[
+                typing.Union[
+                    typing.Union[
+                        _cdktf_9a9027ec.FileProvisioner,
+                        typing.Dict[builtins.str, typing.Any],
+                    ],
+                    typing.Union[
+                        _cdktf_9a9027ec.LocalExecProvisioner,
+                        typing.Dict[builtins.str, typing.Any],
+                    ],
+                    typing.Union[
+                        _cdktf_9a9027ec.RemoteExecProvisioner,
+                        typing.Dict[builtins.str, typing.Any],
+                    ],
+                ]
+            ]
+        ] = None,
+        client_id: builtins.str,
+        realm_id: builtins.str,
+        id: typing.Optional[builtins.str] = None,
+    ) -> None:
+        """
+        :param connection:
+        :param count:
+        :param depends_on:
+        :param for_each:
+        :param lifecycle:
+        :param provider:
+        :param provisioners:
+        :param client_id: Docs at Terraform Registry: {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client#client_id DataKeycloakSamlClient#client_id}.
+        :param realm_id: Docs at Terraform Registry: {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client#realm_id DataKeycloakSamlClient#realm_id}.
+        :param id: Docs at Terraform Registry: {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client#id DataKeycloakSamlClient#id}. Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2. If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable.
+        """
+        if isinstance(lifecycle, dict):
+            lifecycle = _cdktf_9a9027ec.TerraformResourceLifecycle(**lifecycle)
+        if __debug__:
+            type_hints = typing.get_type_hints(
+                _typecheckingstub__f8b9c0ba5ace9eff4984a3cac295529a0e4ddafafb98c4c1ab6d57531555d6aa
+            )
+            check_type(
+                argname="argument connection",
+                value=connection,
+                expected_type=type_hints["connection"],
+            )
+            check_type(
+                argname="argument count", value=count, expected_type=type_hints["count"]
+            )
+            check_type(
+                argname="argument depends_on",
+                value=depends_on,
+                expected_type=type_hints["depends_on"],
+            )
+            check_type(
+                argname="argument for_each",
+                value=for_each,
+                expected_type=type_hints["for_each"],
+            )
+            check_type(
+                argname="argument lifecycle",
+                value=lifecycle,
+                expected_type=type_hints["lifecycle"],
+            )
+            check_type(
+                argname="argument provider",
+                value=provider,
+                expected_type=type_hints["provider"],
+            )
+            check_type(
+                argname="argument provisioners",
+                value=provisioners,
+                expected_type=type_hints["provisioners"],
+            )
+            check_type(
+                argname="argument client_id",
+                value=client_id,
+                expected_type=type_hints["client_id"],
+            )
+            check_type(
+                argname="argument realm_id",
+                value=realm_id,
+                expected_type=type_hints["realm_id"],
+            )
+            check_type(argname="argument id", value=id, expected_type=type_hints["id"])
+        self._values: typing.Dict[builtins.str, typing.Any] = {
+            "client_id": client_id,
+            "realm_id": realm_id,
+        }
+        if connection is not None:
+            self._values["connection"] = connection
+        if count is not None:
+            self._values["count"] = count
+        if depends_on is not None:
+            self._values["depends_on"] = depends_on
+        if for_each is not None:
+            self._values["for_each"] = for_each
+        if lifecycle is not None:
+            self._values["lifecycle"] = lifecycle
+        if provider is not None:
+            self._values["provider"] = provider
+        if provisioners is not None:
+            self._values["provisioners"] = provisioners
+        if id is not None:
+            self._values["id"] = id
+
+    @builtins.property
+    def connection(
+        self,
+    ) -> typing.Optional[
+        typing.Union[
+            _cdktf_9a9027ec.SSHProvisionerConnection,
+            _cdktf_9a9027ec.WinrmProvisionerConnection,
+        ]
+    ]:
+        """
+        :stability: experimental
+        """
+        result = self._values.get("connection")
+        return typing.cast(
+            typing.Optional[
+                typing.Union[
+                    _cdktf_9a9027ec.SSHProvisionerConnection,
+                    _cdktf_9a9027ec.WinrmProvisionerConnection,
+                ]
+            ],
+            result,
+        )
+
+    @builtins.property
+    def count(
+        self,
+    ) -> typing.Optional[typing.Union[jsii.Number, _cdktf_9a9027ec.TerraformCount]]:
+        """
+        :stability: experimental
+        """
+        result = self._values.get("count")
+        return typing.cast(
+            typing.Optional[typing.Union[jsii.Number, _cdktf_9a9027ec.TerraformCount]],
+            result,
+        )
+
+    @builtins.property
+    def depends_on(
+        self,
+    ) -> typing.Optional[typing.List[_cdktf_9a9027ec.ITerraformDependable]]:
+        """
+        :stability: experimental
+        """
+        result = self._values.get("depends_on")
+        return typing.cast(
+            typing.Optional[typing.List[_cdktf_9a9027ec.ITerraformDependable]], result
+        )
+
+    @builtins.property
+    def for_each(self) -> typing.Optional[_cdktf_9a9027ec.ITerraformIterator]:
+        """
+        :stability: experimental
+        """
+        result = self._values.get("for_each")
+        return typing.cast(typing.Optional[_cdktf_9a9027ec.ITerraformIterator], result)
+
+    @builtins.property
+    def lifecycle(self) -> typing.Optional[_cdktf_9a9027ec.TerraformResourceLifecycle]:
+        """
+        :stability: experimental
+        """
+        result = self._values.get("lifecycle")
+        return typing.cast(
+            typing.Optional[_cdktf_9a9027ec.TerraformResourceLifecycle], result
+        )
+
+    @builtins.property
+    def provider(self) -> typing.Optional[_cdktf_9a9027ec.TerraformProvider]:
+        """
+        :stability: experimental
+        """
+        result = self._values.get("provider")
+        return typing.cast(typing.Optional[_cdktf_9a9027ec.TerraformProvider], result)
+
+    @builtins.property
+    def provisioners(
+        self,
+    ) -> typing.Optional[
+        typing.List[
+            typing.Union[
+                _cdktf_9a9027ec.FileProvisioner,
+                _cdktf_9a9027ec.LocalExecProvisioner,
+                _cdktf_9a9027ec.RemoteExecProvisioner,
+            ]
+        ]
+    ]:
+        """
+        :stability: experimental
+        """
+        result = self._values.get("provisioners")
+        return typing.cast(
+            typing.Optional[
+                typing.List[
+                    typing.Union[
+                        _cdktf_9a9027ec.FileProvisioner,
+                        _cdktf_9a9027ec.LocalExecProvisioner,
+                        _cdktf_9a9027ec.RemoteExecProvisioner,
+                    ]
+                ]
+            ],
+            result,
+        )
+
+    @builtins.property
+    def client_id(self) -> builtins.str:
+        """Docs at Terraform Registry: {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client#client_id DataKeycloakSamlClient#client_id}."""
+        result = self._values.get("client_id")
+        assert result is not None, "Required property 'client_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def realm_id(self) -> builtins.str:
+        """Docs at Terraform Registry: {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client#realm_id DataKeycloakSamlClient#realm_id}."""
+        result = self._values.get("realm_id")
+        assert result is not None, "Required property 'realm_id' is missing"
+        return typing.cast(builtins.str, result)
+
+    @builtins.property
+    def id(self) -> typing.Optional[builtins.str]:
+        """Docs at Terraform Registry: {@link https://registry.terraform.io/providers/mrparkers/keycloak/4.3.1/docs/data-sources/saml_client#id DataKeycloakSamlClient#id}.
+
+        Please be aware that the id field is automatically added to all resources in Terraform providers using a Terraform provider SDK version below 2.
+        If you experience problems setting this value it might not be settable. Please take a look at the provider documentation to ensure it should be settable.
+        """
+        result = self._values.get("id")
+        return typing.cast(typing.Optional[builtins.str], result)
+
+    def __eq__(self, rhs: typing.Any) -> builtins.bool:
+        return isinstance(rhs, self.__class__) and rhs._values == self._values
+
+    def __ne__(self, rhs: typing.Any) -> builtins.bool:
+        return not (rhs == self)
+
+    def __repr__(self) -> str:
+        return "DataKeycloakSamlClientConfig(%s)" % ", ".join(
+            k + "=" + repr(v) for k, v in self._values.items()
+        )
+
+
+__all__ = [
+    "DataKeycloakSamlClient",
+    "DataKeycloakSamlClientAuthenticationFlowBindingOverrides",
+    "DataKeycloakSamlClientAuthenticationFlowBindingOverridesList",
+    "DataKeycloakSamlClientAuthenticationFlowBindingOverridesOutputReference",
+    "DataKeycloakSamlClientConfig",
+]
+
+publication.publish()
+
+
+def _typecheckingstub__4b734fa86b18aa1e0fad24508f500833a7b672c832083e7b2dccb3d450f3de42(
+    scope: _constructs_77d1e7e8.Construct,
+    id_: builtins.str,
+    *,
+    client_id: builtins.str,
+    realm_id: builtins.str,
+    id: typing.Optional[builtins.str] = None,
+    connection: typing.Optional[
+        typing.Union[
+            typing.Union[
+                _cdktf_9a9027ec.SSHProvisionerConnection,
+                typing.Dict[builtins.str, typing.Any],
+            ],
+            typing.Union[
+                _cdktf_9a9027ec.WinrmProvisionerConnection,
+                typing.Dict[builtins.str, typing.Any],
+            ],
+        ]
+    ] = None,
+    count: typing.Optional[
+        typing.Union[jsii.Number, _cdktf_9a9027ec.TerraformCount]
+    ] = None,
+    depends_on: typing.Optional[
+        typing.Sequence[_cdktf_9a9027ec.ITerraformDependable]
+    ] = None,
+    for_each: typing.Optional[_cdktf_9a9027ec.ITerraformIterator] = None,
+    lifecycle: typing.Optional[
+        typing.Union[
+            _cdktf_9a9027ec.TerraformResourceLifecycle,
+            typing.Dict[builtins.str, typing.Any],
+        ]
+    ] = None,
+    provider: typing.Optional[_cdktf_9a9027ec.TerraformProvider] = None,
+    provisioners: typing.Optional[
+        typing.Sequence[
+            typing.Union[
+                typing.Union[
+                    _cdktf_9a9027ec.FileProvisioner,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+                typing.Union[
+                    _cdktf_9a9027ec.LocalExecProvisioner,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+                typing.Union[
+                    _cdktf_9a9027ec.RemoteExecProvisioner,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+            ]
+        ]
+    ] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__a93e31570364d5a3f3a71b1f86893b456d4595b9a7baabccb986e0c543b93d6c(
+    value: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__5581259f3f43e44c8e76a66dc8efb0769fdcad687185c0cbb95fd0fed118d3d9(
+    value: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__9ec73ac534a040420f47ff2a11752b3b3d62c912b0922f9b6832f2f2b7ec5ba7(
+    value: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__8a6b23fb5928edd2036c8b0dc55b4012748cf96fe28b3c29e9298cebca9bbaf6(
+    terraform_resource: _cdktf_9a9027ec.IInterpolatingParent,
+    terraform_attribute: builtins.str,
+    wraps_set: builtins.bool,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__f64d2f2ffb891060d2e2ed31cad06602e8a32dc803a9a9ca222f83d9d312b60a(
+    index: jsii.Number,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__ca9e1c1efd51b16b8e175e85d275afc84218eb3c9ddafa1ff4bb03b4878303c6(
+    value: builtins.str,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__a1d608b23db95cd47959603e616969bf534cf9921175718ed09a4cc794402b15(
+    value: _cdktf_9a9027ec.IInterpolatingParent,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__f414260cec46603e16ded08b276acb87cf779b79dc32991dff9c7d7abeaec409(
+    value: builtins.bool,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__3e926a2d4398005f77b6694599e5dbccc3365e4d575d3cfbb1bfc00936ef22df(
+    terraform_resource: _cdktf_9a9027ec.IInterpolatingParent,
+    terraform_attribute: builtins.str,
+    complex_object_index: jsii.Number,
+    complex_object_is_from_set: builtins.bool,
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__c5ee3bd9c86ed374e319c02c2bdaeec51450a529a7a01f2988f7717720a0f81a(
+    value: typing.Optional[DataKeycloakSamlClientAuthenticationFlowBindingOverrides],
+) -> None:
+    """Type checking stubs"""
+    pass
+
+
+def _typecheckingstub__f8b9c0ba5ace9eff4984a3cac295529a0e4ddafafb98c4c1ab6d57531555d6aa(
+    *,
+    connection: typing.Optional[
+        typing.Union[
+            typing.Union[
+                _cdktf_9a9027ec.SSHProvisionerConnection,
+                typing.Dict[builtins.str, typing.Any],
+            ],
+            typing.Union[
+                _cdktf_9a9027ec.WinrmProvisionerConnection,
+                typing.Dict[builtins.str, typing.Any],
+            ],
+        ]
+    ] = None,
+    count: typing.Optional[
+        typing.Union[jsii.Number, _cdktf_9a9027ec.TerraformCount]
+    ] = None,
+    depends_on: typing.Optional[
+        typing.Sequence[_cdktf_9a9027ec.ITerraformDependable]
+    ] = None,
+    for_each: typing.Optional[_cdktf_9a9027ec.ITerraformIterator] = None,
+    lifecycle: typing.Optional[
+        typing.Union[
+            _cdktf_9a9027ec.TerraformResourceLifecycle,
+            typing.Dict[builtins.str, typing.Any],
+        ]
+    ] = None,
+    provider: typing.Optional[_cdktf_9a9027ec.TerraformProvider] = None,
+    provisioners: typing.Optional[
+        typing.Sequence[
+            typing.Union[
+                typing.Union[
+                    _cdktf_9a9027ec.FileProvisioner,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+                typing.Union[
+                    _cdktf_9a9027ec.LocalExecProvisioner,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+                typing.Union[
+                    _cdktf_9a9027ec.RemoteExecProvisioner,
+                    typing.Dict[builtins.str, typing.Any],
+                ],
+            ]
+        ]
+    ] = None,
+    client_id: builtins.str,
+    realm_id: builtins.str,
+    id: typing.Optional[builtins.str] = None,
+) -> None:
+    """Type checking stubs"""
+    pass
