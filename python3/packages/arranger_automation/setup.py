@@ -13,7 +13,7 @@ setuptools.setup(
     name="arranger_automation",
     version=package_version,
     author="devops",
-    author_email="vsevolod@velox-solution.com",
+    author_email="vsevolod.suzdaltsev@gmail.com",
     description="Arranger automation shared libraries.",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -23,7 +23,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Operating System :: POSIX :: LINUX",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.11",
     install_requires=[
         "docker==4.4.1",
         "GitPython==3.1.24",

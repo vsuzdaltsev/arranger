@@ -2,13 +2,14 @@
 
 from abc import ABC
 import ipaddress
+from typing import Callable, Dict
 
 
 class NotIPv4Error(Exception):
     pass
 
 
-def validate_subnets(func):
+def validate_subnets(func: Callable) -> Callable:
     def check(*args):
         from arranger_automation.validate import ValidateSubnets
 
@@ -17,7 +18,7 @@ def validate_subnets(func):
     return check
 
 
-def validate_ipv4(func):
+def validate_ipv4(func: Callable) -> Callable:
     def is_ip_v4(value):
         try:
             ipaddress.ip_address(address=value)
@@ -53,3 +54,52 @@ class ArrangerMixin(ABC):
     @property
     def cli_container_root(self) -> str:
         return "/opt/arranger"
+
+    @property
+    def aws_region(self) -> str:
+        from arranger_conf.app_conf import AppConf
+
+        try:
+            return AppConf.CLUSTERS[self.tenant]["aws_region"]
+        except KeyError as err:
+            self.log.debug(
+                f">> Cluster '{self.tenant}' doesn't have "
+                f"'aws_region' attribute. Error: {err}. Returning empty string.."
+            )
+            return ""
+
+    @property
+    def aws_profile(self) -> str:
+        from arranger_conf.app_conf import AppConf
+
+        return AppConf.CLUSTERS[self.tenant]["aws_profile"]
+
+    @property
+    def aws_account_id(self) -> str:
+        from arranger_conf.app_conf import AppConf
+
+        return AppConf.CLUSTERS[self.tenant]["aws_account_id"]
+
+
+class BySubEnvironment(ArrangerMixin):
+    def __init__(self, sub_environment: str, **kwargs: Dict):
+        from arranger_automation.log import Log
+
+        self.log = Log().logger(desc=self.__class__.__name__)
+        self.sub_environment = sub_environment
+        self.kwargs = kwargs
+
+        if kwargs.get("config"):
+            self.config = kwargs.get("config")
+
+
+class ByTenant(ArrangerMixin):
+    def __init__(self, tenant: str, **kwargs: Dict):
+        from arranger_automation.log import Log
+
+        self.log = Log().logger(desc=self.__class__.__name__)
+        self.tenant = tenant
+        self.kwargs = kwargs
+
+        if kwargs.get("config"):
+            self.config = kwargs.get("config")

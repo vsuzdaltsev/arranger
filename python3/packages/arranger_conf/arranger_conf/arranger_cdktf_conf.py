@@ -17,9 +17,12 @@ class BasicConf:
 class TfConf:
     class Develop1(BasicConf):
         ALL_STACKS = ["acm-stack"]
+        TENANT = "develop1"
 
     class Local(BasicConf):
         ALL_STACKS = ["acm-stack"]
+        TENANT = "local"
 
     class Staging1(BasicConf):
         ALL_STACKS = ["acm-stack"]
+        TENANT = "staging1"
