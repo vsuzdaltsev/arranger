@@ -256,7 +256,11 @@ class BasicBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrMixin):
         _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
 
         _git = BasicGitcommitRepo(
-            repo_name=_globals.valid_services_dict().get(self.app).get("repos")[0].get("name"), aws_region=self._aws_region()
+            repo_name=_globals.valid_services_dict()
+            .get(self.app)
+            .get("repos")[0]
+            .get("name"),
+            aws_region=self._aws_region(),
         )
         _git.clone(where=self.build_dir)
         _git.checkout(git_ref=self.git_ref)
