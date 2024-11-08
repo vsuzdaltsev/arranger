@@ -1,9 +1,3 @@
-# from arranger_globals.cdktf_globals import CdktfGlobals
-from python3.packages.arranger_automation.arranger_automation.threads.parallel import (
-    BasicParallel,
-)
-
-
 class BasicConf:
     DEFAULT_TIMEOUTS = {"create": "45m", "delete": "45m"}
     AWS_GLOBAL_REGION = "us-east-1"
