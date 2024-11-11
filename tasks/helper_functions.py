@@ -42,7 +42,7 @@ PYTHON3_PACKAGES = [
 ]
 TERRAFORM_PROJECTS = [CURRENT_TF_PROJECT]
 TOGGLE = ("true", "false")
-WHERE_CDKTF_WD = "python3/scripts/eusy_cdktf"
+WHERE_CDKTF_WD = "python3/scripts/arranger_cdktf"
 
 
 def validate_input(

@@ -5,9 +5,9 @@ from typing import Type
 
 from cdktf import App
 
-from eusy_automation.log import Log
-from eusy_cdktf.tf.eusy_terraform_stacks import *
-from eusy_conf.eusy_cdktf_conf import TfConf
+from arranger_automation.log import Log
+from arranger_cdktf.tf.arranger_terraform_stacks import *
+from arranger_conf.arranger_cdktf_conf import TfConf
 
 
 CLUSTER_NAME_ALIAS = sys.argv[1]
