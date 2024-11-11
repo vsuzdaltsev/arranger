@@ -42,5 +42,5 @@ services:
         PYTHON_CUSTOM_VERSION: 3.11
         PYTHON_SETUPTOOLS_VERSION: 75.3.0
         TERRAFORM_VERSION: 1.9.8
-        # Use the mirror that is most comfortable for you
+        # Choose the mirror that you find most comfortable to use
         TFENV_REMOTE: https://hashicorp-releases.yandexcloud.net

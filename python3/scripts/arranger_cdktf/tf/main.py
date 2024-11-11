@@ -12,6 +12,7 @@ from arranger_conf.arranger_cdktf_conf import TfConf
 
 TENANT = sys.argv[1]
 STACK = sys.argv[2]
+# FIXME: for now tf is the only project, the name is hard-coded
 PROJECT_NAME = "tf"
 
 
