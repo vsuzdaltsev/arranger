@@ -16,11 +16,11 @@ if __name__ == "__main__":
     from arranger_automation_aws.ecr import EcrAccessCredentials
 
     docker_credentials = [
-        EcrAccessCredentials(cluster_name_alias="develop1").ecr_access_credentials()
+        EcrAccessCredentials(cluster_name_alias="development1").ecr_access_credentials()
     ]
 
     params = {
-        "cluster_name_alias": "develop1",
+        "cluster_name_alias": "development1",
         "mvn": {
             "package": "bank-gate-ms",
             "namespace": "com.mydomain.myproject",

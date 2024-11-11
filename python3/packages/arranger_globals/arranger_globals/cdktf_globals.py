@@ -78,7 +78,7 @@ class CdktfGlobals(ByTenant):
     @validate_subnets
     def ip_ranges(self, tenant: str = None) -> Dict[str, Any]:
         registry = {
-            "develop1": {
+            "development1": {
                 "vpc-main": {
                     "cidr": ["10.62.0.0/18"],
                     "subnets": {

@@ -50,7 +50,7 @@ class SubnetHelper:
 if __name__ == "__main__":
     public_subnet_ids = SubnetHelper().public_subnet_ids(
         region="eu-west-2",
-        profile="develop1",
-        filter_by="vpc-main-subnet-.*-develop1-private",
+        profile="development1",
+        filter_by="vpc-main-subnet-.*-development1-private",
     )
     print(public_subnet_ids)

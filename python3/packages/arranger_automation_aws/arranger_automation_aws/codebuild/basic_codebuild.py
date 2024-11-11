@@ -126,13 +126,13 @@ class BasicCodebuild:
 
 if __name__ == "__main__":
     client = AwsClient(
-        name="codebuild", region="eu-west-2", aws_profile="develop1"
+        name="codebuild", region="eu-west-2", aws_profile="development1"
     ).client
 
     print(f">> Codebuild_projects: {BasicCodebuild.projects(boto_client=client)}.")
     print(
         BasicCodebuild(
-            project_name="universal_build_back_develop1",
+            project_name="universal_build_back_development1",
             boto_client=client,
             environment_variables_overrides=[
                 {
