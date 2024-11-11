@@ -6,7 +6,6 @@
 $ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_vpc_stack.py
 ```   
 
-
 ### Add the new module to the import section of the `arranger_cdktf` package:
 
 in `python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py` add
@@ -47,7 +46,7 @@ class TfConf:
 (arranger) root@cli# inv tf.diff -p tf --tenant development1 --stack test-vpc-stack
 ```
 
-###  Deploy Terraform Stack:
+### Deploy Terraform Stack:
 
 ```shell
 (arranger) root@cli# inv tf.deloy -p tf --tenant development1 --stack test-vpc-stack
