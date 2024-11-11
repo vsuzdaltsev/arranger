@@ -51,7 +51,7 @@ class TfConf:
 #### Check Terraform diff:
 
 ```shell
-(arranger) root@cli# inv tf.diff -p tf --tenant development1 --stack test-vpc-stack
+(arranger) root@cli# inv tf.diff --project tf --tenant development1 --stack test-vpc-stack
 ```
 
 <br>
@@ -59,5 +59,5 @@ class TfConf:
 #### Deploy Terraform Stack:
 
 ```shell
-(arranger) root@cli# inv tf.deloy -p tf --tenant development1 --stack test-vpc-stack
+(arranger) root@cli# inv tf.deloy --project tf --tenant development1 --stack test-vpc-stack
 ```
