@@ -1,4 +1,4 @@
-# How to create a new Infrastructure stack using CDKTF and Arranger
+# How to create a new Infrastructure Stack using CDKTF and Arranger
 
 1. __Create Stack library:__
     ```shell
