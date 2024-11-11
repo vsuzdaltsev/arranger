@@ -6,6 +6,8 @@
 $ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_vpc_stack.py
 ```   
 
+<br>
+
 ### Add the new module to the import section of the `arranger_cdktf` package:
 
 in `python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py` add
@@ -13,6 +15,8 @@ in `python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/
 ```python
 from .test_vpc_stack import *
 ```
+
+<br>
 
 ### Add the Stack section to the VALID_STACKS constant:
 
@@ -30,6 +34,8 @@ VALID_STACKS = {
 }
 ```
 
+<br>
+
 ### Add Stack name to the ALL_STACKS constant for the proper Tenant(s):
 
 in `/packages/arranger_conf/arranger_conf/arranger_cdktf_conf.py`
@@ -40,11 +46,15 @@ class TfConf:
         ALL_STACKS = ["test-vpc-stack"]
 ```
 
+<br>
+
 ### Check Terraform diff:
 
 ```shell
 (arranger) root@cli# inv tf.diff -p tf --tenant development1 --stack test-vpc-stack
 ```
+
+<br>
 
 ### Deploy Terraform Stack:
 
