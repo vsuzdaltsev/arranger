@@ -2,3 +2,4 @@
 .python-version
 .zsh_history
 **__pycache__
+python3/scripts/arranger_cdktf/tf/cdktf.json
