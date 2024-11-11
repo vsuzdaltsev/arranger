@@ -12,7 +12,7 @@
     ```python
     from .test_vpc_stack import *
     ```
-3. Add Stack section to the VALID_STACKS constant (/packages/arranger_conf/arranger_conf/arranger_cdktf_conf.py):
+3. Add the Stack section to the VALID_STACKS constant (/packages/arranger_conf/arranger_conf/arranger_cdktf_conf.py):
     ```python
     VALID_STACKS = {
         "tf": {
