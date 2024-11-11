@@ -16,7 +16,7 @@ try:
     from arranger_conf.arranger_cdktf_conf import BasicConf
 
     KUBERNETES_VERSION = AppConf.CDK8S_KUBERNETES_VERSION
-    VALID_CLUSTERS = AppConf.CLUSTERS
+    VALID_TENANTS = AppConf.TENANTS
     VALID_EKS_STACKS = BasicConf.VALID_STACKS[CURRENT_TF_PROJECT]
 except BaseException as warn:
     msg = (
@@ -36,10 +36,10 @@ with open("./docker-compose.yml", "r") as file:
 CONTAINER_NAME = list(docker_compose_data["services"].keys())[0]
 DOCKER_COMPOSE = "docker-compose -f docker-compose.yml"
 IN_DOCKER = f"{DOCKER_COMPOSE} exec -T {CONTAINER_NAME} pipenv run"
-RENDERED_TEMPLATES = "rendered_templates"
 PYTHON3_PACKAGES = [
     pkg_home.split("/")[-1] for pkg_home in glob.glob("python3/packages/*")
 ]
+RENDERED_TEMPLATES = "rendered_templates"
 TERRAFORM_PROJECTS = [CURRENT_TF_PROJECT]
 TOGGLE = ("true", "false")
 WHERE_CDKTF_WD = "python3/scripts/arranger_cdktf"

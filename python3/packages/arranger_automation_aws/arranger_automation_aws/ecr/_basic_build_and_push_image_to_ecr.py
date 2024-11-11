@@ -60,7 +60,7 @@ class BasicBuildAndPushImageToEcrMixin(ABC):
         pass
 
     def _validate_params(self) -> type(None):
-        assert self.cluster_name_alias in AppConf.CLUSTERS
+        assert self.cluster_name_alias in AppConf.TENANTS
         assert isinstance(self.image_name, str)
         assert isinstance(self.debug, bool)
 

@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Union
 
 from constructs import Construct
 
-from basic_arranger_globals import ByTenant, validate_subnets
+from arranger_globals.basic_arranger_globals import ByTenant, validate_subnets
 
 
 class CdktfGlobals(ByTenant):
@@ -28,10 +28,10 @@ class CdktfGlobals(ByTenant):
     def cloud(self) -> str:
         from arranger_conf import AppConf
 
-        return AppConf.CLUSTERS[self.tenant]["cloud_attributes"]["cloud"]
+        return AppConf.TENANTS[self.tenant]["cloud_attributes"]["cloud"]
 
     @staticmethod
-    def external_provider(scope: Any) -> Any:
+    def external_provider(scope: Construct) -> Any:
         from arranger_cdktf.imports.external import ExternalProvider
 
         return ExternalProvider(scope=scope, id="external-provider")
@@ -265,7 +265,7 @@ class CdktfGlobals(ByTenant):
     def sub_environments(self) -> List[str]:
         from arranger_conf.app_conf import AppConf
 
-        return AppConf.CLUSTERS[self.tenant]["sub_environments"]
+        return AppConf.TENANTS[self.tenant]["sub_environments"]
 
     @staticmethod
     def run_cmd(cmds: List[str]):

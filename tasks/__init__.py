@@ -1,5 +1,8 @@
 import inspect
 
+from invoke import Collection
+
+
 if not hasattr(inspect, "getargspec"):
     inspect.getargspec = inspect.getfullargspec
 
@@ -14,8 +17,14 @@ from .local import (
 )
 from .python import build, build_and_install, install
 from .spec import python
-
-from invoke import Collection
+from .tf import (
+    infra_deploy,
+    infra_destroy,
+    infra_diff,
+    infra_list,
+    list_tenants,
+    list_ip_ranges,
+)
 
 
 ns = Collection()
@@ -27,6 +36,13 @@ arranger_app = Collection("arranger_app")
 local = Collection("local")
 python3 = Collection("python3")
 spec = Collection("spec")
+
+cdktf.add_task(infra_deploy, "deploy")
+cdktf.add_task(infra_destroy, "destroy")
+cdktf.add_task(infra_diff, "diff")
+cdktf.add_task(infra_list, "list_stacks")
+cdktf.add_task(list_tenants)
+cdktf.add_task(list_ip_ranges)
 
 cdk8s.add_collection(arranger_app)
 

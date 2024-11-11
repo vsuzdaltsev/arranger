@@ -109,7 +109,7 @@ if __name__ == "__main__":
     from arranger_globals import CdktfGlobals
 
     aggr = {}
-    for cluster in sorted(AppConf.CLUSTERS.keys()):
+    for cluster in sorted(AppConf.TENANTS.keys()):
         _globals = CdktfGlobals(cluster_name_alias=cluster)
 
         aggr.update({cluster: ValidateSubnets(ranges=_globals.ip_ranges).validate()})

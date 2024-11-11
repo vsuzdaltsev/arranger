@@ -4,7 +4,7 @@
 class AppConf:
     """Globals."""
 
-    CLUSTERS = {
+    TENANTS = {
         "develop1": {
             "aws_account_id": "<>",
             "aws_region": "eu-west-2",

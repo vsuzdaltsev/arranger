@@ -10,16 +10,16 @@ from jinja2 import Environment
 CDKTF_CONFIG = "cdktf.json"
 
 
-def start_delay(action: str, seconds: int, stack: str, cluster_name_alias: str):
+def start_delay(action: str, seconds: int, stack: str, tenant: str):
     from .helper_functions import log
 
     if seconds > 0:
         log(
             "warning",
-            f">> Waiting for {seconds} seconds before start {action}ing {stack} on {cluster_name_alias}..\n",
+            f">> Waiting for {seconds} seconds before start {action}ing {stack} on {tenant}..\n",
         )
 
-        if "prod" in cluster_name_alias:
+        if "prod" in tenant:
             log(
                 "error",
                 ">> !!! ACHTUNG, please be aware that this is a PRODUCTION cluster. !!!",
@@ -52,18 +52,18 @@ def template_env() -> type(Environment):
     return env
 
 
-def generate_cdktf_json(cluster_name_alias: str, stack: str) -> None:
-    """Cdktf json generator."""
+def generate_cdktf_json(tenant: str, stack: str) -> None:
+    """CDKTF json generator."""
     from .helper_functions import (
         CURRENT_TF_PROJECT,
-        VALID_CLUSTERS,
+        VALID_TENANTS,
         VALID_EKS_STACKS,
         WHERE_CDKTF_WD,
     )
 
-    if cluster_name_alias not in VALID_CLUSTERS:
+    if tenant not in VALID_TENANTS:
         raise ValueError(
-            f">> 'cluster-name-alias' parameter. Valid: {list(VALID_CLUSTERS.keys())}. Passed: '{cluster_name_alias}'."
+            f">> 'cluster-name-alias' parameter. Valid: {list(VALID_TENANTS.keys())}. Passed: '{tenant}'."
         )
 
     where_template = f"{CDKTF_CONFIG}.j2"
@@ -74,7 +74,7 @@ def generate_cdktf_json(cluster_name_alias: str, stack: str) -> None:
             f">> 'stack' parameter. Allowed: '{VALID_EKS_STACKS}'. Passed: '{stack}'."
         )
 
-    manifest = template.render(cluster_name_alias=cluster_name_alias, stack=stack)
+    manifest = template.render(tenant=tenant, stack=stack)
     rendered_manifest = f"{WHERE_CDKTF_WD}/{CURRENT_TF_PROJECT}/{CDKTF_CONFIG}"
 
     with open(rendered_manifest, mode="w", encoding="utf-8") as service_manifest:
@@ -82,8 +82,8 @@ def generate_cdktf_json(cluster_name_alias: str, stack: str) -> None:
 
 
 @task
-def clean_up_cdktf_json(ctx):
-    """>> Remove cdktf config."""
+def clean_up_cdktf_json(_ctx):
+    """>> Remove CDKTF config."""
 
     from .helper_functions import CURRENT_TF_PROJECT, WHERE_CDKTF_WD
 
@@ -99,11 +99,11 @@ def infra_action(
     cmd,
     stack=None,
     project=None,
-    cluster_name_alias=None,
+    tenant=None,
     parallelism=10,
     log_level="error",
 ):
-    """>> Synthesize Infra stack to generate Terraform code."""
+    """>> Synthesize Infrastructure stack to generate Terraform code."""
     from arranger_conf.app_conf import AppConf
 
     from .helper_functions import (
@@ -121,12 +121,12 @@ def infra_action(
         passed=log_level,
     )
     validate_input(
-        name="cluster_name_alias",
-        allowed=list(AppConf.CLUSTERS.keys()),
-        passed=cluster_name_alias,
+        name="tenant",
+        allowed=list(AppConf.TENANTS.keys()),
+        passed=tenant,
     )
 
-    generate_cdktf_json(cluster_name_alias=cluster_name_alias, stack=stack)
+    generate_cdktf_json(tenant=tenant, stack=stack)
     log_level = f"export TF_LOG={log_level} &&"
 
     with ctx.cd(f"{WHERE_CDKTF_WD}/{project}"):
@@ -141,7 +141,7 @@ def infra_deploy(
     ctx,
     stack=None,
     project=None,
-    cluster_name_alias=None,
+    tenant=None,
     parallelism=10,
     wait_before_start=5,
     log_level="error",
@@ -150,7 +150,7 @@ def infra_deploy(
     start_delay(
         action="deploy",
         seconds=int(wait_before_start),
-        cluster_name_alias=cluster_name_alias,
+        tenant=tenant,
         stack=stack,
     )
     infra_action(
@@ -158,7 +158,7 @@ def infra_deploy(
         cmd=f"rm -rf cdktf.out/stacks/{stack} && cdktf deploy {stack} --auto-approve",
         stack=stack,
         project=project,
-        cluster_name_alias=cluster_name_alias,
+        tenant=tenant,
         parallelism=parallelism,
         log_level=log_level,
     )
@@ -169,7 +169,7 @@ def infra_destroy(
     ctx,
     stack=None,
     project=None,
-    cluster_name_alias=None,
+    tenant=None,
     parallelism=10,
     wait_before_start=5,
     log_level="error",
@@ -178,7 +178,7 @@ def infra_destroy(
     start_delay(
         action="destroy",
         seconds=int(wait_before_start),
-        cluster_name_alias=cluster_name_alias,
+        tenant=tenant,
         stack=stack,
     )
     infra_action(
@@ -186,7 +186,7 @@ def infra_destroy(
         cmd=f"cdktf destroy {stack} --auto-approve",
         stack=stack,
         project=project,
-        cluster_name_alias=cluster_name_alias,
+        tenant=tenant,
         parallelism=parallelism,
         log_level=log_level,
     )
@@ -197,7 +197,7 @@ def infra_diff(
     ctx,
     stack=None,
     project=None,
-    cluster_name_alias=None,
+    tenant=None,
     parallelism=10,
     plan_path=None,
     log_level="error",
@@ -210,7 +210,7 @@ def infra_diff(
         cmd=f"cdktf diff {stack}",
         stack=stack,
         project=project,
-        cluster_name_alias=cluster_name_alias,
+        tenant=tenant,
         parallelism=parallelism,
         log_level=log_level,
     )
@@ -221,7 +221,7 @@ def infra_diff(
 
 
 @task(post=[clean_up_cdktf_json])
-def infra_list(_ctx, project=None, with_descriptions="true", cluster_name_alias=None):
+def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
     """>> Show valid Terraform stacks."""
     from arranger_conf.arranger_cdktf_conf import BasicConf
 
@@ -229,29 +229,29 @@ def infra_list(_ctx, project=None, with_descriptions="true", cluster_name_alias=
         TERRAFORM_PROJECTS,
         TOGGLE,
         validate_input,
-        VALID_CLUSTERS,
+        VALID_TENANTS,
     )
 
     validate_input(name="project", passed=project, allowed=TERRAFORM_PROJECTS)
     validate_input(name="with_descriptions", passed=with_descriptions, allowed=TOGGLE)
 
-    if cluster_name_alias:
+    if tenant:
         validate_input(
-            name="cluster_name_alias",
-            passed=cluster_name_alias,
-            allowed=sorted(VALID_CLUSTERS.keys()),
+            name="tenant",
+            passed=tenant,
+            allowed=sorted(VALID_TENANTS.keys()),
         )
 
-    def all_stack_names(cluster_name):
-        if cluster_name:
+    def all_stack_names(tenant_name):
+        if tenant_name:
             from arranger_conf.arranger_cdktf_conf import TfConf
 
-            cluster_conf = getattr(TfConf, cluster_name.capitalize())
-            return getattr(cluster_conf, "ALL_STACKS")
+            tenant_conf = getattr(TfConf, tenant_name.capitalize())
+            return getattr(tenant_conf, "ALL_STACKS")
         return list(BasicConf.VALID_STACKS[project].keys())
 
-    def stacks(cluster_name):
-        stack_names = all_stack_names(cluster_name=cluster_name)
+    def stacks(tenant_name):
+        stack_names = all_stack_names(tenant_name=tenant_name)
 
         if with_descriptions == "true":
             stack_names_with_desc = {}
@@ -270,12 +270,12 @@ def infra_list(_ctx, project=None, with_descriptions="true", cluster_name_alias=
             return stack_names_with_desc
         return stack_names
 
-    print(json.dumps(stacks(cluster_name=cluster_name_alias)))
+    print(json.dumps(stacks(tenant_name=tenant)))
 
 
 @task
-def list_clusters(_ctx, verbose="true"):
-    """>> Show available clusters."""
+def list_tenants(_ctx, verbose="true"):
+    """>> Show available tenants."""
     from arranger_conf import AppConf
 
     from .helper_functions import TOGGLE, validate_input
@@ -285,17 +285,17 @@ def list_clusters(_ctx, verbose="true"):
     verbose = bool(verbose == "true")
 
     if verbose:
-        return print(json.dumps(OrderedDict(sorted(AppConf.CLUSTERS.items()))))
+        return print(json.dumps(OrderedDict(sorted(AppConf.TENANTS.items()))))
 
-    return print(json.dumps(sorted(AppConf.CLUSTERS.keys())))
+    return print(json.dumps(sorted(AppConf.TENANTS.keys())))
 
 
 @task
-def list_ip_ranges(_ctx, cluster_name_alias=None):
+def list_ip_ranges(_ctx, tenant=None):
     """
     >> List IP ranges.
 
-    :param cluster_name_alias: Cluster name alias.
+    :param tenant: Cluster name alias.
 
     :return: JSON of IP ranges.
     """
@@ -305,22 +305,20 @@ def list_ip_ranges(_ctx, cluster_name_alias=None):
 
     from .helper_functions import validate_input
 
-    clusters = (
-        [cluster_name_alias] if cluster_name_alias else sorted(AppConf.CLUSTERS.keys())
-    )
+    tenants = [tenant] if tenant else sorted(AppConf.TENANTS.keys())
 
     validate_input(
-        name=cluster_name_alias,
-        allowed=sorted(AppConf.CLUSTERS.keys()),
-        passed=clusters[0],
+        name=tenant,
+        allowed=sorted(AppConf.TENANTS.keys()),
+        passed=tenants[0],
     )
 
     ip_ranges = {}
-    for cluster in clusters:
-        _globals = CdktfGlobals(cluster_name_alias=cluster)
+    for tenant in tenants:
+        _globals = CdktfGlobals(tenant=tenant)
 
         ip_ranges.update(
-            {cluster: ValidateSubnets(ranges=_globals.ip_ranges).validate()}
+            {tenant: ValidateSubnets(ranges=_globals.ip_ranges).validate()}
         )
 
     print(json.dumps(ip_ranges))
