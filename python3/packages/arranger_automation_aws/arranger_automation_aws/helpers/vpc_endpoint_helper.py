@@ -51,9 +51,11 @@ if __name__ == "__main__":
 
     helper = VpcEndpointHelper(
         aws_region="eu-west-2",
-        aws_profile="develop1",
+        aws_profile="development1",
     )
-    dns_entries = helper.dns_entries(filter_by="aws-keyspaces-vpc-endpoint-develop1")
+    dns_entries = helper.dns_entries(
+        filter_by="aws-keyspaces-vpc-endpoint-development1"
+    )
     print(
         f">> VPC ENDPOINTS: {json.dumps(helper.vpc_endpoints(filter_by=''), default=str)}"
     )

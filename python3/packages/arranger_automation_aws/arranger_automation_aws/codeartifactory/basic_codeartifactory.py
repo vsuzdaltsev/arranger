@@ -100,7 +100,7 @@ class MvnCodeartifactory:
 
 if __name__ == "__main__":
     mvn = MvnCodeartifactory(
-        aws_profile="develop1", region="eu-west-2", domain="develop1"
+        aws_profile="development1", region="eu-west-2", domain="development1"
     )
     print(f">> EXISTING JARS: {mvn.jars()}")
     mvn.download_jar(

@@ -31,7 +31,9 @@ class EksHelper(BasicAwsResource):
 if __name__ == "__main__":
     import json
 
-    client = AwsClient(name="eks", region="eu-west-2", aws_profile="develop1").client
-    result = EksHelper(boto_client=client, cluster_name="develop1")
+    client = AwsClient(
+        name="eks", region="eu-west-2", aws_profile="development1"
+    ).client
+    result = EksHelper(boto_client=client, cluster_name="development1")
 
     print(json.dumps({"URL": result.endpoint_id}))

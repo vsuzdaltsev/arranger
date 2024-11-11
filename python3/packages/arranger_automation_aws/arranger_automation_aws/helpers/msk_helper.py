@@ -57,8 +57,10 @@ class MskHelper(BasicAwsResource):
 
 
 if __name__ == "__main__":
-    client = AwsClient(name="kafka", region="eu-west-2", aws_profile="develop1").client
+    client = AwsClient(
+        name="kafka", region="eu-west-2", aws_profile="development1"
+    ).client
     result = MskHelper(
-        boto_client=client, cluster_name="kafka-cluster-develop1"
+        boto_client=client, cluster_name="kafka-cluster-development1"
     ).kafka_brokers(protocol_prefix=False)
     print(result)

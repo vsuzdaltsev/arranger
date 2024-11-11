@@ -28,10 +28,10 @@ class BasicStack(TerraformStack):
             f"Need to implement {self.__class__.__name__}#_name_prefix property."
         )
 
-    def _setup_backend(self, scope):
-        raise NotImplementedError("")
+    def _setup_backend(self):
+        raise NotImplementedError(f"Abstract class: {self.__class__.__name__}")
 
 
-class AWSBasicStack(BasicStack):
+class AwsBasicStack(BasicStack):
     def _setup_backend(self):
         return self.globals.aws_backend(scope=self)

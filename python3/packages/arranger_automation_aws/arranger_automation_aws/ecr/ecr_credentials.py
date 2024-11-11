@@ -33,7 +33,7 @@ class EcrAccessCredentials:
 
 
 if __name__ == "__main__":
-    creds = EcrAccessCredentials(cluster_name_alias="develop1")
+    creds = EcrAccessCredentials(cluster_name_alias="development1")
     acr_access_token = creds.ecr_access_credentials()
 
     print("ECR Access Credentials:", acr_access_token)
