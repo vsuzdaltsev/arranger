@@ -32,6 +32,6 @@ class BasicStack(TerraformStack):
         raise NotImplementedError("")
 
 
-class AWSBasicStack(BasicStack):
+class AwsBasicStack(BasicStack):
     def _setup_backend(self):
         return self.globals.aws_backend(scope=self)
