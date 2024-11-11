@@ -1,6 +1,6 @@
 # How to create a new Infrastructure stack using CDKTF and Arranger
 
-1. __Create stack library:__
+1. __Create Stack library:__
     ```shell
     $ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_vpc_stack.py
     ```
