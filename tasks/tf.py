@@ -104,7 +104,7 @@ def infra_action(
     log_level="error",
 ):
     """>> Synthesize Infra stack to generate Terraform code."""
-    from eusy_conf.app_conf import AppConf
+    from arranger_conf.app_conf import AppConf
 
     from .helper_functions import (
         TERRAFORM_PROJECTS,
@@ -223,7 +223,7 @@ def infra_diff(
 @task(post=[clean_up_cdktf_json])
 def infra_list(_ctx, project=None, with_descriptions="true", cluster_name_alias=None):
     """>> Show valid Terraform stacks."""
-    from eusy_conf.eusy_cdktf_conf import BasicConf
+    from arranger_conf.arranger_cdktf_conf import BasicConf
 
     from .helper_functions import (
         TERRAFORM_PROJECTS,
@@ -244,7 +244,7 @@ def infra_list(_ctx, project=None, with_descriptions="true", cluster_name_alias=
 
     def all_stack_names(cluster_name):
         if cluster_name:
-            from eusy_conf.eusy_cdktf_conf import TfConf
+            from arranger_conf.arranger_cdktf_conf import TfConf
 
             cluster_conf = getattr(TfConf, cluster_name.capitalize())
             return getattr(cluster_conf, "ALL_STACKS")
@@ -276,7 +276,7 @@ def infra_list(_ctx, project=None, with_descriptions="true", cluster_name_alias=
 @task
 def list_clusters(_ctx, verbose="true"):
     """>> Show available clusters."""
-    from eusy_conf import AppConf
+    from arranger_conf import AppConf
 
     from .helper_functions import TOGGLE, validate_input
 
@@ -299,9 +299,9 @@ def list_ip_ranges(_ctx, cluster_name_alias=None):
 
     :return: JSON of IP ranges.
     """
-    from eusy_automation.validate import ValidateSubnets
-    from eusy_conf.app_conf import AppConf
-    from eusy_globals import CdktfGlobals
+    from arranger_automation.validate import ValidateSubnets
+    from arranger_conf.app_conf import AppConf
+    from arranger_globals import CdktfGlobals
 
     from .helper_functions import validate_input
 
