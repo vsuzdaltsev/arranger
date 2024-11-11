@@ -6,7 +6,7 @@
     ```
 2. __Add the new module to the import section of the `arranger_cdktf` package:__
     
-    in `python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py`
+    in `python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py` add
 
     ```python
     from .test_vpc_stack import *
