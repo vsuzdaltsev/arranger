@@ -1,6 +1,6 @@
 # How to create a new Infrastructure Stack using CDKTF and Arranger
 
-### Create Stack library:
+#### Create Stack library:
 
 ```shell
 $ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_vpc_stack.py
@@ -8,7 +8,7 @@ $ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_
 
 <br>
 
-### Add the new module to the import section of the `arranger_cdktf` package:
+#### Add the new module to the import section of the `arranger_cdktf` package:
 
 in `python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py` add
 
@@ -18,7 +18,7 @@ from .test_vpc_stack import *
 
 <br>
 
-### Add the Stack section to the VALID_STACKS constant:
+#### Add the Stack section to the VALID_STACKS constant:
 
 in `/packages/arranger_conf/arranger_conf/arranger_cdktf_conf.py`
 
@@ -36,7 +36,7 @@ VALID_STACKS = {
 
 <br>
 
-### Add Stack name to the ALL_STACKS constant for the proper Tenant(s):
+#### Add Stack name to the ALL_STACKS constant for the proper Tenant(s):
 
 in `/packages/arranger_conf/arranger_conf/arranger_cdktf_conf.py`
 
@@ -48,7 +48,7 @@ class TfConf:
 
 <br>
 
-### Check Terraform diff:
+#### Check Terraform diff:
 
 ```shell
 (arranger) root@cli# inv tf.diff -p tf --tenant development1 --stack test-vpc-stack
@@ -56,7 +56,7 @@ class TfConf:
 
 <br>
 
-### Deploy Terraform Stack:
+#### Deploy Terraform Stack:
 
 ```shell
 (arranger) root@cli# inv tf.deloy -p tf --tenant development1 --stack test-vpc-stack
