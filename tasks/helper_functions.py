@@ -15,8 +15,9 @@ try:
     from arranger_conf import AppConf
     from arranger_conf.arranger_cdktf_conf import BasicConf
 
-    VALID_CLUSTERS = AppConf.CLUSTERS
     KUBERNETES_VERSION = AppConf.CDK8S_KUBERNETES_VERSION
+    VALID_CLUSTERS = AppConf.CLUSTERS
+    VALID_EKS_STACKS = BasicConf.VALID_STACKS[CURRENT_TF_PROJECT]
 except BaseException as warn:
     msg = (
         ">> WARNING: Not all modules were properly loaded.\n"
@@ -41,6 +42,7 @@ PYTHON3_PACKAGES = [
 ]
 TERRAFORM_PROJECTS = [CURRENT_TF_PROJECT]
 TOGGLE = ("true", "false")
+WHERE_CDKTF_WD = "python3/scripts/eusy_cdktf"
 
 
 def validate_input(
