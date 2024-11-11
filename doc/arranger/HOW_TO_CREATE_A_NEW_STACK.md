@@ -4,7 +4,7 @@
     ```shell
     $ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_vpc_stack.py
     ```
-2. Add the new module to import section of the `arranger_cdktf` package:
+2. Add the new module to the import section of the `arranger_cdktf` package:
     ```shell
     vim python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py
     ```
