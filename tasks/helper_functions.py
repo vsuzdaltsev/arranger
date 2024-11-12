@@ -70,7 +70,7 @@ def repo_root() -> str:
     return os.path.dirname(os.path.abspath(__file__)).replace("/tasks", "")
 
 
-def log(severity: str, message: str) -> type(Logger.__getattribute__):
+def log(severity: str, message: str) -> Logger.__getattribute__:
     """Logger wrapper."""
     Logger(name="__name__").__getattribute__(severity)(message)
 
@@ -83,7 +83,7 @@ def validate_package_name(package: str) -> None:
         )
 
 
-def template_env() -> type(Environment):
+def template_env() -> Environment:
     """Jinja template environment object."""
     templates = FileSystemLoader("templates")
     loader = ChoiceLoader([templates])

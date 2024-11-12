@@ -29,7 +29,7 @@ class AcmStack(AwsBasicStack):
         self.validation_record = self._validation_record()
         self.cert_validation = self._cert_validation()
 
-    def _zone(self) -> type(DataAwsRoute53Zone):
+    def _zone(self) -> DataAwsRoute53Zone:
         return DataAwsRoute53Zone(
             self,
             id_=f"{self.hosted_zone_domain_name}-zone",
@@ -38,7 +38,7 @@ class AcmStack(AwsBasicStack):
             # tags=self.globals.common_tags(),
         )
 
-    def _update_delegated_ns_servers(self) -> type(NullResource):
+    def _update_delegated_ns_servers(self) -> NullResource:
         null = None
         zone_exist = Route53Helper.hosted_zone_id(
             zone_name=self.hosted_zone_domain_name,
@@ -73,7 +73,7 @@ class AcmStack(AwsBasicStack):
 
         return null
 
-    def _cert(self) -> type(AcmCertificate):
+    def _cert(self) -> AcmCertificate:
         """
         Cert must be in us-east-1 region:
         https://aws.amazon.com/premiumsupport/knowledge-center/migrate-ssl-cert-us-east/
@@ -92,31 +92,7 @@ class AcmStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    # def _cert(self) -> type(AcmCertificate):
-    #     """
-    #     Cert must be in us-east-1 region:
-    #     https://aws.amazon.com/premiumsupport/knowledge-center/migrate-ssl-cert-us-east/
-    #     """
-    #     alternative_names = self.custom_domains
-    #     domain_name = self.hosted_zone_domain_name
-    #
-    #     if domain_name in alternative_names:
-    #         alternative_names.remove(domain_name)
-    #
-    #     return AcmCertificate(
-    #         self,
-    #         id_=f"{domain_name}-cert",
-    #         domain_name=domain_name,
-    #         validation_method="DNS",
-    #         subject_alternative_names=alternative_names,
-    #         provider=self.global_provider,
-    #         # depends_on=[self.update_delegated_ns_servers],
-    #         # options=AcmCertificateOptions(),
-    #         tags=self.stack_tags,
-    #         lifecycle=self.lifecycle_policy(),
-    #     )
-
-    def _cert_london(self) -> type(AcmCertificate):
+    def _cert_london(self) -> AcmCertificate:
         alternative_names = self.custom_domains
         domain_name = self.hosted_zone_domain_name
 
@@ -136,7 +112,7 @@ class AcmStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _validation_record(self) -> type(Route53Record):
+    def _validation_record(self) -> Route53Record:
         record = Route53Record(
             scope=self,
             id_="CertValidationRecord",
@@ -167,7 +143,7 @@ class AcmStack(AwsBasicStack):
 
         return record
 
-    def _cert_validation(self) -> type(AcmCertificateValidation):
+    def _cert_validation(self) -> AcmCertificateValidation:
         crt_validation = AcmCertificateValidation(
             scope=self,
             id_="cert-validation",
