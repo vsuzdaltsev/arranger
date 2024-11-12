@@ -61,7 +61,7 @@ class VpcStack(AwsBasicStack):
             self._eks_subnet4_route_table_association()
         )
 
-    def _main_vpc(self) -> type(AwsVpc):
+    def _main_vpc(self) -> AwsVpc:
         name = self._name(object_type="main")
 
         return AwsVpc(
@@ -101,7 +101,7 @@ class VpcStack(AwsBasicStack):
     def _subnets_additional_tag(self) -> Dict[str, str]:
         return {"owner": f"vpc-main-eks-{self.globals.cluster_name_alias}"}
 
-    def _eks_subnet1(self) -> type(AwsSubnet):
+    def _eks_subnet1(self) -> AwsSubnet:
         name = self._name(object_type="main-subnet-1")
 
         return AwsSubnet(
@@ -120,7 +120,7 @@ class VpcStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _eip_eks_subnet1_nat_gw(self) -> type(AwsEip):
+    def _eip_eks_subnet1_nat_gw(self) -> AwsEip:
         name = self._name(object_type="eip-nat-gw-eks-subnet1")
 
         return AwsEip(
@@ -132,7 +132,7 @@ class VpcStack(AwsBasicStack):
             depends_on=[self.eks_subnet1],
         )
 
-    def _nat_gw_eks_subnet1(self) -> type(AwsNatGateway):
+    def _nat_gw_eks_subnet1(self) -> AwsNatGateway:
         name = self._name(object_type="nat-gw-eks-subnet1")
 
         return AwsNatGateway(
@@ -147,7 +147,7 @@ class VpcStack(AwsBasicStack):
             depends_on=[self.eip_eks_subnet1_nat_gw],
         )
 
-    def _eks_subnet1_route_table(self) -> type(AwsRouteTable):
+    def _eks_subnet1_route_table(self) -> AwsRouteTable:
         name = self._name(object_type=f"eks-subnet1-rt")
 
         return AwsRouteTable(
@@ -165,7 +165,7 @@ class VpcStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _eks_subnet1_route_table_association(self) -> type(AwsRouteTableAssociation):
+    def _eks_subnet1_route_table_association(self) -> AwsRouteTableAssociation:
         name = self._name(object_type="eks-subnet1-rt-association")
 
         return AwsRouteTableAssociation(
@@ -175,7 +175,7 @@ class VpcStack(AwsBasicStack):
             subnet_id=self.eks_subnet1.id,
         )
 
-    def _eks_subnet2(self) -> type(AwsSubnet):
+    def _eks_subnet2(self) -> AwsSubnet:
         name = self._name(object_type="main-subnet-2")
 
         return AwsSubnet(
@@ -193,7 +193,7 @@ class VpcStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _eks_subnet2_route_table(self):
+    def _eks_subnet2_route_table(self) -> AwsRouteTable:
         name = self._name(object_type=f"eks-subnet2-rt")
 
         return AwsRouteTable(
@@ -211,7 +211,7 @@ class VpcStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _eks_subnet2_route_table_association(self):
+    def _eks_subnet2_route_table_association(self) -> AwsRouteTableAssociation:
         name = self._name(object_type="eks-subnet2-rt-association")
 
         return AwsRouteTableAssociation(
@@ -221,7 +221,7 @@ class VpcStack(AwsBasicStack):
             subnet_id=self.eks_subnet2.id,
         )
 
-    def _eks_subnet3(self):
+    def _eks_subnet3(self) -> AwsSubnet:
         name = self._name(object_type="main-subnet-3")
 
         return AwsSubnet(
@@ -239,7 +239,7 @@ class VpcStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _eks_subnet3_route_table(self) -> type(AwsRouteTable):
+    def _eks_subnet3_route_table(self) -> AwsRouteTable:
         name = self._name(object_type=f"eks-subnet3-rt")
 
         return AwsRouteTable(
@@ -257,7 +257,7 @@ class VpcStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _eks_subnet3_route_table_association(self):
+    def _eks_subnet3_route_table_association(self) -> AwsRouteTableAssociation:
         name = self._name(object_type="eks-subnet3-rt-association")
 
         return AwsRouteTableAssociation(
@@ -267,7 +267,7 @@ class VpcStack(AwsBasicStack):
             subnet_id=self.eks_subnet3.id,
         )
 
-    def _eks_subnet4(self):
+    def _eks_subnet4(self) -> AwsSubnet:
         name = self._name(object_type="main-subnet-4")
 
         return AwsSubnet(
@@ -285,7 +285,7 @@ class VpcStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _eks_subnet4_route_table(self) -> type(AwsRouteTable):
+    def _eks_subnet4_route_table(self) -> AwsRouteTable:
         name = self._name(object_type=f"eks-subnet4-rt")
 
         return AwsRouteTable(
@@ -303,7 +303,7 @@ class VpcStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _eks_subnet4_route_table_association(self):
+    def _eks_subnet4_route_table_association(self) -> AwsRouteTableAssociation:
         name = self._name(object_type="eks-subnet4-rt-association")
 
         return AwsRouteTableAssociation(
