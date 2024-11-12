@@ -21,13 +21,13 @@ class BasicConf:
 
 class TfConf:
     class Development1(BasicConf):
-        ALL_STACKS = ["acm-stack", "vpc-stack"]
+        ALL_STACKS = ["vpc-stack"]
         TENANT = "development1"
 
     class Local(BasicConf):
-        ALL_STACKS = ["acm-stack"]
+        ALL_STACKS = []
         TENANT = "local"
 
     class Staging1(BasicConf):
-        ALL_STACKS = ["acm-stack"]
+        ALL_STACKS = []
         TENANT = "staging1"
