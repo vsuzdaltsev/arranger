@@ -15,7 +15,6 @@
 * What is `tenant`?
 * What's the difference between them?
 
-- `Project` is a tenant/client or product (examples: Velox Payment System, Switch, etc.).
 - `Environment` is an instance of the Product in the scope of `Project` (examples: Local, Dev, Prod, etc).
 - `Cluster` is the name of the K8s (Azure AKS in current setup) cluster.
 - `Tenant` is the short name for the given `cluster` along with the supporting resources.
