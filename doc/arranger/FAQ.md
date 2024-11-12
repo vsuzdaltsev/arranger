@@ -40,7 +40,7 @@ root@cli# inv tf.list-tenants --verbose true | jq
   "development1": { # tenant name
     "aws_account_id": "<>",
     "aws_region": "eu-west-2",
-    "cluster_name": "arn:aws:eks:<>>:<>:cluster/development1",
+    "cluster_name": "arn:aws:eks:<>>:<>:cluster/development1", # cluster
     "aws_profile": "development1",
     "context": "",
     "description": "Development account #1.",
