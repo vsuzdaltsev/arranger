@@ -8,6 +8,11 @@ class BasicConf:
                 "description": "AWS certificates.",
                 "depends_on": ["route53-zone-stack"],
             },
+            "vpc-stack": {
+                "class_name": "VpcStack",
+                "description": "AWS VPC.",
+                "depends_on": [],
+            },
         }
     }
     ALL_STACKS = []
@@ -16,7 +21,7 @@ class BasicConf:
 
 class TfConf:
     class Development1(BasicConf):
-        ALL_STACKS = ["acm-stack"]
+        ALL_STACKS = ["acm-stack", "vpc-stack"]
         TENANT = "development1"
 
     class Local(BasicConf):
