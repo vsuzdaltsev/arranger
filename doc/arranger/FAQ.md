@@ -19,11 +19,10 @@
 - `Cluster` is the name of the K8s (Azure AKS in current setup) cluster.
 - `Tenant` is the short name for the given `cluster` along with the supporting resources.
 
-Almost everytime `sub-environment` is the same that `tenant` because their cluster contain only one
-instance of the App. The exception is multi-env clusters (currently development1). For this cluster multiple Env names
-exist (aka `sub-environments`). All the commands here and below are to be run within the `meta-cli` container (see the
-proper
-section of this Guide.)
+In most cases, the sub-environment is the same as the tenant, as their clusters contain only one instance of the
+application. The exception is the multi environment clusters, specifically `development1`, which have multiple environment
+names (also referred to as sub-environments). All commands mentioned here and below should be executed within the
+`arranger` container (refer to the appropriate section of this guide).
 
 ### How to install Arranger?
 
