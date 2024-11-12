@@ -112,12 +112,8 @@ root@cli# inv tf.list-tenants --verbose false | jq
 
 ## How to add a new stack
 
-1. Create a file: `python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/new_stack.py`
-2. Add the stack here: `python3/packages/arranger_conf/arranger_conf/arranger_cdktf_conf.py`
-    - class BasicConf -> VALID_STACKS
-    - class class Development1(BasicConf) -> ALL_STACKS
-    - class Local(BasicConf): -> ALL_STACKS
-3. Add the stack here: `python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py`
+[There is special section for this.](HOW_TO_CREATE_A_NEW_STACK.md)
+
 
 ## How to delete Terraform cache:
 
