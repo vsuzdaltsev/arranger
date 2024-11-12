@@ -40,7 +40,7 @@ def start_delay(action: str, seconds: int, stack: str, tenant: str):
         )
 
 
-def template_env() -> type(Environment):
+def template_env() -> Environment:
     """Jinja template environment object."""
     from .helper_functions import ChoiceLoader, FileSystemLoader
 

@@ -179,7 +179,7 @@ class CdktfGlobals(ByTenant):
 
         return registry.get(tenant)
 
-    def aws_backend(self, scope, region=None) -> type(Any):
+    def aws_backend(self, scope, region=None) -> Any:
         from cdktf import S3Backend
         from arranger_automation_aws.helpers import BackendHelperAws
 

@@ -9,7 +9,7 @@ from arranger_globals.cdktf_globals import CdktfGlobals
 
 
 class BasicStack(TerraformStack):
-    def __init__(self, scope: Construct, ns: str, config: type(TfConf)):
+    def __init__(self, scope: Construct, ns: str, config: TfConf):
         super().__init__(scope, ns)
 
         self.log = Log().logger(desc=self.__class__.__name__)
@@ -25,7 +25,7 @@ class BasicStack(TerraformStack):
 
     def lifecycle_policy(
         self, ignore_changes: List[str] = None, create_before_destroy: bool = None
-    ) -> type(TerraformResourceLifecycle):
+    ) -> TerraformResourceLifecycle:
         if ignore_changes is None:
             ignore_changes = ["tags"]
 
