@@ -11,10 +11,10 @@ into tasks. For creating and managing infrastructure, CDKTF and CDK8s are primar
 The Docker image is intended for use in both CI tools and local development, facilitating a consistent environment
 across different stages of the development lifecycle.
 
+[FAQ](doc/arranger/FAQ.md)
+
 [How to start](doc/arranger/PREPARE_ENVIRONMENT.md)
 
 [How to create a new Infrastructure Stack using CDKTF and Arranger](doc/arranger/HOW_TO_CREATE_A_NEW_STACK.md)
-
-[FAQ](doc/arranger/FAQ.md)
 
 [Authorization](doc/arranger/AUTHORIZATION.md)
