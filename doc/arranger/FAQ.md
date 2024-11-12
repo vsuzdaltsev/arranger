@@ -106,7 +106,7 @@ root@cli# inv tf.list-tenants --verbose false | jq
    ```shell
    # example 
    $ inv tf.list-stacks -p tf --with-descriptions false | jq
-   $ inv tf.diff --cluster-name-alias switchdev1 --stack eks-stack --project tf   
+   $ inv tf.diff --cluster-name-alias development1 --stack vpc-stack --project tf   
    ```
 2. The spec will be generated into: `python3/scripts/arranger_cdktf/tf/cdktf.out/stacks/$YOUR_STACK_NAME/cdk.tf.json`
 
