@@ -18,16 +18,17 @@ class BasicConf:
     ALL_STACKS = []
     MAX_RETRIES = 100
 
+    @classmethod
+    @property
+    def TENANT(cls):
+        return cls.__name__.lower()
 
 class TfConf:
     class Development1(BasicConf):
         ALL_STACKS = ["vpc-stack"]
-        TENANT = "development1"
 
     class Local(BasicConf):
         ALL_STACKS = []
-        TENANT = "local"
 
     class Staging1(BasicConf):
         ALL_STACKS = []
-        TENANT = "staging1"
