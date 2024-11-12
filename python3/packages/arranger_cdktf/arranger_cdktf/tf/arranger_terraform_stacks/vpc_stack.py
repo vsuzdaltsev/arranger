@@ -23,7 +23,7 @@ class VpcStack(AwsBasicStack):
     def _name_prefix(self) -> str:
         return "vpc"
 
-    def __init__(self, scope: Construct, ns: str, config: type(TfConf)):
+    def __init__(self, scope: Construct, ns: str, config: TfConf):
         super().__init__(scope, ns, config)
 
         # FIXME: add task #
@@ -77,7 +77,7 @@ class VpcStack(AwsBasicStack):
             lifecycle=self.lifecycle_policy(),
         )
 
-    def _vpc_internet_gw(self) -> type(AwsInternetGateway):
+    def _vpc_internet_gw(self) -> AwsInternetGateway:
         name = self._name(object_type="igw-eks-main-eks-vpc")
 
         return AwsInternetGateway(
