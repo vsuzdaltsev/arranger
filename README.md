@@ -17,4 +17,4 @@ across different stages of the development lifecycle.
 
 [FAQ](doc/arranger/FAQ.md)
 
-[AUTHORIZATION](doc/arranger/AUTHORIZATION.md)
+[Authorization](doc/arranger/AUTHORIZATION.md)
