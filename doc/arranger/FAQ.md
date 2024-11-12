@@ -8,44 +8,72 @@
 
 ## Introduction
 
+<br>
+
 ### Entities
 
-* What is `sub-environment`?
-* What is `cluster`?
 * What is `tenant`?
+* What is `environment (sub-environment)`?
+* What is `cluster`?
 * What's the difference between them?
 
-- `Environment` is an instance of the Product in the scope of `Project` (examples: Local, Dev, Prod, etc).
-- `Cluster` is the name of the K8s (Azure AKS in current setup) cluster.
-- `Tenant` is the short name for the given `cluster` along with the supporting resources.
+- `tenant` is an instance of the Product in the scope of `Project` (examples: Local, Dev, Prod, etc). Usually (but not
+  necessarily)tenant refers to a separate Cloud Account.
+- `environment` aka `sub-environment` is a namespace within K8s cluster.
+- `cluster` is an instance of K8s cluster for specific `tenant`.
 
-In most cases, the sub-environment is the same as the tenant, as their clusters contain only one instance of the
-application. The exception is the multi environment clusters, specifically `development1`, which have multiple environment
-names (also referred to as sub-environments). All commands mentioned here and below should be executed within the
-`arranger` container (refer to the appropriate section of this guide).
+In most cases, the `environment` has the same name as the appropriate `tenant` for the cases when we have only one
+instance of an application
+within the K8s cluster (like production etc.). The exception is the multi environment clusters, specifically
+`development1`, which consists of multiple
+environments (sub-environments) with reusable Infrastructure parts.
+
+NB: All commands mentioned here and below should be executed within the `arranger` container (refer to the appropriate
+section of this guide).
+
+* To see the list of existing `tenants` along with `environments` (`sub-environments`) run:
+
+```shell
+root@cli# inv tf.list-tenants --verbose true | jq
+>>
+{
+  "development1": { # tenant name
+    "aws_account_id": "<>",
+    "aws_region": "eu-west-2",
+    "cluster_name": "arn:aws:eks:<>>:<>:cluster/development1",
+    "aws_profile": "development1",
+    "context": "",
+    "description": "Development account #1.",
+  "sub_environments": [ # environments (sub-environments)
+    "d1",
+    "d2",
+    "d3",
+    "d4",
+    ...
+    "d19"
+  ],
+    "domain": "development1.io",
+    "cloud_attributes": {
+    "cloud": "aws",
+    "tags": {}
+  }
+},
+  "local": {
+    "cluster_name": "local-k8s"
+  },
+  "staging1": {
+    "cluster_name": "local-k8s"
+  }
+}
+```
+
+<br>
 
 ### How to install Arranger?
 
 [There is special section describing it.](PREPARE_ENVIRONMENT.md)
 
-* To see the list of existing `tenants` (along with sub-environments) run:
-
-```shell
-root@cli# inv tf.list-tenants --verbose false | jq
-```
-
-<details>
-  <summary>List clusters example output</summary>
-
-```json
-[
-  "development1",
-  "local",
-  "staging1"
-]
-```
-
-</details>
+<br>
 
 ### How to add Terraform provider
 
@@ -100,6 +128,8 @@ root@cli# inv tf.list-tenants --verbose false | jq
    $ inv python3.build-and-install -p arranger_globals
    ```
 
+<br>
+
 ### How to generate Terraform code?
 
 1. Run `tf.diff`
@@ -110,12 +140,15 @@ root@cli# inv tf.list-tenants --verbose false | jq
    ```
 2. The spec will be generated into: `python3/scripts/arranger_cdktf/tf/cdktf.out/stacks/$YOUR_STACK_NAME/cdk.tf.json`
 
-## How to add a new stack
+<br>
+
+### How to add a new stack
 
 [There is special section for this.](HOW_TO_CREATE_A_NEW_STACK.md)
 
+<br>
 
-## How to delete Terraform cache:
+### How to delete Terraform cache:
 
    ```shell
    $ rm -fr python3/scripts/arranger_cdktf/tf/cdktf.out/stacks/<ecr>-stack
