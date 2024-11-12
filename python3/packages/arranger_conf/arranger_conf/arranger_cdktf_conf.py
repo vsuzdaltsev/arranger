@@ -23,6 +23,7 @@ class BasicConf:
     def TENANT(cls):
         return cls.__name__.lower()
 
+
 class TfConf:
     class Development1(BasicConf):
         ALL_STACKS = ["vpc-stack"]
