@@ -1,4 +1,9 @@
 class BasicConf:
+    @classmethod
+    @property
+    def TENANT(cls):
+        return cls.__name__.lower()
+
     DEFAULT_TIMEOUTS = {"create": "45m", "delete": "45m"}
     AWS_GLOBAL_REGION = "us-east-1"
     VALID_STACKS = {
@@ -8,6 +13,11 @@ class BasicConf:
                 "description": "AWS certificates.",
                 "depends_on": ["route53-zone-stack"],
             },
+            "vpc-stack": {
+                "class_name": "VpcStack",
+                "description": "AWS VPC.",
+                "depends_on": [],
+            },
         }
     }
     ALL_STACKS = []
@@ -16,13 +26,10 @@ class BasicConf:
 
 class TfConf:
     class Development1(BasicConf):
-        ALL_STACKS = ["acm-stack"]
-        TENANT = "development1"
+        ALL_STACKS = ["vpc-stack"]
 
     class Local(BasicConf):
-        ALL_STACKS = ["acm-stack"]
-        TENANT = "local"
+        ALL_STACKS = []
 
     class Staging1(BasicConf):
-        ALL_STACKS = ["acm-stack"]
-        TENANT = "staging1"
+        ALL_STACKS = []

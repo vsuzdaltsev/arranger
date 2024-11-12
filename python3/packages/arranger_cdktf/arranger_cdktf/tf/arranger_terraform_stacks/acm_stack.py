@@ -13,10 +13,6 @@ from arranger_cdktf.imports.null import Resource as NullResource
 from .basic_stack import AwsBasicStack, Construct, TfConf
 
 
-class BasicAcmStackMixin:
-    pass
-
-
 class AcmStack(AwsBasicStack):
     def __init__(self, scope: Construct, ns: str, config: TfConf):
         super().__init__(scope, ns, config=config)
