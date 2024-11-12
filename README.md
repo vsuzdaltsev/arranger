@@ -16,3 +16,5 @@ across different stages of the development lifecycle.
 [How to create a new Infrastructure Stack using CDKTF and Arranger](doc/arranger/HOW_TO_CREATE_A_NEW_STACK.md)
 
 [FAQ](doc/arranger/FAQ.md)
+
+[AUTHORIZATION](doc/arranger/AUTHORIZATION.md)
