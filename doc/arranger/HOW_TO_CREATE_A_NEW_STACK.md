@@ -48,6 +48,14 @@ class TfConf:
 
 <br>
 
+## Enter the Arranger container:
+
+```shell
+$ inv local.container.run
+```
+
+<br>
+
 ## Check Terraform diff:
 
 ```shell
