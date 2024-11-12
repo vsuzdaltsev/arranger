@@ -29,7 +29,9 @@ class BasicStack(TerraformStack):
         )
 
     def _setup_backend(self):
-        raise NotImplementedError(f"Abstract class: {self.__class__.__name__}")
+        raise NotImplementedError(
+            f"Need to implement {self.__class__.__name__}#_setup_backend."
+        )
 
 
 class AwsBasicStack(BasicStack):
