@@ -17,8 +17,8 @@
 * What is `cluster`?
 * What's the difference between them?
 
-- `tenant` is an set of Infrastructure resources. Usually (but not necessarily) tenant refers to a separate Cloud
-  Account. Each `tenant` operates independently, usually within a shared
+- `tenant` is an set of isolated Infrastructure resources. Usually (but not necessarily) tenant refers to a separate Cloud
+  account. Each `tenant` operates independently, usually within a shared
   infrastructure, but their data and applications remain isolated from those of other `tenants`. Prod isolated from
   Staging, Dev etc. These are examples of `tenants`.
 - `environment` aka `sub-environment` is a namespace within K8s cluster.
