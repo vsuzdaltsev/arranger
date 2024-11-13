@@ -6,6 +6,6 @@ By default, Arranger Invoke tasks utilize AWS profiles, which can be configured 
 
 ```shell
 # Example of an Invoke task that points to a specific profile, which shares the same name as the tenant.
-$ inv tf.diff -p tf --tenant development1 --stack acm-stack
+(arranger) root@cli#  inv tf.diff -p tf --tenant development1 --stack acm-stack
 ```
 where `tenant` is the name of a proper `AWS profile`
