@@ -1,5 +1,3 @@
-[[_TOC_]]
-
 # Arranger CLI FAQ
 
 ## About this guide
