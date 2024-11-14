@@ -37,7 +37,7 @@ class BasicParallel:
                 items_list = args[0]
 
             Log.logger(desc=cls.__name__).debug(">> Starting threads.")
-            cls._process_concurrently(items_list, obj, func)
+            cls._process_concurrently(items_list=items_list, obj=obj, func=func)
             Log.logger(desc=cls.__name__).debug(">> Finishing threads.")
 
         return go_threads
