@@ -4,7 +4,7 @@
 class AppConf:
     """Globals."""
 
-    PROJECT_NAME = "my_project"  # Randomizer
+    PROJECT_NAME = "my_first_arranger_project"  # Randomizer
 
     TENANTS = {
         "development1": {
