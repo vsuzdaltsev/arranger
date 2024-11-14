@@ -4,6 +4,8 @@
 class AppConf:
     """Globals."""
 
+    PROJECT_NAME = "my_project" # Randomizer
+
     TENANTS = {
         "development1": {
             "aws_account_id": "<>",
