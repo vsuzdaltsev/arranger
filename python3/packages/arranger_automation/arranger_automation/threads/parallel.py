@@ -22,7 +22,7 @@ class BasicParallel:
     def each_slice(cls, func: Callable) -> Callable:
         """Decorator for throttling threads."""
 
-        def go_threads(*args) -> NoReturn:
+        def go_threads(*args) -> None:
             if len(args) > 1:
                 Log.logger(desc=cls.__name__).debug(
                     ">> Decorating instance method.. Object passed as a parameter."
