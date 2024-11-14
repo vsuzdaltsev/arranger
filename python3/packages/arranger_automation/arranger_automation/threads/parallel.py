@@ -7,7 +7,7 @@ from multiprocessing import cpu_count
 from multiprocessing.dummy import Pool as ThreadPool
 import os
 from threading import Thread
-from typing import Any, Callable, List, NoReturn
+from typing import Any, Callable, List
 
 from arranger_automation.log import Log
 
