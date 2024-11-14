@@ -18,7 +18,7 @@
   
 <li><strong>Comprehensive Toolkit and CLI:</strong>
     <ul>
-      <li>A toolkit designed for managing infrastructure described as an object model using Python.</li>
+      <li>A toolkit designed for managing complex multitenant infrastructure described as an object model using Python.</li>
       <li>Includes a Dockerized environment with most necessary tools for development and testing.</li>
       <li>Utilizes the PyInvoke library to create a CLI interface, enabling efficient management of shell-oriented subprocesses and organizing executable Python code into tasks.</li>
       <li>Employs CDKTF and CDK8s for creating and managing infrastructure, in conjunction with the SDK.</li>
