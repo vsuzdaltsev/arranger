@@ -2,7 +2,7 @@
 <h3 align="center">The CDKTF & CDK8S Well-Architected Framework</h3>
 
 <p>
-<strong>Arranger</strong> is designed to address the common challenges faced by developers using the Cloud Development Kit for Terraform, providing a seamless experience that truly embodies IaaC as it should be prepared.
+<strong>Arranger</strong> is designed to address the common challenges faced by developers using the Cloud Development Kit for Terraform/AWS/K8s, providing a seamless experience that truly embodies IaaC as it should be prepared.
 </p>
 
 <h2>Key Features</h2>
