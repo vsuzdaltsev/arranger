@@ -26,9 +26,9 @@ class CdktfGlobals(ByTenant):
 
     @property
     def cloud(self) -> str:
-        from arranger_conf import AppConf
+        from arranger_conf import ArrangerConf
 
-        return AppConf.TENANTS[self.tenant]["cloud_attributes"]["cloud"]
+        return ArrangerConf.TENANTS[self.tenant]["cloud_attributes"]["cloud"]
 
     @staticmethod
     def external_provider(scope: Construct) -> Any:
@@ -263,9 +263,9 @@ class CdktfGlobals(ByTenant):
 
     @property
     def sub_environments(self) -> List[str]:
-        from arranger_conf.app_conf import AppConf
+        from arranger_conf.arranger_conf import ArrangerConf
 
-        return AppConf.TENANTS[self.tenant]["sub_environments"]
+        return ArrangerConf.TENANTS[self.tenant]["sub_environments"]
 
     @staticmethod
     def run_cmd(cmds: List[str]):

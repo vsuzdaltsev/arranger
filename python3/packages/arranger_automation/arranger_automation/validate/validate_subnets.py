@@ -105,7 +105,7 @@ class ValidateSubnets:
 if __name__ == "__main__":
     import json
 
-    from arranger_conf.app_conf import AppConf
+    from arranger_conf.arranger_conf import ArrangerConf
     from arranger_globals import CdktfGlobals
 
     aggr = {}

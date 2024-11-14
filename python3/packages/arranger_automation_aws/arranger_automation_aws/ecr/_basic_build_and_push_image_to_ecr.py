@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Tuple, Union
 
 from arranger_automation.log import Log
 from arranger_automation_aws.codeartifactory import MvnCodeartifactory
-from arranger_conf.app_conf import AppConf
+from arranger_conf.arranger_conf import ArrangerConf
 
 
 def build_dockerfile() -> str:
@@ -60,7 +60,7 @@ class BasicBuildAndPushImageToEcrMixin(ABC):
         pass
 
     def _validate_params(self) -> type(None):
-        assert self.cluster_name_alias in AppConf.TENANTS
+        assert self.cluster_name_alias in ArrangerConf.TENANTS
         assert isinstance(self.image_name, str)
         assert isinstance(self.debug, bool)
 
@@ -92,10 +92,10 @@ class BasicBuildAndPushImageToEcrMixin(ABC):
         return _globals.aws_profile
 
     def _accounts_to_create_ecr_within(self) -> List[str]:
-        if self._aws_profile() == AppConf.ORCHESTRA_ACCOUNT:
+        if self._aws_profile() == ArrangerConf.ORCHESTRA_ACCOUNT:
             return [
                 self._aws_profile(),
-            ] + AppConf.ORCHESTRA_SUBORDINATE_ACCOUNTS
+            ] + ArrangerConf.ORCHESTRA_SUBORDINATE_ACCOUNTS
         return [self._aws_profile()]
 
     def _create_ecr_repo(self) -> Any:
