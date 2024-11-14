@@ -2,7 +2,7 @@
 
 import json
 import os
-from typing import Dict, Generator, NoReturn, Union
+from typing import Dict, Generator, Union
 
 import docker
 
@@ -159,6 +159,6 @@ class DockerImage:
 
         return f"{docker_registry}/{self.image_name}"
 
-    def remove_image(self, image: str) -> NoReturn:
+    def remove_image(self, image: str) -> None:
         """Remove Docker image from the local Repository."""
         self.docker_client.images.remove(image, force=False)
