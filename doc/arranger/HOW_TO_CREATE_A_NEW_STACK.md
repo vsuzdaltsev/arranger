@@ -20,7 +20,7 @@ from .test_vpc_stack import *
 
 ## Add the Stack section to the VALID_STACKS constant:
 
-in `/packages/arranger_conf/arranger_conf/arranger_cdktf_conf.py`
+in `python3/packages/arranger_conf/arranger_conf/basic_conf/cdktf_basic_conf.py
 
 ```python
 VALID_STACKS = {
@@ -38,7 +38,7 @@ VALID_STACKS = {
 
 ## Add Stack name to the ALL_STACKS constant for the proper Tenant(s):
 
-in `/packages/arranger_conf/arranger_conf/arranger_cdktf_conf.py`
+in `python3/packages/arranger_conf/arranger_conf/basic_conf/cdktf_basic_conf.py`
 
 ```python
 class TfConf:
