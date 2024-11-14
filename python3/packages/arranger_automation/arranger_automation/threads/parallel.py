@@ -7,10 +7,9 @@ import os
 from multiprocessing import cpu_count
 from multiprocessing.dummy import Pool as ThreadPool
 from threading import Thread
-from typing import NoReturn
+from typing import Callable, NoReturn
 
 from arranger_automation.log import Log
-
 
 MAX_THREADS = int(os.getenv("MAX_THREADS")) if os.getenv("MAX_THREADS") else cpu_count()
 """Maximum concurrent threads."""
@@ -20,7 +19,7 @@ class BasicParallel:
     """Run function decorated with 'each_slice' method."""
 
     @classmethod
-    def each_slice(cls, func):
+    def each_slice(cls, func: Callable) -> Callable:
         """Decorator for throttling threads."""
 
         def go_threads(*args) -> NoReturn:

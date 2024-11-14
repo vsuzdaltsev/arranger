@@ -16,7 +16,7 @@ class BasicAwsResource:
         """Create default logger object to handle logs if none passed in the constructor."""
         return Log().logger(desc=type(self).__name__)
 
-    def __init__(self, boto_client: type(client), logger: Union[Logger, None] = None):
+    def __init__(self, boto_client: client, logger: Union[Logger, None] = None):
         self._logger = logger or self._setup_logger()
         self._client = boto_client
 
@@ -25,5 +25,5 @@ class BasicAwsResource:
         return self._logger
 
     @property
-    def client(self) -> type(client):
+    def client(self) -> client:
         return self._client
