@@ -41,7 +41,7 @@ class DockerImage:
 
     def _parse_build_logs(
         self, log_generator: Generator, show_build_log: bool = False
-    ) -> NoReturn:
+    ) -> None:
         def print_build_log(js_output, err):
             if "stream" in js_output:
                 if show_build_log:
@@ -108,7 +108,7 @@ class DockerImage:
         self.image = None
         self.build_log = None
 
-    def build(self, show_build_log: bool = True) -> NoReturn:
+    def build(self, show_build_log: bool = True) -> None:
         """Build Docker image."""
 
         self.log.warning(
