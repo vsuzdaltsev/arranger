@@ -1,7 +1,2 @@
 [tool.black]
-exclude = exclude = '''
-    /(
-        imports|     # Exclude imports
-        README\.md   # Exclude README.md file
-    )/
-'''
+exclude = "imports"
