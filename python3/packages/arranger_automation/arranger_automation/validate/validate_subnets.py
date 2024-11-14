@@ -48,7 +48,7 @@ class ValidateSubnets:
             for vnet_name in sublist
         ]
 
-    def _validate_vnet(self, vnet_name: str) -> NoReturn:
+    def _validate_vnet(self, vnet_name: str) -> None:
         subnets_by_vnet = {}
         for vnet_cidr in self._vnet_ranges(vnet_name=vnet_name):
             vnet_cidrs = {}
