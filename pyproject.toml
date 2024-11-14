@@ -1,2 +1,6 @@
 [tool.black]
-exclude = "imports"
+exclude = """
+imports
+README.md
+"""
+
