@@ -19,56 +19,45 @@
 
 1. Create Python virtual environment (where '3.11' is your python3 version, see Pipfile for the details):
 
-   ```shell
-   $ pyenv install 3.11
-   $ pyenv local 3.11
+```shell
+   $ pyenv install 3.12
+   $ pyenv local 3.12
    $ eval "$(pyenv init --path)"
-   $ pipenv --python 3.11
-   ```
+   $ pipenv --python 3.12
+```
 
 2. Enter the virtual environment's context:
 
-   ```shell
+```shell
    $ pipenv shell
-   ```
+```
 
-3. Install pyInvoke and some related libs:
-
-   ```shell
-   $ pip install -r requirements.txt
-   ```
-
-4. (**OPTIONAL**) Download all dependencies and install all arranger_automation packages (for some IDEs autocompletion
+3. (**OPTIONAL**) Download all dependencies and install all arranger_automation packages (for some IDEs autocompletion
    to
    work
    primarily):
-
-   ```shell
-   $ pipenv sync
-   $ pipenv sync -d
-   $ inv python3.build-and-install
-   ```
-
+```shell
+  $ pipenv install -r requirements.txt
+  $ pipenv install -r requirements-dev.txt --dev
+```
+```shell
+  $ inv python3.build-and-install
+```
 5. List existing invoke tasks:
-
-   ```shell
+```shell
    $ inv -l
-   ```
-
+```
 6. Build container:
-
-   ```shell
+```shell
    $ inv local.container.build
-   ```
-
+```
 7. Run & enter container:
-
-   ```shell
+```shell
    $ inv local.container.run
-   ```
+```
 8. Observe the list of existing Invoke tasks:
 
-   ```shell
+```shell
    (arranger) root@cli#  inv -l
    Available tasks:
 
@@ -83,8 +72,8 @@
    python3.build-and-install    >> Build the specified Python package, install it, and clean up the repository.
    python3.install              >> Install the specified Python package.
    spec.python                  >> Run specifications for the specified Python package.
-   ...
-   ```
+...
+```
 
 ## Known limitations <div id='known-limitations'/>
 
@@ -95,3 +84,4 @@ only minor adjustments needed for Windows.
 
 * [iskander.ignatev@gmail.com](mailto:iskander.ignatev@gmail.com?subject=prepare-)
 * [vsevolod.suzdaltsev@gmail.com](mailto:vsevolod.suzdaltsev@gmail.com?subject=prepare-)
+* [polkovnikvasin@gmail.com](mailto:polkovnikvasin@gmail.com?subject=prepare-)
