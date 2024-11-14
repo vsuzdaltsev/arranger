@@ -53,7 +53,7 @@ class BasicParallel:
     @classmethod
     def _process_concurrently(
         cls, items_list: List, obj: Any, func: Callable
-    ) -> NoReturn:
+    ) -> None:
         Log.logger(desc=cls.__name__).error(
             ">> Subclass implementation needed. Parameters: %s, %s, %s.",
             items_list,
@@ -68,7 +68,7 @@ class Parallel(BasicParallel):
     @classmethod
     def _process_concurrently(
         cls, items_list: List, obj: Any, func: Callable
-    ) -> NoReturn:
+    ) -> None:
         pool = ThreadPool(MAX_THREADS)
         pool.map(lambda x: func(*cls.add_obj(obj, x)), items_list)
         pool.close()
@@ -81,7 +81,7 @@ class ParallelWithinLambda(BasicParallel):
     @classmethod
     def _process_concurrently(
         cls, items_list: List, obj: Any, func: Callable
-    ) -> NoReturn:
+    ) -> None:
         threads = []
         while len(items_list) > 0:
             items_slice = [
