@@ -76,57 +76,7 @@ root@cli# inv tf.list-tenants --verbose true | jq
 <br>
 
 ### How to add Terraform provider
-
-1. Create a file `cdktf.json` in the project root
-
-   ```json
-   {  
-      "language": "python",
-      "app": "export CHECKPOINT_DISABLE=true && python main.py",
-      "terraformProviders": [
-          {
-              "name": "local",
-              "source": "hashicorp/local",
-              "version": "2.4.0"
-          }
-      ],
-      "terraformModules": [],
-      "codeMakerOutput": "importz",
-      "projectId": "a2eadd6a-eda8-4862-b43d-6d821eeddb58"
-   }
-   ```
-
-2. In the Docker container run
-   ```shell
-   $ cdktf get
-   ```
-
-3. Copy downloaded folder(s)
-   ```shell
-   $ cp -r  importz/local python3/packages/arranger_cdktf/arranger_cdktf/imports/
-   ```
-
-4. Add the provider name to `python3/packages/arranger_cdktf/arranger_cdktf/imports/__init__.py`
-
-
-5. Run
-   ```shell
-   $ inv python3.build-and-install -p arranger_cdktf
-   ```
-
-6. Add to `python3/packages/arranger_globals/arranger_globals/cdktf_globals.py`
-
-   ```python
-   def local_provider(self, scope) -> Any:
-        from arranger_cdktf.imports.local.provider import LocalProvider
-
-        return LocalProvider(scope=scope, id="local-provider")
-   ```
-
-7. Run
-   ```shell
-   $ inv python3.build-and-install -p arranger_globals
-   ```
+[There is special section for this.](HOW_TO_ADD_NEW_PROVIDERS.md)
 
 <br>
 
