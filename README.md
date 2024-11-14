@@ -2,7 +2,7 @@
 <h3 align="center">The CDKTF & CDK8S Well-Architected Framework</h3>
 
 <p>
-<strong>Arranger</strong> is designed to address the common challenges faced by developers using the Cloud Development Kit for Terraform, providing a seamless experience that truly embodies IaaC as it should be prepared.
+<strong>Arranger</strong> is designed to address the common challenges faced by developers using the Cloud Development Kit for Terraform/AWS/K8s, providing a seamless experience that truly embodies IaaC as it should be prepared.
 </p>
 
 <h2>Key Features</h2>
@@ -18,7 +18,7 @@
   
 <li><strong>Comprehensive Toolkit and CLI:</strong>
     <ul>
-      <li>A toolkit designed for managing infrastructure described as an object model using Python.</li>
+      <li>A toolkit designed for managing complex multitenant infrastructure described as an object model using Python.</li>
       <li>Includes a Dockerized environment with most necessary tools for development and testing.</li>
       <li>Utilizes the PyInvoke library to create a CLI interface, enabling efficient management of shell-oriented subprocesses and organizing executable Python code into tasks.</li>
       <li>Employs CDKTF and CDK8s for creating and managing infrastructure, in conjunction with the SDK.</li>
@@ -29,6 +29,8 @@
 
 
 [FAQ](doc/arranger/FAQ.md)
+
+[Structure](doc/arranger/STRUCTURE)
 
 [How to start](doc/arranger/PREPARE_ENVIRONMENT.md)
 

@@ -1,4 +1,4 @@
-from typing import Dict, NoReturn, Union
+from typing import Dict, Union
 
 from boto3 import session as ses
 from botocore.exceptions import ClientError
@@ -64,7 +64,7 @@ class BackendHelperAws:
     @classmethod
     def create_table(
         cls, name: str, profile: str, region: Union[str, None] = None
-    ) -> Union[str, NoReturn]:
+    ) -> Union[str, None]:
         if region is None:
             location = {}
         else:

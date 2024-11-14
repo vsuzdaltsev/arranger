@@ -18,7 +18,7 @@
 - `tenant` is an set of isolated Infrastructure resources. Usually (but not necessarily) tenant refers to a separate
   Cloud account. Each `tenant` operates independently, usually within a shared
   infrastructure, but their data and applications remain isolated from those of other `tenants`. Prod isolated from
-  Staging, Dev etc. These are examples of `tenants`.
+  Staging, Dev etc. These are examples of `tenants`. List of available tenants can be found [in the main configuration file](../..//python3/packages/arranger_conf/arranger_conf/arranger_conf.py).
 - `environment` aka `sub-environment` is a namespace within K8s cluster.
 - `cluster` is an instance of K8s cluster for specific `tenant`.
 

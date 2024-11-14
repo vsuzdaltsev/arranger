@@ -104,7 +104,7 @@ def infra_action(
     log_level="error",
 ):
     """>> Synthesize Infrastructure stack to generate Terraform code."""
-    from arranger_conf.app_conf import AppConf
+    from arranger_conf.arranger_conf import ArrangerConf
 
     from .helper_functions import (
         TERRAFORM_PROJECTS,
@@ -122,7 +122,7 @@ def infra_action(
     )
     validate_input(
         name="tenant",
-        allowed=list(AppConf.TENANTS.keys()),
+        allowed=list(ArrangerConf.TENANTS.keys()),
         passed=tenant,
     )
 
@@ -276,7 +276,7 @@ def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
 @task
 def list_tenants(_ctx, verbose="true"):
     """>> Show available tenants."""
-    from arranger_conf import AppConf
+    from arranger_conf import ArrangerConf
 
     from .helper_functions import TOGGLE, validate_input
 
@@ -285,9 +285,9 @@ def list_tenants(_ctx, verbose="true"):
     verbose = bool(verbose == "true")
 
     if verbose:
-        return print(json.dumps(OrderedDict(sorted(AppConf.TENANTS.items()))))
+        return print(json.dumps(OrderedDict(sorted(ArrangerConf.TENANTS.items()))))
 
-    return print(json.dumps(sorted(AppConf.TENANTS.keys())))
+    return print(json.dumps(sorted(ArrangerConf.TENANTS.keys())))
 
 
 @task
@@ -300,16 +300,16 @@ def list_ip_ranges(_ctx, tenant=None):
     :return: JSON of IP ranges.
     """
     from arranger_automation.validate import ValidateSubnets
-    from arranger_conf.app_conf import AppConf
+    from arranger_conf.arranger_conf import ArrangerConf
     from arranger_globals import CdktfGlobals
 
     from .helper_functions import validate_input
 
-    tenants = [tenant] if tenant else sorted(AppConf.TENANTS.keys())
+    tenants = [tenant] if tenant else sorted(ArrangerConf.TENANTS.keys())
 
     validate_input(
         name=tenant,
-        allowed=sorted(AppConf.TENANTS.keys()),
+        allowed=sorted(ArrangerConf.TENANTS.keys()),
         passed=tenants[0],
     )
 

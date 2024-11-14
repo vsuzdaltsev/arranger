@@ -3,14 +3,13 @@ Run given function with a limited number of concurrent threads.
 Common and AWS lambda adapted versions.
 """
 
-import os
 from multiprocessing import cpu_count
 from multiprocessing.dummy import Pool as ThreadPool
+import os
 from threading import Thread
-from typing import NoReturn
+from typing import Any, Callable, List
 
 from arranger_automation.log import Log
-
 
 MAX_THREADS = int(os.getenv("MAX_THREADS")) if os.getenv("MAX_THREADS") else cpu_count()
 """Maximum concurrent threads."""
@@ -20,10 +19,10 @@ class BasicParallel:
     """Run function decorated with 'each_slice' method."""
 
     @classmethod
-    def each_slice(cls, func):
+    def each_slice(cls, func: Callable) -> Callable:
         """Decorator for throttling threads."""
 
-        def go_threads(*args) -> NoReturn:
+        def go_threads(*args) -> None:
             if len(args) > 1:
                 Log.logger(desc=cls.__name__).debug(
                     ">> Decorating instance method.. Object passed as a parameter."
@@ -38,13 +37,13 @@ class BasicParallel:
                 items_list = args[0]
 
             Log.logger(desc=cls.__name__).debug(">> Starting threads.")
-            cls._process_concurrently(items_list, obj, func)
+            cls._process_concurrently(items_list=items_list, obj=obj, func=func)
             Log.logger(desc=cls.__name__).debug(">> Finishing threads.")
 
         return go_threads
 
     @staticmethod
-    def add_obj(obj, item):
+    def add_obj(obj: Any, item: Any) -> List:
         """
         Pass object from decorated function to decorator.
         This is needed because a function may be decorated as well as a method.
@@ -52,7 +51,7 @@ class BasicParallel:
         return [obj, item] if obj else [item]
 
     @classmethod
-    def _process_concurrently(cls, items_list, obj, func) -> NoReturn:
+    def _process_concurrently(cls, items_list: List, obj: Any, func: Callable) -> None:
         Log.logger(desc=cls.__name__).error(
             ">> Subclass implementation needed. Parameters: %s, %s, %s.",
             items_list,
@@ -65,7 +64,7 @@ class Parallel(BasicParallel):
     """Run function decorated within environment which supports ThreadPool."""
 
     @classmethod
-    def _process_concurrently(cls, items_list, obj, func) -> NoReturn:
+    def _process_concurrently(cls, items_list: List, obj: Any, func: Callable) -> None:
         pool = ThreadPool(MAX_THREADS)
         pool.map(lambda x: func(*cls.add_obj(obj, x)), items_list)
         pool.close()
@@ -76,7 +75,7 @@ class ParallelWithinLambda(BasicParallel):
     """Run function decorated within environment which doesn't support ThreadPool (like AWS lambda)."""
 
     @classmethod
-    def _process_concurrently(cls, items_list, obj, func) -> NoReturn:
+    def _process_concurrently(cls, items_list: List, obj: Any, func: Callable) -> None:
         threads = []
         while len(items_list) > 0:
             items_slice = [

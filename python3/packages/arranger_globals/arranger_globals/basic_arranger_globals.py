@@ -57,10 +57,10 @@ class ArrangerMixin(ABC):
 
     @property
     def aws_region(self) -> str:
-        from arranger_conf.app_conf import AppConf
+        from arranger_conf.arranger_conf import ArrangerConf
 
         try:
-            return AppConf.TENANTS[self.tenant]["aws_region"]
+            return ArrangerConf.TENANTS[self.tenant]["aws_region"]
         except KeyError as err:
             self.log.debug(
                 f">> Cluster '{self.tenant}' doesn't have "
@@ -70,15 +70,15 @@ class ArrangerMixin(ABC):
 
     @property
     def aws_profile(self) -> str:
-        from arranger_conf.app_conf import AppConf
+        from arranger_conf.arranger_conf import ArrangerConf
 
-        return AppConf.TENANTS[self.tenant]["aws_profile"]
+        return ArrangerConf.TENANTS[self.tenant]["aws_profile"]
 
     @property
     def aws_account_id(self) -> str:
-        from arranger_conf.app_conf import AppConf
+        from arranger_conf.arranger_conf import ArrangerConf
 
-        return AppConf.TENANTS[self.tenant]["aws_account_id"]
+        return ArrangerConf.TENANTS[self.tenant]["aws_account_id"]
 
 
 class BySubEnvironment(ArrangerMixin):

@@ -7,6 +7,7 @@ services:
     command: tail -f /dev/null
 
     volumes:
+      - $HOME/.aws:/root/.aws
       - $HOME/.kube:/root/.kube
       - .:/opt/arranger
       - ./python3/packages/arranger_automation/arranger_automation:/opt/site-packages/arranger_automation
@@ -17,7 +18,6 @@ services:
       - ./templates/.zshrc:/root/.zshrc
       - ./templates/ssh_config:/root/.ssh/config
       - /var/run/docker.sock:/var/run/docker.sock
-      - $HOME/.aws:/root/.aws
 
     environment:
       - SSH_AUTH_SOCK=/ssh-agent
@@ -29,7 +29,7 @@ services:
       dockerfile: Dockerfile
       args:
         ALPINE_VERSION: "3.20"
-        CDKTF_CLI_VERSION: 0.20.9
+        CDKTF_CLI_VERSION: 0.20.10
         CDK8S_CLI_VERSION: 2.198.254
         DYFF_VERSION: 1.9.2
         HELM_VERSION: 3.16.2

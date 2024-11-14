@@ -1,5 +1,5 @@
 import ipaddress
-from typing import Dict, List, NoReturn
+from typing import Dict, List
 
 from arranger_automation.log import Log
 
@@ -48,7 +48,7 @@ class ValidateSubnets:
             for vnet_name in sublist
         ]
 
-    def _validate_vnet(self, vnet_name: str) -> NoReturn:
+    def _validate_vnet(self, vnet_name: str) -> None:
         subnets_by_vnet = {}
         for vnet_cidr in self._vnet_ranges(vnet_name=vnet_name):
             vnet_cidrs = {}
@@ -105,11 +105,11 @@ class ValidateSubnets:
 if __name__ == "__main__":
     import json
 
-    from arranger_conf.app_conf import AppConf
+    from arranger_conf.arranger_conf import ArrangerConf
     from arranger_globals import CdktfGlobals
 
     aggr = {}
-    for tenant in sorted(AppConf.TENANTS.keys()):
+    for tenant in sorted(ArrangerConf.TENANTS.keys()):
         _globals = CdktfGlobals(tenant=tenant)
 
         aggr.update({tenant: ValidateSubnets(ranges=_globals.ip_ranges).validate()})

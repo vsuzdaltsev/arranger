@@ -12,11 +12,11 @@ import yaml
 CURRENT_TF_PROJECT = "tf"
 
 try:
-    from arranger_conf import AppConf
+    from arranger_conf import ArrangerConf
     from arranger_conf.arranger_cdktf_conf import BasicConf
 
-    KUBERNETES_VERSION = AppConf.CDK8S_KUBERNETES_VERSION
-    VALID_TENANTS = AppConf.TENANTS
+    KUBERNETES_VERSION = ArrangerConf.CDK8S_KUBERNETES_VERSION
+    VALID_TENANTS = ArrangerConf.TENANTS
     VALID_EKS_STACKS = BasicConf.VALID_STACKS[CURRENT_TF_PROJECT]
 except BaseException as warn:
     msg = (

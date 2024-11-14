@@ -1,8 +1,10 @@
 """Main configuration file."""
 
 
-class AppConf:
+class ArrangerConf:
     """Globals."""
+
+    PROJECT_NAME = "my_first_arranger_project"  # Randomizer
 
     TENANTS = {
         "development1": {
@@ -29,5 +31,5 @@ class AppConf:
 
     CDK8S_KUBERNETES_VERSION = "1.27"
 
-    ORCHESTRA_ACCOUNT = "head1"
-    ORCHESTRA_SUBORDINATE_ACCOUNTS = ["staging1", "development1"]
+    HEAD_ACCOUNT = None
+    SUBORDINATE_ACCOUNTS = ["staging1", "development1"]
