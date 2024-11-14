@@ -48,6 +48,12 @@ class TfConf:
 
 <br>
 
+## Authorize you Terraform providers if needed:
+
+[How to authorize you Arranger](AUTHORIZATION.md)
+
+<br>
+
 ## Enter the Arranger container:
 
 ```shell
