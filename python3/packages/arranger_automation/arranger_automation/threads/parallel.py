@@ -3,9 +3,9 @@ Run given function with a limited number of concurrent threads.
 Common and AWS lambda adapted versions.
 """
 
-import os
 from multiprocessing import cpu_count
 from multiprocessing.dummy import Pool as ThreadPool
+import os
 from threading import Thread
 from typing import Any, Callable, List, NoReturn
 
