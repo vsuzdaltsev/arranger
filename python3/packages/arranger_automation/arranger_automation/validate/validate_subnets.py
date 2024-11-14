@@ -109,7 +109,7 @@ if __name__ == "__main__":
     from arranger_globals import CdktfGlobals
 
     aggr = {}
-    for tenant in sorted(AppConf.TENANTS.keys()):
+    for tenant in sorted(ArrangerConf.TENANTS.keys()):
         _globals = CdktfGlobals(tenant=tenant)
 
         aggr.update({tenant: ValidateSubnets(ranges=_globals.ip_ranges).validate()})

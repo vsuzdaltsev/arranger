@@ -122,7 +122,7 @@ def infra_action(
     )
     validate_input(
         name="tenant",
-        allowed=list(AppConf.TENANTS.keys()),
+        allowed=list(ArrangerConf.TENANTS.keys()),
         passed=tenant,
     )
 
@@ -285,9 +285,9 @@ def list_tenants(_ctx, verbose="true"):
     verbose = bool(verbose == "true")
 
     if verbose:
-        return print(json.dumps(OrderedDict(sorted(AppConf.TENANTS.items()))))
+        return print(json.dumps(OrderedDict(sorted(ArrangerConf.TENANTS.items()))))
 
-    return print(json.dumps(sorted(AppConf.TENANTS.keys())))
+    return print(json.dumps(sorted(ArrangerConf.TENANTS.keys())))
 
 
 @task
@@ -305,11 +305,11 @@ def list_ip_ranges(_ctx, tenant=None):
 
     from .helper_functions import validate_input
 
-    tenants = [tenant] if tenant else sorted(AppConf.TENANTS.keys())
+    tenants = [tenant] if tenant else sorted(ArrangerConf.TENANTS.keys())
 
     validate_input(
         name=tenant,
-        allowed=sorted(AppConf.TENANTS.keys()),
+        allowed=sorted(ArrangerConf.TENANTS.keys()),
         passed=tenants[0],
     )
 
