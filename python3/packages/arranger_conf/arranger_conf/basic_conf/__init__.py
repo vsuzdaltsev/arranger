@@ -1,1 +1,1 @@
-from .cdktf_basic_conf import BasicConf
+from .arranger_cdktf_basic_conf import BasicConf
