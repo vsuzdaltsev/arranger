@@ -30,6 +30,8 @@
 
 [FAQ](doc/arranger/FAQ.md)
 
+[Structure](doc/arranger/PARTS.md)
+
 [How to start](doc/arranger/PREPARE_ENVIRONMENT.md)
 
 [How to create a new Infrastructure Stack using CDKTF and Arranger](doc/arranger/HOW_TO_CREATE_A_NEW_STACK.md)
