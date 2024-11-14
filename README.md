@@ -1,5 +1,9 @@
-<h1 align="center">Arranger</h1>
-<h3 align="center">The CDKTF & CDK8S Well-Architected Framework</h3>
+# Arranger [![ci][ci-image]][ci-url]
+
+[ci-image]: https://github.com/vsuzdaltsev/arranger/actions/workflows/build_tag_and_push_docker_image.yml/badge.svg?branch=main
+[ci-url]: https://github.com/vsuzdaltsev/arranger/actions/workflows/build_tag_and_push_docker_image.yml
+
+<h3>The CDKTF & CDK8S Well-Architected Framework</h3>
 
 <p>
 <strong>Arranger</strong> is designed to address the common challenges faced by developers using the Cloud Development Kit for Terraform/AWS/K8s, providing a seamless experience that truly embodies IaaC as it should be prepared.
