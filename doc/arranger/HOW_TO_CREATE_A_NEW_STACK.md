@@ -38,7 +38,7 @@ VALID_STACKS = {
 
 ## Add Stack name to the ALL_STACKS constant for the proper Tenant(s):
 
-in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_conf/basic_conf/arranger_cdktf_basic_conf.py)
+in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_conf/arranger_cdktf_conf.py)
 
 ```python
 class TfConf:
