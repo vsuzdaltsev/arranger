@@ -1,5 +1,5 @@
 import ipaddress
-from typing import Dict, List, NoReturn
+from typing import Dict, List
 
 from arranger_automation.log import Log
 
