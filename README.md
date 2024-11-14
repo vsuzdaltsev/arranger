@@ -30,7 +30,7 @@
 
 [FAQ](doc/arranger/FAQ.md)
 
-[Structure](doc/arranger/PARTS.md)
+[Structure](doc/arranger/STRUCTURE)
 
 [How to start](doc/arranger/PREPARE_ENVIRONMENT.md)
 
