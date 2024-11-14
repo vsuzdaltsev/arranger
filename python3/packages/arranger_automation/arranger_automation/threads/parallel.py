@@ -7,7 +7,7 @@ import os
 from multiprocessing import cpu_count
 from multiprocessing.dummy import Pool as ThreadPool
 from threading import Thread
-from typing import Callable, NoReturn
+from typing import Any, Callable, List, NoReturn
 
 from arranger_automation.log import Log
 
@@ -43,7 +43,7 @@ class BasicParallel:
         return go_threads
 
     @staticmethod
-    def add_obj(obj, item):
+    def add_obj(obj: Any, item: Any) -> List:
         """
         Pass object from decorated function to decorator.
         This is needed because a function may be decorated as well as a method.
@@ -51,7 +51,9 @@ class BasicParallel:
         return [obj, item] if obj else [item]
 
     @classmethod
-    def _process_concurrently(cls, items_list, obj, func) -> NoReturn:
+    def _process_concurrently(
+        cls, items_list: List, obj: Any, func: Callable
+    ) -> NoReturn:
         Log.logger(desc=cls.__name__).error(
             ">> Subclass implementation needed. Parameters: %s, %s, %s.",
             items_list,
@@ -64,7 +66,9 @@ class Parallel(BasicParallel):
     """Run function decorated within environment which supports ThreadPool."""
 
     @classmethod
-    def _process_concurrently(cls, items_list, obj, func) -> NoReturn:
+    def _process_concurrently(
+        cls, items_list: List, obj: Any, func: Callable
+    ) -> NoReturn:
         pool = ThreadPool(MAX_THREADS)
         pool.map(lambda x: func(*cls.add_obj(obj, x)), items_list)
         pool.close()
@@ -75,7 +79,9 @@ class ParallelWithinLambda(BasicParallel):
     """Run function decorated within environment which doesn't support ThreadPool (like AWS lambda)."""
 
     @classmethod
-    def _process_concurrently(cls, items_list, obj, func) -> NoReturn:
+    def _process_concurrently(
+        cls, items_list: List, obj: Any, func: Callable
+    ) -> NoReturn:
         threads = []
         while len(items_list) > 0:
             items_slice = [
