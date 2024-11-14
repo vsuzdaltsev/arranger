@@ -10,7 +10,7 @@ $ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_
 
 ## Add the new module to the import section of the `arranger_cdktf` package:
 
-in `python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py` add
+in [package init file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py) add
 
 ```python
 from .test_vpc_stack import *
@@ -20,7 +20,7 @@ from .test_vpc_stack import *
 
 ## Add the Stack section to the VALID_STACKS constant:
 
-in `python3/packages/arranger_conf/arranger_conf/basic_conf/arranger_cdktf_basic_conf.py`
+in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_conf/basic_conf/arranger_cdktf_basic_conf.py)
 
 ```python
 VALID_STACKS = {
@@ -38,7 +38,7 @@ VALID_STACKS = {
 
 ## Add Stack name to the ALL_STACKS constant for the proper Tenant(s):
 
-in `python3/packages/arranger_conf/arranger_conf/basic_conf/arranger_cdktf_basic_conf.py`
+in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_conf/basic_conf/arranger_cdktf_basic_conf.py)
 
 ```python
 class TfConf:
