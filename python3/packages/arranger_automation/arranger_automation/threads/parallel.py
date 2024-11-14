@@ -51,9 +51,7 @@ class BasicParallel:
         return [obj, item] if obj else [item]
 
     @classmethod
-    def _process_concurrently(
-        cls, items_list: List, obj: Any, func: Callable
-    ) -> None:
+    def _process_concurrently(cls, items_list: List, obj: Any, func: Callable) -> None:
         Log.logger(desc=cls.__name__).error(
             ">> Subclass implementation needed. Parameters: %s, %s, %s.",
             items_list,
@@ -66,9 +64,7 @@ class Parallel(BasicParallel):
     """Run function decorated within environment which supports ThreadPool."""
 
     @classmethod
-    def _process_concurrently(
-        cls, items_list: List, obj: Any, func: Callable
-    ) -> None:
+    def _process_concurrently(cls, items_list: List, obj: Any, func: Callable) -> None:
         pool = ThreadPool(MAX_THREADS)
         pool.map(lambda x: func(*cls.add_obj(obj, x)), items_list)
         pool.close()
@@ -79,9 +75,7 @@ class ParallelWithinLambda(BasicParallel):
     """Run function decorated within environment which doesn't support ThreadPool (like AWS lambda)."""
 
     @classmethod
-    def _process_concurrently(
-        cls, items_list: List, obj: Any, func: Callable
-    ) -> None:
+    def _process_concurrently(cls, items_list: List, obj: Any, func: Callable) -> None:
         threads = []
         while len(items_list) > 0:
             items_slice = [
