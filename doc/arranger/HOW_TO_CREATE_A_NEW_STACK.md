@@ -20,7 +20,7 @@ from .test_vpc_stack import *
 
 ## Add the Stack section to the VALID_STACKS constant:
 
-in `python3/packages/arranger_conf/arranger_conf/basic_conf/arranger_cdktf_basic_conf.py
+in `python3/packages/arranger_conf/arranger_conf/basic_conf/arranger_cdktf_basic_conf.py`
 
 ```python
 VALID_STACKS = {
