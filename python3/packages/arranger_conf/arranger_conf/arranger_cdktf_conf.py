@@ -9,4 +9,4 @@ class TfConf:
         ALL_STACKS = []
 
     class Staging1(BasicConf):
-        ALL_STACKS = []
+        ALL_STACKS = ["vpc-stack"]
