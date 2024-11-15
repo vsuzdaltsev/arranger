@@ -31,7 +31,8 @@ from arranger_cdktf.imports.aws.iam_user_policy_attachment import (
 )
 from arranger_cdktf.imports.external import DataExternal
 
-from python3.packages.arranger_conf.arranger_conf import ArrangerConf
+from arranger_conf.arranger_conf import ArrangerConf
+
 from .basic_stack import AwsBasicStack, Construct, TfConf
 
 
