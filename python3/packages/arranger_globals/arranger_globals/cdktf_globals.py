@@ -2,6 +2,7 @@ import ipaddress
 import time
 from typing import Any, Dict, List, Union
 
+import arranger_conf
 from constructs import Construct
 
 from arranger_globals.basic_arranger_globals import ByTenant, validate_subnets
@@ -205,7 +206,7 @@ class CdktfGlobals(ByTenant):
             region=region,
         )
         # FIXME: randomize name
-        bucket_name = f"arranger-terraform-remote-states-{self.tenant}"
+        bucket_name = f"{arranger_conf.ArrangerConf.PROJECT_NAME}-arranger-terraform-remote-states-{self.tenant}"
         BackendHelperAws.BUCKET_NAME = bucket_name
         state_s3bucket = BackendHelperAws.create_bucket(
             profile=self.aws_profile, location_constraint=region
