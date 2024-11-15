@@ -1,6 +1,6 @@
-from typing import List
+from typing import Any, List
 
-from cdktf import TerraformResourceLifecycle, TerraformStack
+from cdktf import S3Backend, TerraformResourceLifecycle, TerraformStack
 from constructs import Construct
 
 from arranger_automation.log import Log
@@ -41,12 +41,12 @@ class BasicStack(TerraformStack):
             f"Need to implement {self.__class__.__name__}#_name_prefix property."
         )
 
-    def _setup_backend(self):
+    def _setup_backend(self) -> Any:
         raise NotImplementedError(
             f"Need to implement {self.__class__.__name__}#_setup_backend."
         )
 
 
 class AwsBasicStack(BasicStack):
-    def _setup_backend(self):
+    def _setup_backend(self) -> S3Backend:
         return self.globals.aws_backend(scope=self)
