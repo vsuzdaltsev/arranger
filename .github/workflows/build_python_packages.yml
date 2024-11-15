@@ -21,4 +21,3 @@ jobs:
           pip install -r requirements.txt
           pipenv sync -d
           pipenv run inv python3.build-and-install
-
