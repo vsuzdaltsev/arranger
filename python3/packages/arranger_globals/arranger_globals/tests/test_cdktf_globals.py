@@ -57,3 +57,6 @@ class TestCdktfGlobals:
             == ArrangerConf.TENANTS.get(local_tenant).get("sub_environments")
             is None
         )
+
+    def test_run_cmd(self, globals_for_cloud_tenant):
+        assert globals_for_cloud_tenant.run_cmd(["echo OK"]) == "OK"
