@@ -71,6 +71,10 @@ class CdktfGlobals(ByTenant):
                 f">> '{self.tenant}' doesn't contain 'cluster_name' attribute."
             )
 
+    @property
+    def cluster_name_short(self) -> str:
+        return self.cluster_name.split("/")[-1]
+
     @staticmethod
     def iam_assume_role_policy_custom(principal_services: Union[List[str], str]) -> str:
         import json
