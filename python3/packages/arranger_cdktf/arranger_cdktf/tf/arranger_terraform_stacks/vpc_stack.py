@@ -26,7 +26,6 @@ class VpcStack(AwsBasicStack):
     def __init__(self, scope: Construct, ns: str, config: TfConf):
         super().__init__(scope, ns, config)
 
-        self.tags = self.stack_tags
         self.aws_provider = self.globals.automation(scope=self)
         self.null_provider = self.globals.null_provider(scope=self)
 
@@ -126,7 +125,7 @@ class VpcStack(AwsBasicStack):
         return AwsEip(
             scope=self,
             id_=name,
-            tags=self.tags | {"Name": name},
+            tags=self.stack_tags | {"Name": name},
             provider=self.aws_provider,
             lifecycle=self.lifecycle_policy(),
             depends_on=[self.eks_subnet1],
@@ -141,7 +140,7 @@ class VpcStack(AwsBasicStack):
             subnet_id=self.eks_subnet1.id,
             allocation_id=self.eip_eks_subnet1_nat_gw.allocation_id,
             connectivity_type="public",
-            tags=self.tags | {"Name": name},
+            tags=self.stack_tags | {"Name": name},
             provider=self.aws_provider,
             lifecycle=self.lifecycle_policy(),
             depends_on=[self.eip_eks_subnet1_nat_gw],
@@ -160,7 +159,7 @@ class VpcStack(AwsBasicStack):
                     gateway_id=self.vpc_internet_gw.id,
                 ),
             ],
-            tags=self.tags | {"Name": name},
+            tags=self.stack_tags | {"Name": name},
             provider=self.aws_provider,
             lifecycle=self.lifecycle_policy(),
         )
@@ -206,7 +205,7 @@ class VpcStack(AwsBasicStack):
                     nat_gateway_id=self.nat_gw_eks_subnet1.id,
                 ),
             ],
-            tags=self.tags | {"Name": name},
+            tags=self.stack_tags | {"Name": name},
             provider=self.aws_provider,
             lifecycle=self.lifecycle_policy(),
         )
@@ -252,7 +251,7 @@ class VpcStack(AwsBasicStack):
                     nat_gateway_id=self.nat_gw_eks_subnet1.id,
                 ),
             ],
-            tags=self.tags | {"Name": name},
+            tags=self.stack_tags | {"Name": name},
             provider=self.aws_provider,
             lifecycle=self.lifecycle_policy(),
         )
@@ -298,7 +297,7 @@ class VpcStack(AwsBasicStack):
                     nat_gateway_id=self.nat_gw_eks_subnet1.id,
                 ),
             ],
-            tags=self.tags | {"Name": name},
+            tags=self.stack_tags | {"Name": name},
             provider=self.aws_provider,
             lifecycle=self.lifecycle_policy(),
         )
