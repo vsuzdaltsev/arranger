@@ -1,3 +1,4 @@
+import re
 from typing import Dict, Union
 
 from boto3 import session as ses
@@ -7,7 +8,6 @@ from arranger_automation.log import Log
 
 
 def camel_to_kebab(s):
-    import re
 
     kebab = re.sub(r"(?<!^)(?=[A-Z])", "-", s).lower()
     return kebab
