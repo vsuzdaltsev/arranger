@@ -24,10 +24,14 @@ class TestCdktfGlobals:
         assert cdktf_globals_for_cloud_tenant.cloud in SUPPORTED_CLOUDS
 
     def test_new_subnet_valid_case(self, cdktf_globals_for_cloud_tenant):
-        new_subnet = cdktf_globals_for_cloud_tenant._new_subnet(
+        new_subnet1 = cdktf_globals_for_cloud_tenant._new_subnet(
             supernet_cidr="10.62.0.0/18", subnet_index=1, subnet_prefix=24
         )
-        assert new_subnet == "10.62.1.0/24"
+        new_subnet2 = cdktf_globals_for_cloud_tenant._new_subnet(
+            supernet_cidr="10.62.0.0/18", subnet_index=2, subnet_prefix=24
+        )
+        assert new_subnet1 == "10.62.1.0/24"
+        assert new_subnet2 == "10.62.2.0/24"
 
     def test_sub_environments(
         self,
