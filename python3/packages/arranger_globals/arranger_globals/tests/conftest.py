@@ -14,10 +14,10 @@ def cloud_tenant():
 
 
 @pytest.fixture(scope="function")
-def cdktf_globals_for_local_tenant(local_tenant):
+def globals_for_local_tenant(local_tenant):
     return CdktfGlobals(tenant=local_tenant)
 
 
 @pytest.fixture(scope="function")
-def cdktf_globals_for_cloud_tenant(cloud_tenant):
+def globals_for_cloud_tenant(cloud_tenant):
     return CdktfGlobals(tenant=cloud_tenant)
