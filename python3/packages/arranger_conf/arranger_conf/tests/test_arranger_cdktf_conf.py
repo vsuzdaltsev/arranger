@@ -21,6 +21,13 @@ class TestTFConf:
             assert isinstance(getattr(TfConf, tenant).ALL_STACKS, list)
             assert len(getattr(TfConf, tenant).ALL_STACKS) > 0
 
+    def test_ALL_STACKS_should_contain_stacks_from_VALID_STACKS(
+        self, tenants_from_tf_conf
+    ):
+        for tenant in [_class_name(tenant=_t) for _t in tenants_from_tf_conf]:
+            for stack in getattr(TfConf, tenant).ALL_STACKS:
+                assert stack in getattr(TfConf, tenant).VALID_STACKS["tf"].keys()
+
     def test_AWS_GLOBAL_REGION(self, tenants_from_tf_conf):
         assert [
             getattr(TfConf, _class_name(tenant=tenant)).AWS_GLOBAL_REGION == "us-east-1"
