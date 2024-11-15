@@ -4,9 +4,13 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - 'python3/**'
   push:
     branches:
       - main
+    paths-ignore:
+      - 'python3/**'
 
   workflow_run:
     workflows: ["Lint Docker Compose YAML", "Lint Python Code with Black"]
