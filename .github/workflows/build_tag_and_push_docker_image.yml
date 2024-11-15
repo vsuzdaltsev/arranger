@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'python3/**'
-
   workflow_run:
     workflows: ["Lint Docker Compose YAML", "Lint Python Code with Black"]
     branches:
@@ -38,12 +35,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Docker image
+      - name: Build, tag and push Docker image
         run: |
-          docker compose -f docker-compose.yml build
-
-      - name: Tag and Push Docker image
-        if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name == 'push' }}
-        run: |
-          docker tag arranger "ghcr.io/vsuzdaltsev/arranger:latest"
-          docker push ghcr.io/vsuzdaltsev/arranger:latest
+          docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 \
+          -t ghcr.io/vsuzdaltsev/arranger:latest \
+          --push .
