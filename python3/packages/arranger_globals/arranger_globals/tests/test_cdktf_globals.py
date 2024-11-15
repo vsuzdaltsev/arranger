@@ -60,3 +60,11 @@ class TestCdktfGlobals:
 
     def test_run_cmd(self, globals_for_cloud_tenant):
         assert globals_for_cloud_tenant.run_cmd(["echo OK"]) == "OK"
+
+    def test_aws_backend_s3bucket_name(self, globals_for_cloud_tenant):
+        ArrangerConf.PROJECT_NAME = "my-first-arranger-project"
+
+        assert (
+            globals_for_cloud_tenant._aws_backend_s3bucket_name
+            == "my-fi-arranger-tf-remote-states-development1"
+        )
