@@ -3,7 +3,7 @@ name: Build Python packages
 on: [pull_request]
 
 jobs:
-  pytest:
+  build_python_packages:
     runs-on: ubuntu-latest
 
     steps:
