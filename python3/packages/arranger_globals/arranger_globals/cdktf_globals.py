@@ -2,7 +2,6 @@ import ipaddress
 import time
 from typing import Any, Dict, List, Union
 
-import arranger_conf
 from constructs import Construct
 
 from arranger_globals.basic_arranger_globals import (
@@ -190,7 +189,9 @@ class CdktfGlobals(ByTenant):
 
     @property
     def _aws_backend_s3bucket_name(self) -> str:
-        return f"{to_kebab(arranger_conf.ArrangerConf.PROJECT_NAME)[:5]}-arranger-tf-remote-states-{self.tenant}"[
+        from arranger_conf import ArrangerConf
+
+        return f"{to_kebab(ArrangerConf.PROJECT_NAME)[:5]}-arranger-tf-remote-states-{self.tenant}"[
             :63
         ]
 
