@@ -142,7 +142,7 @@ class CdktfGlobals(ByTenant):
         return f"eks-kubectl-sso-role-{self.tenant}"
 
     @staticmethod
-    def null_provider(scope: Any) -> Any:
+    def null_provider(scope: Construct) -> Any:
         from arranger_cdktf.imports.null import NullProvider
 
         return NullProvider(scope=scope, id="null-provider")
