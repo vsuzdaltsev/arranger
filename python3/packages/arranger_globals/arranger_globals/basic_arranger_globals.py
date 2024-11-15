@@ -5,6 +5,7 @@ import ipaddress
 import re
 from typing import Callable, Dict
 
+
 class NotIPv4Error(Exception):
     pass
 
