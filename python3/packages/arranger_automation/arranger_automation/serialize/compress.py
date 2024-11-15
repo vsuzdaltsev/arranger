@@ -2,7 +2,7 @@
 
 import base64
 import json
-from typing import Union
+from typing import Callable, Union
 import zlib
 
 from arranger_automation.sdlc import CustomTyping
@@ -10,7 +10,7 @@ from arranger_automation.sdlc import CustomTyping
 
 def zip_json(
     json_structure: CustomTyping.JSONStructure,
-    default: Union[type("function"), None] = None,
+    default: Union[Callable, None] = None,
 ) -> str:
     """
     Convert json serializable object into zipped string encoded with base64.
