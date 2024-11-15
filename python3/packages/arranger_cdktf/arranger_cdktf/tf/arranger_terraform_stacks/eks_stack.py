@@ -54,7 +54,7 @@ class EksStack(AwsBasicStack):
     @property
     def sso_permission_sets_with_allowed_kubectl_access(self):
         return [
-            f"{self.globals.cluster_name_alias.capitalize()}Developers",
+            f"{self.globals.tenant.capitalize()}Developers",
             "AdministratorAccess",
         ]
 
