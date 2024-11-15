@@ -1,4 +1,4 @@
-name: Pytest Specs
+name: Build Python packages
 
 on: [pull_request]
 
