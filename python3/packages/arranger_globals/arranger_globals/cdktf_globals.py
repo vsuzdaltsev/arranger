@@ -25,10 +25,10 @@ class CdktfGlobals(ByTenant):
         return ArchiveProvider(scope=scope, id="archive")
 
     @property
-    def cloud(self) -> str:
+    def cloud(self) -> Union[str, None]:
         from arranger_conf import ArrangerConf
 
-        return ArrangerConf.TENANTS[self.tenant]["cloud_attributes"]["cloud"]
+        return ArrangerConf.TENANTS.get(self.tenant, {}).get("cloud_attributes", {}).get("cloud")
 
     @staticmethod
     def external_provider(scope: Construct) -> Any:

@@ -2,6 +2,7 @@ import time
 
 from arranger_globals import CdktfGlobals
 
+supported_clouds = ["aws"]
 
 class TestCdktfGlobals:
     def test_common_tags(self):
@@ -13,3 +14,11 @@ class TestCdktfGlobals:
         assert isinstance(common_tags["code"], str)
         assert common_tags["tenant"] == tenant
         assert isinstance(common_tags["created_at"], type(time.ctime()))
+
+
+
+    def test_cloud_with_absent_attribute(self):
+        assert CdktfGlobals(tenant="local").cloud is None
+
+    def test_cloud_with_existing_attribute(self):
+        assert CdktfGlobals(tenant="development1").cloud in supported_clouds
