@@ -7,10 +7,8 @@ from botocore.exceptions import ClientError
 from arranger_automation.log import Log
 
 
-def camel_to_kebab(s):
-
-    kebab = re.sub(r"(?<!^)(?=[A-Z])", "-", s).lower()
-    return kebab
+def camel_to_kebab(s: str) -> str:
+    return re.sub(r"(?<!^)(?=[A-Z])", "-", s).lower()
 
 
 class BackendHelperAws:
