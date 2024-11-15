@@ -123,6 +123,20 @@ class CdktfGlobals(ByTenant):
             }
         )
 
+    def eks_get_node_groups_config(self) -> List[dict]:
+        default_configs = [
+            {
+                "node_group_name": "node-group-1",
+                "capacity_type": "SPOT",  # ON_DEMAND ?
+                "instance_types": ["t3.large"],
+                "autoscale_config": {"min_size": 3, "max_size": 8, "desired_size": 6},
+            }
+        ]
+        if not hasattr(self.config, "EKS_NODE_GROUPS_CONFIG"):
+            return default_configs
+
+        return self.config.EKS_NODE_GROUPS_CONFIG
+
     @staticmethod
     def null_provider(scope: Any) -> Any:
         from arranger_cdktf.imports.null import NullProvider
