@@ -18,6 +18,15 @@ def validate_subnets(func: Callable) -> Callable:
     return check
 
 
+def to_kebab(s):
+    import re
+
+    s = s.replace("_", "-").replace(" ", "-")
+    s = re.sub(r"(?<!^)(?=[A-Z])", "-", s)
+
+    return s.lower()
+
+
 def validate_ipv4(func: Callable) -> Callable:
     def is_ip_v4(value):
         try:

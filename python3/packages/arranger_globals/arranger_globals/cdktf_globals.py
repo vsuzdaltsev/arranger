@@ -5,7 +5,11 @@ from typing import Any, Dict, List, Union
 import arranger_conf
 from constructs import Construct
 
-from arranger_globals.basic_arranger_globals import ByTenant, validate_subnets
+from arranger_globals.basic_arranger_globals import (
+    to_kebab,
+    ByTenant,
+    validate_subnets,
+)
 
 
 class CdktfGlobals(ByTenant):
@@ -184,7 +188,7 @@ class CdktfGlobals(ByTenant):
 
         return registry.get(tenant)
 
-    def aws_backend(self, scope, region=None) -> Any:
+    def aws_backend(self, scope: Construct, region: Union[str, None] = None) -> Any:
         from cdktf import S3Backend
         from arranger_automation_aws.helpers import BackendHelperAws
 
@@ -206,7 +210,9 @@ class CdktfGlobals(ByTenant):
             region=region,
         )
         # FIXME: randomize name. Validate name.
-        bucket_name = f"{arranger_conf.ArrangerConf.PROJECT_NAME}-arranger-terraform-remote-states-{self.tenant}"
+        bucket_name = f"{to_kebab(arranger_conf.ArrangerConf.PROJECT_NAME)[:5]}-arranger-tf-remote-states-{self.tenant}"[
+            :63
+        ]
         BackendHelperAws.BUCKET_NAME = bucket_name
         state_s3bucket = BackendHelperAws.create_bucket(
             profile=self.aws_profile, location_constraint=region

@@ -70,7 +70,7 @@ class VpcStack(AwsBasicStack):
             cidr_block=self._vpc_main["cidr"][0],
             tags=self.stack_tags
             | {"Name": name}
-            | {f"kubernetes.io/cluster/{self.globals.cluster_name_alias}": "owned"},
+            | {f"kubernetes.io/cluster/{self.globals.tenant}": "owned"},
             enable_dns_support=True,
             enable_dns_hostnames=True,
             provider=self.aws_provider,
@@ -99,7 +99,7 @@ class VpcStack(AwsBasicStack):
 
     @property
     def _subnets_additional_tag(self) -> Dict[str, str]:
-        return {"owner": f"vpc-main-eks-{self.globals.cluster_name_alias}"}
+        return {"owner": f"vpc-main-eks-{self.globals.tenant}"}
 
     def _eks_subnet1(self) -> AwsSubnet:
         name = self._name(object_type="main-subnet-1")
@@ -113,7 +113,7 @@ class VpcStack(AwsBasicStack):
             tags=self.stack_tags
             | self._subnets_additional_tag
             | {"Name": f"{name}-public"}
-            | {f"kubernetes.io/cluster/{self.globals.cluster_name_alias}": "shared"}
+            | {f"kubernetes.io/cluster/{self.globals.tenant}": "shared"}
             | {"type": "public"},
             provider=self.aws_provider,
             depends_on=[self.main_vpc],
@@ -187,7 +187,7 @@ class VpcStack(AwsBasicStack):
             tags=self.stack_tags
             | self._subnets_additional_tag
             | {"Name": f"{name}-private"}
-            | {f"kubernetes.io/cluster/{self.globals.cluster_name_alias}": "shared"}
+            | {f"kubernetes.io/cluster/{self.globals.tenant}": "shared"}
             | {"type": "private"},
             depends_on=[self.main_vpc],
             lifecycle=self.lifecycle_policy(),
@@ -233,7 +233,7 @@ class VpcStack(AwsBasicStack):
             tags=self.stack_tags
             | self._subnets_additional_tag
             | {"Name": f"{name}-private"}
-            | {f"kubernetes.io/cluster/{self.globals.cluster_name_alias}": "shared"}
+            | {f"kubernetes.io/cluster/{self.globals.tenant}": "shared"}
             | {"type": "private"},
             depends_on=[self.main_vpc],
             lifecycle=self.lifecycle_policy(),
@@ -279,7 +279,7 @@ class VpcStack(AwsBasicStack):
             tags=self.stack_tags
             | self._subnets_additional_tag
             | {"Name": f"{name}-private"}
-            | {f"kubernetes.io/cluster/{self.globals.cluster_name_alias}": "shared"}
+            | {f"kubernetes.io/cluster/{self.globals.tenant}": "shared"}
             | {"type": "private"},
             depends_on=[self.main_vpc],
             lifecycle=self.lifecycle_policy(),
