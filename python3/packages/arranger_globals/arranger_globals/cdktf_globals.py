@@ -28,7 +28,11 @@ class CdktfGlobals(ByTenant):
     def cloud(self) -> Union[str, None]:
         from arranger_conf import ArrangerConf
 
-        return ArrangerConf.TENANTS.get(self.tenant, {}).get("cloud_attributes", {}).get("cloud")
+        return (
+            ArrangerConf.TENANTS.get(self.tenant, {})
+            .get("cloud_attributes", {})
+            .get("cloud")
+        )
 
     @staticmethod
     def external_provider(scope: Construct) -> Any:
