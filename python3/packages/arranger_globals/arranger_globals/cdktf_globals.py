@@ -97,6 +97,9 @@ class CdktfGlobals(ByTenant):
             ["ec2.amazonaws.com", "eks.amazonaws.com"]
         )
 
+    def cluster_ebs_csi_role_name(self) -> str:
+        return f"eks-ebs-csi-management-role-{self.tenant}"
+
     @staticmethod
     def null_provider(scope: Any) -> Any:
         from arranger_cdktf.imports.null import NullProvider
