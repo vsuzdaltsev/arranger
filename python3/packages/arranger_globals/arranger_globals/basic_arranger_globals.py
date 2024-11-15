@@ -2,8 +2,8 @@
 
 from abc import ABC
 import ipaddress
+import re
 from typing import Callable, Dict
-
 
 class NotIPv4Error(Exception):
     pass
@@ -19,8 +19,6 @@ def validate_subnets(func: Callable) -> Callable:
 
 
 def to_kebab(s):
-    import re
-
     s = s.replace("_", "-").replace(" ", "-")
     s = re.sub(r"(?<!^)(?=[A-Z])", "-", s)
 
