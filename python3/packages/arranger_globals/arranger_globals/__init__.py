@@ -1,4 +1,4 @@
-"""Configuration modules."""
+"""Globals modules."""
 
 from ._version import __version__
 

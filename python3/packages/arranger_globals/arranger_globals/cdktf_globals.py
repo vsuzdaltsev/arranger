@@ -2,6 +2,7 @@ import ipaddress
 import time
 from typing import Any, Dict, List, Union
 
+import arranger_conf
 from constructs import Construct
 
 from arranger_globals.basic_arranger_globals import ByTenant, validate_subnets
@@ -25,10 +26,14 @@ class CdktfGlobals(ByTenant):
         return ArchiveProvider(scope=scope, id="archive")
 
     @property
-    def cloud(self) -> str:
+    def cloud(self) -> Union[str, None]:
         from arranger_conf import ArrangerConf
 
-        return ArrangerConf.TENANTS[self.tenant]["cloud_attributes"]["cloud"]
+        return (
+            ArrangerConf.TENANTS.get(self.tenant, {})
+            .get("cloud_attributes", {})
+            .get("cloud")
+        )
 
     @staticmethod
     def external_provider(scope: Construct) -> Any:
@@ -200,8 +205,8 @@ class CdktfGlobals(ByTenant):
             profile=self.aws_profile,
             region=region,
         )
-        # FIXME: randomize name
-        bucket_name = f"arranger-terraform-remote-states-{self.tenant}"
+        # FIXME: randomize name. Validate name.
+        bucket_name = f"{arranger_conf.ArrangerConf.PROJECT_NAME}-arranger-terraform-remote-states-{self.tenant}"
         BackendHelperAws.BUCKET_NAME = bucket_name
         state_s3bucket = BackendHelperAws.create_bucket(
             profile=self.aws_profile, location_constraint=region
@@ -262,10 +267,10 @@ class CdktfGlobals(ByTenant):
         return self.config.AWS_GLOBAL_REGION
 
     @property
-    def sub_environments(self) -> List[str]:
+    def sub_environments(self) -> Union[List[str], None]:
         from arranger_conf.arranger_conf import ArrangerConf
 
-        return ArrangerConf.TENANTS[self.tenant]["sub_environments"]
+        return ArrangerConf.TENANTS.get(self.tenant, {}).get("sub_environments")
 
     @staticmethod
     def run_cmd(cmds: List[str]):

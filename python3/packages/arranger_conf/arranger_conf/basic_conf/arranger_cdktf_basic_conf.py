@@ -4,8 +4,10 @@ class BasicConf:
     def TENANT(obj) -> str:
         return obj.__name__.lower()
 
-    DEFAULT_TIMEOUTS = {"create": "45m", "delete": "45m"}
+    ALL_STACKS = []
     AWS_GLOBAL_REGION = "us-east-1"
+    DEFAULT_TIMEOUTS = {"create": "45m", "delete": "45m"}
+    MAX_RETRIES = 100
     VALID_STACKS = {
         "tf": {
             "acm-stack": {
@@ -20,5 +22,3 @@ class BasicConf:
             },
         }
     }
-    ALL_STACKS = []
-    MAX_RETRIES = 100
