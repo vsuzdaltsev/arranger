@@ -129,7 +129,7 @@ class EksStack(AwsBasicStack):
             attachments.append(
                 IamRolePolicyAttachment(
                     scope=self,
-                    id_=f"{policy.get('PolicyName')}-attachment-{self.globals.cluster_name_alias}",
+                    id_=f"{policy.get('PolicyName')}-attachment-{self.globals.tenant}",
                     policy_arn=policy.get("PolicyArn"),
                     role=self.role.name,
                     depends_on=[self.role],
@@ -218,7 +218,7 @@ class EksStack(AwsBasicStack):
             program=[
                 "python",
                 f"{self.globals.cli_container_root}/python3/scripts/eks_stack/eks_cluster_identity_oidc_issuer.py",
-                self.globals.cluster_name_alias,
+                self.globals.tenant,
             ],
             provider=self.external_provider,
             depends_on=[self.cluster],
