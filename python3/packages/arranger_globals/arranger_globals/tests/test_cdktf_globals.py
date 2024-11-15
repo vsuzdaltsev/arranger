@@ -8,8 +8,8 @@ SUPPORTED_CLOUDS = ["aws"]
 class TestCdktfGlobals:
     def test_common_tags(self, cdktf_globals_for_local_tenant):
         tenant = "local"
-
         common_tags = cdktf_globals_for_local_tenant.common_tags()
+
         assert common_tags["created_by"] == "cdktf"
         assert common_tags["caution"] == "do not modify manually"
         assert isinstance(common_tags["code"], str)
