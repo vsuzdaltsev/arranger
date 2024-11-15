@@ -89,6 +89,10 @@ class ArrangerMixin(ABC):
 
         return ArrangerConf.TENANTS[self.tenant]["aws_account_id"]
 
+    @property
+    def where_kubeconfig(self) -> str:
+        return f"{self.cli_container_root}/{self.tenant}_kube_config.yaml"
+
 
 class BySubEnvironment(ArrangerMixin):
     def __init__(self, sub_environment: str, **kwargs: Dict):
