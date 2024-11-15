@@ -1,5 +1,8 @@
 import time
 
+from arranger_conf import ArrangerConf
+
+
 SUPPORTED_CLOUDS = ["aws"]
 
 
@@ -25,3 +28,19 @@ class TestCdktfGlobals:
             supernet_cidr="10.62.0.0/18", subnet_index=1, subnet_prefix=24
         )
         assert new_subnet == "10.62.1.0/24"
+
+    def test_sub_environments(
+        self,
+        cdktf_globals_for_local_tenant,
+        cdktf_globals_for_cloud_tenant,
+        local_tenant,
+        cloud_tenant,
+    ):
+        assert (
+            cdktf_globals_for_local_tenant.sub_environments
+            == ArrangerConf.TENANTS.get(local_tenant).get("sub_environments")
+        )
+        assert (
+            cdktf_globals_for_cloud_tenant.sub_environments
+            == ArrangerConf.TENANTS.get(cloud_tenant).get("sub_environments")
+        )

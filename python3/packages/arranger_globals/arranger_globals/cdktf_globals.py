@@ -266,10 +266,10 @@ class CdktfGlobals(ByTenant):
         return self.config.AWS_GLOBAL_REGION
 
     @property
-    def sub_environments(self) -> List[str]:
+    def sub_environments(self) -> Union[List[str], None]:
         from arranger_conf.arranger_conf import ArrangerConf
 
-        return ArrangerConf.TENANTS[self.tenant]["sub_environments"]
+        return ArrangerConf.TENANTS.get(self.tenant, {}).get("sub_environments")
 
     @staticmethod
     def run_cmd(cmds: List[str]):
