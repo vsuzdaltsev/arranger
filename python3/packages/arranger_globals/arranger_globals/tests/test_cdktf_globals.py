@@ -1,5 +1,4 @@
 import time
-import pytest
 
 SUPPORTED_CLOUDS = ["aws"]
 
