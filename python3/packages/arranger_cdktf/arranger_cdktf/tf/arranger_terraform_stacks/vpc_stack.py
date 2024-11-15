@@ -83,7 +83,7 @@ class VpcStack(AwsBasicStack):
             scope=self,
             id_=name,
             vpc_id=self.main_vpc.id,
-            tags=self.tags | {"Name": name},
+            tags=self.stack_tags | {"Name": name},
             lifecycle=self.lifecycle_policy(),
             depends_on=[self.main_vpc],
         )
