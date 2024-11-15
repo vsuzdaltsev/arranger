@@ -1,5 +1,5 @@
 import time
-
+import pytest
 
 SUPPORTED_CLOUDS = ["aws"]
 
@@ -20,3 +20,9 @@ class TestCdktfGlobals:
 
     def test_cloud_with_existing_attribute(self, cdktf_globals_for_cloud_tenant):
         assert cdktf_globals_for_cloud_tenant.cloud in SUPPORTED_CLOUDS
+
+    def test_new_subnet_valid_case(self, cdktf_globals_for_cloud_tenant):
+        new_subnet = cdktf_globals_for_cloud_tenant._new_subnet(
+            supernet_cidr="10.62.0.0/18", subnet_index=1, subnet_prefix=24
+        )
+        assert new_subnet == "10.62.1.0/24"
