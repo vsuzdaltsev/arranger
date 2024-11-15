@@ -1,6 +1,5 @@
 import time
 
-from arranger_globals import CdktfGlobals
 
 SUPPORTED_CLOUDS = ["aws"]
 
@@ -19,5 +18,5 @@ class TestCdktfGlobals:
     def test_cloud_with_absent_attribute(self, cdktf_globals_for_local_tenant):
         assert cdktf_globals_for_local_tenant.cloud is None
 
-    def test_cloud_with_existing_attribute(self):
-        assert CdktfGlobals(tenant="development1").cloud in SUPPORTED_CLOUDS
+    def test_cloud_with_existing_attribute(self, cdktf_globals_for_cloud_tenant):
+        assert cdktf_globals_for_cloud_tenant.cloud in SUPPORTED_CLOUDS
