@@ -26,8 +26,7 @@ class VpcStack(AwsBasicStack):
     def __init__(self, scope: Construct, ns: str, config: TfConf):
         super().__init__(scope, ns, config)
 
-        # FIXME: add task #
-        self.tags = self.stack_tags | {"task": ""}
+        self.tags = self.stack_tags
         self.aws_provider = self.globals.automation(scope=self)
         self.null_provider = self.globals.null_provider(scope=self)
         self.main_vpc = self._main_vpc()
