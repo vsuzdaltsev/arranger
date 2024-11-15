@@ -32,4 +32,7 @@ class TestTFConf:
 
     def test_TENANT(self, tenants_from_tf_conf):
         for tenant in tenants_from_tf_conf:
-            assert getattr(TfConf, tenant.capitalize()).TENANT == tenant
+            assert (
+                getattr(TfConf, tf_conf_tenant_class_name(tenant=tenant)).TENANT
+                == tenant
+            )
