@@ -329,7 +329,7 @@ class CdktfGlobals(ByTenant):
             max_retries=self.config.MAX_RETRIES,
         )
 
-    def global_automation(self, scope):
+    def global_automation(self, scope: Construct):
         from arranger_cdktf.imports.aws.provider import AwsProvider
 
         return AwsProvider(
