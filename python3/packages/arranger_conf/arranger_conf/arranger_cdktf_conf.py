@@ -8,7 +8,7 @@ class TfConf:
             {
                 "node_group_name": "node-group-1",
                 "capacity_type": "SPOT",  # TODO: select ON_DEMAND / SPOT ?
-                "instance_types": ["t3.xlarge"],
+                "instance_types": ["t3.medium"],
                 "autoscale_config": {
                     "min_size": 1,
                     "max_size": 3,
