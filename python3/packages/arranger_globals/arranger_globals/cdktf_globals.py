@@ -16,8 +16,7 @@ class CdktfGlobals(ByTenant):
         return {
             "created_by": "cdktf",
             "caution": "do not modify manually",
-            # FIXME: add source
-            "code": "",
+            "code": "git@github.com:vsuzdaltsev/arranger.git",
             "tenant": self.tenant,
             "created_at": time.ctime(),
         }
