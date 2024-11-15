@@ -29,6 +29,7 @@ class VpcStack(AwsBasicStack):
         self.tags = self.stack_tags
         self.aws_provider = self.globals.automation(scope=self)
         self.null_provider = self.globals.null_provider(scope=self)
+
         self.main_vpc = self._main_vpc()
 
         self.vpc_internet_gw = self._vpc_internet_gw()
