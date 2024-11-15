@@ -188,6 +188,12 @@ class CdktfGlobals(ByTenant):
 
         return registry.get(tenant)
 
+    @property
+    def _aws_backend_s3bucket_name(self) -> str:
+        return f"{to_kebab(arranger_conf.ArrangerConf.PROJECT_NAME)[:5]}-arranger-tf-remote-states-{self.tenant}"[
+            :63
+        ]
+
     def aws_backend(self, scope: Construct, region: Union[str, None] = None) -> Any:
         from cdktf import S3Backend
         from arranger_automation_aws.helpers import BackendHelperAws
@@ -209,11 +215,8 @@ class CdktfGlobals(ByTenant):
             profile=self.aws_profile,
             region=region,
         )
-        # FIXME: randomize name. Validate name.
-        bucket_name = f"{to_kebab(arranger_conf.ArrangerConf.PROJECT_NAME)[:5]}-arranger-tf-remote-states-{self.tenant}"[
-            :63
-        ]
-        BackendHelperAws.BUCKET_NAME = bucket_name
+
+        BackendHelperAws.BUCKET_NAME = self._aws_backend_s3bucket_name
         state_s3bucket = BackendHelperAws.create_bucket(
             profile=self.aws_profile, location_constraint=region
         )
