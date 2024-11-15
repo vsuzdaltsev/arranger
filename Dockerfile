@@ -16,7 +16,6 @@ ARG DYFF_VERSION
 ARG HELM_VERSION
 ARG INSPEC_VERSION
 ARG KUBECTL_VERSION
-ARG ISTIO_VERSION
 ARG PYCALL_VERSION
 ARG PIPENV_PACKAGE_VERSION
 ARG PYTHON_SETUPTOOLS_VERSION
@@ -78,7 +77,6 @@ RUN apk add --no-cache \
     pipenv sync && \
     pipenv sync --dev && \
     ln -s $(pipenv --venv)/lib/python${PYTHON_CUSTOM_VERSION}/site-packages /opt/site-packages && \
-    curl -sL https://istio.io/downloadIstioctl | ISTIO_VERSION=$ISTIO_VERSION sh - && \
     pipenv run pip cache purge && \
     apk del build-base libffi-dev go openssl-dev python3-dev yarn && \
     rm -f Pipfile* && \
