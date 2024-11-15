@@ -1,6 +1,9 @@
 name: Build and install Python packages
 
-on: [pull_request]
+on:
+  pull_request:
+    paths:
+      - 'python3/**'
 
 jobs:
   build_and_install_python_packages:
