@@ -100,6 +100,29 @@ class CdktfGlobals(ByTenant):
     def cluster_ebs_csi_role_name(self) -> str:
         return f"eks-ebs-csi-management-role-{self.tenant}"
 
+    def iam_assume_role_policy_ebs_csi(self, eks_endpoint_id: str) -> str:
+        import json
+
+        oidc = f"oidc.eks.{self.aws_region}.amazonaws.com"
+        string_equals = {
+            f"{oidc}/id/{eks_endpoint_id}:aud": "sts.amazonaws.com",
+            f"{oidc}/id/{eks_endpoint_id}:sub": "system:serviceaccount:kube-system:ebs-csi-controller-sa",
+        }
+
+        return json.dumps(
+            {
+                "Version": "2012-10-17",
+                "Statement": {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Federated": f"arn:aws:iam::{self.aws_account_id}:oidc-provider/{oidc}/id/{eks_endpoint_id}",
+                    },
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {"StringEquals": string_equals},
+                },
+            }
+        )
+
     @staticmethod
     def null_provider(scope: Any) -> Any:
         from arranger_cdktf.imports.null import NullProvider
