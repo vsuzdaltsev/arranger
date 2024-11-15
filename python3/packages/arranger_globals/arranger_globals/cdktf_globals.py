@@ -137,6 +137,10 @@ class CdktfGlobals(ByTenant):
 
         return self.config.EKS_NODE_GROUPS_CONFIG
 
+    @property
+    def eks_kubectl_sso_role(self) -> str:
+        return f"eks-kubectl-sso-role-{self.tenant}"
+
     @staticmethod
     def null_provider(scope: Any) -> Any:
         from arranger_cdktf.imports.null import NullProvider
