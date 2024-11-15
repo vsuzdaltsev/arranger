@@ -75,3 +75,11 @@ class TestCdktfGlobals:
                 globals_for_cloud_tenant._aws_backend_s3bucket_name
                 == "ololo-arranger-tf-remote-states-development1"
         )
+
+    def test_aws_backend_s3bucket_name_third(self, globals_for_cloud_tenant):
+        ArrangerConf.PROJECT_NAME = "123456789"
+
+        assert (
+                globals_for_cloud_tenant._aws_backend_s3bucket_name
+                == "12345-arranger-tf-remote-states-development1"
+        )
