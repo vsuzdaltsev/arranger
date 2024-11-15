@@ -3,7 +3,7 @@ from .basic_conf import BasicConf
 
 class TfConf:
     class Development1(BasicConf):
-        ALL_STACKS = ["vpc-stack"]
+        ALL_STACKS = ["vpc-stack", "eks-stack"]
 
     class Local(BasicConf):
         ALL_STACKS = []

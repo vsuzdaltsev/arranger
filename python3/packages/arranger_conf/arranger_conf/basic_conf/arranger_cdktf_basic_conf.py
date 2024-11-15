@@ -10,15 +10,20 @@ class BasicConf:
     MAX_RETRIES = 100
     VALID_STACKS = {
         "tf": {
-            "acm-stack": {
-                "class_name": "AcmStack",
-                "description": "AWS certificates.",
-                "depends_on": ["route53-zone-stack"],
-            },
+            # "acm-stack": {
+            #     "class_name": "AcmStack",
+            #     "description": "AWS certificates.",
+            #     "depends_on": ["route53-zone-stack"],
+            # },
             "vpc-stack": {
                 "class_name": "VpcStack",
                 "description": "AWS VPC.",
                 "depends_on": [],
+            },
+            "eks-stack": {
+                "class_name": "EksStack",
+                "description": "AWS EKS cluster.",
+                "depends_on": ["vpc-stack"],
             },
         }
     }
