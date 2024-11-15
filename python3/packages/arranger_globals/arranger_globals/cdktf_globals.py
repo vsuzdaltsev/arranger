@@ -60,6 +60,39 @@ class CdktfGlobals(ByTenant):
             config_context=self.cluster_name,
         )
 
+    @property
+    def cluster_name(self) -> Union[str, None]:
+        from arranger_conf.arranger_conf import ArrangerConf
+
+        try:
+            return ArrangerConf.TENANTS[self.tenant]["cluster_name"]
+        except TypeError:
+            self.log.error(
+                f">> '{self.tenant}' doesn't contain 'cluster_name' attribute."
+            )
+
+    @staticmethod
+    def iam_assume_role_policy_custom(principal_services: Union[List[str], str]) -> str:
+        import json
+
+        return json.dumps(
+            {
+                "Version": "2012-10-17",
+                "Statement": {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": principal_services,
+                    },
+                    "Action": "sts:AssumeRole",
+                },
+            }
+        )
+
+    def eks_assume_role_policy(self) -> str:
+        return self.iam_assume_role_policy_custom(
+            ["ec2.amazonaws.com", "eks.amazonaws.com"]
+        )
+
     @staticmethod
     def null_provider(scope: Any) -> Any:
         from arranger_cdktf.imports.null import NullProvider
