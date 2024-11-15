@@ -23,7 +23,6 @@ class TestTFConf:
             for tenant in tenants_from_tf_conf
         ]
 
-    # def test_TENANT(self, clusters_from_tf_conf):
-    #     for tenant_class_name in clusters_from_tf_conf:
-    #         tenant = tenant_class_name.lower()
-    #         assert getattr(TfConf, tenant_class_name).TENANT == tenant
+    def test_TENANT(self, tenants_from_tf_conf):
+        for tenant in tenants_from_tf_conf:
+            assert getattr(TfConf, tenant.capitalize()).TENANT == tenant
