@@ -39,6 +39,7 @@ class TestCdktfGlobals:
         assert (
             cdktf_globals_for_local_tenant.sub_environments
             == ArrangerConf.TENANTS.get(local_tenant).get("sub_environments")
+            is None
         )
         assert (
             cdktf_globals_for_cloud_tenant.sub_environments
