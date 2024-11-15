@@ -23,3 +23,8 @@ class TestTFConf:
             getattr(TfConf, tenant).AWS_GLOBAL_REGION == "us-east-1"
             for tenant in clusters_from_tf_conf
         ]
+
+    def test_TENANT(self, clusters_from_tf_conf):
+        for tenant_class_name in clusters_from_tf_conf:
+            tenant = tenant_class_name.lower()
+            assert getattr(TfConf, tenant_class_name).TENANT == tenant
