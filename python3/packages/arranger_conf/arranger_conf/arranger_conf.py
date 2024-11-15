@@ -8,7 +8,7 @@ class ArrangerConf:
 
     TENANTS = {
         "development1": {
-            "aws_account_id": "396608804980",
+            "aws_account_id": "<>",
             "aws_region": "us-east-1",
             "cluster_name": "arn:aws:eks:<>>:<>:cluster/development1",
             "aws_profile": "development1",
