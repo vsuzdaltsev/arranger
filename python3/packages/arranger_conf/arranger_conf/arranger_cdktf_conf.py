@@ -6,7 +6,7 @@ class TfConf:
         ALL_STACKS = ["vpc-stack"]
 
     class Local(BasicConf):
-        ALL_STACKS = []
+        ALL_STACKS = ["vpc-stack"]
 
     class Staging1(BasicConf):
         ALL_STACKS = ["vpc-stack"]
