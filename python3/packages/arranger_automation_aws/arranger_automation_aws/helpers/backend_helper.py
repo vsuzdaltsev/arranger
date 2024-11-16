@@ -1,3 +1,4 @@
+import re
 from typing import Dict, Union
 
 from boto3 import session as ses
@@ -6,11 +7,17 @@ from botocore.exceptions import ClientError
 from arranger_automation.log import Log
 
 
+def camel_to_kebab(s: str) -> str:
+    return re.sub(r"(?<!^)(?=[A-Z])", "-", s).lower()
+
+
 class BackendHelperAws:
-    BUCKET_NAME = "velox-terraform-remote-states"
+    from arranger_conf.arranger_conf import ArrangerConf
+
+    BUCKET_NAME = f"{ArrangerConf.PROJECT_NAME}-terraform-remote-states"[:63]
 
     @classmethod
-    def s3client(cls, profile: str, aws_region="us-east-1") -> type(ses.Session):
+    def s3client(cls, profile: str, aws_region="us-east-1") -> ses.Session:
         return ses.Session(profile_name=profile, region_name=aws_region).client("s3")
 
     @classmethod
@@ -20,13 +27,14 @@ class BackendHelperAws:
         ).BucketVersioning(cls.BUCKET_NAME).enable()
 
     @classmethod
-    def dynamodb_client(cls, profile: str, aws_region: str) -> type(ses.Session.client):
+    def dynamodb_client(cls, profile: str, aws_region: str) -> ses.Session.client:
         return ses.Session(profile_name=profile, region_name=aws_region).client(
             "dynamodb"
         )
 
     @classmethod
     def create_bucket(cls, profile: str, location_constraint: str) -> str:
+
         try:
             client = cls.s3client(profile=profile, aws_region=location_constraint)
 
@@ -40,6 +48,7 @@ class BackendHelperAws:
                 location = {}
 
             Log.logger().debug(">> Trying to create s3 bucket %s.", cls.BUCKET_NAME)
+            # import ipdb; ipdb.set_trace(context=5)
             client.create_bucket(Bucket=cls.BUCKET_NAME, **location)
             waiter = client.get_waiter("bucket_exists")
             waiter.wait(Bucket=cls.BUCKET_NAME)

@@ -4,12 +4,12 @@
 class ArrangerConf:
     """Globals."""
 
-    PROJECT_NAME = "my_first_arranger_project"  # Randomizer
+    PROJECT_NAME = "my_first_arranger_project"  # Global randomizer
 
     TENANTS = {
         "development1": {
             "aws_account_id": "<>",
-            "aws_region": "eu-west-2",
+            "aws_region": "us-east-1",
             "cluster_name": "arn:aws:eks:<>>:<>:cluster/development1",
             "aws_profile": "development1",
             "context": "",

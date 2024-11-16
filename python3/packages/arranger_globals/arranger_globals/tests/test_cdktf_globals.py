@@ -60,3 +60,30 @@ class TestCdktfGlobals:
 
     def test_run_cmd(self, globals_for_cloud_tenant):
         assert globals_for_cloud_tenant.run_cmd(["echo OK"]) == "OK"
+
+    def test_aws_backend_s3bucket_name_first(self, globals_for_cloud_tenant):
+        ArrangerConf.PROJECT_NAME = "my-first-arranger-project"
+
+        assert (
+            globals_for_cloud_tenant._aws_backend_s3bucket_name
+            == "my-fi-arranger-tf-remote-states-development1"
+        )
+        assert len(globals_for_cloud_tenant._aws_backend_s3bucket_name) <= 63
+
+    def test_aws_backend_s3bucket_name_second(self, globals_for_cloud_tenant):
+        ArrangerConf.PROJECT_NAME = "ololo-foo-bar"
+
+        assert (
+            globals_for_cloud_tenant._aws_backend_s3bucket_name
+            == "ololo-arranger-tf-remote-states-development1"
+        )
+        assert len(globals_for_cloud_tenant._aws_backend_s3bucket_name) <= 63
+
+    def test_aws_backend_s3bucket_name_third(self, globals_for_cloud_tenant):
+        ArrangerConf.PROJECT_NAME = "123456789"
+
+        assert (
+            globals_for_cloud_tenant._aws_backend_s3bucket_name
+            == "12345-arranger-tf-remote-states-development1"
+        )
+        assert len(globals_for_cloud_tenant._aws_backend_s3bucket_name) <= 63

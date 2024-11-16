@@ -16,7 +16,7 @@ def start_delay(action: str, seconds: int, stack: str, tenant: str):
     if seconds > 0:
         log(
             "warning",
-            f">> Waiting for {seconds} seconds before start {action}ing {stack} on {tenant}..\n",
+            f">> Waiting for {seconds} seconds before start {action}ing {stack} in {tenant}..\n",
         )
 
         if "prod" in tenant:

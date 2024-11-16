@@ -2,6 +2,7 @@
 
 from abc import ABC
 import ipaddress
+import re
 from typing import Callable, Dict
 
 
@@ -16,6 +17,13 @@ def validate_subnets(func: Callable) -> Callable:
         return ValidateSubnets(ranges=func(*args)).validate()
 
     return check
+
+
+def to_kebab(s):
+    s = s.replace("_", "-").replace(" ", "-")
+    s = re.sub(r"(?<!^)(?=[A-Z])", "-", s)
+
+    return s.lower()
 
 
 def validate_ipv4(func: Callable) -> Callable:
@@ -79,6 +87,10 @@ class ArrangerMixin(ABC):
         from arranger_conf.arranger_conf import ArrangerConf
 
         return ArrangerConf.TENANTS[self.tenant]["aws_account_id"]
+
+    @property
+    def where_kubeconfig(self) -> str:
+        return f"{self.cli_container_root}/{self.tenant}_kube_config.yaml"
 
 
 class BySubEnvironment(ArrangerMixin):
