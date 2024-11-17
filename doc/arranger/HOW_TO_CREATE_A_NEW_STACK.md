@@ -81,5 +81,6 @@ $ inv local.container.run
 ```shell
 (arranger) root@cli# inv tf.destroy --project tf --tenant development1 --stack demo-iam-user-stack
 ```
+<br>
 
 ## NB: Under the hood, an AWS Terraform backend with for the state will be created in S3, along with a lock in DynamoDB.
