@@ -47,6 +47,6 @@ class Development1DemoIamUserStack(DemoIamUserStack):
             id_=name,
             name=name,
             provider=self.aws_provider,
-            tags=self.stack_tags | {"used for development1 tenant": "true"},
+            tags=self.stack_tags | {"used for development1 tenant only": "true"},
             lifecycle=self.lifecycle_policy(),
         )
