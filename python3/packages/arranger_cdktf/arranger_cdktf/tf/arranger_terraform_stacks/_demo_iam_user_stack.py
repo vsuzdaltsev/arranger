@@ -39,7 +39,7 @@ class DemoIamUserStack(AwsBasicStack):
 class Development1DemoIamUserStack(DemoIamUserStack):
     """
     Demo stack.
-    Development1 tenant version.
+    Version specific for tenant develop1.
     """
 
     def _test_user(self) -> IamUser:
