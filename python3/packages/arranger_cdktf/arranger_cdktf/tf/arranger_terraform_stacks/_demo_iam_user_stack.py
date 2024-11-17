@@ -10,8 +10,8 @@ class DemoIamUserStack(AwsBasicStack):
     Demo stack.
     Create Demo AWS IAM user.
 
-    All tenant's version.
-    Besides the develop1 tenant, which is explicitly defined by Develop1DemoIamUserStack class.
+    All tenant versions, except for the 'develop1' tenant,
+        which is explicitly defined by the Develop1DemoIamUserStack class.
     """
 
     @property
@@ -26,7 +26,7 @@ class DemoIamUserStack(AwsBasicStack):
 
     @property
     def _tags(self) -> Dict[str, str]:
-        return self.stack_tags
+        return self.stack_tags | {"for development1 tenant only": "false"}
 
     def _test_user(self) -> IamUser:
         name = self._name(object_type="test-user")
@@ -44,7 +44,7 @@ class DemoIamUserStack(AwsBasicStack):
 class Development1DemoIamUserStack(DemoIamUserStack):
     """
     Demo stack.
-    Version specific for tenant develop1.
+    Version specific to the tenant 'develop1'.
     """
 
     @property
