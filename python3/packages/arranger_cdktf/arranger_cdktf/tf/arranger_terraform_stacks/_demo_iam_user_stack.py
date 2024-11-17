@@ -23,6 +23,10 @@ class DemoIamUserStack(AwsBasicStack):
 
         self.test_user = self._test_user()
 
+    @property
+    def _tags(self):
+        return self.stack_tags
+
     def _test_user(self) -> IamUser:
         name = self._name(object_type="test-user")
 
@@ -31,7 +35,7 @@ class DemoIamUserStack(AwsBasicStack):
             id_=name,
             name=name,
             provider=self.aws_provider,
-            tags=self.stack_tags,
+            tags=self._tags,
             lifecycle=self.lifecycle_policy(),
         )
 
@@ -42,14 +46,6 @@ class Development1DemoIamUserStack(DemoIamUserStack):
     Version specific for tenant develop1.
     """
 
-    def _test_user(self) -> IamUser:
-        name = self._name(object_type="test-user")
-
-        return IamUser(
-            scope=self,
-            id_=name,
-            name=name,
-            provider=self.aws_provider,
-            tags=self.stack_tags | {"for development1 tenant only": "true"},
-            lifecycle=self.lifecycle_policy(),
-        )
+    @property
+    def _tags(self):
+        return self.stack_tags | {"for development1 tenant only": "true"}
