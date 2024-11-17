@@ -20,7 +20,6 @@ class DemoIamUserStack(AwsBasicStack):
         super().__init__(scope, ns, config=config)
 
         self.aws_provider = self.globals.automation(scope=self)
-
         self.test_user = self._test_user()
 
     @property
