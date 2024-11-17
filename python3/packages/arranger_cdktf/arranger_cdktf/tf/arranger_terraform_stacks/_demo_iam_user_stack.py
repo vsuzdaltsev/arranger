@@ -20,7 +20,7 @@ class DemoIamUserStack(AwsBasicStack):
 
         self.test_user = self._test_user()
 
-    def _test_user(self) -> type(IamUser):
+    def _test_user(self) -> IamUser:
         name = self._name(object_type="test-user")
 
         return IamUser(
