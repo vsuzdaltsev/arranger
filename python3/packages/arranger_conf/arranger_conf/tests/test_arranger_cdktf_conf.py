@@ -21,6 +21,19 @@ class TestTFConf:
             assert isinstance(getattr(TfConf, tenant).ALL_STACKS, list)
             assert len(getattr(TfConf, tenant).ALL_STACKS) > 0
 
+    def test_VALID_STACKS(self):
+        assert isinstance(TfConf.Local.VALID_STACKS, dict)
+        for stack_name, stack_metadata in TfConf.Local.VALID_STACKS["tf"].items():
+            assert stack_name.endswith("-stack") == True
+
+            assert isinstance(stack_metadata["class_name"], str)
+            assert stack_metadata["class_name"].endswith("Stack")
+
+            assert isinstance(stack_metadata["description"], str)
+            assert len(stack_metadata["description"]) > 0
+
+            assert isinstance(stack_metadata["depends_on"], list)
+
     def test_ALL_STACKS_should_contain_stacks_from_VALID_STACKS(
         self, tenants_from_tf_conf
     ):

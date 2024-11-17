@@ -75,3 +75,11 @@ $ inv local.container.run
 ```shell
 (arranger) root@cli# inv tf.deloy --project tf --tenant development1 --stack test-iam-user-stack
 ```
+
+<br>
+
+## Destroy Terraform Stack:
+
+```shell
+(arranger) root@cli# inv tf.destroy --project tf --tenant development1 --stack test-iam-user-stack
+```
