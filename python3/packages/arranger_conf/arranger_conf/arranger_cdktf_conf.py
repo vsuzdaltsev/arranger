@@ -3,7 +3,7 @@ from .basic_conf import BasicConf
 
 class TfConf:
     class Development1(BasicConf):
-        ALL_STACKS = ["vpc-stack", "eks-stack"]
+        ALL_STACKS = ["demo-iam-user-stack", "vpc-stack", "eks-stack"]
         EKS_NODE_GROUPS_CONFIG = [
             {
                 "node_group_name": "node-group-1",

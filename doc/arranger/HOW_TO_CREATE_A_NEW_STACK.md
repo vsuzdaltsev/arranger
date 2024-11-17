@@ -2,18 +2,16 @@
 
 ## Create Stack library:
 
-```shell
-$ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_vpc_stack.py
-```   
+$ Create [corresponding_stack_library_file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_demo_iam_user_stack.py)
 
 <br>
 
 ## Add the new module to the import section of the `arranger_cdktf` package:
 
-in [arranger_conf package init file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py) add
+in [arranger_conf package init file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py) add import line
 
 ```python
-from .test_vpc_stack import *
+from ._demo_iam_user_stack.py import *
 ```
 
 <br>
@@ -25,9 +23,9 @@ in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_
 ```python
 VALID_STACKS = {
     "tf": {
-        "test-vpc-stack": {
-            "class_name": "TestVpcStack",
-            "description": "Test Terraform stack.",
+        "demo-iam-user-stack": {
+            "class_name": "DemoIamUserStack",
+            "description": "Test Terraform stack to create AWS IAM user.",
             "depends_on": [],
         },
     }
@@ -43,7 +41,7 @@ in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_
 ```python
 class TfConf:
     class Development1(BasicConf):
-        ALL_STACKS = ["test-vpc-stack"]
+        ALL_STACKS = ["demo-iam-user-stack"]
 ```
 
 <br>
@@ -65,7 +63,7 @@ $ inv local.container.run
 ## Check Terraform diff:
 
 ```shell
-(arranger) root@cli# inv tf.diff --project tf --tenant development1 --stack test-vpc-stack
+(arranger) root@cli# inv tf.diff --project tf --tenant development1 --stack demo-iam-user-stack
 ```
 
 <br>
@@ -73,5 +71,13 @@ $ inv local.container.run
 ## Deploy Terraform Stack:
 
 ```shell
-(arranger) root@cli# inv tf.deloy --project tf --tenant development1 --stack test-vpc-stack
+(arranger) root@cli# inv tf.deloy --project tf --tenant development1 --stack demo-iam-user-stack
+```
+
+<br>
+
+## Destroy Terraform Stack:
+
+```shell
+(arranger) root@cli# inv tf.destroy --project tf --tenant development1 --stack demo-iam-user-stack
 ```
