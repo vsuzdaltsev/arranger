@@ -83,4 +83,4 @@ $ inv local.container.run
 ```
 <br>
 
-## NB: Under the hood, an AWS Terraform backend with for the state will be created in S3, along with a lock in DynamoDB.
+## NB: Under the hood, an AWS Terraform Backend with for the state will be created in S3, along with a Lock in DynamoDB.
