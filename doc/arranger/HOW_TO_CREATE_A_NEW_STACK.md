@@ -13,7 +13,7 @@ $ vim ../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform
 in [arranger_conf package init file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py) add
 
 ```python
-from ._test_iam_user_stack.py import *
+from ._demo_iam_user_stack.py import *
 ```
 
 <br>
