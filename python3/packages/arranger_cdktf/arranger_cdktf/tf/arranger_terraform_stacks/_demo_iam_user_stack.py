@@ -3,7 +3,7 @@ from arranger_cdktf.imports.aws.iam_user import IamUser
 from .basic_stack import AwsBasicStack, Construct, TfConf
 
 
-class TestIamUserStack(AwsBasicStack):
+class DemoIamUserStack(AwsBasicStack):
     @property
     def _name_prefix(self) -> str:
         return "test-user"

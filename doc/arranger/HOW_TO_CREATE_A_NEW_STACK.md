@@ -3,7 +3,7 @@
 ## Create Stack library:
 
 ```shell
-$ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_test_iam_user_stack.py
+$ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_demo_iam_user_stack.py
 ```   
 
 <br>
@@ -26,7 +26,7 @@ in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_
 VALID_STACKS = {
     "tf": {
         "test-iam-user-stack": {
-            "class_name": "TestIamUserStack",
+            "class_name": "DemoIamUserStack",
             "description": "Test Terraform stack to create AWS IAM user.",
             "depends_on": [],
         },
