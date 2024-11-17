@@ -2,7 +2,7 @@
 
 ## Create Stack library:
 
-$ Add [corresponding_stack_file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_demo_iam_user_stack.py)
+$ Create [corresponding_stack_file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_demo_iam_user_stack.py)
 
 <br>
 
