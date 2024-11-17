@@ -8,7 +8,7 @@ $ Create [corresponding_stack_library_file](../../python3/packages/arranger_cdkt
 
 ## Add the new module to the import section of the `arranger_cdktf` package:
 
-in [arranger_conf package init file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py) add
+in [arranger_conf package init file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py) add import line
 
 ```python
 from ._demo_iam_user_stack.py import *
