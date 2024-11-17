@@ -4,6 +4,10 @@ from .basic_stack import AwsBasicStack, Construct, TfConf
 
 
 class DemoIamUserStack(AwsBasicStack):
+    """
+    Demo stack. Creates AWS IAM user.
+    """
+
     @property
     def _name_prefix(self) -> str:
         return "test-user"
