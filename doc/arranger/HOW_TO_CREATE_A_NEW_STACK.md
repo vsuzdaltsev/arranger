@@ -1,6 +1,6 @@
 # How to create a new Infrastructure Stack using CDKTF and Arranger
 
-## Create Stack library:
+## Create a Stack library:
 
 $ Create [corresponding_stack_library_file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_demo_iam_user_stack.py)
 
@@ -83,4 +83,4 @@ $ inv local.container.run
 ```
 <br>
 
-## NB: Under the hood, an AWS Terraform Backend (for keeping state) will be created in S3, along with a Lock in DynamoDB.
+## NB: Under the hood, an AWS Terraform Backend (for keeping state) will be created in S3, along with a Lock in DynamoDB table.
