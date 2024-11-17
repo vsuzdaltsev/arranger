@@ -3,7 +3,7 @@
 ## Create Stack library:
 
 ```shell
-$ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_demo_iam_user_stack.py
+$ vim ../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_demo_iam_user_stack.py
 ```   
 
 <br>
