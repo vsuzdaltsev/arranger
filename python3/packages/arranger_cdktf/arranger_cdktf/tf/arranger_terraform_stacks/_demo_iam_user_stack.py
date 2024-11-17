@@ -26,7 +26,7 @@ class DemoIamUserStack(AwsBasicStack):
 
     @property
     def _tags(self) -> Dict[str, str]:
-        return self.stack_tags
+        return self.stack_tags | {"for development1 tenant only": "false"}
 
     def _test_user(self) -> IamUser:
         name = self._name(object_type="test-user")
