@@ -10,8 +10,8 @@ class DemoIamUserStack(AwsBasicStack):
     Demo stack.
     Create Demo AWS IAM user.
 
-    All tenant's version.
-    Besides the develop1 tenant, which is explicitly defined by Develop1DemoIamUserStack class.
+    All tenant versions, except for the 'develop1' tenant,
+        which is explicitly defined by the Develop1DemoIamUserStack class.
     """
 
     @property
@@ -44,7 +44,7 @@ class DemoIamUserStack(AwsBasicStack):
 class Development1DemoIamUserStack(DemoIamUserStack):
     """
     Demo stack.
-    Version specific for tenant develop1.
+    Version specific to the tenant 'develop1'.
     """
 
     @property
