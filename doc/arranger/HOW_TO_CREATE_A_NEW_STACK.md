@@ -3,7 +3,7 @@
 ## Create Stack library:
 
 ```shell
-$ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_vpc_stack.py
+$ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_test_iam_user_stack.py
 ```   
 
 <br>
@@ -13,7 +13,7 @@ $ vim /packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/test_
 in [arranger_conf package init file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py) add
 
 ```python
-from .test_vpc_stack import *
+from ._test_iam_user_stack.py import *
 ```
 
 <br>
@@ -25,9 +25,9 @@ in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_
 ```python
 VALID_STACKS = {
     "tf": {
-        "test-vpc-stack": {
-            "class_name": "TestVpcStack",
-            "description": "Test Terraform stack.",
+        "test-iam-user-stack": {
+            "class_name": "TestIamUserStack",
+            "description": "Test Terraform stack to create AWS IAM user.",
             "depends_on": [],
         },
     }
@@ -43,7 +43,7 @@ in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_
 ```python
 class TfConf:
     class Development1(BasicConf):
-        ALL_STACKS = ["test-vpc-stack"]
+        ALL_STACKS = ["test-iam-user-stack"]
 ```
 
 <br>
@@ -65,7 +65,7 @@ $ inv local.container.run
 ## Check Terraform diff:
 
 ```shell
-(arranger) root@cli# inv tf.diff --project tf --tenant development1 --stack test-vpc-stack
+(arranger) root@cli# inv tf.diff --project tf --tenant development1 --stack test-iam-user-stack
 ```
 
 <br>
@@ -73,5 +73,5 @@ $ inv local.container.run
 ## Deploy Terraform Stack:
 
 ```shell
-(arranger) root@cli# inv tf.deloy --project tf --tenant development1 --stack test-vpc-stack
+(arranger) root@cli# inv tf.deloy --project tf --tenant development1 --stack test-iam-user-stack
 ```

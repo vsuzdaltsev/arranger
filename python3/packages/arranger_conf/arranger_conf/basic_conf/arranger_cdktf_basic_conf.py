@@ -15,6 +15,11 @@ class BasicConf:
             #     "description": "AWS certificates.",
             #     "depends_on": ["route53-zone-stack"],
             # },
+            "test-iam-user-stack": {
+                "class_name": "TestIamUserStack",
+                "description": "Test Terraform stack to create AWS IAM user.",
+                "depends_on": [],
+            },
             "vpc-stack": {
                 "class_name": "VpcStack",
                 "description": "AWS VPC.",
