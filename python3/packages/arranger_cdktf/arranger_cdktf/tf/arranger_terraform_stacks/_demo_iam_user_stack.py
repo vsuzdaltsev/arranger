@@ -6,7 +6,7 @@ from .basic_stack import AwsBasicStack, Construct, TfConf
 class DemoIamUserStack(AwsBasicStack):
     """
     Demo stack.
-    Create AWS IAM user.
+    Create Demo AWS IAM user.
     """
 
     @property
