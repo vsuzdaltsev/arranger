@@ -1,3 +1,5 @@
+from typing import Dict
+
 from arranger_cdktf.imports.aws.iam_user import IamUser
 
 from .basic_stack import AwsBasicStack, Construct, TfConf
@@ -23,7 +25,7 @@ class DemoIamUserStack(AwsBasicStack):
         self.test_user = self._test_user()
 
     @property
-    def _tags(self):
+    def _tags(self) -> Dict[str, str]:
         return self.stack_tags
 
     def _test_user(self) -> IamUser:
@@ -46,5 +48,5 @@ class Development1DemoIamUserStack(DemoIamUserStack):
     """
 
     @property
-    def _tags(self):
+    def _tags(self) -> Dict[str, str]:
         return self.stack_tags | {"for development1 tenant only": "true"}
