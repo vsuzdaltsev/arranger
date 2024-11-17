@@ -25,7 +25,7 @@ in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_
 ```python
 VALID_STACKS = {
     "tf": {
-        "test-iam-user-stack": {
+        "demo-iam-user-stack": {
             "class_name": "DemoIamUserStack",
             "description": "Test Terraform stack to create AWS IAM user.",
             "depends_on": [],
@@ -43,7 +43,7 @@ in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_
 ```python
 class TfConf:
     class Development1(BasicConf):
-        ALL_STACKS = ["test-iam-user-stack"]
+        ALL_STACKS = ["demo-iam-user-stack"]
 ```
 
 <br>
@@ -65,7 +65,7 @@ $ inv local.container.run
 ## Check Terraform diff:
 
 ```shell
-(arranger) root@cli# inv tf.diff --project tf --tenant development1 --stack test-iam-user-stack
+(arranger) root@cli# inv tf.diff --project tf --tenant development1 --stack demo-iam-user-stack
 ```
 
 <br>
@@ -73,7 +73,7 @@ $ inv local.container.run
 ## Deploy Terraform Stack:
 
 ```shell
-(arranger) root@cli# inv tf.deloy --project tf --tenant development1 --stack test-iam-user-stack
+(arranger) root@cli# inv tf.deloy --project tf --tenant development1 --stack demo-iam-user-stack
 ```
 
 <br>
@@ -81,5 +81,5 @@ $ inv local.container.run
 ## Destroy Terraform Stack:
 
 ```shell
-(arranger) root@cli# inv tf.destroy --project tf --tenant development1 --stack test-iam-user-stack
+(arranger) root@cli# inv tf.destroy --project tf --tenant development1 --stack demo-iam-user-stack
 ```
