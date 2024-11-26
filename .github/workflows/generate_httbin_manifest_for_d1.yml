@@ -32,4 +32,4 @@ jobs:
       - name: Generate k8s manifest
         run: |
           docker compose up -d
-          docker exec arranger /bin/bash -c "pipenv run inv k8s.arranger-app.generate --environment d1 --services httpbin"
+          docker exec arranger /bin/bash -c "pipenv run inv k8s.arranger-app.generate --environment d1 --services httpbin | yq e"
