@@ -81,12 +81,6 @@ class BasicService(Construct, BasicMixin):
 
         variables = {}
 
-        if self.is_backend_ms():
-            variables.update(self._metrics_variables())
-
-            if self.has_cassandra():
-                variables.update(self._cassandra_metrics_variables())
-
         def _stringify_values(_dict: Dict[str, Any]) -> Dict[str, str]:
 
             output_dict = {}
