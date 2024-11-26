@@ -62,18 +62,6 @@ class BasicService(Construct, BasicMixin):
         self.globals = Cdk8sGlobals(sub_environment=self.environment, config=config)
         self.tf_globals = self._tf_globals()
 
-    def is_backend_ms(self) -> bool:
-        if self.service_name.endswith("-ms"):
-            return True
-
-        return False
-
-    def is_frontend_ms(self) -> bool:
-        if self.service_name.endswith("-ui"):
-            return True
-
-        return False
-
     @property
     def _tf_globals(self):
         from arranger_conf.arranger_cdktf_conf import TfConf
@@ -86,23 +74,6 @@ class BasicService(Construct, BasicMixin):
             return None
 
         return ["\n".join(commands)]
-
-    def has_cassandra(self) -> bool:
-        from arranger_conf.arranger_cdk8s_conf_lib import BasicConf
-
-        return self.service_name in BasicConf.SERVICES_WITH_KEYSPACES_SWITCH
-
-    @staticmethod
-    def _metrics_variables() -> Dict[str, str]:
-        return {
-            "management.endpoint.health.show-details": "always",
-            "management.endpoint.metrics.enabled": "true",
-            "management.endpoints.web.base-path": "/actuator",
-            "management_endpoints_web_exposure_include_0": "health",
-            "management_endpoints_web_exposure_include_1": "metrics",
-            "management_endpoints_web_exposure_include_2": "readiness",
-            "management_endpoints_web_exposure_include_3": "prometheus",
-        }
 
     def _generate_config_map(self, name=None) -> k8s.ConfigMap:
         if not name:
@@ -252,12 +223,6 @@ class BasicService(Construct, BasicMixin):
                 limits=[
                     k8s.LimitRangeItem(
                         type="Container",
-                        # default={
-                        #     "memory": k8s.Quantity.from_string(
-                        #         self.DEFAULT_MEMORY_REQUEST
-                        #     ),
-                        #     "cpu": k8s.Quantity.from_string(self.DEFAULT_CPU_REQUEST),
-                        # },
                         default_request={
                             "memory": k8s.Quantity.from_string(
                                 self.DEFAULT_MEMORY_REQUEST
@@ -305,7 +270,7 @@ class BasicService(Construct, BasicMixin):
 
     @property
     def default_hosts(self):
-        if self.globals.is_sub_environment:
+        if self.globals.is_sub_environment:  # FIXME: add attribute
             return self._service_hosts(prefix=f"{self.environment}.")
 
         return self.config.VIRTUAL_HOSTS
