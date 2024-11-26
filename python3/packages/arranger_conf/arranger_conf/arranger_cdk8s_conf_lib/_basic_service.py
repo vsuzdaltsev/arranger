@@ -52,12 +52,12 @@ class BasicService:
             "gateway": {
                 "class_name": "Gateway",
                 "repos": [],
-                "labels": labels(service_type="switch_app"),
+                "labels": labels(service_type="arranger_app"),
             },
             "httpbin": {
                 "class_name": "Httpbin",
                 "repos": [],
-                "labels": labels(service_type="test_app"),
+                "labels": labels(service_type="arranger_app"),
             },
         }
 

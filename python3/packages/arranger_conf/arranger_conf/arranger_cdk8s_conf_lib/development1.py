@@ -22,7 +22,7 @@ class Development1(BasicConf):
     ALL_SERVICES = {
         name: metadata
         for name, metadata in BasicService.valid_services().items()
-        if metadata.get("labels", {}).get("service_type") in ["switch_app"]
+        if metadata.get("labels", {}).get("service_type") in ["arranger_app"]
         and name in ["httpbin"]
     }
 
