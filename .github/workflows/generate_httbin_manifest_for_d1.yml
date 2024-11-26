@@ -34,7 +34,6 @@ jobs:
           docker pull ghcr.io/vsuzdaltsev/arranger:latest
 
       - name: Generate k8s manifest
-        if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name == 'push' }}
         run: |
           docker compose up
           docker exec arranger /bin/bash -c "pipenv run inv k8s.arranger-app.generate --environment d1 --services httpbin"
