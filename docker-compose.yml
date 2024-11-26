@@ -13,6 +13,7 @@ services:
       - ./python3/packages/arranger_automation/arranger_automation:/opt/site-packages/arranger_automation
       - ./python3/packages/arranger_automation_aws/arranger_automation_aws:/opt/site-packages/arranger_automation_aws
       - ./python3/packages/arranger_cdktf/arranger_cdktf:/opt/site-packages/arranger_cdktf
+      - ./python3/packages/arranger_cdk8s/arranger_cdk8s:/opt/site-packages/arranger_cdk8s
       - ./python3/packages/arranger_conf/arranger_conf:/opt/site-packages/arranger_conf
       - ./python3/packages/arranger_globals/arranger_globals:/opt/site-packages/arranger_globals
       - ./templates/.zshrc:/root/.zshrc

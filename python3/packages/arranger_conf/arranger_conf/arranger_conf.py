@@ -33,3 +33,4 @@ class ArrangerConf:
 
     HEAD_ACCOUNT = None
     SUBORDINATE_ACCOUNTS = ["staging1", "development1"]
+    DEFAULT_ALPINE_IMAGE = "3.16"

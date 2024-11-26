@@ -3,5 +3,6 @@
 from ._version import __version__
 
 from .arranger_conf import *
-from .basic_conf import BasicConf
+from .basic_conf import BasicTfConf
 from .arranger_cdktf_conf import *
+from .arranger_cdk8s_conf import *

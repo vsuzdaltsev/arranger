@@ -1,7 +1,11 @@
-class BasicConf:
+class BasicTfConf:
     @classmethod
     @property
     def TENANT(obj) -> str:
+        return obj.__name__.lower()
+
+    @property
+    def tenant(obj) -> str:
         return obj.__name__.lower()
 
     ALL_STACKS = []

@@ -223,7 +223,7 @@ def infra_diff(
 @task(post=[clean_up_cdktf_json])
 def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
     """>> Show valid Terraform stacks."""
-    from arranger_conf.arranger_cdktf_conf import BasicConf
+    from arranger_conf.arranger_cdktf_conf import BasicTfConf
 
     from .helper_functions import (
         TERRAFORM_PROJECTS,
@@ -248,7 +248,7 @@ def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
 
             tenant_conf = getattr(TfConf, tenant_name.capitalize())
             return getattr(tenant_conf, "ALL_STACKS")
-        return list(BasicConf.VALID_STACKS[project].keys())
+        return list(BasicTfConf.VALID_STACKS[project].keys())
 
     def stacks(tenant_name):
         stack_names = all_stack_names(tenant_name=tenant_name)
@@ -256,7 +256,7 @@ def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
         if with_descriptions == "true":
             stack_names_with_desc = {}
 
-            for stack_name, metadata in BasicConf.VALID_STACKS[project].items():
+            for stack_name, metadata in BasicTfConf.VALID_STACKS[project].items():
                 if stack_name in stack_names:
                     stack_names_with_desc.update(
                         {

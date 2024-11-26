@@ -13,11 +13,13 @@ CURRENT_TF_PROJECT = "tf"
 
 try:
     from arranger_conf import ArrangerConf
-    from arranger_conf.arranger_cdktf_conf import BasicConf
+    from arranger_conf.arranger_cdktf_conf import BasicTfConf
+    from arranger_conf import K8sConf
 
     KUBERNETES_VERSION = ArrangerConf.CDK8S_KUBERNETES_VERSION
     VALID_TENANTS = ArrangerConf.TENANTS
-    VALID_EKS_STACKS = BasicConf.VALID_STACKS[CURRENT_TF_PROJECT]
+    VALID_EKS_STACKS = BasicTfConf.VALID_STACKS[CURRENT_TF_PROJECT]
+    VALID_ENVIRONMENTS = sorted(env.lower() for env in K8sConf.ALL_ENVIRONMENTS)
 except BaseException as warn:
     msg = (
         ">> WARNING: Not all modules were properly loaded.\n"
