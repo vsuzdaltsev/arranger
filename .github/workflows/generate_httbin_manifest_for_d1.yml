@@ -31,7 +31,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker compose -f docker-compose.yml build
+          # docker compose -f docker-compose.yml build
+          docker pull ghcr.io/vsuzdaltsev/arranger:latest
 
       - name: Generate k8s manifest
         if: ${{ github.event.workflow_run.conclusion == 'success' && github.event_name == 'push' }}
