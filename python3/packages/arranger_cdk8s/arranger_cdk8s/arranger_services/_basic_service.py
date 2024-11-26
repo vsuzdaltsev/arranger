@@ -304,7 +304,7 @@ class BasicService(Construct, BasicMixin):
         args=None,
         volumes=None,
         volume_mounts=None,
-    ) -> type(k8s.Deployment):
+    ) -> k8s.Deployment:
         name = name or self.service_name
         container_ports = container_ports or [self.config.CONTAINER_PORT]
         container_name = container_name or self.service_name
@@ -509,7 +509,7 @@ class BasicService(Construct, BasicMixin):
 
         return _sm
 
-    def _probe(self, probe_metadata: Dict[str, Any]) -> type(k8s.Probe):
+    def _probe(self, probe_metadata: Dict[str, Any]) -> k8s.Probe:
         if probe_metadata:
             initial_delay_seconds = probe_metadata.get("initial_delay_seconds")
             period_seconds = probe_metadata.get("period_seconds")
