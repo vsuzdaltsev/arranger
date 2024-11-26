@@ -8,7 +8,7 @@ from constructs import Construct
 from arranger_conf import ArrangerConf
 from arranger_globals.cdk8s_globals import Cdk8sGlobals
 
-from arranger_cdk8s.imports.com.coreos.monitoring import (
+from arranger_cdk8s..imports.com.coreos.monitoring import (
     ServiceMonitor,
     ServiceMonitorSpec,
     ServiceMonitorSpecEndpoints,

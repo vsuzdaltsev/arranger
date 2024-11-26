@@ -1,4 +1,4 @@
-"""Eusy kubernetes manifests generation libraries."""
+"""Arranger kubernetes manifests generation libraries."""
 
 from .arranger_services import *
 from .imports import *
