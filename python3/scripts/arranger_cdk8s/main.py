@@ -18,7 +18,7 @@ ENVIRONMENT = sys.argv[2]
 OVERRIDES = sys.argv[3]
 
 
-class EusyApp(Chart):
+class ArrangerApp(Chart):
     def __init__(
         self,
         scope: Construct,
@@ -77,6 +77,6 @@ if __name__ == "__main__":
         return [s.rstrip().lstrip() for s in INPUT_SERVICES.split(",")]
 
     for service in services():
-        EusyApp(app, ns=service, config=env_config).render_service()
+        ArrangerApp(app, ns=service, config=env_config).render_service()
 
     app.synth()
