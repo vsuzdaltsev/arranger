@@ -5,3 +5,4 @@
 python3/scripts/arranger_cdktf/tf/cdktf.json
 **cdktf.out
 python3/scripts/arranger_cdk8s/cdk8s.yaml
+python3/scripts/arranger_cdk8s/dist/
