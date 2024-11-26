@@ -1,8 +1,8 @@
-from .basic_conf import BasicConf
+from .basic_conf import BasicTfConf
 
 
 class TfConf:
-    class Development1(BasicConf):
+    class Development1(BasicTfConf):
         ALL_STACKS = ["demo-iam-user-stack", "vpc-stack", "eks-stack"]
         EKS_NODE_GROUPS_CONFIG = [
             {
@@ -18,8 +18,8 @@ class TfConf:
             },
         ]
 
-    class Local(BasicConf):
+    class Local(BasicTfConf):
         ALL_STACKS = []
 
-    class Staging1(BasicConf):
+    class Staging1(BasicTfConf):
         ALL_STACKS = ["vpc-stack"]

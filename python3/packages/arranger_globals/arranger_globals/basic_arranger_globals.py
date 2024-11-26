@@ -104,6 +104,41 @@ class BySubEnvironment(ArrangerMixin):
         if kwargs.get("config"):
             self.config = kwargs.get("config")
 
+    @property
+    def tenant(self) -> str:
+        from arranger_conf import ArrangerConf
+
+        for cluster_name, cluster_conf in ArrangerConf.TENANTS.items():
+            if self.sub_environment == cluster_name:
+                return cluster_name
+
+            sub_envs = cluster_conf.get("sub_environments")
+            if sub_envs and self.sub_environment in sub_envs:
+                return cluster_name
+
+        def tools_envs_from_all_environments():
+            from arranger_conf import K8sConf
+
+            if self.sub_environment in (
+                env.lower() for env in K8sConf.ALL_ENVIRONMENTS
+            ):
+                return (
+                    getattr(K8sConf, self.tenant.capitalize())
+                    .__mro__[1]
+                    .__mro__[0]
+                    .__name__.lower()
+                )
+
+        try:
+            return tools_envs_from_all_environments()
+        except BaseException as err:
+            err_msg = (
+                f"Environment '{self.sub_environment}' isn't a part of existing clusters. "
+                f"Valid value is one of {self.all_environments}. "
+                f"Can't find cluster name alias for '{self.sub_environment}'."
+            )
+            raise ValueError(err_msg) from err
+
 
 class ByTenant(ArrangerMixin):
     def __init__(self, tenant: str, **kwargs: Dict):

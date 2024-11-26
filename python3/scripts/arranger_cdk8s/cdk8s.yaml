@@ -1,0 +1,4 @@
+language: python
+app: python main.py httpbin d1 None
+imports:
+  - k8s@1.27
