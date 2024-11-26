@@ -1,4 +1,4 @@
-"""Eusy kubernetes manifests generation libraries. Build script."""
+"""Arranger kubernetes manifests generation libraries. Build script."""
 
 import setuptools
 
