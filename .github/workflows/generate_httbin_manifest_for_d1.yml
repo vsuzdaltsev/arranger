@@ -29,11 +29,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build Docker image
-        run: |
-          docker pull ghcr.io/vsuzdaltsev/arranger:latest
-
       - name: Generate k8s manifest
         run: |
-          docker compose up
+          docker compose up -d
           docker exec arranger /bin/bash -c "pipenv run inv k8s.arranger-app.generate --environment d1 --services httpbin"
