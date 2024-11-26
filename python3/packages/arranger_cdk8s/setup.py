@@ -13,7 +13,7 @@ setuptools.setup(
     name="arranger_cdk8s",
     version=package_version,
     author="devops",
-    author_email="vsevolod@velox-solution.com",
+    author_email="vsevolod.suzdaltsev@gmail.com",
     description="Arranger libraries for kubernetes manifests generation.",
     long_description=long_description,
     long_description_content_type="text/markdown",
