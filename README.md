@@ -1,7 +1,7 @@
 # Arranger
 
 [![Open Source](https://img.shields.io/badge/Open-Source-brightgreen)](https://opensource.org/)
-[![Active](http://img.shields.io/badge/Status-Active-green.svg)](https://aenix.io/cozystack/)
+![Active](http://img.shields.io/badge/Status-Active-green.svg)
 [![GitHub Commit](https://img.shields.io/github/commit-activity/m/vsuzdaltsev/arranger/main)](https://github.com/vsuzdaltsev/arranger) 
 
 
