@@ -99,7 +99,7 @@ class ArrangerMixin(ABC):
         return ArrangerConf.TENANTS[self.tenant]["domain"]
 
     @property
-    def kube_prometheus_stack_name(self):
+    def kube_prometheus_stack_name(self) -> str:
         return "kube-prometheus-stack"
 
 
