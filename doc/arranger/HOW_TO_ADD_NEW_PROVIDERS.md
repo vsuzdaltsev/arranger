@@ -1,6 +1,6 @@
 # How to Add a New Terraform Provider
 
-This example demonstrates how to add Terraform **"hashicorp/local"** provider to Arranger.
+This example demonstrates how to add a new Terraform provider (**"hashicorp/local"**) to Arranger.
 
 ### Steps:
 
