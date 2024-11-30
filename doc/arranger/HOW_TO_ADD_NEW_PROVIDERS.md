@@ -24,7 +24,7 @@ This example demonstrates how to add Terraform **"hashicorp/local"** provider.
    5. Wait for CDKTF to finish initialization.
 2. Inside the `tmp` directory, copy the newly created `imports/local` directory to `python3/packages/arranger_cdktf/arranger_cdktf/imports`:
    ```shell
-   cp -r imports/local ../python3/packages/sd_cdktf/sd_cdktf/imports
+   $ cp -r imports/local ../python3/packages/sd_cdktf/sd_cdktf/imports
    ```
 3. Add the provider name to `python3/packages/arranger_cdktf/arranger_cdktf/imports/__init__.py`
 4. Return back to the root directory of the project and run:
