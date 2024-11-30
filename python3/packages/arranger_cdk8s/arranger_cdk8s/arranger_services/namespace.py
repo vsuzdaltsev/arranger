@@ -1,5 +1,7 @@
 """K8s objects generator for Namespace."""
 
+from typing import Dict
+
 from constructs import Construct
 
 from ._basic_service import BasicService, K8sConf
@@ -8,7 +10,14 @@ from ._basic_service import BasicService, K8sConf
 class Namespace(BasicService):
     """Generate all related K8s manifests for the Namespace."""
 
-    def __init__(self, scope: Construct, id: str, *, config: K8sConf, kwargs=None):
+    def __init__(
+        self,
+        scope: Construct,
+        id: str,
+        *,
+        config: K8sConf,
+        kwargs: Dict[str, str] = None
+    ):
         super().__init__(scope=scope, id=id, config=config, kwargs=kwargs)
 
         self._generate_namespace()
