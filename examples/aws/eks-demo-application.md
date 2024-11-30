@@ -11,4 +11,4 @@ With this approach the application will have several layers of resources:
 
 ## AWS Resources Diagram
 
-![image](https://github.com/user-attachments/assets/02ccc15d-5409-4847-ad2a-eee14ed830e0)
+![eks-demo-application](../diagrams/eks-demo-application.png)
