@@ -11,7 +11,7 @@
 ### Entities
 
 * What is `tenant`?
-* What is `environment (sub-environment)`?
+* What is `environment`?
 * What is `cluster`?
 * What's the difference between them?
 
@@ -19,19 +19,19 @@
   Cloud account. Each `tenant` operates independently, usually within a shared
   infrastructure, but their data and applications remain isolated from those of other `tenants`. Prod isolated from
   Staging, Dev etc. These are examples of `tenants`. List of available tenants can be found [in the main configuration file](../..//python3/packages/arranger_conf/arranger_conf/arranger_conf.py).
-- `environment` aka `sub-environment` is a namespace within K8s cluster.
+- `environment` is a namespace within K8s cluster.
 - `cluster` is an instance of K8s cluster for specific `tenant`.
 
 In most cases, the `environment` has the same name as the appropriate `tenant` for the cases when we have only one
 instance of an application
 within the K8s cluster (like production etc.). The exception is the multi environment clusters, specifically
 `development1`, which consists of multiple
-environments (sub-environments) with reusable Infrastructure parts.
+environments with reusable Infrastructure parts.
 
 NB: All commands mentioned here and below should be executed within the `arranger` container (refer to the appropriate
 section of this guide).
 
-* To see the list of existing `tenants` along with `environments` (`sub-environments`) run:
+* To see the list of existing `tenants` along with `environments` run:
 
 ```shell
 root@cli# inv tf.list-tenants --verbose true | jq
@@ -44,7 +44,7 @@ root@cli# inv tf.list-tenants --verbose true | jq
     "aws_profile": "development1",
     "context": "",
     "description": "Development account #1.",
-  "sub_environments": [ # environments (sub-environments)
+  "environments": [ #environments
     "d1",
     "d2",
     "d3",

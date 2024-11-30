@@ -16,9 +16,9 @@ def cluster_name_alias_from_module_name():
 class BasicConf:
     @classmethod
     def env_globals(cls):
-        from arranger_globals import BySubEnvironment
+        from arranger_globals import ByEnvironment
 
-        return BySubEnvironment(sub_environment=f"{cls.environment}")
+        return ByEnvironment(environment=f"{cls.environment}")
 
     @classmethod
     @property

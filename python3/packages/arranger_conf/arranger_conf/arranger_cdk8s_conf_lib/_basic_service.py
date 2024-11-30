@@ -13,9 +13,9 @@ class BasicService:
 
     @classmethod
     def env_globals(cls):
-        from arranger_globals import BySubEnvironment
+        from arranger_globals import ByEnvironment
 
-        return BySubEnvironment(environment=cls.environment())
+        return ByEnvironment(environment=cls.environment())
 
     @classmethod
     def valid_services(cls, with_repo_prefixes: bool = True) -> Dict[str, Any]:

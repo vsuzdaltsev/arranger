@@ -59,7 +59,7 @@ class BasicService(Construct, BasicMixin):
         self.config = config
         self.kwargs = kwargs
         self.environment = self.kwargs.get("environment")
-        self.globals = Cdk8sGlobals(sub_environment=self.environment, config=config)
+        self.globals = Cdk8sGlobals(environment=self.environment, config=config)
         self.tf_globals = self._tf_globals()
 
     @property
@@ -256,8 +256,8 @@ class BasicService(Construct, BasicMixin):
                 return cluster_name
 
             if cluster_conf.get(
-                "sub_environments"
-            ) and self.environment in cluster_conf.get("sub_environments"):
+                "environments"
+            ) and self.environment in cluster_conf.get("environments"):
                 return cluster_name
 
         return None

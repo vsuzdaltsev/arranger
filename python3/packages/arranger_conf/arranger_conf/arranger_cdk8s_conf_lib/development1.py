@@ -6,8 +6,8 @@ from ._basic_conf import BasicConf, cluster_name_alias_from_module_name
 from ._basic_service import BasicService
 
 
-def _eg(env: str) -> type(arranger_globals.BySubEnvironment):
-    return arranger_globals.BySubEnvironment(sub_environment=env)
+def _eg(env: str) -> type(arranger_globals.ByEnvironment):
+    return arranger_globals.ByEnvironment(environment=env)
 
 
 def _cg(tenant: str) -> type(arranger_globals.ByTenant):
@@ -44,5 +44,5 @@ class Development1(BasicConf):
             # secret = cg.secret(service_name=self.service_name)
 
             return {
-                "ENV_NAME": cg.sub_environment,
+                "ENV_NAME": cg.environment,
             }
