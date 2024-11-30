@@ -1,4 +1,4 @@
-"""Arranger kubernetes manifests generation libraries."""
+"""Arranger Kubernetes manifests generation libraries."""
 
 from .arranger_services import *
 from .imports import *
