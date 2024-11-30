@@ -18,7 +18,7 @@ from ._demo_iam_user_stack.py import *
 
 ## Add the Stack section to the VALID_STACKS constant:
 
-in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_conf/basic_conf/arranger_cdktf_basic_conf.py)
+in [arranger_cdktf_basic_conf.py](../../python3/packages/arranger_conf/arranger_conf/basic_cdktf_conf/arranger_cdktf_basic_conf.py)
 
 ```python
 VALID_STACKS = {
