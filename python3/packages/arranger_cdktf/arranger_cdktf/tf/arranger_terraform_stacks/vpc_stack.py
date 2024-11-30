@@ -89,7 +89,7 @@ class VpcStack(AwsBasicStack):
         )
 
     @property
-    def _vpc_main(self) -> Any:
+    def _vpc_main(self) -> Dict[str, Any]:
         return self.globals.ip_ranges["vpc-main"]
 
     @property
