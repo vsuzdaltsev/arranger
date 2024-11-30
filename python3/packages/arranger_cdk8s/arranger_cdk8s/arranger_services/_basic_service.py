@@ -390,6 +390,7 @@ class BasicService(Construct, BasicMixin):
             id=self.service_name + "-service",
             metadata=k8s.ObjectMeta(
                 name=self.service_name,
+                namespace=self.environment,
                 labels={"app": self.service_name, "service": self.service_name},
             ),
             spec=k8s.ServiceSpec(
