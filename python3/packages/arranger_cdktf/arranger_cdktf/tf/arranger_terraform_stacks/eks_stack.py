@@ -94,7 +94,7 @@ class EksStack(AwsBasicStack):
             self._eks_kubectl_sso_developers_access_role_policy_attachment()
         )
 
-    def _role(self) -> type(IamRole):
+    def _role(self) -> IamRole:
         name = self._name(object_type="iam-role-management")
 
         return IamRole(
@@ -110,7 +110,7 @@ class EksStack(AwsBasicStack):
 
     def _eks_management_policy_attachment(
         self,
-    ) -> type(IamUserPolicyAttachment):
+    ) -> IamRolePolicyAttachment:
         name = self._name(object_type="iam-role-management-policy-attachment")
 
         return IamRolePolicyAttachment(
@@ -122,7 +122,7 @@ class EksStack(AwsBasicStack):
             depends_on=[self.role],
         )
 
-    def _policy_attachments(self) -> List[type(IamRolePolicyAttachment)]:
+    def _policy_attachments(self) -> List[IamRolePolicyAttachment]:
         attachments = []
 
         for policy in self.cluster_role_policies():
@@ -180,7 +180,7 @@ class EksStack(AwsBasicStack):
     def _eks_encryption_config(self):
         return None
 
-    def _cluster(self) -> type(EksCluster):
+    def _cluster(self) -> EksCluster:
         name = self._name(object_type="cluster")
 
         return EksCluster(
@@ -211,7 +211,7 @@ class EksStack(AwsBasicStack):
             provider=self.aws_provider,
         )
 
-    def _cluster_identity_oidc_issuer(self) -> type(DataExternal):
+    def _cluster_identity_oidc_issuer(self) -> DataExternal:
         return DataExternal(
             scope=self,
             id="cluster-identity-oidc-issuer",
@@ -224,7 +224,7 @@ class EksStack(AwsBasicStack):
             depends_on=[self.cluster],
         )
 
-    def _eks_oidc_fingerprints(self) -> type(DataExternal):
+    def _eks_oidc_fingerprints(self) -> DataExternal:
         return DataExternal(
             scope=self,
             id="eks-oidc-fingerprints",
@@ -237,7 +237,7 @@ class EksStack(AwsBasicStack):
             depends_on=[self.cluster],
         )
 
-    def _oidc_connect_provider(self) -> type(IamOpenidConnectProvider):
+    def _oidc_connect_provider(self) -> IamOpenidConnectProvider:
         name = self._name(object_type="oidc-connect-provider")
         url = (
             f"https://oidc.eks.{self.globals.aws_region}.amazonaws.com"
@@ -258,7 +258,7 @@ class EksStack(AwsBasicStack):
             depends_on=[self.eks_addon_cni],
         )
 
-    def _eks_addon_cni(self) -> type(EksAddon):
+    def _eks_addon_cni(self) -> EksAddon:
         name = "vpc-cni"
         uniq_name = self._name(object_type=name)
 
@@ -276,7 +276,7 @@ class EksStack(AwsBasicStack):
             depends_on=[self.cluster],
         )
 
-    def _role_ebs_csi(self) -> type(IamRole):
+    def _role_ebs_csi(self) -> IamRole:
         # TODO: replace with the managed AmazonEBSCSIDriverPolicy
         inline_policy = json.dumps(
             {
@@ -373,7 +373,7 @@ class EksStack(AwsBasicStack):
 
         return eks_node_groups
 
-    def _eks_kubectl_sso_developers_access_policy(self) -> type(IamPolicy):
+    def _eks_kubectl_sso_developers_access_policy(self) -> IamPolicy:
         name = self._name(object_type="kubectl-sso-policy")
 
         return IamPolicy(
@@ -402,7 +402,7 @@ class EksStack(AwsBasicStack):
             provider=self.aws_provider,
         )
 
-    def _eks_kubectl_sso_developers_access_role(self) -> type(IamRole):
+    def _eks_kubectl_sso_developers_access_role(self) -> IamRole:
         name = self.globals.eks_kubectl_sso_role
 
         return IamRole(
@@ -461,7 +461,7 @@ class EksStack(AwsBasicStack):
 
     def _eks_kubectl_sso_developers_access_role_policy_attachment(
         self,
-    ) -> type(IamUserPolicyAttachment):
+    ) -> IamRolePolicyAttachment:
         name = self._name(object_type="kubectl-sso-role-policy-attachment")
 
         return IamRolePolicyAttachment(
