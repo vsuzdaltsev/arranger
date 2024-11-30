@@ -3,7 +3,7 @@
 from abc import ABC
 import ipaddress
 import re
-from typing import Any, Callable, Dict
+from typing import Any, Callable, Dict, List
 
 
 class NotIPv4Error(Exception):
@@ -92,6 +92,12 @@ class ArrangerMixin(ABC):
     def where_kubeconfig(self) -> str:
         return f"{self.cli_container_root}/{self.tenant}_kube_config.yaml"
 
+    @property
+    def hosted_zone_domain_name(self) -> str:
+        from arranger_conf.arranger_conf import ArrangerConf
+
+        return ArrangerConf.TENANTS[self.tenant]["domain"]
+
 
 class BySubEnvironment(ArrangerMixin):
     def __init__(self, sub_environment: str, **kwargs: Dict[str, Any]):
@@ -138,6 +144,12 @@ class BySubEnvironment(ArrangerMixin):
                 f"Can't find cluster name alias for '{self.sub_environment}'."
             )
             raise ValueError(err_msg) from err
+
+    @property
+    def all_environments(self) -> List[str]:
+        from arranger_conf.arranger_cdk8s_conf import K8sConf
+
+        return [e.lower() for e in K8sConf.ALL_ENVIRONMENTS]
 
 
 class ByTenant(ArrangerMixin):

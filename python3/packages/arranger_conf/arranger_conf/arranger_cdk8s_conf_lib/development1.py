@@ -26,6 +26,9 @@ class Development1(BasicConf):
         and name in ["httpbin"]
     }
 
+    class Gateway(BasicService):
+        pass
+
     class Httpbin(BasicService):
         REPLICAS = 1
         IMAGE = "httpbin"
