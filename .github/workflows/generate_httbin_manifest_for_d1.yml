@@ -33,3 +33,4 @@ jobs:
         run: |
           docker compose up -d
           docker exec arranger /bin/bash -c "pipenv run inv k8s.arranger-app.generate --environment d1 --services httpbin | yq e"
+          docker exec arranger /bin/bash -c "pipenv run inv spec.python"
