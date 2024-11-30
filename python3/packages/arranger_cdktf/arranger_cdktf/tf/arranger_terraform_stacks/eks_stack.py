@@ -26,9 +26,6 @@ from arranger_cdktf.imports.aws.iam_role import (
 from arranger_cdktf.imports.aws.iam_role_policy_attachment import (
     IamRolePolicyAttachment,
 )
-from arranger_cdktf.imports.aws.iam_user_policy_attachment import (
-    IamUserPolicyAttachment,
-)
 from arranger_cdktf.imports.external import DataExternal
 
 from arranger_conf.arranger_conf import ArrangerConf
