@@ -147,7 +147,7 @@ class VpcStack(AwsBasicStack):
         )
 
     def _eks_subnet1_route_table(self) -> AwsRouteTable:
-        name = self._name(object_type=f"eks-subnet1-rt")
+        name = self._name(object_type="eks-subnet1-rt")
 
         return AwsRouteTable(
             scope=self,
@@ -193,7 +193,7 @@ class VpcStack(AwsBasicStack):
         )
 
     def _eks_subnet2_route_table(self) -> AwsRouteTable:
-        name = self._name(object_type=f"eks-subnet2-rt")
+        name = self._name(object_type="eks-subnet2-rt")
 
         return AwsRouteTable(
             scope=self,
@@ -239,7 +239,7 @@ class VpcStack(AwsBasicStack):
         )
 
     def _eks_subnet3_route_table(self) -> AwsRouteTable:
-        name = self._name(object_type=f"eks-subnet3-rt")
+        name = self._name(object_type="eks-subnet3-rt")
 
         return AwsRouteTable(
             scope=self,
@@ -285,7 +285,7 @@ class VpcStack(AwsBasicStack):
         )
 
     def _eks_subnet4_route_table(self) -> AwsRouteTable:
-        name = self._name(object_type=f"eks-subnet4-rt")
+        name = self._name(object_type="eks-subnet4-rt")
 
         return AwsRouteTable(
             scope=self,
