@@ -1,1 +1,1 @@
-recursive-include eusy_cdk8s/imports *
+recursive-include arranger_cdk8s/imports *
