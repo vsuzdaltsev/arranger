@@ -46,3 +46,6 @@ class Development1(BasicConf):
             return {
                 "ENV_NAME": cg.environment,
             }
+
+    class Namespace(BasicService):
+        pass

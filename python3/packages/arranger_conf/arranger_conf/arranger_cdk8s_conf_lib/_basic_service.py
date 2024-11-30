@@ -59,6 +59,11 @@ class BasicService:
                 "repos": [],
                 "labels": labels(service_type="arranger_app"),
             },
+            "namespace": {
+                "class_name": "Namespace",
+                "repos": [],
+                "labels": labels(service_type="arranger_app"),
+            },
         }
 
     RESOURCES = {
