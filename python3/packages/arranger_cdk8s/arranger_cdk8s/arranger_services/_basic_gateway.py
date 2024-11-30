@@ -34,7 +34,7 @@ class BasicGateway(Construct):
         self.config = config
         self.kwargs = kwargs
         self.environment = self.kwargs.get("environment")
-        self.globals = Cdk8sGlobals(sub_environment=self.environment, config=config)
+        self.globals = Cdk8sGlobals(environment=self.environment, config=config)
 
     def _generate_gateway(
         self,
