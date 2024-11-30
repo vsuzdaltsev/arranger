@@ -35,7 +35,7 @@ Private cloud automation
 
 ## Documentation
 
-The documentation is located in [Arrenger](doc/arranger) folder.
+The documentation is located in [Arranger](doc/arranger) folder.
 
 Read [Prepare Environment](doc/arranger/PREPARE_ENVIRONMENT.md) section for a quick start.
 

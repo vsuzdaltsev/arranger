@@ -3,7 +3,7 @@
 from abc import ABC
 import ipaddress
 import re
-from typing import Callable, Dict
+from typing import Any, Callable, Dict
 
 
 class NotIPv4Error(Exception):
@@ -94,7 +94,7 @@ class ArrangerMixin(ABC):
 
 
 class BySubEnvironment(ArrangerMixin):
-    def __init__(self, sub_environment: str, **kwargs: Dict):
+    def __init__(self, sub_environment: str, **kwargs: Dict[str, Any]):
         from arranger_automation.log import Log
 
         self.log = Log().logger(desc=self.__class__.__name__)
@@ -141,7 +141,7 @@ class BySubEnvironment(ArrangerMixin):
 
 
 class ByTenant(ArrangerMixin):
-    def __init__(self, tenant: str, **kwargs: Dict):
+    def __init__(self, tenant: str, **kwargs: Dict[str, Any]):
         from arranger_automation.log import Log
 
         self.log = Log().logger(desc=self.__class__.__name__)
