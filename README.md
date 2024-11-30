@@ -1,39 +1,48 @@
-<h1 align="center">Arranger</h1>
-<h3 align="center">The CDKTF & CDK8S Well-Architected Framework</h3>
+# Arranger
+
+[![Open Source](https://img.shields.io/badge/Open-Source-brightgreen)](https://opensource.org/)
+![Active](http://img.shields.io/badge/Status-Active-green.svg)
+[![GitHub Commit](https://img.shields.io/github/commit-activity/m/vsuzdaltsev/arranger/main)](https://github.com/vsuzdaltsev/arranger) 
+
+
+## The IaC Well-Architected Framework
 
 <p>
-<strong>Arranger</strong> is designed to address the common challenges faced by developers using the Cloud Development Kit for Terraform/AWS/K8s, providing a seamless experience that truly embodies IaaC as it should be prepared.
+<strong>Arranger</strong> is designed to address the common challenges faced by developers using the Cloud Development Kit for Terraform/AWS/K8s, providing a seamless experience that truly embodies IaC as it should be prepared.
 </p>
 
-<h2>Key Features</h2>
+## Scenario Examples
 
-<ul>  
-  <li><strong>Simplified Code Organization:</strong> One of the biggest hurdles with CDKTF is understanding how to organize code effectively. Arranger provides clear guidelines and best practices for structuring your CDKTF code into logical packages, making it easier to manage and scale your projects.</li>
+* [**Run Application on AWS**](examples/aws/eks-demo-application.md)  
+Use Arranger to build and deploy an infrastructure on AWS
+
+* [**Automating Bare Metal Cloud**](doc/arranger)  
+Private cloud automation
+
+## Key Features
+
+<ul>
+  <li><strong>Everything as a CLI:</strong>
+    We believe that every action performed on the infrastructure should have its own dedicated CLI command and corresponding code representation.
+  </li>
+
+  <li><strong>Simplified Code Organization:</strong> Arranger provides clear guidelines and best practices for structuring your CDKTF code into logical packages, making it easier to manage and scale your projects.</li>
   
-  <li><strong>Effortless Multi-Environment Management:</strong> Managing multiple environments can be daunting, but our framework simplifies this process. With CDKTF stacks, you can easily define and manage different environments, such as development, staging, and production, ensuring consistency and reducing the risk of errors.</li>
+  <li><strong>Effortless Multi-Environment Management:</strong> With CDKTF stacks, you can easily define and manage different environments, such as development, staging, and production, ensuring consistency and reducing the risk of errors.</li>
   
-  <li><strong>Global Data Accessibility:</strong> Our framework addresses the challenge of working with data that needs to be accessible across multiple stacks. By leveraging Python’s object-oriented features, you can create a centralized data management system that ensures all stacks have access to the necessary information without redundancy.</li>
-  
-  <li><strong>Beyond Git-Commited Configurations:</strong> Arranger offers an object-oriented representation of your infrastructure, utilizing Python’s powerful features like inheritance and polymorphism. This approach not only enhances maintainability but also allows for the creation of reusable components, simplifying complex configurations.</li>
-  
-<li><strong>Comprehensive Toolkit and CLI:</strong>
-    <ul>
-      <li>A toolkit designed for managing complex multitenant infrastructure described as an object model using Python.</li>
-      <li>Includes a Dockerized environment with most necessary tools for development and testing.</li>
-      <li>Utilizes the PyInvoke library to create a CLI interface, enabling efficient management of shell-oriented subprocesses and organizing executable Python code into tasks.</li>
-      <li>Employs CDKTF and CDK8s for creating and managing infrastructure, in conjunction with the SDK.</li>
-      <li>Docker image is intended for use in both CI tools and local development, facilitating a consistent environment across different stages of the development lifecycle.</li>
-    </ul>
-    </li>
+  <li><strong>Global Data Accessibility:</strong> By leveraging object-oriented features, you can have a centralized data management system that ensures all stacks have access to the necessary information without redundancy.</li>
 </ul>
 
+## Documentation
 
-[FAQ](doc/arranger/FAQ.md)
+The documentation is located in [Arrenger](doc/arranger) folder.
 
-[Structure](doc/arranger/STRUCTURE.md)
+Read [Prepare Environment](doc/arranger/PREPARE_ENVIRONMENT.md) section for a quick start.
 
-[How to start](doc/arranger/PREPARE_ENVIRONMENT.md)
+In order to create your first Infrastructure stack with Arranger and CDKTF read the [How To](doc/arranger/HOW_TO_CREATE_A_NEW_STACK.md)
 
-[How to create a new Infrastructure Stack using CDKTF and Arranger](doc/arranger/HOW_TO_CREATE_A_NEW_STACK.md)
+## Contributing
 
-[Authorization](doc/arranger/AUTHORIZATION.md)
+Contributions are welcome and always appreciated!
+
+To begin working on an issue, simply leave a comment indicating that you're taking it on. There's no need to be officially assigned to the issue before you start.
