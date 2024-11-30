@@ -13,7 +13,7 @@
 
 ## Scenario Examples
 
-* [**Build and Run Application on AWS**](doc/arranger)  
+* [**Build and Run Application on AWS**](examples/aws/eks-demo-application.md)  
 Use Arranger to build and deploy an infrastructure on AWS
 
 * [**Automating Bare Metal Cloud**](doc/arranger)  
