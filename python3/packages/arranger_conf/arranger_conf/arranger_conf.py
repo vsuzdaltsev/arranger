@@ -14,7 +14,7 @@ class ArrangerConf:
             "aws_profile": "development1",
             "context": "",
             "description": "Development account #1.",
-            "sub_environments": [f"d{i}" for i in range(1, 20)],
+            "environments": [f"d{i}" for i in range(1, 20)],
             "domain": "development1.io",
             "cloud_attributes": {
                 "cloud": "aws",

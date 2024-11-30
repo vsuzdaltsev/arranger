@@ -136,9 +136,9 @@ def generate_k8s_manifests(
     from arranger_conf.arranger_cdk8s_conf_lib._basic_service import BasicService
 
     def _g():
-        from arranger_globals.basic_arranger_globals import BySubEnvironment
+        from arranger_globals.basic_arranger_globals import ByEnvironment
 
-        return BySubEnvironment(environment=environment)
+        return ByEnvironment(environment=environment)
 
     DONT_ADD_OVERRIDE_IMAGE_TAG_FOR = [
         # f"public.ecr.aws/docker/library/postgres:alpine{ArrangerConf.DEFAULT_ALPINE_IMAGE}",

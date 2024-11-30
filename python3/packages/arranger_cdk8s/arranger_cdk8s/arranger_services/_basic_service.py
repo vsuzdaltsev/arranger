@@ -59,7 +59,7 @@ class BasicService(Construct, BasicMixin):
         self.config = config
         self.kwargs = kwargs
         self.environment = self.kwargs.get("environment")
-        self.globals = Cdk8sGlobals(sub_environment=self.environment, config=config)
+        self.globals = Cdk8sGlobals(environment=self.environment, config=config)
         self.tf_globals = self._tf_globals()
 
     @property
@@ -146,7 +146,7 @@ class BasicService(Construct, BasicMixin):
         ]
 
     @staticmethod
-    def _resource_requirements(memory: str = "400Mi") -> type(k8s.ResourceRequirements):
+    def _resource_requirements(memory: str = "400Mi") -> k8s.ResourceRequirements:
         return k8s.ResourceRequirements(
             limits={"memory": k8s.Quantity.from_string(memory)}
         )
@@ -157,7 +157,7 @@ class BasicService(Construct, BasicMixin):
     def _custom_resource_requirements(
         self,
         resources: Dict = None,
-    ) -> Union[type(k8s.ResourceRequirements), None]:
+    ) -> Union[k8s.ResourceRequirements, None]:
         if not resources:
             if not self.config.RESOURCES:
                 return None
@@ -202,7 +202,7 @@ class BasicService(Construct, BasicMixin):
 
     def _default_limit_range(
         self, namespace_name: Union[str, None] = None
-    ) -> type(k8s.LimitRange):
+    ) -> k8s.LimitRange:
         if not namespace_name:
             namespace_name = self.environment
 
@@ -230,7 +230,7 @@ class BasicService(Construct, BasicMixin):
 
     def _generate_namespace(
         self, name: Union[str, None] = None, istio_injection: str = "enabled"
-    ) -> type(k8s.Namespace):
+    ) -> k8s.Namespace:
         if not name:
             name = self.environment
 
@@ -256,15 +256,15 @@ class BasicService(Construct, BasicMixin):
                 return cluster_name
 
             if cluster_conf.get(
-                "sub_environments"
-            ) and self.environment in cluster_conf.get("sub_environments"):
+                "environments"
+            ) and self.environment in cluster_conf.get("environments"):
                 return cluster_name
 
         return None
 
     @property
     def default_hosts(self):
-        if self.globals.is_sub_environment:  # FIXME: add attribute
+        if self.globals.is_environment:
             return self._service_hosts(prefix=f"{self.environment}.")
 
         return self.config.VIRTUAL_HOSTS
@@ -273,7 +273,7 @@ class BasicService(Construct, BasicMixin):
         return [f"{prefix}{host}" for host in self.config.VIRTUAL_HOSTS]
 
     @property
-    def environment_variables(self) -> Union[List[type(k8s)], None]:
+    def environment_variables(self) -> Union[List[k8s], None]:
         # TODO: please check code sanity.
         if callable(getattr(self.config, "ENVIRONMENT_VARIABLES", None)):
             env_vars = []

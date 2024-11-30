@@ -38,23 +38,23 @@ class TestCdktfGlobals:
         assert subnet2 == "10.62.2.0/24"
         assert subnet3 == "10.62.3.0/24"
 
-    def test_sub_environments_when_they_exist(
+    def test_environments_when_they_exist(
         self,
         globals_for_cloud_tenant,
         cloud_tenant,
     ):
-        assert globals_for_cloud_tenant.sub_environments == ArrangerConf.TENANTS.get(
+        assert globals_for_cloud_tenant.environments == ArrangerConf.TENANTS.get(
             cloud_tenant
-        ).get("sub_environments")
+        ).get("environments")
 
-    def test_sub_environments_when_they_dont_exist(
+    def test_environments_when_they_dont_exist(
         self,
         globals_for_local_tenant,
         local_tenant,
     ):
         assert (
-            globals_for_local_tenant.sub_environments
-            == ArrangerConf.TENANTS.get(local_tenant).get("sub_environments")
+            globals_for_local_tenant.environments
+            == ArrangerConf.TENANTS.get(local_tenant).get("environments")
             is None
         )
 

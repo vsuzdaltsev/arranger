@@ -3,7 +3,7 @@
 from abc import ABC
 import ipaddress
 import re
-from typing import Any, Callable, Dict, List
+from typing import Any, Callable, Dict, List, Union
 
 
 class NotIPv4Error(Exception):
@@ -99,12 +99,12 @@ class ArrangerMixin(ABC):
         return ArrangerConf.TENANTS[self.tenant]["domain"]
 
 
-class BySubEnvironment(ArrangerMixin):
-    def __init__(self, sub_environment: str, **kwargs: Dict[str, Any]):
+class ByEnvironment(ArrangerMixin):
+    def __init__(self, environment: str, **kwargs: Dict[str, Any]):
         from arranger_automation.log import Log
 
         self.log = Log().logger(desc=self.__class__.__name__)
-        self.sub_environment = sub_environment
+        self.environment = environment
         self.kwargs = kwargs
 
         if kwargs.get("config"):
@@ -115,19 +115,17 @@ class BySubEnvironment(ArrangerMixin):
         from arranger_conf import ArrangerConf
 
         for cluster_name, cluster_conf in ArrangerConf.TENANTS.items():
-            if self.sub_environment == cluster_name:
+            if self.environment == cluster_name:
                 return cluster_name
 
-            sub_envs = cluster_conf.get("sub_environments")
-            if sub_envs and self.sub_environment in sub_envs:
+            envs = cluster_conf.get("environments")
+            if envs and self.environment in envs:
                 return cluster_name
 
         def tools_envs_from_all_environments():
             from arranger_conf import K8sConf
 
-            if self.sub_environment in (
-                env.lower() for env in K8sConf.ALL_ENVIRONMENTS
-            ):
+            if self.environment in (env.lower() for env in K8sConf.ALL_ENVIRONMENTS):
                 return (
                     getattr(K8sConf, self.tenant.capitalize())
                     .__mro__[1]
@@ -139,9 +137,9 @@ class BySubEnvironment(ArrangerMixin):
             return tools_envs_from_all_environments()
         except BaseException as err:
             err_msg = (
-                f"Environment '{self.sub_environment}' isn't a part of existing clusters. "
+                f"Environment '{self.environment}' isn't a part of existing clusters. "
                 f"Valid value is one of {self.all_environments}. "
-                f"Can't find cluster name alias for '{self.sub_environment}'."
+                f"Can't find cluster name alias for '{self.environment}'."
             )
             raise ValueError(err_msg) from err
 
@@ -150,6 +148,21 @@ class BySubEnvironment(ArrangerMixin):
         from arranger_conf.arranger_cdk8s_conf import K8sConf
 
         return [e.lower() for e in K8sConf.ALL_ENVIRONMENTS]
+
+    @property
+    def is_environment(self) -> Union[bool, None]:
+        from arranger_conf.arranger_conf import ArrangerConf
+
+        for cluster_name, cluster_conf in ArrangerConf.TENANTS.items():
+            if self.environment == cluster_name:
+                return False
+
+            if cluster_conf.get(
+                "environments"
+            ) and self.environment in cluster_conf.get("environments"):
+                return True
+
+        return None
 
 
 class ByTenant(ArrangerMixin):
