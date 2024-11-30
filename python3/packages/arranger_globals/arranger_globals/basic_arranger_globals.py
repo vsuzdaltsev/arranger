@@ -92,6 +92,12 @@ class ArrangerMixin(ABC):
     def where_kubeconfig(self) -> str:
         return f"{self.cli_container_root}/{self.tenant}_kube_config.yaml"
 
+    @property
+    def hosted_zone_domain_name(self) -> str:
+        from arranger_conf.arranger_conf import ArrangerConf
+
+        return ArrangerConf.TENANTS[self.tenant]["domain"]
+
 
 class BySubEnvironment(ArrangerMixin):
     def __init__(self, sub_environment: str, **kwargs: Dict[str, Any]):

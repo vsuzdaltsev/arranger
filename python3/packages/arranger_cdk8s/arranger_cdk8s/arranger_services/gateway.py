@@ -13,11 +13,7 @@ class Gateway(BasicGateway):
         self.kwargs = kwargs
         self.environment = self.kwargs.get("environment")
 
-        hosts = (
-            [f"*.{self.environment}.{self.globals.hosted_zone_domain_name}"]
-            if self.globals.is_sub_environment
-            else [f"*.{self.globals.hosted_zone_domain_name}"]
-        )
+        hosts = [f"*.{self.environment}.{self.globals.hosted_zone_domain_name}"]
 
         self._generate_gateway(
             hosts=hosts,
