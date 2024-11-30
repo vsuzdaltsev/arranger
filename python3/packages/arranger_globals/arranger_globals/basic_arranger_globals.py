@@ -3,7 +3,7 @@
 from abc import ABC
 import ipaddress
 import re
-from typing import Any, Callable, Dict
+from typing import Any, Callable, Dict, List
 
 
 class NotIPv4Error(Exception):
@@ -144,6 +144,12 @@ class BySubEnvironment(ArrangerMixin):
                 f"Can't find cluster name alias for '{self.sub_environment}'."
             )
             raise ValueError(err_msg) from err
+
+    @property
+    def all_environments(self) -> List[str]:
+        from arranger_conf.arranger_cdk8s_conf import K8sConf
+
+        return [e.lower() for e in K8sConf.ALL_ENVIRONMENTS]
 
 
 class ByTenant(ArrangerMixin):
