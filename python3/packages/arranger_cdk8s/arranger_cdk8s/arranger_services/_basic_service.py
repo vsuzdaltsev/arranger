@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Union
 from cdk8s import JsonPatch, ApiObjectMetadata
 from constructs import Construct
 
-from arranger_conf import ArrangerConf
+from arranger_conf import ArrangerConf, K8sConf
 from arranger_globals.cdk8s_globals import Cdk8sGlobals
 
 from arranger_cdk8s.imports.com.coreos.monitoring import (
@@ -52,7 +52,14 @@ class BasicService(Construct, BasicMixin):
     DEFAULT_MEMORY_REQUEST = "50Mi"
     DEFAULT_CPU_REQUEST = "30m"
 
-    def __init__(self, scope: Construct, id: str, *, config, kwargs=None):
+    def __init__(
+        self,
+        scope: Construct,
+        id: str,
+        *,
+        config: K8sConf,
+        kwargs: Dict[str, str] = None,
+    ):
         super().__init__(scope, id)
 
         self.scope = scope

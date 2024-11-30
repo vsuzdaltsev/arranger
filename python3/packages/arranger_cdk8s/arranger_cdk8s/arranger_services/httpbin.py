@@ -8,9 +8,8 @@ Source code:
 from typing import Dict
 
 from constructs import Construct
-from arranger_conf import K8sConf
 
-from ._basic_service import BasicService
+from ._basic_service import BasicService, K8sConf
 
 
 class Httpbin(BasicService):

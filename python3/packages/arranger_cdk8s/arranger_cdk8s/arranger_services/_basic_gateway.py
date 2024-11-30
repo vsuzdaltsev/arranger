@@ -1,4 +1,4 @@
-from typing import NoReturn
+from typing import Dict, NoReturn
 
 from cdk8s import JsonPatch
 from constructs import Construct
@@ -14,11 +14,20 @@ from arranger_cdk8s.imports.networking.istio.io.gateway import (
     GatewaySpecServersPort as IstioGatewaySpecServersPort,
 )
 
+from arranger_conf import K8sConf
+
 
 class BasicGateway(Construct):
     """Generate all related K8s manifests for Istio Gateways."""
 
-    def __init__(self, scope: Construct, id: str, *, config, kwargs=None):
+    def __init__(
+        self,
+        scope: Construct,
+        id: str,
+        *,
+        config: K8sConf,
+        kwargs: Dict[str, str] = None
+    ):
         super().__init__(scope, id)
         from arranger_globals.cdk8s_globals import Cdk8sGlobals
 
@@ -33,7 +42,7 @@ class BasicGateway(Construct):
         selector="ingress",
         hosts=None,
         patches=None,
-    ) -> NoReturn:
+    ) -> IstioGateway:
         gateway = IstioGateway(
             self,
             name=name,
@@ -52,6 +61,8 @@ class BasicGateway(Construct):
         if patches:
             for patch in patches:
                 gateway.add_json_patch(patch)
+
+        return gateway
 
     @staticmethod
     def _add(route, value) -> JsonPatch:

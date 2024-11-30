@@ -1,12 +1,21 @@
+from typing import Dict
+
 from constructs import Construct
 
-from ._basic_gateway import BasicGateway
+from ._basic_gateway import BasicGateway, K8sConf
 
 
 class Gateway(BasicGateway):
     """Generate all related K8s manifests for Istio Gateways."""
 
-    def __init__(self, scope: Construct, id: str, *, config, kwargs=None):
+    def __init__(
+        self,
+        scope: Construct,
+        id: str,
+        *,
+        config: K8sConf,
+        kwargs: Dict[str, str] = None,
+    ):
         super().__init__(scope=scope, id=id, config=config, kwargs=kwargs)
 
         self.config = config
