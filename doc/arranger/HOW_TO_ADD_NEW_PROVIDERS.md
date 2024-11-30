@@ -1,12 +1,12 @@
 # How to Add a New Terraform Provider
 
-This example demonstrates how to add the **"hashicorp/local"** provider.
+This example demonstrates how to add Terraform **"hashicorp/local"** provider.
 
 ### Steps:
 
-1. In the Docker container create an empty `tmp` directory and run the following command inside:
+1. Create an empty `tmp` directory within the Docker container and run the following command:
    ```shell
-   cdktf init --providers "hashicorp/local" --providers-force-local --template python
+   $ cdktf init --providers "hashicorp/local" --providers-force-local --template python
    ```
 
    1. When prompted:
@@ -27,7 +27,7 @@ This example demonstrates how to add the **"hashicorp/local"** provider.
    cp -r imports/local ../python3/packages/sd_cdktf/sd_cdktf/imports
    ```
 3. Add the provider name to `python3/packages/arranger_cdktf/arranger_cdktf/imports/__init__.py`
-4. Return to the root of the project and run:
+4. Return back to the root directory of the project and run:
    ```shell
    $ inv python3.build-and-install -p arranger_cdktf
    ```
