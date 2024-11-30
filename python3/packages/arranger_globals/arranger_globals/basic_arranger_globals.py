@@ -3,7 +3,7 @@
 from abc import ABC
 import ipaddress
 import re
-from typing import Any, Callable, Dict, List
+from typing import Any, Callable, Dict, List, Union
 
 
 class NotIPv4Error(Exception):
@@ -148,6 +148,21 @@ class ByEnvironment(ArrangerMixin):
         from arranger_conf.arranger_cdk8s_conf import K8sConf
 
         return [e.lower() for e in K8sConf.ALL_ENVIRONMENTS]
+
+    @property
+    def is_environment(self) -> Union[bool, None]:
+        from arranger_conf.arranger_conf import ArrangerConf
+
+        for cluster_name, cluster_conf in ArrangerConf.TENANTS.items():
+            if self.environment == cluster_name:
+                return False
+
+            if cluster_conf.get(
+                "environments"
+            ) and self.environment in cluster_conf.get("environments"):
+                return True
+
+        return None
 
 
 class ByTenant(ArrangerMixin):

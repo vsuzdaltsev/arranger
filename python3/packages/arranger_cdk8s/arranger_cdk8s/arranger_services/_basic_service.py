@@ -264,7 +264,7 @@ class BasicService(Construct, BasicMixin):
 
     @property
     def default_hosts(self):
-        if self.globals.is_sub_environment:  # FIXME: add attribute
+        if self.globals.is_environment:
             return self._service_hosts(prefix=f"{self.environment}.")
 
         return self.config.VIRTUAL_HOSTS
