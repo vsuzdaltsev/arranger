@@ -4,7 +4,11 @@ from typing import Any, Dict, List, Union
 
 from constructs import Construct
 
-from arranger_globals.basic_arranger_globals import ByTenant, validate_subnets
+from arranger_globals.basic_arranger_globals import (
+    to_kebab,
+    ByTenant,
+    validate_subnets,
+)
 
 
 class CdktfGlobals(ByTenant):
@@ -12,8 +16,7 @@ class CdktfGlobals(ByTenant):
         return {
             "created_by": "cdktf",
             "caution": "do not modify manually",
-            # FIXME: add source
-            "code": "",
+            "code": "git@github.com:vsuzdaltsev/arranger.git",
             "tenant": self.tenant,
             "created_at": time.ctime(),
         }
@@ -25,10 +28,14 @@ class CdktfGlobals(ByTenant):
         return ArchiveProvider(scope=scope, id="archive")
 
     @property
-    def cloud(self) -> str:
+    def cloud(self) -> Union[str, None]:
         from arranger_conf import ArrangerConf
 
-        return ArrangerConf.TENANTS[self.tenant]["cloud_attributes"]["cloud"]
+        return (
+            ArrangerConf.TENANTS.get(self.tenant, {})
+            .get("cloud_attributes", {})
+            .get("cloud")
+        )
 
     @staticmethod
     def external_provider(scope: Construct) -> Any:
@@ -53,8 +60,89 @@ class CdktfGlobals(ByTenant):
             config_context=self.cluster_name,
         )
 
+    @property
+    def cluster_name(self) -> Union[str, None]:
+        from arranger_conf.arranger_conf import ArrangerConf
+
+        try:
+            return ArrangerConf.TENANTS[self.tenant]["cluster_name"]
+        except TypeError:
+            self.log.error(
+                f">> '{self.tenant}' doesn't contain 'cluster_name' attribute."
+            )
+
+    @property
+    def cluster_name_short(self) -> str:
+        return self.cluster_name.split("/")[-1]
+
     @staticmethod
-    def null_provider(scope: Any) -> Any:
+    def iam_assume_role_policy_custom(principal_services: Union[List[str], str]) -> str:
+        import json
+
+        return json.dumps(
+            {
+                "Version": "2012-10-17",
+                "Statement": {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": principal_services,
+                    },
+                    "Action": "sts:AssumeRole",
+                },
+            }
+        )
+
+    def eks_assume_role_policy(self) -> str:
+        return self.iam_assume_role_policy_custom(
+            ["ec2.amazonaws.com", "eks.amazonaws.com"]
+        )
+
+    def cluster_ebs_csi_role_name(self) -> str:
+        return f"eks-ebs-csi-management-role-{self.tenant}"
+
+    def iam_assume_role_policy_ebs_csi(self, eks_endpoint_id: str) -> str:
+        import json
+
+        oidc = f"oidc.eks.{self.aws_region}.amazonaws.com"
+        string_equals = {
+            f"{oidc}/id/{eks_endpoint_id}:aud": "sts.amazonaws.com",
+            f"{oidc}/id/{eks_endpoint_id}:sub": "system:serviceaccount:kube-system:ebs-csi-controller-sa",
+        }
+
+        return json.dumps(
+            {
+                "Version": "2012-10-17",
+                "Statement": {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Federated": f"arn:aws:iam::{self.aws_account_id}:oidc-provider/{oidc}/id/{eks_endpoint_id}",
+                    },
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {"StringEquals": string_equals},
+                },
+            }
+        )
+
+    def eks_get_node_groups_config(self) -> List[dict]:
+        default_configs = [
+            {
+                "node_group_name": "node-group-1",
+                "capacity_type": "SPOT",  # ON_DEMAND ?
+                "instance_types": ["t3.large"],
+                "autoscale_config": {"min_size": 3, "max_size": 8, "desired_size": 6},
+            }
+        ]
+        if not hasattr(self.config, "EKS_NODE_GROUPS_CONFIG"):
+            return default_configs
+
+        return self.config.EKS_NODE_GROUPS_CONFIG
+
+    @property
+    def eks_kubectl_sso_role(self) -> str:
+        return f"eks-kubectl-sso-role-{self.tenant}"
+
+    @staticmethod
+    def null_provider(scope: Construct) -> Any:
         from arranger_cdktf.imports.null import NullProvider
 
         return NullProvider(scope=scope, id="null-provider")
@@ -179,7 +267,15 @@ class CdktfGlobals(ByTenant):
 
         return registry.get(tenant)
 
-    def aws_backend(self, scope, region=None) -> Any:
+    @property
+    def _aws_backend_s3bucket_name(self) -> str:
+        from arranger_conf import ArrangerConf
+
+        return f"{to_kebab(ArrangerConf.PROJECT_NAME)[:5]}-arranger-tf-remote-states-{self.tenant}"[
+            :63
+        ]
+
+    def aws_backend(self, scope: Construct, region: Union[str, None] = None) -> Any:
         from cdktf import S3Backend
         from arranger_automation_aws.helpers import BackendHelperAws
 
@@ -200,9 +296,8 @@ class CdktfGlobals(ByTenant):
             profile=self.aws_profile,
             region=region,
         )
-        # FIXME: randomize name
-        bucket_name = f"arranger-terraform-remote-states-{self.tenant}"
-        BackendHelperAws.BUCKET_NAME = bucket_name
+
+        BackendHelperAws.BUCKET_NAME = self._aws_backend_s3bucket_name
         state_s3bucket = BackendHelperAws.create_bucket(
             profile=self.aws_profile, location_constraint=region
         )
@@ -234,7 +329,7 @@ class CdktfGlobals(ByTenant):
             max_retries=self.config.MAX_RETRIES,
         )
 
-    def global_automation(self, scope):
+    def global_automation(self, scope: Construct):
         from arranger_cdktf.imports.aws.provider import AwsProvider
 
         return AwsProvider(
@@ -262,10 +357,10 @@ class CdktfGlobals(ByTenant):
         return self.config.AWS_GLOBAL_REGION
 
     @property
-    def sub_environments(self) -> List[str]:
+    def sub_environments(self) -> Union[List[str], None]:
         from arranger_conf.arranger_conf import ArrangerConf
 
-        return ArrangerConf.TENANTS[self.tenant]["sub_environments"]
+        return ArrangerConf.TENANTS.get(self.tenant, {}).get("sub_environments")
 
     @staticmethod
     def run_cmd(cmds: List[str]):

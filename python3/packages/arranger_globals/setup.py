@@ -23,6 +23,6 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Operating System :: POSIX :: LINUX",
     ],
-    python_requires=">=3.11",
+    python_requires=">=3.12",
     install_requires=[],
 )

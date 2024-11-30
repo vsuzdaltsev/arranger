@@ -17,13 +17,14 @@
 
 ## Setup <div id='setup'/>
 
-1. Create Python virtual environment (where '3.11' is your python3 version, see Pipfile for the details):
+
+1. Create Python virtual environment (where '3.12' is your python3 version, see Pipfile for the details):
 
    ```shell
-   $ pyenv install 3.11
-   $ pyenv local 3.11
+   $ pyenv install 3.12
+   $ pyenv local 3.12
    $ eval "$(pyenv init --path)"
-   $ pipenv --python 3.11
+   $ pipenv --python 3.12
    ```
 
 2. Enter the virtual environment's context:
@@ -33,36 +34,27 @@
    ```
 
 3. Install pyInvoke and some related libs:
-
    ```shell
    $ pip install -r requirements.txt
    ```
-
 4. (**OPTIONAL**) Download all dependencies and install all arranger_automation packages (for some IDEs autocompletion
    to
    work
    primarily):
-
    ```shell
    $ pipenv sync
    $ pipenv sync -d
    $ inv python3.build-and-install
    ```
-
 5. List existing invoke tasks:
-
    ```shell
    $ inv -l
    ```
-
 6. Build container:
-
    ```shell
    $ inv local.container.build
    ```
-
 7. Run & enter container:
-
    ```shell
    $ inv local.container.run
    ```
@@ -94,4 +86,5 @@ only minor adjustments needed for Windows.
 ## Maintainers <div id='maintainers'/>
 
 * [iskander.ignatev@gmail.com](mailto:iskander.ignatev@gmail.com?subject=prepare-)
+* [polkovnikvasin@gmail.com](mailto:polkovnikvasin@gmail.com?subject=prepare-)
 * [vsevolod.suzdaltsev@gmail.com](mailto:vsevolod.suzdaltsev@gmail.com?subject=prepare-)

@@ -2,6 +2,7 @@
 
 from abc import ABC
 import ipaddress
+import re
 from typing import Callable, Dict
 
 
@@ -16,6 +17,13 @@ def validate_subnets(func: Callable) -> Callable:
         return ValidateSubnets(ranges=func(*args)).validate()
 
     return check
+
+
+def to_kebab(s):
+    s = s.replace("_", "-").replace(" ", "-")
+    s = re.sub(r"(?<!^)(?=[A-Z])", "-", s)
+
+    return s.lower()
 
 
 def validate_ipv4(func: Callable) -> Callable:
@@ -80,6 +88,10 @@ class ArrangerMixin(ABC):
 
         return ArrangerConf.TENANTS[self.tenant]["aws_account_id"]
 
+    @property
+    def where_kubeconfig(self) -> str:
+        return f"{self.cli_container_root}/{self.tenant}_kube_config.yaml"
+
 
 class BySubEnvironment(ArrangerMixin):
     def __init__(self, sub_environment: str, **kwargs: Dict):
@@ -91,6 +103,41 @@ class BySubEnvironment(ArrangerMixin):
 
         if kwargs.get("config"):
             self.config = kwargs.get("config")
+
+    @property
+    def tenant(self) -> str:
+        from arranger_conf import ArrangerConf
+
+        for cluster_name, cluster_conf in ArrangerConf.TENANTS.items():
+            if self.sub_environment == cluster_name:
+                return cluster_name
+
+            sub_envs = cluster_conf.get("sub_environments")
+            if sub_envs and self.sub_environment in sub_envs:
+                return cluster_name
+
+        def tools_envs_from_all_environments():
+            from arranger_conf import K8sConf
+
+            if self.sub_environment in (
+                env.lower() for env in K8sConf.ALL_ENVIRONMENTS
+            ):
+                return (
+                    getattr(K8sConf, self.tenant.capitalize())
+                    .__mro__[1]
+                    .__mro__[0]
+                    .__name__.lower()
+                )
+
+        try:
+            return tools_envs_from_all_environments()
+        except BaseException as err:
+            err_msg = (
+                f"Environment '{self.sub_environment}' isn't a part of existing clusters. "
+                f"Valid value is one of {self.all_environments}. "
+                f"Can't find cluster name alias for '{self.sub_environment}'."
+            )
+            raise ValueError(err_msg) from err
 
 
 class ByTenant(ArrangerMixin):

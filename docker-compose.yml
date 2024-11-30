@@ -13,6 +13,7 @@ services:
       - ./python3/packages/arranger_automation/arranger_automation:/opt/site-packages/arranger_automation
       - ./python3/packages/arranger_automation_aws/arranger_automation_aws:/opt/site-packages/arranger_automation_aws
       - ./python3/packages/arranger_cdktf/arranger_cdktf:/opt/site-packages/arranger_cdktf
+      - ./python3/packages/arranger_cdk8s/arranger_cdk8s:/opt/site-packages/arranger_cdk8s
       - ./python3/packages/arranger_conf/arranger_conf:/opt/site-packages/arranger_conf
       - ./python3/packages/arranger_globals/arranger_globals:/opt/site-packages/arranger_globals
       - ./templates/.zshrc:/root/.zshrc
@@ -35,11 +36,10 @@ services:
         HELM_VERSION: 3.16.2
         IAM_AUTH_VERSION: 0.6.27
         INSPEC_VERSION: 5.18.14
-        ISTIO_VERSION: 1.23.3
         KUBECTL_VERSION: 1.31.0
         PIPENV_PACKAGE_VERSION: 2024.4.0
         PYCALL_VERSION: 1.4.1
-        PYTHON_CUSTOM_VERSION: 3.11
+        PYTHON_CUSTOM_VERSION: 3.12
         PYTHON_SETUPTOOLS_VERSION: 75.3.0
         TERRAFORM_VERSION: 1.9.8
         # Choose the mirror that you find most comfortable to use

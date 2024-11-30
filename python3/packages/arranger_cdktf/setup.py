@@ -23,7 +23,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Operating System :: POSIX :: LINUX",
     ],
-    python_requires=">=3.11",
+    python_requires=">=3.12",
     include_package_data=True,
     install_requires=[
         "cdktf==0.20.2",

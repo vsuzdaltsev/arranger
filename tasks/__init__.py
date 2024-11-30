@@ -6,6 +6,7 @@ from invoke import Collection
 if not hasattr(inspect, "getargspec"):
     inspect.getargspec = inspect.getfullargspec
 
+from .k8s import update_kubeconfig_eks, generate_arranger_app
 from .local import (
     black,
     build_docker_compose,
@@ -49,9 +50,15 @@ cdk8s.add_collection(arranger_app)
 local.add_collection(container)
 
 ns.add_collection(cdktf)
+ns.add_collection(cdk8s)
 ns.add_collection(local)
 ns.add_collection(python3)
 ns.add_collection(spec)
+
+cdk8s.add_task(update_kubeconfig_eks)
+
+arranger_app.add_task(generate_arranger_app, "generate")
+
 
 container.add_task(build_docker_compose, "build")
 container.add_task(clean_in_docker, "clean_repo")
