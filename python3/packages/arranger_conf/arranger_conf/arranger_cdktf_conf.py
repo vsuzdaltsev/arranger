@@ -1,4 +1,4 @@
-from .basic_conf import BasicTfConf
+from .basic_cdktf_conf import BasicTfConf
 
 
 class TfConf:
