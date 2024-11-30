@@ -1,4 +1,4 @@
-"""Arranger kubernetes manifests generation libraries. Build script."""
+"""Arranger Kubernetes manifests generation libraries. Build script."""
 
 import setuptools
 
