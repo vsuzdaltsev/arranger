@@ -11,6 +11,7 @@ With this approach the application will have several layers of resources:
 * Elastic Container Registry
 * Istio service mesh
 * K8s manifests
+* CodeBuild projects to run automation tasks backed with Arranger
 
 ## AWS Resources Diagram
 
