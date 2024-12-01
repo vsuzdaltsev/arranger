@@ -2,6 +2,7 @@
 Practical example of a layered infrastructure setup.  
 With this approach the application will have several layers of resources:
 
+* IAM resources
 * VPC + Subnets + NAT GW + Internet GW + Route tables + Security Groups
 * Route53 zone + Records
 * ACM certificates
