@@ -4,6 +4,7 @@ With this approach the application will have several layers of resources:
 
 * VPC + Subnets + NAT GW + Internet GW + Route tables + Security Groups
 * Route53 zone + Records
+* ACM certificates
 * API Gateway
 * Elastic Kubernetes Service
 * Elastic Container Registry
