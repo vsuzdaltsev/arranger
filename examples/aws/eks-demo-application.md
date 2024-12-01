@@ -2,12 +2,13 @@
 Practical example of a layered infrastructure setup.  
 With this approach the application will have several layers of resources:
 
-* VPC
-* Subnet
-* Security Group
+* VPC + Subnets + NAT GW + Internet GW + Route tables
+* Security Groups
 * API Gateway
 * Elastic Kubernetes Service
-* Application Manifest
+* ECR
+* Istio service mesh
+* K8s manifests
 
 ## AWS Resources Diagram
 
