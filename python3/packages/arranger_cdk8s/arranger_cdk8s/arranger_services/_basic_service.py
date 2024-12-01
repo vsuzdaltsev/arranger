@@ -106,7 +106,7 @@ class BasicService(Construct, BasicMixin):
         return k8s.ConfigMap(
             scope=self,
             id=name,
-            metadata=k8s.ObjectMeta(name=name),
+            metadata=k8s.ObjectMeta(name=name, namespace=self.environment),
             data=variables,
         )
 
@@ -331,6 +331,7 @@ class BasicService(Construct, BasicMixin):
                 selector=k8s.LabelSelector(match_labels=self._deployment_label),
                 template=k8s.PodTemplateSpec(
                     metadata=k8s.ObjectMeta(
+                        namespace=self.environment,
                         labels={
                             **self._deployment_label,
                             **self._common_labels(resource_name=name),
@@ -389,6 +390,7 @@ class BasicService(Construct, BasicMixin):
             id=self.service_name + "-service",
             metadata=k8s.ObjectMeta(
                 name=self.service_name,
+                namespace=self.environment,
                 labels={"app": self.service_name, "service": self.service_name},
             ),
             spec=k8s.ServiceSpec(

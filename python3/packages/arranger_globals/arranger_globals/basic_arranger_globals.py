@@ -98,6 +98,10 @@ class ArrangerMixin(ABC):
 
         return ArrangerConf.TENANTS[self.tenant]["domain"]
 
+    @property
+    def kube_prometheus_stack_name(self) -> str:
+        return "kube-prometheus-stack"
+
 
 class ByEnvironment(ArrangerMixin):
     def __init__(self, environment: str, **kwargs: Dict[str, Any]):
