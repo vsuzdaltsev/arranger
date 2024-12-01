@@ -2,11 +2,11 @@
 Practical example of a layered infrastructure setup.  
 With this approach the application will have several layers of resources:
 
-* VPC + Subnets + NAT GW + Internet GW + Route tables
-* Security Groups
+* VPC + Subnets + NAT GW + Internet GW + Route tables + Security Groups
+* Route53 zone + Records
 * API Gateway
 * Elastic Kubernetes Service
-* ECR
+* Elastic Container Registry
 * Istio service mesh
 * K8s manifests
 
