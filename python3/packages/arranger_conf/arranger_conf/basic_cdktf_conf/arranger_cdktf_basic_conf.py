@@ -13,7 +13,7 @@ class BasicTfConf:
     DEFAULT_TIMEOUTS = {"create": "45m", "delete": "45m"}
     MAX_RETRIES = 100
     VALID_STACKS = {
-        "tf": {
+
             # "acm-stack": {
             #     "class_name": "AcmStack",
             #     "description": "AWS certificates.",
@@ -34,5 +34,5 @@ class BasicTfConf:
                 "description": "AWS EKS cluster.",
                 "depends_on": ["vpc-stack"],
             },
-        }
+
     }

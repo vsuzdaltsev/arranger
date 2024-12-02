@@ -6,15 +6,12 @@ from typing import Type
 from cdktf import App
 
 from arranger_automation.log import Log
-from arranger_cdktf.tf.arranger_terraform_stacks import *
+from arranger_cdktf.arranger_terraform_stacks import *
 from arranger_conf.arranger_cdktf_conf import TfConf
 
 
 TENANT = sys.argv[1]
 STACK = sys.argv[2]
-# FIXME: for now tf is the only project, the name is hard-coded
-PROJECT_NAME = "tf"
-
 
 if __name__ == "__main__":
     app = App(stack_traces=True)
@@ -30,7 +27,7 @@ if __name__ == "__main__":
                 f"Please ensure {env_config.__qualname__}.ALL_STACKS value contains '{STACK}'."
             )
 
-        default_class_name = env_config.VALID_STACKS[PROJECT_NAME][STACK]["class_name"]
+        default_class_name = env_config.VALID_STACKS[STACK]["class_name"]
 
         try:
             custom_class_name = f"{env_config.TENANT.capitalize()}{default_class_name}"

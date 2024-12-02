@@ -55,7 +55,6 @@ def template_env() -> Environment:
 def generate_cdktf_json(tenant: str, stack: str) -> None:
     """CDKTF json generator."""
     from .helper_functions import (
-        CURRENT_TF_PROJECT,
         VALID_TENANTS,
         VALID_EKS_STACKS,
         WHERE_CDKTF_WD,
@@ -75,7 +74,7 @@ def generate_cdktf_json(tenant: str, stack: str) -> None:
         )
 
     manifest = template.render(tenant=tenant, stack=stack)
-    rendered_manifest = f"{WHERE_CDKTF_WD}/{CURRENT_TF_PROJECT}/{CDKTF_CONFIG}"
+    rendered_manifest = f"{WHERE_CDKTF_WD}/{CDKTF_CONFIG}"
 
     with open(rendered_manifest, mode="w", encoding="utf-8") as service_manifest:
         service_manifest.write(manifest)
@@ -107,14 +106,12 @@ def infra_action(
     from arranger_conf.arranger_conf import ArrangerConf
 
     from .helper_functions import (
-        TERRAFORM_PROJECTS,
         validate_input,
         VALID_EKS_STACKS,
         WHERE_CDKTF_WD,
     )
 
     validate_input(name="stack", passed=stack, allowed=sorted(VALID_EKS_STACKS))
-    validate_input(name="project", allowed=TERRAFORM_PROJECTS, passed=project)
     validate_input(
         name="log_level",
         allowed=["trace", "debug", "info", "warn", "error", "off"],

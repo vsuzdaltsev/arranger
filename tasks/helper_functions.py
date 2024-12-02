@@ -9,7 +9,6 @@ from jinja2 import ChoiceLoader, Environment, FileSystemLoader
 import yaml
 
 # TODO: currently this is the only project, because of flat structure of TF stack libs
-CURRENT_TF_PROJECT = "tf"
 
 try:
     from arranger_conf import ArrangerConf
@@ -18,7 +17,7 @@ try:
 
     KUBERNETES_VERSION = ArrangerConf.CDK8S_KUBERNETES_VERSION
     VALID_TENANTS = ArrangerConf.TENANTS
-    VALID_EKS_STACKS = BasicTfConf.VALID_STACKS[CURRENT_TF_PROJECT]
+    VALID_EKS_STACKS = BasicTfConf.VALID_STACKS
     VALID_ENVIRONMENTS = sorted(env.lower() for env in K8sConf.ALL_ENVIRONMENTS)
 except BaseException as warn:
     msg = (
@@ -42,7 +41,6 @@ PYTHON3_PACKAGES = [
     pkg_home.split("/")[-1] for pkg_home in glob.glob("python3/packages/*")
 ]
 RENDERED_TEMPLATES = "rendered_templates"
-TERRAFORM_PROJECTS = [CURRENT_TF_PROJECT]
 TOGGLE = ("true", "false")
 WHERE_CDKTF_WD = "python3/scripts/arranger_cdktf"
 

@@ -2,13 +2,13 @@
 
 ## Create a Stack library:
 
-create corresponding stack library file [_demo_iam_user_stack.py](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/_demo_iam_user_stack.py)
+create corresponding stack library file [_demo_iam_user_stack.py](../../python3/packages/arranger_cdktf/arranger_cdktf/arranger_terraform_stacks/_demo_iam_user_stack.py)
 
 <br>
 
 ## Add the new module to the import section of the `arranger_cdktf` package:
 
-in [arranger_conf package init file](../../python3/packages/arranger_cdktf/arranger_cdktf/tf/arranger_terraform_stacks/__init__.py) add import line
+in [arranger_conf package init file](../../python3/packages/arranger_cdktf/arranger_cdktf/arranger_terraform_stacks/__init__.py) add import line
 
 ```python
 from ._demo_iam_user_stack.py import *
