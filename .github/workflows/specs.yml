@@ -34,5 +34,7 @@ jobs:
           docker compose up -d
           docker compose exec cli /bin/bash -c "pipenv run inv tf.list-stacks | jq"
           docker compose exec cli /bin/bash -c "pipenv run inv tf.list-tenants | jq"
+          docker compose exec cli /bin/bash -c "pipenv run inv k8s.list-services --environment d1 | jq"
           docker compose exec cli /bin/bash -c "pipenv run inv k8s.arranger-app.generate --environment d1 --services httpbin | yq e"
           docker compose exec cli /bin/bash -c "pipenv run inv spec.python"
+          
