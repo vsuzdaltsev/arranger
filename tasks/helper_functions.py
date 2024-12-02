@@ -8,7 +8,6 @@ from typing import Any, Iterable
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader
 import yaml
 
-# TODO: currently this is the only project, because of flat structure of TF stack libs
 
 try:
     from arranger_conf import ArrangerConf
@@ -35,7 +34,7 @@ with open("./docker-compose.yml", "r") as file:
     docker_compose_data = yaml.safe_load(file)
 
 CONTAINER_NAME = list(docker_compose_data["services"].keys())[0]
-DOCKER_COMPOSE = "docker-compose -f docker-compose.yml"
+DOCKER_COMPOSE = "docker compose -f docker-compose.yml"
 IN_DOCKER = f"{DOCKER_COMPOSE} exec -T {CONTAINER_NAME} pipenv run"
 PYTHON3_PACKAGES = [
     pkg_home.split("/")[-1] for pkg_home in glob.glob("python3/packages/*")
