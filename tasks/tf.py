@@ -206,23 +206,21 @@ def infra_diff(
     )
 
     if plan_path:
-        with ctx.cd(f"{WHERE_CDKTF_WD}/{project}/cdktf.out/stacks/{stack}"):
+        with ctx.cd(f"{WHERE_CDKTF_WD}/cdktf.out/stacks/{stack}"):
             ctx.run(f"terraform show -json plan > {plan_path}", pty=True)
 
 
 @task(post=[clean_up_cdktf_json])
-def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
+def infra_list(_ctx, with_descriptions="true", tenant=None):
     """>> Show valid Terraform stacks."""
     from arranger_conf.arranger_cdktf_conf import BasicTfConf
 
     from .helper_functions import (
-        TERRAFORM_PROJECTS,
         TOGGLE,
         validate_input,
         VALID_TENANTS,
     )
 
-    validate_input(name="project", passed=project, allowed=TERRAFORM_PROJECTS)
     validate_input(name="with_descriptions", passed=with_descriptions, allowed=TOGGLE)
 
     if tenant:
@@ -238,7 +236,7 @@ def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
 
             tenant_conf = getattr(TfConf, tenant_name.capitalize())
             return getattr(tenant_conf, "ALL_STACKS")
-        return list(BasicTfConf.VALID_STACKS[project].keys())
+        return list(BasicTfConf.VALID_STACKS.keys())
 
     def stacks(tenant_name):
         stack_names = all_stack_names(tenant_name=tenant_name)
@@ -246,7 +244,7 @@ def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
         if with_descriptions == "true":
             stack_names_with_desc = {}
 
-            for stack_name, metadata in BasicTfConf.VALID_STACKS[project].items():
+            for stack_name, metadata in BasicTfConf.VALID_STACKS.items():
                 if stack_name in stack_names:
                     stack_names_with_desc.update(
                         {
