@@ -12,6 +12,7 @@ from arranger_conf.arranger_conf import ArrangerConf
 
 # FIXME: check sanity
 
+
 def build_dockerfile() -> str:
     def _base_image():
         if os.getenv("BASE_IMAGE_OVERRIDE"):
@@ -185,9 +186,7 @@ class BasicBuildAndPushImageToEcrBack(BasicBuildAndPushImageToEcrMixin):
         from arranger_automation_aws.ecr.ecr_credentials import EcrAccessCredentials
 
         if not docker_credentials:
-            docker_credentials = EcrAccessCredentials(
-                tenant=self.tenant
-            )
+            docker_credentials = EcrAccessCredentials(tenant=self.tenant)
 
         self._create_temp_dir()
         self._create_dockerfile()
@@ -234,9 +233,7 @@ class BasicBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrMixin):
         from arranger_automation_aws.ecr.ecr_credentials import EcrAccessCredentials
 
         if not docker_credentials:
-            docker_credentials = [
-                EcrAccessCredentials(tenant=self.tenant)
-            ]
+            docker_credentials = [EcrAccessCredentials(tenant=self.tenant)]
 
         self._create_temp_dir()
         self._git_clone_checkout()
