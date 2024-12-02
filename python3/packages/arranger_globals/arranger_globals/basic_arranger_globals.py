@@ -149,7 +149,7 @@ class ByEnvironment(ArrangerMixin):
             err_msg = (
                 f"Environment '{self.environment}' isn't a part of existing clusters. "
                 f"Valid value is one of {self.all_environments}. "
-                f"Can't find cluster name alias for '{self.environment}'."
+                f"Can't find tenant for '{self.environment}'."
             )
             raise ValueError(err_msg) from err
 
