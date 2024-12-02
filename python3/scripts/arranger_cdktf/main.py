@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     env_config = getattr(TfConf, TENANT.capitalize())
 
-    def _class() -> Type:
+    def _tf_stack_class() -> Type:
         if STACK not in env_config.ALL_STACKS:
             raise ValueError(
                 f"Stacks suitable for '{TENANT}' cluster name alias "
@@ -44,5 +44,5 @@ if __name__ == "__main__":
 
             return globals()[default_class_name]
 
-    _class()(scope=app, ns=STACK, config=env_config)
+    _tf_stack_class()(scope=app, ns=STACK, config=env_config)
     app.synth()
