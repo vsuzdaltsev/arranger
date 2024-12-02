@@ -5,11 +5,7 @@ Source code:
     https://github.com
 """
 
-from typing import Dict
-
-from constructs import Construct
-
-from ._basic_service import BasicService, K8sConf
+from ._basic_service import BasicService, Construct, Dict, K8sConf
 
 
 class Httpbin(BasicService):

@@ -1,12 +1,16 @@
-from typing import Dict
+"""
+K8s objects generator for the Istio Gateway.
 
-from constructs import Construct
+Source code:
+    https://github.com
+"""
 
-from ._basic_gateway import BasicGateway, K8sConf
+from ._basic_gateway import BasicGateway
+from ._basic_service import Construct, Dict, K8sConf
 
 
 class Gateway(BasicGateway):
-    """Generate all related K8s manifests for Istio Gateways."""
+    """Generate all related K8s manifests for Istio Gateway."""
 
     def __init__(
         self,
