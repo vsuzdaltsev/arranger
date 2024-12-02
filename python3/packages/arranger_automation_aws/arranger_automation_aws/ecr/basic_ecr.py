@@ -131,9 +131,12 @@ class BasicEcr:
                     ">> The %s repository already exists.", self.repository_name
                 )
                 self._put_life_cycle_policy()
+
                 return False
+
             self._create_repository()
             self._put_life_cycle_policy()
+
             return True
         except BaseException as err:
             self.log.error(">> Couldn't prepare AWS ECR repo. Error: %s", err)
