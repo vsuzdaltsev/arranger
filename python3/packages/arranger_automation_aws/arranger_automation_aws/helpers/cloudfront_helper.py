@@ -5,7 +5,7 @@ from arranger_automation_aws.client import AwsClient
 
 
 class CloudFrontHelper(BasicAwsResource):
-    def __init__(self, boto_client: type(AwsClient)):
+    def __init__(self, boto_client: AwsClient):
         super().__init__(boto_client=boto_client)
         self._distributions = self._get_distributions()
 
