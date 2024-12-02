@@ -32,5 +32,7 @@ jobs:
       - name: Run Pytest
         run: |
           docker compose up -d
+          docker exec arranger /bin/bash -c "pipenv run inv tf.list-stacks | jq"
+          docker exec arranger /bin/bash -c "pipenv run inv tf.list-tenants | jq"
           docker exec arranger /bin/bash -c "pipenv run inv k8s.arranger-app.generate --environment d1 --services httpbin | yq e"
           docker exec arranger /bin/bash -c "pipenv run inv spec.python"
