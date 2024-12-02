@@ -3,7 +3,7 @@ from arranger_automation_aws.basic_resource import BasicAwsResource
 
 
 class GlobalAcceleratorVpnHelper(BasicAwsResource):
-    def __init__(self, boto_client: type(AwsClient)):
+    def __init__(self, boto_client: AwsClient):
         super().__init__(boto_client=boto_client)
         self.all_lbs = self.all_load_balancers()
 
