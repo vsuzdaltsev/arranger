@@ -16,7 +16,7 @@ on:
       - completed
 
 jobs:
-  pytest:
+  specs:
     runs-on: ubuntu-latest
 
     permissions:
