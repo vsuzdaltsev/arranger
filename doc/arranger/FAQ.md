@@ -80,7 +80,7 @@ root@cli# inv tf.list-tenants --verbose true | jq
 
 <br>
 
-### How to generate Terraform code?
+### How to generate Terraform code? Where I can see the resulting Terraform code?
 
 1. Run `tf.diff`
    ```shell
