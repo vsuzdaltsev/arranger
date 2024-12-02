@@ -43,9 +43,7 @@ class BasicCodebuild:
         return sorted(projects)
 
     @classmethod
-    def builds_for_project(
-        cls, boto_client: AwsClient, project_name: str
-    ) -> List[str]:
+    def builds_for_project(cls, boto_client: AwsClient, project_name: str) -> List[str]:
         builds = []
 
         for page in boto_client.get_paginator("list_builds_for_project").paginate(

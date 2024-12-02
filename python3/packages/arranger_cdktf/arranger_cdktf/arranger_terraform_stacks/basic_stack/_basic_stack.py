@@ -3,15 +3,12 @@ from typing import Any, List
 from cdktf import S3Backend, TerraformResourceLifecycle, TerraformStack
 from constructs import Construct
 
-
 from arranger_automation.log import Log
-
 from arranger_cdktf.imports.aws.data_aws_subnets import (
     DataAwsSubnets,
     DataAwsSubnetsFilter,
 )
 from arranger_cdktf.imports.aws.data_aws_vpc import DataAwsVpc, DataAwsVpcFilter
-
 from arranger_conf.arranger_cdktf_conf import TfConf
 from arranger_globals.cdktf_globals import CdktfGlobals
 
