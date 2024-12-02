@@ -46,4 +46,5 @@ In order to create your first Infrastructure stack with Arranger and CDKTF read 
 Contributions are welcome and always appreciated!
 
 To begin working on an issue, simply leave a comment indicating that you're taking it on. There's no need to be officially assigned to the issue before you start.
+
 If you have any questions regarding Arranger, please feel free to contact [maintainers](doc/arranger/MAINTAINERS.md).
