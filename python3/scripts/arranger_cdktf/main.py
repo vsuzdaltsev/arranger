@@ -22,7 +22,7 @@ if __name__ == "__main__":
     def _tf_stack_class() -> Type:
         if STACK not in env_config.ALL_STACKS:
             raise ValueError(
-                f"Stacks suitable for '{TENANT}' cluster name alias "
+                f"Stacks suitable for '{TENANT}' tenant "
                 f"are listed within the '{TENANT}' config. "
                 f"Please ensure {env_config.__qualname__}.ALL_STACKS value contains '{STACK}'."
             )
