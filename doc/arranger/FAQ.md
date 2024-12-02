@@ -11,16 +11,16 @@
 ### Entities
 
 * What is `tenant`?
-* What is `environment`?
 * What is `cluster`?
+* What is `environment`?
 * What's the difference between them?
 
 - `tenant` is a set of isolated Infrastructure resources. Usually (but not necessarily) tenant refers to a separate
   Cloud account. Each `tenant` operates independently, usually within a shared
   infrastructure, but their data and applications remain isolated from those of other `tenants`. Prod isolated from
   Staging, Dev etc. These are examples of `tenants`. List of available tenants can be found [in the main configuration file](../..//python3/packages/arranger_conf/arranger_conf/arranger_conf.py).
-- `environment` is a namespace within K8s cluster.
 - `cluster` is an instance of K8s cluster for specific `tenant`.
+- `environment` is a namespace within K8s cluster. For instance, `development1` tenant has 19 environments (d1-d20) within the cluster.
 
 In most cases, the `environment` has the same name as the appropriate `tenant` for the cases when we have only one
 instance of an application
