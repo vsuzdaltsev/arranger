@@ -70,7 +70,7 @@ class AwsClient:
     def _setup_client(self) -> client:
         """Setup boto3 client."""
 
-        self._logger.debug(">> Creating %s client.", self._name)
+        self._logger.debug(">> Create %s client.", self._name)
         if self._aws_profile:
             return session.Session(profile_name=self._aws_profile).client(
                 service_name=self._name, region_name=self._region, config=self._config
