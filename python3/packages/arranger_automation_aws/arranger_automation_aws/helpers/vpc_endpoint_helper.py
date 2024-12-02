@@ -5,7 +5,7 @@ from boto3 import session as ses
 
 
 class VpcEndpointHelper:
-    def __init__(self, aws_profile, aws_region):
+    def __init__(self, aws_profile: str, aws_region: str):
         self.aws_profile = aws_profile
         self.aws_region = aws_region
         self.client = self._client()
