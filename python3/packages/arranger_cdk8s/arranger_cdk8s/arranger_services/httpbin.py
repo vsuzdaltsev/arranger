@@ -34,7 +34,7 @@ class Httpbin(BasicService):
         self._generate_virtual_service(
             http_match_prefix=f"/{self.service_name}/",
             rewrite="/",
-            hosts=[f"api.{self.environment}"],
+            hosts=[f"api.{self.environment}.{self.globals.hosted_zone_domain_name}"],
             destination_host=self.service_name,
             add_request_headers={"X-Forwarded-Prefix": f"/{self.service_name}"},
         )
