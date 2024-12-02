@@ -1,6 +1,6 @@
 """Authenticate using AWS STS mechanism."""
 
-from typing import Any, Dict
+from typing import Dict
 import uuid
 
 from arranger_automation_aws.basic_resource import BasicAwsResource
