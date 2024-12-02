@@ -5,7 +5,7 @@
 [![GitHub Commit](https://img.shields.io/github/commit-activity/m/vsuzdaltsev/arranger/main)](https://github.com/vsuzdaltsev/arranger) 
 
 
-## The IaC Well-Architected Framework
+## The Well-Architected Framework for Infrastructure as Code (IaC)
 
 <p>
 <strong>Arranger</strong> is designed to address the common challenges faced by developers using the Cloud Development Kit for Terraform/AWS/K8s, providing a seamless experience that truly embodies IaC as it should be prepared.
@@ -16,7 +16,7 @@
 * [**Run Application on AWS**](examples/aws/eks-demo-application.md)  
 Use Arranger to build and deploy an infrastructure on AWS
 
-* [**Automating Bare Metal Cloud**](doc/arranger)  
+* [**Automate Bare Metal Cloud**](doc/arranger)  
 Private cloud automation
 
 ## Key Features
@@ -46,3 +46,4 @@ In order to create your first Infrastructure stack with Arranger and CDKTF read 
 Contributions are welcome and always appreciated!
 
 To begin working on an issue, simply leave a comment indicating that you're taking it on. There's no need to be officially assigned to the issue before you start.
+If you have any questions regarding Arranger, please feel free to contact [maintainers](doc/arranger/MAINTAINERS.md).

@@ -83,8 +83,3 @@
 This setup and all associated automation tasks were tested on macOS; however, they should also function on Linux, with
 only minor adjustments needed for Windows.
 
-## Maintainers <div id='maintainers'/>
-
-* [iskander.ignatev@gmail.com](mailto:iskander.ignatev@gmail.com?subject=prepare-)
-* [polkovnikvasin@gmail.com](mailto:polkovnikvasin@gmail.com?subject=prepare-)
-* [vsevolod.suzdaltsev@gmail.com](mailto:vsevolod.suzdaltsev@gmail.com?subject=prepare-)
