@@ -19,7 +19,7 @@ def validate_subnets(func: Callable) -> Callable:
     return check
 
 
-def to_kebab(s):
+def to_kebab(s: str) -> str:
     s = s.replace("_", "-").replace(" ", "-")
     s = re.sub(r"(?<!^)(?=[A-Z])", "-", s)
 
