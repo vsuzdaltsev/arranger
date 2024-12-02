@@ -60,7 +60,7 @@ class BasicBuildAndPushImageToEcrMixin(ABC):
         pass
 
     def _validate_params(self) -> type(None):
-        assert self.cluster_name_alias in ArrangerConf.TENANTS
+        assert self.tenant in ArrangerConf.TENANTS
         assert isinstance(self.image_name, str)
         assert isinstance(self.debug, bool)
 
@@ -80,14 +80,14 @@ class BasicBuildAndPushImageToEcrMixin(ABC):
     def _aws_region(self) -> str:
         from arranger_globals.cdktf_globals import CdktfGlobals
 
-        _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
+        _globals = CdktfGlobals(tenant=self.tenant)
 
         return _globals.aws_region
 
     def _aws_profile(self) -> str:
         from arranger_globals.cdktf_globals import CdktfGlobals
 
-        _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
+        _globals = CdktfGlobals(tenant=self.tenant)
 
         return _globals.aws_profile
 
@@ -123,7 +123,7 @@ class BasicBuildAndPushImageToEcrMixin(ABC):
 class BasicBuildAndPushImageToEcrBack(BasicBuildAndPushImageToEcrMixin):
     def _setup_params(self) -> type(None):
         self.create_ecr_repo = self.kwargs.get("create_ecr_repo")
-        self.cluster_name_alias = self.kwargs.get("cluster_name_alias")
+        self.tenant = self.kwargs.get("tenant")
         self.mvn = self.kwargs.get("mvn")
         self.image_name = self.kwargs.get("image_name")
         self.dockerfile = self.kwargs.get("dockerfile", self.DEFAULT_DOCKERFILE)
@@ -146,9 +146,9 @@ class BasicBuildAndPushImageToEcrBack(BasicBuildAndPushImageToEcrMixin):
             output_file = f"{self.build_dir}/default.jar"
 
         mvn = MvnCodeartifactory(
-            aws_profile=self.cluster_name_alias,
+            aws_profile=self.tenant,
             region=self._aws_region(),
-            domain=self.cluster_name_alias,
+            domain=self.tenant,
         )
         jar_name = mvn.download_jar(
             namespace=self.mvn.get("namespace"),
@@ -185,7 +185,7 @@ class BasicBuildAndPushImageToEcrBack(BasicBuildAndPushImageToEcrMixin):
 
         if not docker_credentials:
             docker_credentials = EcrAccessCredentials(
-                cluster_name_alias=self.cluster_name_alias
+                tenant=self.tenant
             )
 
         self._create_temp_dir()
@@ -209,7 +209,7 @@ class BasicBuildAndPushImageToEcrBack(BasicBuildAndPushImageToEcrMixin):
 class BasicBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrMixin):
     def _setup_params(self) -> type(None):
         self.create_ecr_repo = self.kwargs.get("create_ecr_repo")
-        self.cluster_name_alias = self.kwargs.get("cluster_name_alias")
+        self.tenant = self.kwargs.get("tenant")
         self.app = self.kwargs.get("app")
         self.git_ref = self.kwargs.get("git_ref")
         self.image_name = self.kwargs.get("image_name")
@@ -234,7 +234,7 @@ class BasicBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrMixin):
 
         if not docker_credentials:
             docker_credentials = [
-                EcrAccessCredentials(cluster_name_alias=self.cluster_name_alias)
+                EcrAccessCredentials(tenant=self.tenant)
             ]
 
         self._create_temp_dir()
@@ -253,7 +253,7 @@ class BasicBuildAndPushImageToEcrFront(BasicBuildAndPushImageToEcrMixin):
         from arranger_automation.arranger_git.basic_git_repo import BasicGitcommitRepo
         from arranger_globals.cdktf_globals import CdktfGlobals
 
-        _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
+        _globals = CdktfGlobals(tenant=self.tenant)
 
         _git = BasicGitcommitRepo(
             repo_name=_globals.valid_services_dict()
