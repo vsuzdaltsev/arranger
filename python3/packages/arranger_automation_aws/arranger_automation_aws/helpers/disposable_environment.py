@@ -5,7 +5,7 @@ from invoke import Context, Result
 from arranger_automation.log import Log
 
 
-def _validate_context(ctx: type(Context)):
+def _validate_context(ctx: Context):
     if isinstance(ctx, Context):
         return ctx
 
