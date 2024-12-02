@@ -5,7 +5,7 @@ from arranger_automation_aws.basic_resource import BasicAwsResource
 
 
 class DBHelper(BasicAwsResource):
-    def __init__(self, boto_client: type(AwsClient), cluster_name: str):
+    def __init__(self, boto_client: AwsClient, cluster_name: str):
         super().__init__(boto_client=boto_client)
         self._cluster_name = cluster_name
         self._endpoint = None
