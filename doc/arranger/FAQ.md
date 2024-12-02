@@ -24,7 +24,7 @@
 
 In most cases, the `environment` has the same name as the appropriate `tenant` for the cases when we have only one
 instance of an application
-within the K8s cluster (like production etc.). The exception is the multi environment clusters, specifically
+within the K8s cluster (like production etc.). The exception is the multienvironment clusters, specifically
 `development1`, which consists of multiple
 environments with reusable Infrastructure parts.
 
