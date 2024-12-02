@@ -13,7 +13,7 @@ class StsCredentials(BasicAwsResource):
     def __init__(
         self,
         role_arn: str,
-        client: type(AwsClient.client),
+        client: AwsClient.client,
         duration_seconds: int = 3600,
     ):
         """
@@ -56,6 +56,7 @@ class StsCredentials(BasicAwsResource):
         :param path_to_file: Path to environment file.
         """
         contents = self.credentials()
+
         try:
             with open(path_to_file, "w") as file:
                 for string in contents.items():
