@@ -56,7 +56,7 @@ class AwsClient:
     def _setup_client_config(self, config: Config) -> Union[Config, None]:
         """Configuration for the client."""
         if config:
-            self._logger.debug(">> Applying custom config: %s for client.", config)
+            self._logger.debug(">> Apply custom config: %s for client.", config)
             return config
 
     def caller_identity(self) -> str:
