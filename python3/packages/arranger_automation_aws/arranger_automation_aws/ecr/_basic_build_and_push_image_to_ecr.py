@@ -10,6 +10,7 @@ from arranger_automation.log import Log
 from arranger_automation_aws.codeartifactory import MvnCodeartifactory
 from arranger_conf.arranger_conf import ArrangerConf
 
+# FIXME: check sanity
 
 def build_dockerfile() -> str:
     def _base_image():
