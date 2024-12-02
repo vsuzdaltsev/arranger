@@ -1,10 +1,4 @@
-import inspect
-
 from invoke import Collection
-
-
-if not hasattr(inspect, "getargspec"):
-    inspect.getargspec = inspect.getfullargspec
 
 from .k8s import update_kubeconfig_eks, generate_arranger_app, list_services
 from .local import (
@@ -23,8 +17,8 @@ from .tf import (
     infra_destroy,
     infra_diff,
     infra_list,
-    list_tenants,
     list_ip_ranges,
+    list_tenants,
 )
 
 
