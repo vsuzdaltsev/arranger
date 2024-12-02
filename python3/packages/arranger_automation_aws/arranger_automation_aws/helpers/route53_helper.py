@@ -7,7 +7,7 @@ class Route53Helper:
         return ses.Session(profile_name=profile).client("route53")
 
     @classmethod
-    def hosted_zone_id(cls, zone_name, profile):
+    def hosted_zone_id(cls, zone_name: str, profile: str):
         paginator = cls.client(profile=profile).get_paginator("list_hosted_zones")
 
         for page in paginator.paginate():
