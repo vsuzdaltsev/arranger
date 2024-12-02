@@ -61,7 +61,7 @@ class AwsClient:
 
     def caller_identity(self) -> str:
         """Get account_id for given credentials."""
-        self._logger.debug(">> Providing caller identity for given credentials.")
+        self._logger.debug(">> Provide caller identity for given credentials.")
 
         return client(
             service_name="sts", **self._setup_credentials()
