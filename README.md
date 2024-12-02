@@ -16,7 +16,7 @@
 * [**Run Application on AWS**](examples/aws/eks-demo-application.md)  
 Use Arranger to build and deploy an infrastructure on AWS
 
-* [**Automating Bare Metal Cloud**](doc/arranger)  
+* [**Automate Bare Metal Cloud**](doc/arranger)  
 Private cloud automation
 
 ## Key Features
