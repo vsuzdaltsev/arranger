@@ -63,7 +63,7 @@ $ inv local.container.run
 ## Check Terraform diff:
 
 ```shell
-(arranger) root@cli# inv tf.diff --project tf --tenant development1 --stack demo-iam-user-stack
+(arranger) root@cli# inv tf.diff --tenant development1 --stack demo-iam-user-stack
 ```
 
 <br>
@@ -71,7 +71,7 @@ $ inv local.container.run
 ## Deploy Terraform Stack:
 
 ```shell
-(arranger) root@cli# inv tf.deloy --project tf --tenant development1 --stack demo-iam-user-stack
+(arranger) root@cli# inv tf.deloy --tenant development1 --stack demo-iam-user-stack
 ```
 
 <br>
@@ -79,7 +79,7 @@ $ inv local.container.run
 ## Destroy Terraform Stack:
 
 ```shell
-(arranger) root@cli# inv tf.destroy --project tf --tenant development1 --stack demo-iam-user-stack
+(arranger) root@cli# inv tf.destroy --tenant development1 --stack demo-iam-user-stack
 ```
 <br>
 

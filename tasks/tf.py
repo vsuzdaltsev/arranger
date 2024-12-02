@@ -84,9 +84,9 @@ def generate_cdktf_json(tenant: str, stack: str) -> None:
 def clean_up_cdktf_json(_ctx):
     """>> Remove CDKTF config."""
 
-    from .helper_functions import CURRENT_TF_PROJECT, WHERE_CDKTF_WD
+    from .helper_functions import WHERE_CDKTF_WD
 
-    where_file = f"{WHERE_CDKTF_WD}/{CURRENT_TF_PROJECT}/{CDKTF_CONFIG}"
+    where_file = f"{WHERE_CDKTF_WD}/{CDKTF_CONFIG}"
 
     if os.path.exists(where_file):
         os.unlink(where_file)
@@ -97,7 +97,6 @@ def infra_action(
     ctx,
     cmd,
     stack=None,
-    project=None,
     tenant=None,
     parallelism=10,
     log_level="error",
@@ -126,7 +125,7 @@ def infra_action(
     generate_cdktf_json(tenant=tenant, stack=stack)
     log_level = f"export TF_LOG={log_level} &&"
 
-    with ctx.cd(f"{WHERE_CDKTF_WD}/{project}"):
+    with ctx.cd(f"{WHERE_CDKTF_WD}"):
         ctx.run(
             f'{log_level} TF_CLI_ARGS_apply="-parallelism={parallelism}" {cmd}',
             pty=True,
@@ -137,7 +136,6 @@ def infra_action(
 def infra_deploy(
     ctx,
     stack=None,
-    project=None,
     tenant=None,
     parallelism=10,
     wait_before_start=5,
@@ -154,7 +152,6 @@ def infra_deploy(
         ctx,
         cmd=f"rm -rf cdktf.out/stacks/{stack} && cdktf deploy {stack} --auto-approve",
         stack=stack,
-        project=project,
         tenant=tenant,
         parallelism=parallelism,
         log_level=log_level,
@@ -165,7 +162,6 @@ def infra_deploy(
 def infra_destroy(
     ctx,
     stack=None,
-    project=None,
     tenant=None,
     parallelism=10,
     wait_before_start=5,
@@ -182,7 +178,6 @@ def infra_destroy(
         ctx,
         cmd=f"cdktf destroy {stack} --auto-approve",
         stack=stack,
-        project=project,
         tenant=tenant,
         parallelism=parallelism,
         log_level=log_level,
@@ -193,7 +188,6 @@ def infra_destroy(
 def infra_diff(
     ctx,
     stack=None,
-    project=None,
     tenant=None,
     parallelism=10,
     plan_path=None,
@@ -206,7 +200,6 @@ def infra_diff(
         ctx,
         cmd=f"cdktf diff {stack}",
         stack=stack,
-        project=project,
         tenant=tenant,
         parallelism=parallelism,
         log_level=log_level,

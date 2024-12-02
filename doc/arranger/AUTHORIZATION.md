@@ -12,6 +12,6 @@ This setup ensures that AWS profiles are accessible from within the container.
 Example of an Invoke task that points to a specific profile, which shares the same name as the tenant.
 
 ```shell
-(arranger) root@cli#  inv tf.diff -p tf --tenant development1 --stack acm-stack
+(arranger) root@cli#  inv tf.diff --tenant development1 --stack acm-stack
 ```
 where `tenant` is the name of a proper `AWS profile`

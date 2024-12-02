@@ -85,10 +85,10 @@ root@cli# inv tf.list-tenants --verbose true | jq
 1. Run `tf.diff`
    ```shell
    # example 
-   $ inv tf.list-stacks -p tf --with-descriptions false | jq
-   $ inv tf.diff --tenant development1 --stack vpc-stack --project tf   
+   $ inv tf.list-stacks --with-descriptions false | jq
+   $ inv tf.diff --tenant development1 --stack vpc-stack   
    ```
-2. The spec will be generated into: `python3/scripts/arranger_cdktf/tf/cdktf.out/stacks/$YOUR_STACK_NAME/cdk.tf.json`
+2. The spec will be generated into: `python3/scripts/arranger_cdktf/cdktf.out/stacks/$YOUR_STACK_NAME/cdk.tf.json`
 
 <br>
 
@@ -101,5 +101,5 @@ root@cli# inv tf.list-tenants --verbose true | jq
 ### How to delete Terraform cache:
 
    ```shell
-   $ rm -fr python3/scripts/arranger_cdktf/tf/cdktf.out/stacks/<ecr>-stack
+   $ rm -fr python3/scripts/arranger_cdktf/cdktf.out/stacks/<ecr>-stack
    ```
