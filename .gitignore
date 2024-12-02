@@ -2,7 +2,7 @@
 .python-version
 .zsh_history
 **__pycache__
-python3/scripts/arranger_cdktf/tf/cdktf.json
+python3/scripts/arranger_cdktf/cdktf.json
 **cdktf.out
 python3/scripts/arranger_cdk8s/cdk8s.yaml
 python3/scripts/arranger_cdk8s/dist/

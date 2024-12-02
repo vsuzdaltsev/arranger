@@ -3,7 +3,7 @@ from arranger_automation_aws.client import AwsClient
 
 
 class LambdaHelper(BasicAwsResource):
-    def __init__(self, boto_client: type(AwsClient)):
+    def __init__(self, boto_client: AwsClient):
         super().__init__(boto_client=boto_client)
 
     def lambda_edge_highest_num_version_arn(self, name):

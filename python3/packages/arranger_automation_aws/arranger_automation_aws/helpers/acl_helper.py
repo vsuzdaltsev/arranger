@@ -5,7 +5,7 @@ from boto3 import session as ses
 
 class AclHelper:
     @classmethod
-    def client(cls, profile, aws_region):
+    def client(cls, profile: str, aws_region: str):
         return ses.Session(profile_name=profile, region_name=aws_region).client("ec2")
 
     @classmethod

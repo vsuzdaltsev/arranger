@@ -27,7 +27,7 @@ def python(ctx, packages="all-packages"):
     def specs_exist(package_name: str) -> bool:
         return all(
             os.path.exists(f"{package_dir(name=package_name)}/{e}")
-            for e in ("tests", "pytest.ini")
+            for e in ("_tests", "pytest.ini")
         )
 
     for package in packages_to_process():

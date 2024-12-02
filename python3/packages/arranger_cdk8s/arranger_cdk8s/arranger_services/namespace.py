@@ -1,10 +1,11 @@
-"""K8s objects generator for Namespace."""
+"""
+K8s objects generator for the K8s namespace.
 
-from typing import Dict
+Source code:
+    https://github.com
+"""
 
-from constructs import Construct
-
-from ._basic_service import BasicService, K8sConf
+from ._basic_service import BasicService, Construct, Dict, K8sConf
 
 
 class Namespace(BasicService):
@@ -21,4 +22,4 @@ class Namespace(BasicService):
         super().__init__(scope=scope, id=id, config=config, kwargs=kwargs)
 
         self._generate_namespace()
-        # self._default_limit_range()
+        self._default_limit_range()

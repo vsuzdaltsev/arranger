@@ -18,7 +18,7 @@ class BasicCodebuild:
     def __init__(
         self,
         project_name: str,
-        boto_client: type(AwsClient),
+        boto_client: AwsClient,
         source_version_override: Union[str, None] = None,
         environment_variables_overrides: Union[List[Dict[str, str]], None] = None,
     ):
@@ -34,7 +34,7 @@ class BasicCodebuild:
         self.build_id = None
 
     @classmethod
-    def projects(cls, boto_client: type(AwsClient)) -> List[str]:
+    def projects(cls, boto_client: AwsClient) -> List[str]:
         projects = []
 
         for page in boto_client.get_paginator("list_projects").paginate():
@@ -43,9 +43,7 @@ class BasicCodebuild:
         return sorted(projects)
 
     @classmethod
-    def builds_for_project(
-        cls, boto_client: type(AwsClient), project_name: str
-    ) -> List[str]:
+    def builds_for_project(cls, boto_client: AwsClient, project_name: str) -> List[str]:
         builds = []
 
         for page in boto_client.get_paginator("list_builds_for_project").paginate(

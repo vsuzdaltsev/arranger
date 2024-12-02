@@ -275,3 +275,37 @@ def generate_arranger_app(
         debug=debug,
         override_image_tag=override_image_tag,
     )
+
+
+@task
+def list_services(_ctx, verbose="false", environment=None, serialize="json"):
+    """>> List available K8s services."""
+    validate_input(name="verbose", passed=verbose, allowed=TOGGLE)
+    validate_input(name="serialize", passed=serialize, allowed=("json", "yaml"))
+
+    def struct(serialisation_type):
+        if serialisation_type == "yaml":
+            import yaml
+
+            return yaml.dump
+
+        return json.dumps
+
+    def valid_services():
+        if environment:
+            from arranger_globals import ByEnvironment
+
+            return ByEnvironment(environment=environment).all_services
+
+        from arranger_conf.arranger_cdk8s_conf_lib._basic_service import BasicService
+
+        return BasicService.valid_services()
+
+    if verbose == "true":
+        return print(struct(serialisation_type=serialize)(valid_services()))
+
+    brief_list = {}
+    for srv, metadata in valid_services().items():
+        brief_list.update({srv: metadata.get("description")})
+
+    return print(struct(serialisation_type=serialize)(brief_list))

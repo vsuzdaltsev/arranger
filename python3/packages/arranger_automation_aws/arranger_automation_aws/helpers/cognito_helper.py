@@ -9,9 +9,7 @@ class CognitoHelper:
     DEFAULT_AWS_PROFILE = None
     DEFAULT_USER_POOL_ID = None
 
-    def __init__(
-        self, boto_client: type(AwsClient), user_pool_id: Union[str, None] = None
-    ):
+    def __init__(self, boto_client: AwsClient, user_pool_id: Union[str, None] = None):
         self.cognito_client = boto_client
 
         if user_pool_id:
@@ -72,35 +70,3 @@ class CognitoHelper:
             return f"https://{domain}.auth.{self.cognito_client.meta.region_name}.amazoncognito.com"
 
         return None
-
-
-class DevelopCognitoHelper(CognitoHelper):
-    DEFAULT_AWS_REGION = "eu-west-2"
-    DEFAULT_AWS_PROFILE = "WS-00KN-role_AUTOMATION"
-    DEFAULT_USER_POOL_ID = "eu-west-2_gcZsPhl99"
-
-
-if __name__ == "__main__":
-    cognito_idp_client = AwsClient(
-        name="cognito-idp", region="eu-west-2", aws_profile="WS-015M-role_AUTOMATION"
-    ).client
-
-    print(
-        json.dumps(
-            CognitoHelper(
-                boto_client=cognito_idp_client, user_pool_id="eu-west-2_536n7GwV1"
-            ).list_all()
-        )
-    )
-    print(
-        CognitoHelper(boto_client=cognito_idp_client).client_id(
-            client_name="develop3-cognito-user-pool-client",
-            user_pool_id="eu-west-2_536n7GwV1",
-        )
-    )
-    print(
-        CognitoHelper(boto_client=cognito_idp_client).client_secret(
-            client_name="develop3-cognito-user-pool-client",
-            user_pool_id="eu-west-2_536n7GwV1",
-        )
-    )

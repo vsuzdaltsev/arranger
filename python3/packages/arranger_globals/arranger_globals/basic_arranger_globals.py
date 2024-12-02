@@ -19,7 +19,7 @@ def validate_subnets(func: Callable) -> Callable:
     return check
 
 
-def to_kebab(s):
+def to_kebab(s: str) -> str:
     s = s.replace("_", "-").replace(" ", "-")
     s = re.sub(r"(?<!^)(?=[A-Z])", "-", s)
 
@@ -102,6 +102,12 @@ class ArrangerMixin(ABC):
     def kube_prometheus_stack_name(self) -> str:
         return "kube-prometheus-stack"
 
+    @property
+    def all_services(self) -> Dict[str, Any]:
+        from arranger_conf.arranger_cdk8s_conf import K8sConf
+
+        return getattr(K8sConf, self.environment.capitalize()).ALL_SERVICES
+
 
 class ByEnvironment(ArrangerMixin):
     def __init__(self, environment: str, **kwargs: Dict[str, Any]):
@@ -143,7 +149,7 @@ class ByEnvironment(ArrangerMixin):
             err_msg = (
                 f"Environment '{self.environment}' isn't a part of existing clusters. "
                 f"Valid value is one of {self.all_environments}. "
-                f"Can't find cluster name alias for '{self.environment}'."
+                f"Can't find tenant for '{self.environment}'."
             )
             raise ValueError(err_msg) from err
 

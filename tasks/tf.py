@@ -55,7 +55,6 @@ def template_env() -> Environment:
 def generate_cdktf_json(tenant: str, stack: str) -> None:
     """CDKTF json generator."""
     from .helper_functions import (
-        CURRENT_TF_PROJECT,
         VALID_TENANTS,
         VALID_EKS_STACKS,
         WHERE_CDKTF_WD,
@@ -75,7 +74,7 @@ def generate_cdktf_json(tenant: str, stack: str) -> None:
         )
 
     manifest = template.render(tenant=tenant, stack=stack)
-    rendered_manifest = f"{WHERE_CDKTF_WD}/{CURRENT_TF_PROJECT}/{CDKTF_CONFIG}"
+    rendered_manifest = f"{WHERE_CDKTF_WD}/{CDKTF_CONFIG}"
 
     with open(rendered_manifest, mode="w", encoding="utf-8") as service_manifest:
         service_manifest.write(manifest)
@@ -85,9 +84,9 @@ def generate_cdktf_json(tenant: str, stack: str) -> None:
 def clean_up_cdktf_json(_ctx):
     """>> Remove CDKTF config."""
 
-    from .helper_functions import CURRENT_TF_PROJECT, WHERE_CDKTF_WD
+    from .helper_functions import WHERE_CDKTF_WD
 
-    where_file = f"{WHERE_CDKTF_WD}/{CURRENT_TF_PROJECT}/{CDKTF_CONFIG}"
+    where_file = f"{WHERE_CDKTF_WD}/{CDKTF_CONFIG}"
 
     if os.path.exists(where_file):
         os.unlink(where_file)
@@ -98,7 +97,6 @@ def infra_action(
     ctx,
     cmd,
     stack=None,
-    project=None,
     tenant=None,
     parallelism=10,
     log_level="error",
@@ -107,14 +105,12 @@ def infra_action(
     from arranger_conf.arranger_conf import ArrangerConf
 
     from .helper_functions import (
-        TERRAFORM_PROJECTS,
         validate_input,
         VALID_EKS_STACKS,
         WHERE_CDKTF_WD,
     )
 
     validate_input(name="stack", passed=stack, allowed=sorted(VALID_EKS_STACKS))
-    validate_input(name="project", allowed=TERRAFORM_PROJECTS, passed=project)
     validate_input(
         name="log_level",
         allowed=["trace", "debug", "info", "warn", "error", "off"],
@@ -129,7 +125,7 @@ def infra_action(
     generate_cdktf_json(tenant=tenant, stack=stack)
     log_level = f"export TF_LOG={log_level} &&"
 
-    with ctx.cd(f"{WHERE_CDKTF_WD}/{project}"):
+    with ctx.cd(f"{WHERE_CDKTF_WD}"):
         ctx.run(
             f'{log_level} TF_CLI_ARGS_apply="-parallelism={parallelism}" {cmd}',
             pty=True,
@@ -140,7 +136,6 @@ def infra_action(
 def infra_deploy(
     ctx,
     stack=None,
-    project=None,
     tenant=None,
     parallelism=10,
     wait_before_start=5,
@@ -157,7 +152,6 @@ def infra_deploy(
         ctx,
         cmd=f"rm -rf cdktf.out/stacks/{stack} && cdktf deploy {stack} --auto-approve",
         stack=stack,
-        project=project,
         tenant=tenant,
         parallelism=parallelism,
         log_level=log_level,
@@ -168,7 +162,6 @@ def infra_deploy(
 def infra_destroy(
     ctx,
     stack=None,
-    project=None,
     tenant=None,
     parallelism=10,
     wait_before_start=5,
@@ -185,7 +178,6 @@ def infra_destroy(
         ctx,
         cmd=f"cdktf destroy {stack} --auto-approve",
         stack=stack,
-        project=project,
         tenant=tenant,
         parallelism=parallelism,
         log_level=log_level,
@@ -196,7 +188,6 @@ def infra_destroy(
 def infra_diff(
     ctx,
     stack=None,
-    project=None,
     tenant=None,
     parallelism=10,
     plan_path=None,
@@ -209,30 +200,27 @@ def infra_diff(
         ctx,
         cmd=f"cdktf diff {stack}",
         stack=stack,
-        project=project,
         tenant=tenant,
         parallelism=parallelism,
         log_level=log_level,
     )
 
     if plan_path:
-        with ctx.cd(f"{WHERE_CDKTF_WD}/{project}/cdktf.out/stacks/{stack}"):
+        with ctx.cd(f"{WHERE_CDKTF_WD}/cdktf.out/stacks/{stack}"):
             ctx.run(f"terraform show -json plan > {plan_path}", pty=True)
 
 
 @task(post=[clean_up_cdktf_json])
-def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
+def infra_list(_ctx, with_descriptions="true", tenant=None):
     """>> Show valid Terraform stacks."""
     from arranger_conf.arranger_cdktf_conf import BasicTfConf
 
     from .helper_functions import (
-        TERRAFORM_PROJECTS,
         TOGGLE,
         validate_input,
         VALID_TENANTS,
     )
 
-    validate_input(name="project", passed=project, allowed=TERRAFORM_PROJECTS)
     validate_input(name="with_descriptions", passed=with_descriptions, allowed=TOGGLE)
 
     if tenant:
@@ -248,7 +236,7 @@ def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
 
             tenant_conf = getattr(TfConf, tenant_name.capitalize())
             return getattr(tenant_conf, "ALL_STACKS")
-        return list(BasicTfConf.VALID_STACKS[project].keys())
+        return list(BasicTfConf.VALID_STACKS.keys())
 
     def stacks(tenant_name):
         stack_names = all_stack_names(tenant_name=tenant_name)
@@ -256,7 +244,7 @@ def infra_list(_ctx, project=None, with_descriptions="true", tenant=None):
         if with_descriptions == "true":
             stack_names_with_desc = {}
 
-            for stack_name, metadata in BasicTfConf.VALID_STACKS[project].items():
+            for stack_name, metadata in BasicTfConf.VALID_STACKS.items():
                 if stack_name in stack_names:
                     stack_names_with_desc.update(
                         {

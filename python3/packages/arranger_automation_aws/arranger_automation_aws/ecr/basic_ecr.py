@@ -66,9 +66,11 @@ class BasicEcr:
         """Call AWS ECR repository creation with given name/region."""
         try:
             self.client.create_repository(repositoryName=self.repository_name)
+
             return True
         except self.client.exceptions.RepositoryAlreadyExistsException as err:
             self.log.error(">> Can't create %s. Error: %s", self.repository_name, err)
+
             return False
 
     def _policy(self) -> str:
@@ -129,9 +131,12 @@ class BasicEcr:
                     ">> The %s repository already exists.", self.repository_name
                 )
                 self._put_life_cycle_policy()
+
                 return False
+
             self._create_repository()
             self._put_life_cycle_policy()
+
             return True
         except BaseException as err:
             self.log.error(">> Couldn't prepare AWS ECR repo. Error: %s", err)
@@ -147,7 +152,9 @@ class BasicEcr:
                 repositoryName=self.repository_name,
                 force=force,
             )
+
             return True
         except self.client.exceptions.RepositoryNotFoundException as err:
             self.log.error(">> Can't delete %s. Error: %s", self.repository_name, err)
+
             return False

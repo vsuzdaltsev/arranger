@@ -387,5 +387,5 @@ setcap cap_ipc_lock= /usr/sbin/vault
 export VAULT_FORMAT="json"
 
 cd_to_cdktf_cache(){
-  cd python3/scripts/arranger_cdktf/tf/cdktf.out/stacks/
+  cd python3/scripts/arranger_cdktf/cdktf.out/stacks/
 }

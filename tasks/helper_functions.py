@@ -8,8 +8,6 @@ from typing import Any, Iterable
 from jinja2 import ChoiceLoader, Environment, FileSystemLoader
 import yaml
 
-# TODO: currently this is the only project, because of flat structure of TF stack libs
-CURRENT_TF_PROJECT = "tf"
 
 try:
     from arranger_conf import ArrangerConf
@@ -18,7 +16,7 @@ try:
 
     KUBERNETES_VERSION = ArrangerConf.CDK8S_KUBERNETES_VERSION
     VALID_TENANTS = ArrangerConf.TENANTS
-    VALID_EKS_STACKS = BasicTfConf.VALID_STACKS[CURRENT_TF_PROJECT]
+    VALID_EKS_STACKS = BasicTfConf.VALID_STACKS
     VALID_ENVIRONMENTS = sorted(env.lower() for env in K8sConf.ALL_ENVIRONMENTS)
 except BaseException as warn:
     msg = (
@@ -36,13 +34,12 @@ with open("./docker-compose.yml", "r") as file:
     docker_compose_data = yaml.safe_load(file)
 
 CONTAINER_NAME = list(docker_compose_data["services"].keys())[0]
-DOCKER_COMPOSE = "docker-compose -f docker-compose.yml"
+DOCKER_COMPOSE = "docker compose -f docker-compose.yml"
 IN_DOCKER = f"{DOCKER_COMPOSE} exec -T {CONTAINER_NAME} pipenv run"
 PYTHON3_PACKAGES = [
     pkg_home.split("/")[-1] for pkg_home in glob.glob("python3/packages/*")
 ]
 RENDERED_TEMPLATES = "rendered_templates"
-TERRAFORM_PROJECTS = [CURRENT_TF_PROJECT]
 TOGGLE = ("true", "false")
 WHERE_CDKTF_WD = "python3/scripts/arranger_cdktf"
 

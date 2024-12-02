@@ -41,13 +41,15 @@ class ArrangerApp(Chart):
 
     def render_service(self) -> NoReturn:
         try:
-            _class = globals()[
+            _cdk8s_manifest_class = globals()[
                 f"{self.config.ENVIRONMENT}{self.all_services[self.ns]['class_name']}"
             ]
         except KeyError:
-            _class = globals()[f"{self.all_services[self.ns]['class_name']}"]
+            _cdk8s_manifest_class = globals()[
+                f"{self.all_services[self.ns]['class_name']}"
+            ]
 
-        _class(
+        _cdk8s_manifest_class(
             self,
             self.ns,
             config=getattr(self.config, self.all_services[self.ns]["class_name"]),

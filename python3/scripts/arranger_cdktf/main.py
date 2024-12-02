@@ -6,15 +6,12 @@ from typing import Type
 from cdktf import App
 
 from arranger_automation.log import Log
-from arranger_cdktf.tf.arranger_terraform_stacks import *
+from arranger_cdktf.arranger_terraform_stacks import *
 from arranger_conf.arranger_cdktf_conf import TfConf
 
 
 TENANT = sys.argv[1]
 STACK = sys.argv[2]
-# FIXME: for now tf is the only project, the name is hard-coded
-PROJECT_NAME = "tf"
-
 
 if __name__ == "__main__":
     app = App(stack_traces=True)
@@ -22,15 +19,15 @@ if __name__ == "__main__":
 
     env_config = getattr(TfConf, TENANT.capitalize())
 
-    def _class() -> Type:
+    def _tf_stack_class() -> Type:
         if STACK not in env_config.ALL_STACKS:
             raise ValueError(
-                f"Stacks suitable for '{TENANT}' cluster name alias "
+                f"Stacks suitable for '{TENANT}' tenant "
                 f"are listed within the '{TENANT}' config. "
                 f"Please ensure {env_config.__qualname__}.ALL_STACKS value contains '{STACK}'."
             )
 
-        default_class_name = env_config.VALID_STACKS[PROJECT_NAME][STACK]["class_name"]
+        default_class_name = env_config.VALID_STACKS[STACK]["class_name"]
 
         try:
             custom_class_name = f"{env_config.TENANT.capitalize()}{default_class_name}"
@@ -47,5 +44,5 @@ if __name__ == "__main__":
 
             return globals()[default_class_name]
 
-    _class()(scope=app, ns=STACK, config=env_config)
+    _tf_stack_class()(scope=app, ns=STACK, config=env_config)
     app.synth()

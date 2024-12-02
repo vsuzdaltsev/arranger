@@ -4,9 +4,9 @@ from typing import Tuple
 class EcrAccessCredentials:
     def __init__(
         self,
-        cluster_name_alias: str,
+        tenant: str,
     ):
-        self.cluster_name_alias = cluster_name_alias
+        self.tenant = tenant
 
     def ecr_access_credentials(self) -> Tuple[str, str, str]:
         import base64
@@ -15,7 +15,7 @@ class EcrAccessCredentials:
         from arranger_automation_aws.client import AwsClient
         from arranger_globals.cdktf_globals import CdktfGlobals
 
-        _globals = CdktfGlobals(cluster_name_alias=self.cluster_name_alias)
+        _globals = CdktfGlobals(tenant=self.tenant)
         _region = _globals.aws_region
         _aws_profile = _globals.aws_profile
 
@@ -33,7 +33,7 @@ class EcrAccessCredentials:
 
 
 if __name__ == "__main__":
-    creds = EcrAccessCredentials(cluster_name_alias="development1")
+    creds = EcrAccessCredentials(tenant="development1")
     acr_access_token = creds.ecr_access_credentials()
 
     print("ECR Access Credentials:", acr_access_token)

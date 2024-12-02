@@ -1,6 +1,6 @@
 """Authenticate using AWS STS mechanism."""
 
-from typing import Any, Dict
+from typing import Dict
 import uuid
 
 from arranger_automation_aws.basic_resource import BasicAwsResource
@@ -13,7 +13,7 @@ class StsCredentials(BasicAwsResource):
     def __init__(
         self,
         role_arn: str,
-        client: type(AwsClient.client),
+        client: AwsClient.client,
         duration_seconds: int = 3600,
     ):
         """
@@ -49,13 +49,14 @@ class StsCredentials(BasicAwsResource):
             DurationSeconds=self.__duration_seconds,
         )
 
-    def write_to_env_file(self, path_to_file: str = ".envrc") -> Any:
+    def write_to_env_file(self, path_to_file: str = ".envrc") -> None:
         """
         Write credentials to environment file.
 
         :param path_to_file: Path to environment file.
         """
         contents = self.credentials()
+
         try:
             with open(path_to_file, "w") as file:
                 for string in contents.items():

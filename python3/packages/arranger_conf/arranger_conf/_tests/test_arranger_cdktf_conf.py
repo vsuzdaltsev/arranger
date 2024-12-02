@@ -23,7 +23,7 @@ class TestTFConf:
 
     def test_VALID_STACKS(self):
         assert isinstance(TfConf.Local.VALID_STACKS, dict)
-        for stack_name, stack_metadata in TfConf.Local.VALID_STACKS["tf"].items():
+        for stack_name, stack_metadata in TfConf.Local.VALID_STACKS.items():
             assert stack_name.endswith("-stack") == True
 
             assert isinstance(stack_metadata["class_name"], str)
@@ -39,7 +39,7 @@ class TestTFConf:
     ):
         for tenant in [_class_name(tenant=_t) for _t in tenants_from_tf_conf]:
             for stack in getattr(TfConf, tenant).ALL_STACKS:
-                assert stack in getattr(TfConf, tenant).VALID_STACKS["tf"].keys()
+                assert stack in getattr(TfConf, tenant).VALID_STACKS.keys()
 
     def test_AWS_GLOBAL_REGION(self, tenants_from_tf_conf):
         assert [

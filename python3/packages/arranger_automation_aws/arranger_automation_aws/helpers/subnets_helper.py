@@ -8,7 +8,7 @@ class SubnetHelper:
     FIREWALL_SUBNET_PREFIX = "AWSFirewallManagerManagedResource"
 
     @classmethod
-    def client(cls, profile, aws_region):
+    def client(cls, profile: str, aws_region: str):
         return ses.Session(profile_name=profile, region_name=aws_region).client("ec2")
 
     @classmethod
