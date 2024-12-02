@@ -10,7 +10,7 @@ class CognitoHelper:
     DEFAULT_USER_POOL_ID = None
 
     def __init__(
-        self, boto_client: type(AwsClient), user_pool_id: Union[str, None] = None
+        self, boto_client: AwsClient, user_pool_id: Union[str, None] = None
     ):
         self.cognito_client = boto_client
 
