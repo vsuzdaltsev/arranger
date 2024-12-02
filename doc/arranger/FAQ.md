@@ -28,7 +28,7 @@ within the K8s cluster (like production etc.). The exception is the multienviron
 `development1`, which consists of multiple
 environments with reusable Infrastructure parts.
 
-NB: All commands mentioned here and below should be executed within the `arranger` container (refer to the appropriate
+###### NB: All commands mentioned here and below should be executed within the `arranger` container (refer to the appropriate
 [section](PREPARE_ENVIRONMENT.md) of this guide).
 
 * To see the list of existing `tenants` along with `environments` run:
