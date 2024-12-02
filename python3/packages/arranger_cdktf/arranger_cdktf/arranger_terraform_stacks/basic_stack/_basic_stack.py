@@ -76,7 +76,7 @@ class AwsBasicStack(BasicStack):
 
     def _subnets(
         self, provider, vpc_id: str, type_tag: str = "private"
-    ) -> type(DataAwsSubnets):
+    ) -> DataAwsSubnets:
         name = self._name(object_type="data-vpc-subnets")
 
         return DataAwsSubnets(
