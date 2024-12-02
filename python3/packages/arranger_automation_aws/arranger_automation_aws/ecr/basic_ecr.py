@@ -66,9 +66,11 @@ class BasicEcr:
         """Call AWS ECR repository creation with given name/region."""
         try:
             self.client.create_repository(repositoryName=self.repository_name)
+
             return True
         except self.client.exceptions.RepositoryAlreadyExistsException as err:
             self.log.error(">> Can't create %s. Error: %s", self.repository_name, err)
+
             return False
 
     def _policy(self) -> str:
