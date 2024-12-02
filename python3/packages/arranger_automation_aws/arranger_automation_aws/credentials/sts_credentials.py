@@ -49,7 +49,7 @@ class StsCredentials(BasicAwsResource):
             DurationSeconds=self.__duration_seconds,
         )
 
-    def write_to_env_file(self, path_to_file: str = ".envrc") -> Any:
+    def write_to_env_file(self, path_to_file: str = ".envrc") -> None:
         """
         Write credentials to environment file.
 
