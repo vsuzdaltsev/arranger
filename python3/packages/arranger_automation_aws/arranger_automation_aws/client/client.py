@@ -57,6 +57,7 @@ class AwsClient:
         """Configuration for the client."""
         if config:
             self._logger.debug(">> Apply custom config: %s for client.", config)
+
             return config
 
     def caller_identity(self) -> str:
@@ -71,6 +72,7 @@ class AwsClient:
         """Setup boto3 client."""
 
         self._logger.debug(">> Create %s client.", self._name)
+
         if self._aws_profile:
             return session.Session(profile_name=self._aws_profile).client(
                 service_name=self._name, region_name=self._region, config=self._config
