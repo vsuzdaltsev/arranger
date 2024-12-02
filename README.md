@@ -5,7 +5,7 @@
 [![GitHub Commit](https://img.shields.io/github/commit-activity/m/vsuzdaltsev/arranger/main)](https://github.com/vsuzdaltsev/arranger) 
 
 
-## The IaC Well-Architected Framework
+## The Well-Architected Framework for Infrastructure as Code (IaC)
 
 <p>
 <strong>Arranger</strong> is designed to address the common challenges faced by developers using the Cloud Development Kit for Terraform/AWS/K8s, providing a seamless experience that truly embodies IaC as it should be prepared.
