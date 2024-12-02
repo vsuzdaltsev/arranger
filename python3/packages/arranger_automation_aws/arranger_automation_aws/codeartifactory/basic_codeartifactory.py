@@ -1,4 +1,5 @@
 import subprocess
+from typing import Dict
 
 from arranger_automation_aws.client import AwsClient
 from arranger_automation.log import Log
@@ -16,7 +17,13 @@ class MvnCodeartifactory:
     def _repository_format(self):
         return "maven"
 
-    def __init__(self, aws_profile=None, credentials=None, region=None, domain=None):
+    def __init__(
+        self,
+        aws_profile: str = None,
+        credentials: Dict[str, str] = None,
+        region: str = None,
+        domain: str = None,
+    ):
         self.log = Log().logger(desc=self.__class__.__name__)
         self.aws_profile = aws_profile
         self.credentials = credentials
@@ -32,9 +39,9 @@ class MvnCodeartifactory:
 
     def _list_package_version_assets(
         self,
-        package=None,
-        namespace=None,
-        package_version=None,
+        package: str = None,
+        namespace: str = None,
+        package_version: str = None,
     ):
         paginator = self.client.get_paginator("list_package_version_assets")
 
@@ -50,7 +57,9 @@ class MvnCodeartifactory:
             )
         ]
 
-    def jars(self, namespace=None, package=None, package_version=None):
+    def jars(
+        self, namespace: str = None, package: str = None, package_version: str = None
+    ):
         all_assets = self._list_package_version_assets(
             package=package, namespace=namespace, package_version=package_version
         )
@@ -65,7 +74,11 @@ class MvnCodeartifactory:
         return jars
 
     def download_jar(
-        self, namespace=None, package=None, package_version=None, output_file=None
+        self,
+        namespace: str = None,
+        package: str = None,
+        package_version: str = None,
+        output_file: str = None,
     ):
         latest_jar = self.jars(
             namespace=namespace, package=package, package_version=package_version
