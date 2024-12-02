@@ -45,7 +45,9 @@ class ArrangerApp(Chart):
                 f"{self.config.ENVIRONMENT}{self.all_services[self.ns]['class_name']}"
             ]
         except KeyError:
-            _cdk8s_manifest_class = globals()[f"{self.all_services[self.ns]['class_name']}"]
+            _cdk8s_manifest_class = globals()[
+                f"{self.all_services[self.ns]['class_name']}"
+            ]
 
         _cdk8s_manifest_class(
             self,
