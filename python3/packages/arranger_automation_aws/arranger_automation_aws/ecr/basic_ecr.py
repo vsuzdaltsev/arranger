@@ -152,7 +152,9 @@ class BasicEcr:
                 repositoryName=self.repository_name,
                 force=force,
             )
+
             return True
         except self.client.exceptions.RepositoryNotFoundException as err:
             self.log.error(">> Can't delete %s. Error: %s", self.repository_name, err)
+
             return False
