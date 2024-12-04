@@ -1,6 +1,6 @@
 """K8s objects generator for Abstract service."""
 
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Mapping, Union
 
 from cdk8s import JsonPatch, ApiObjectMetadata
 from constructs import Construct
@@ -60,7 +60,7 @@ class BasicService(Construct, BasicMixin):
         config: K8sConf,
         kwargs: Dict[str, str] = None,
     ):
-        super().__init__(scope, id)
+        super().__init__(scope=scope, id=id)
 
         self.scope = scope
         self.config = config
@@ -82,7 +82,7 @@ class BasicService(Construct, BasicMixin):
 
         return ["\n".join(commands)]
 
-    def _generate_config_map(self, name=None) -> k8s.ConfigMap:
+    def _generate_config_map(self, name: str = None) -> k8s.ConfigMap:
         if not name:
             name = self._config_map_name
 
@@ -110,7 +110,7 @@ class BasicService(Construct, BasicMixin):
             data=variables,
         )
 
-    def _patch_virtual_service_name(self, value=None) -> JsonPatch:
+    def _patch_virtual_service_name(self, value: str = None) -> JsonPatch:
         if not value:
             value = self._virtual_service_name
 
@@ -118,8 +118,8 @@ class BasicService(Construct, BasicMixin):
 
     def _generate_service_account(
         self,
-        service_account_name=None,
-        service_account_annotations=None,
+        service_account_name: str = None,
+        service_account_annotations: Mapping[str, str] = None,
         namespace=None,
     ) -> k8s.ServiceAccount:
         return k8s.ServiceAccount(
@@ -145,7 +145,7 @@ class BasicService(Construct, BasicMixin):
         return JsonPatch.add(path=route, value=value)
 
     @property
-    def _env_from_config(self) -> List:
+    def _env_from_config(self) -> List[k8s.EnvFromSource]:
         return [
             k8s.EnvFromSource(
                 config_map_ref=k8s.ConfigMapEnvSource(name=self._config_map_name)
@@ -209,7 +209,7 @@ class BasicService(Construct, BasicMixin):
 
     def _default_limit_range(
         self, namespace_name: Union[str, None] = None
-    ) -> k8s.LimitRange:
+    ) -> Union[k8s.LimitRange, None]:
         if not namespace_name:
             namespace_name = self.environment
 
@@ -242,7 +242,7 @@ class BasicService(Construct, BasicMixin):
             name = self.environment
 
         return k8s.Namespace(
-            self,
+            scope=self,
             id=name,
             metadata=k8s.ObjectMeta(
                 name=name, labels={"istio-injection": istio_injection}
@@ -270,7 +270,7 @@ class BasicService(Construct, BasicMixin):
         return None
 
     @property
-    def default_hosts(self):
+    def default_hosts(self) -> List[str]:
         if self.globals.is_environment:
             return self._service_hosts(prefix=f"{self.environment}.")
 
@@ -416,14 +416,14 @@ class BasicService(Construct, BasicMixin):
 
     def _generate_virtual_service(
         self,
-        patches=None,
-        hosts=None,
-        gateways=None,
-        http_match_prefix=None,
-        destination_host=None,
-        add_request_headers=None,
-        rewrite=None,
-        name_postfix="",
+        patches: List[JsonPatch] = None,
+        hosts: List[str] = None,
+        gateways: List[str] = None,
+        http_match_prefix: str = None,
+        destination_host: str = None,
+        add_request_headers: Mapping[str, str] = None,
+        rewrite: str = None,
+        name_postfix: str = "",
     ) -> VirtualService:
         gateways = gateways or [self.environment]
         add_request_headers = add_request_headers
@@ -478,7 +478,7 @@ class BasicService(Construct, BasicMixin):
 
         return virtual_service
 
-    def _generate_service_monitor(self, interval="15s", patches=None):
+    def _generate_service_monitor(self, interval="15s", patches=None) -> ServiceMonitor:
         name = f"{self.service_name}-service-monitor"
 
         _sm = ServiceMonitor(
@@ -512,6 +512,7 @@ class BasicService(Construct, BasicMixin):
 
         return _sm
 
+    # FIXME: check sanity
     def _probe(self, probe_metadata: Dict[str, Any]) -> k8s.Probe:
         if probe_metadata:
             initial_delay_seconds = probe_metadata.get("initial_delay_seconds")
