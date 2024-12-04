@@ -3,8 +3,10 @@
 import base64
 import json
 import sys
+from argparse import ArgumentError
 from typing import Any, Dict, List, NoReturn, Union
 
+from awscli.customizations.datapipeline import ParameterDefinitionError
 from cdk8s import App, Chart
 from constructs import Construct
 
@@ -73,8 +75,12 @@ if __name__ == "__main__":
     env_config = getattr(K8sConf, ENVIRONMENT.capitalize())
 
     def services() -> List[str]:
-        if INPUT_SERVICES == "all-services":
-            return env_config.ALL_SERVICES
+        if "all-services" in INPUT_SERVICES:
+            if INPUT_SERVICES == "all-services":
+                return env_config.ALL_SERVICES
+            raise ParameterDefinitionError(
+                "'all-services' should not be combined with other service names."
+            )
 
         return [s.rstrip().lstrip() for s in INPUT_SERVICES.split(",")]
 
