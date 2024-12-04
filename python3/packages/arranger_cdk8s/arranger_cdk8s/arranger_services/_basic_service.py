@@ -82,7 +82,7 @@ class BasicService(Construct, BasicMixin):
 
         return ["\n".join(commands)]
 
-    def _generate_config_map(self, name=None) -> k8s.ConfigMap:
+    def _generate_config_map(self, name: str = None) -> k8s.ConfigMap:
         if not name:
             name = self._config_map_name
 
