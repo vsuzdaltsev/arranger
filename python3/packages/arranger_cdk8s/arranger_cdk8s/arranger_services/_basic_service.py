@@ -416,14 +416,14 @@ class BasicService(Construct, BasicMixin):
 
     def _generate_virtual_service(
         self,
-        patches=None,
-        hosts=None,
-        gateways=None,
-        http_match_prefix=None,
-        destination_host=None,
-        add_request_headers=None,
-        rewrite=None,
-        name_postfix="",
+        patches: List[JsonPatch] = None,
+        hosts: List[str] = None,
+        gateways: List[str] = None,
+        http_match_prefix: str = None,
+        destination_host: str = None,
+        add_request_headers: Mapping[str, str] = None,
+        rewrite: str = None,
+        name_postfix: str = "",
     ) -> VirtualService:
         gateways = gateways or [self.environment]
         add_request_headers = add_request_headers
