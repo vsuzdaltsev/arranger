@@ -145,7 +145,7 @@ class BasicService(Construct, BasicMixin):
         return JsonPatch.add(path=route, value=value)
 
     @property
-    def _env_from_config(self) -> List:
+    def _env_from_config(self) -> List[k8s.EnvFromSource]:
         return [
             k8s.EnvFromSource(
                 config_map_ref=k8s.ConfigMapEnvSource(name=self._config_map_name)
@@ -209,7 +209,7 @@ class BasicService(Construct, BasicMixin):
 
     def _default_limit_range(
         self, namespace_name: Union[str, None] = None
-    ) -> k8s.LimitRange:
+    ) -> Union[k8s.LimitRange, None]:
         if not namespace_name:
             namespace_name = self.environment
 
@@ -242,7 +242,7 @@ class BasicService(Construct, BasicMixin):
             name = self.environment
 
         return k8s.Namespace(
-            self,
+            scope=self,
             id=name,
             metadata=k8s.ObjectMeta(
                 name=name, labels={"istio-injection": istio_injection}
@@ -270,7 +270,7 @@ class BasicService(Construct, BasicMixin):
         return None
 
     @property
-    def default_hosts(self):
+    def default_hosts(self) -> List[str]:
         if self.globals.is_environment:
             return self._service_hosts(prefix=f"{self.environment}.")
 
