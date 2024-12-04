@@ -110,7 +110,7 @@ class BasicService(Construct, BasicMixin):
             data=variables,
         )
 
-    def _patch_virtual_service_name(self, value=None) -> JsonPatch:
+    def _patch_virtual_service_name(self, value: str = None) -> JsonPatch:
         if not value:
             value = self._virtual_service_name
 
