@@ -16,6 +16,10 @@ ENVIRONMENT = sys.argv[2]
 OVERRIDES = sys.argv[3]
 
 
+class ParameterError(BaseException):
+    pass
+
+
 class ArrangerApp(Chart):
     def __init__(
         self,
@@ -75,7 +79,7 @@ if __name__ == "__main__":
             if INPUT_SERVICES == "all-services":
                 return env_config.ALL_SERVICES
 
-            raise RuntimeError(
+            raise ParameterError(
                 "'all-services' should not be combined with other service names."
             )
 
