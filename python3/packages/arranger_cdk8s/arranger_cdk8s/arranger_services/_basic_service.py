@@ -1,5 +1,6 @@
 """K8s objects generator for Abstract service."""
 
+from collections.abc import Mapping
 from typing import Any, Dict, List, Union
 
 from cdk8s import JsonPatch, ApiObjectMetadata
@@ -118,8 +119,8 @@ class BasicService(Construct, BasicMixin):
 
     def _generate_service_account(
         self,
-        service_account_name=None,
-        service_account_annotations=None,
+        service_account_name: str = None,
+        service_account_annotations: Mapping[str, str] = None,
         namespace=None,
     ) -> k8s.ServiceAccount:
         return k8s.ServiceAccount(
