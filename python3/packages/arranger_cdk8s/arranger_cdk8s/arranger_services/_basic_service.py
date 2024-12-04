@@ -512,6 +512,7 @@ class BasicService(Construct, BasicMixin):
 
         return _sm
 
+    # FIXME: check sanity
     def _probe(self, probe_metadata: Dict[str, Any]) -> k8s.Probe:
         if probe_metadata:
             initial_delay_seconds = probe_metadata.get("initial_delay_seconds")
