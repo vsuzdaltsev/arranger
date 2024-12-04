@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Any, Dict
 
 from cdk8s import JsonPatch
 from constructs import Construct
@@ -28,7 +28,7 @@ class BasicGateway(Construct):
         config: K8sConf,
         kwargs: Dict[str, str] = None
     ):
-        super().__init__(scope, id)
+        super().__init__(scope=scope, id=id)
         from arranger_globals.cdk8s_globals import Cdk8sGlobals
 
         self.config = config
@@ -65,5 +65,5 @@ class BasicGateway(Construct):
         return gateway
 
     @staticmethod
-    def _add(route, value) -> JsonPatch:
+    def _add(route: str, value: Any) -> JsonPatch:
         return JsonPatch.add(path=route, value=value)

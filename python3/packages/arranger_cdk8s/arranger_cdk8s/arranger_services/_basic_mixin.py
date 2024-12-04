@@ -1,12 +1,13 @@
 """Methods common for BasicService and other Basic abstract libraries."""
 
 from functools import reduce
+from typing import Dict
 
 
 class BasicMixin:
     """Generate all related K8s manifests."""
 
-    def _common_labels(self, resource_name):
+    def _common_labels(self, resource_name: str) -> Dict[str, str]:
         service_name_label = (
             {"service": self.service_name}
             if hasattr(self, "service_name")
