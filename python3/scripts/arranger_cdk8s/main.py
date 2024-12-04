@@ -78,6 +78,7 @@ if __name__ == "__main__":
         if "all-services" in INPUT_SERVICES:
             if INPUT_SERVICES == "all-services":
                 return env_config.ALL_SERVICES
+
             raise ParameterDefinitionError(
                 "'all-services' should not be combined with other service names."
             )
