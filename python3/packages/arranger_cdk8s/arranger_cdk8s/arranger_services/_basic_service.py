@@ -60,7 +60,7 @@ class BasicService(Construct, BasicMixin):
         config: K8sConf,
         kwargs: Dict[str, str] = None,
     ):
-        super().__init__(scope, id)
+        super().__init__(scope=scope, id=id)
 
         self.scope = scope
         self.config = config
