@@ -25,7 +25,7 @@ class ArrangerApp(Chart):
         self,
         scope: Construct,
         ns: str,
-        config: Union[type(K8sConf), None] = None,
+        config: Union[K8sConf, None] = None,
     ):
         super().__init__(scope, ns)
 
