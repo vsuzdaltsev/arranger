@@ -1,4 +1,4 @@
-from typing import Dict, NoReturn
+from typing import Dict
 
 from cdk8s import JsonPatch
 from constructs import Construct
