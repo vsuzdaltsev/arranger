@@ -3,19 +3,21 @@
 import base64
 import json
 import sys
-from typing import Any, Dict, List, NoReturn, Union
+from typing import Any, List, NoReturn, Union
 
 from cdk8s import App, Chart
-from constructs import Construct
 
 from arranger_cdk8s.arranger_services import *
-from arranger_conf.arranger_conf import ArrangerConf
 from arranger_conf.arranger_cdk8s_conf import K8sConf
 
 
 INPUT_SERVICES = sys.argv[1]
 ENVIRONMENT = sys.argv[2]
 OVERRIDES = sys.argv[3]
+
+
+class ParameterError(BaseException):
+    pass
 
 
 class ArrangerApp(Chart):
@@ -35,7 +37,7 @@ class ArrangerApp(Chart):
 
     @property
     def all_services(self) -> Dict[str, Any]:
-        from arranger_conf.arranger_cdk8s_conf_lib._basic_service import BasicService
+        from arranger_conf.arranger_cdk8s_conf_lib import BasicService
 
         return BasicService.valid_services()
 
@@ -73,8 +75,13 @@ if __name__ == "__main__":
     env_config = getattr(K8sConf, ENVIRONMENT.capitalize())
 
     def services() -> List[str]:
-        if INPUT_SERVICES == "all-services":
-            return env_config.ALL_SERVICES
+        if "all-services" in INPUT_SERVICES:
+            if INPUT_SERVICES == "all-services":
+                return env_config.ALL_SERVICES
+
+            raise ParameterError(
+                "'all-services' should not be combined with other service names."
+            )
 
         return [s.rstrip().lstrip() for s in INPUT_SERVICES.split(",")]
 
