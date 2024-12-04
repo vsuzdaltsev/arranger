@@ -17,7 +17,7 @@ class BasicMixin:
         return {"resource_name": resource_name} | service_name_label
 
     @property
-    def service_name_from_class_name(self):
+    def service_name_from_class_name(self) -> str:
         return reduce(
             lambda x, y: x + ("-" if y.isupper() else "") + y, self.__class__.__name__
         ).lower()
