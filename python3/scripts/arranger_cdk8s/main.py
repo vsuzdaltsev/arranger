@@ -33,7 +33,7 @@ class ArrangerApp(Chart):
 
     @property
     def all_services(self) -> Dict[str, Any]:
-        from arranger_conf.arranger_cdk8s_conf_lib._basic_service import BasicService
+        from arranger_conf.arranger_cdk8s_conf_lib import BasicService
 
         return BasicService.valid_services()
 
