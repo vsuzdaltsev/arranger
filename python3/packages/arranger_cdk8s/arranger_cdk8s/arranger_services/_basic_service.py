@@ -478,7 +478,7 @@ class BasicService(Construct, BasicMixin):
 
         return virtual_service
 
-    def _generate_service_monitor(self, interval="15s", patches=None):
+    def _generate_service_monitor(self, interval="15s", patches=None) -> ServiceMonitor:
         name = f"{self.service_name}-service-monitor"
 
         _sm = ServiceMonitor(
