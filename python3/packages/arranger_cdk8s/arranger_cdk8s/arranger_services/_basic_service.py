@@ -1,7 +1,6 @@
 """K8s objects generator for Abstract service."""
 
-from collections.abc import Mapping
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Mapping, Union
 
 from cdk8s import JsonPatch, ApiObjectMetadata
 from constructs import Construct
