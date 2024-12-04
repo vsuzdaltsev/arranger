@@ -3,15 +3,11 @@
 import base64
 import json
 import sys
-from argparse import ArgumentError
-from typing import Any, Dict, List, NoReturn, Union
+from typing import Any, List, NoReturn, Union
 
-from awscli.customizations.datapipeline import ParameterDefinitionError
 from cdk8s import App, Chart
-from constructs import Construct
 
 from arranger_cdk8s.arranger_services import *
-from arranger_conf.arranger_conf import ArrangerConf
 from arranger_conf.arranger_cdk8s_conf import K8sConf
 
 
@@ -79,7 +75,7 @@ if __name__ == "__main__":
             if INPUT_SERVICES == "all-services":
                 return env_config.ALL_SERVICES
 
-            raise ParameterDefinitionError(
+            raise RuntimeError(
                 "'all-services' should not be combined with other service names."
             )
 
