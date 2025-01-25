@@ -19,9 +19,7 @@ manifests = [
                             "image": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service",
                             "imagePullPolicy": "Always",
                             "ports": [{"containerPort": 3001}],
-                            "envFrom": [
-                                {"configMapRef": {"name": "identity-config"}}
-                            ],
+                            "envFrom": [{"configMapRef": {"name": "identity-config"}}],
                             "resources": {"limits": {"memory": "300Mi"}},
                         },
                         {
@@ -47,10 +45,14 @@ class TestPatchK8sManifest:
             "new_value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service:1.1.1",
         }
 
-        resulting_manifest = PatchK8sManifest(struct=manifests[0], patch=image_patch).add()
+        resulting_manifest = PatchK8sManifest(
+            struct=manifests[0], patch=image_patch
+        ).add()
 
-        assert resulting_manifest['spec']['template']['spec']['containers'][0]['image'] == 'xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service:1.1.1'
-
+        assert (
+            resulting_manifest["spec"]["template"]["spec"]["containers"][0]["image"]
+            == "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service:1.1.1"
+        )
 
     @staticmethod
     @pytest.mark.xfail(raises=BaseException)
@@ -61,6 +63,11 @@ class TestPatchK8sManifest:
             "new_value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service:1.1.1",
         }
 
-        resulting_manifest = PatchK8sManifest(struct=manifests[0], patch=image_patch).add()
+        resulting_manifest = PatchK8sManifest(
+            struct=manifests[0], patch=image_patch
+        ).add()
 
-        assert resulting_manifest['spec']['template']['spec']['containers'][0]['image'] == 'xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service'
+        assert (
+            resulting_manifest["spec"]["template"]["spec"]["containers"][0]["image"]
+            == "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service"
+        )
