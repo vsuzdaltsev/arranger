@@ -34,18 +34,23 @@ MANIFESTS = [
         },
     },
 ]
-IMAGE_TAG_PATCH = {
+IMAGE_TAG_PATCH_1 = {
     "key": "image",
     "value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service",
     "new_value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service:1.1.1",
+}
+IMAGE_TAG_PATCH_2 = {
+    "key": "image",
+    "value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/web-backoffice-identity",
+    "new_value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/web-backoffice-identity:2.2.2",
 }
 
 
 class TestPatchK8sManifest:
     @staticmethod
-    def test_add_valid():
+    def test_add_valid_1():
         resulting_manifest = PatchK8sManifest(
-            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH
+            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_1
         ).add()
 
         assert (
@@ -54,13 +59,36 @@ class TestPatchK8sManifest:
         )
 
     @staticmethod
-    @pytest.mark.xfail(raises=BaseException)
-    def test_add_invalid():
+    def test_add_valid_2():
         resulting_manifest = PatchK8sManifest(
-            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH
+            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_2
+        ).add()
+
+        assert (
+            resulting_manifest["spec"]["template"]["spec"]["containers"][1]["image"]
+            == "xxx.dkr.ecr.eu-west-2.amazonaws.com/web-backoffice-identity:2.2.2"
+        )
+
+    @staticmethod
+    @pytest.mark.xfail(raises=BaseException)
+    def test_add_invalid_1():
+        resulting_manifest = PatchK8sManifest(
+            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_1
         ).add()
 
         assert (
             resulting_manifest["spec"]["template"]["spec"]["containers"][0]["image"]
             == "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service"
+        )
+
+    @staticmethod
+    @pytest.mark.xfail(raises=BaseException)
+    def test_add_invalid_2():
+        resulting_manifest = PatchK8sManifest(
+            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_2
+        ).add()
+
+        assert (
+            resulting_manifest["spec"]["template"]["spec"]["containers"][1]["image"]
+            == "xxx.dkr.ecr.eu-west-2.amazonaws.com/web-backoffice-identity"
         )
