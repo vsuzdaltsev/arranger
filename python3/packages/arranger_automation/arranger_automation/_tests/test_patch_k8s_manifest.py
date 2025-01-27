@@ -35,18 +35,18 @@ manifests = [
     },
 ]
 
+IMAGE_TAG_PATCH = {
+    "key": "image",
+    "value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service",
+    "new_value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service:1.1.1",
+}
+
 
 class TestPatchK8sManifest:
     @staticmethod
     def test_add_valid():
-        image_patch = {
-            "key": "image",
-            "value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service",
-            "new_value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service:1.1.1",
-        }
-
         resulting_manifest = PatchK8sManifest(
-            struct=manifests[0], patch=image_patch
+            struct=manifests[0], patch=IMAGE_TAG_PATCH
         ).add()
 
         assert (
@@ -57,14 +57,8 @@ class TestPatchK8sManifest:
     @staticmethod
     @pytest.mark.xfail(raises=BaseException)
     def test_add_invalid():
-        image_patch = {
-            "key": "image",
-            "value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service",
-            "new_value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service:1.1.1",
-        }
-
         resulting_manifest = PatchK8sManifest(
-            struct=manifests[0], patch=image_patch
+            struct=manifests[0], patch=IMAGE_TAG_PATCH
         ).add()
 
         assert (
