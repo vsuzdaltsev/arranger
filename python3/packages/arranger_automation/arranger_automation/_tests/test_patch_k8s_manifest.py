@@ -2,7 +2,7 @@ import pytest
 
 from arranger_automation.parse import PatchK8sManifest
 
-manifests = [
+MANIFESTS = [
     {
         "apiVersion": "apps/v1",
         "kind": "Deployment",
@@ -34,7 +34,6 @@ manifests = [
         },
     },
 ]
-
 IMAGE_TAG_PATCH = {
     "key": "image",
     "value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service",
@@ -46,7 +45,7 @@ class TestPatchK8sManifest:
     @staticmethod
     def test_add_valid():
         resulting_manifest = PatchK8sManifest(
-            struct=manifests[0], patch=IMAGE_TAG_PATCH
+            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH
         ).add()
 
         assert (
@@ -58,7 +57,7 @@ class TestPatchK8sManifest:
     @pytest.mark.xfail(raises=BaseException)
     def test_add_invalid():
         resulting_manifest = PatchK8sManifest(
-            struct=manifests[0], patch=IMAGE_TAG_PATCH
+            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH
         ).add()
 
         assert (
