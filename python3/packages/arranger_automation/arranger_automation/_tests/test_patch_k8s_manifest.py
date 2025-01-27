@@ -59,17 +59,6 @@ class TestPatchK8sManifest:
         )
 
     @staticmethod
-    def test_add_valid_manifest_2():
-        resulting_manifest = PatchK8sManifest(
-            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_2
-        ).add()
-
-        assert (
-            resulting_manifest["spec"]["template"]["spec"]["containers"][1]["image"]
-            == "xxx.dkr.ecr.eu-west-2.amazonaws.com/web-backoffice-identity:2.2.2"
-        )
-
-    @staticmethod
     @pytest.mark.xfail(raises=BaseException)
     def test_add_invalid_manifest_1():
         resulting_manifest = PatchK8sManifest(
@@ -79,6 +68,17 @@ class TestPatchK8sManifest:
         assert (
             resulting_manifest["spec"]["template"]["spec"]["containers"][0]["image"]
             == "xxx.dkr.ecr.eu-west-2.amazonaws.com/identity-service"
+        )
+
+    @staticmethod
+    def test_add_valid_manifest_2():
+        resulting_manifest = PatchK8sManifest(
+            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_2
+        ).add()
+
+        assert (
+            resulting_manifest["spec"]["template"]["spec"]["containers"][1]["image"]
+            == "xxx.dkr.ecr.eu-west-2.amazonaws.com/web-backoffice-identity:2.2.2"
         )
 
     @staticmethod
