@@ -48,7 +48,7 @@ IMAGE_TAG_PATCH_2 = {
 
 class TestPatchK8sManifest:
     @staticmethod
-    def test_add_valid_1():
+    def test_add_valid_manifest_1():
         resulting_manifest = PatchK8sManifest(
             struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_1
         ).add()
@@ -59,7 +59,7 @@ class TestPatchK8sManifest:
         )
 
     @staticmethod
-    def test_add_valid_2():
+    def test_add_valid_manifest_2():
         resulting_manifest = PatchK8sManifest(
             struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_2
         ).add()
@@ -71,7 +71,7 @@ class TestPatchK8sManifest:
 
     @staticmethod
     @pytest.mark.xfail(raises=BaseException)
-    def test_add_invalid_1():
+    def test_add_invalid_manifest_1():
         resulting_manifest = PatchK8sManifest(
             struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_1
         ).add()
@@ -83,7 +83,7 @@ class TestPatchK8sManifest:
 
     @staticmethod
     @pytest.mark.xfail(raises=BaseException)
-    def test_add_invalid_2():
+    def test_add_invalid_manifest_2():
         resulting_manifest = PatchK8sManifest(
             struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_2
         ).add()
