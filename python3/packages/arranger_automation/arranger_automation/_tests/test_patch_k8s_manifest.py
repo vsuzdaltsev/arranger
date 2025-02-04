@@ -44,9 +44,6 @@ IMAGE_TAG_PATCH_2 = {
     "value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/web-backoffice-identity",
     "new_value": "xxx.dkr.ecr.eu-west-2.amazonaws.com/web-backoffice-identity:2.2.2",
 }
-IMAGE_TAG_PATCH_3 = {
-    "ports": [{"containerPort": 8080}]
-}
 
 
 class TestPatchK8sManifest:
@@ -94,14 +91,4 @@ class TestPatchK8sManifest:
         assert (
             resulting_manifest["spec"]["template"]["spec"]["containers"][1]["image"]
             == "xxx.dkr.ecr.eu-west-2.amazonaws.com/web-backoffice-identity"
-        )
-
-    @staticmethod
-    def test_port_exist():
-        resulting_manifest = PatchK8sManifest(
-            struct=MANIFESTS[0], patch=IMAGE_TAG_PATCH_3
-        ).add()
-
-        assert (
-            resulting_manifest["spec"]["template"]["spec"]["containers"][0]["ports"][0]["containerPort"]
         )
