@@ -2,7 +2,6 @@ import json
 
 from arranger_cdktf.imports.helm.release import Release
 from arranger_cdktf.imports.kubernetes.namespace import Namespace, NamespaceMetadata
-from arranger_cdktf.imports.kubernetes.manifest import Manifest
 from arranger_cdktf.imports.null import Resource as NullResource
 
 from .basic_stack import AwsBasicStack, Construct, TfConf
