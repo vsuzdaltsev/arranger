@@ -17,7 +17,7 @@ class BasicAwsIstioStack(AwsBasicStack):
     def _name_prefix(self) -> str:
         return "istio"
 
-    def __init__(self, scope: Construct, ns: str, config: type(TfConf)):
+    def __init__(self, scope: Construct, ns: str, config: TfConf):
         super().__init__(scope, ns, config)
 
         self.kubeconfig = self._generate_kube_config_eks()  # FIXME: check sanity
@@ -197,7 +197,7 @@ class BasicAwsIstioStack(AwsBasicStack):
 
         return null
 
-    def _kiali_helm_release(self) -> type(Release):
+    def _kiali_helm_release(self) -> Release:
         return Release(
             scope=self,
             id_=self._name(object_type="helm-release-kiali"),
