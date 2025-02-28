@@ -198,7 +198,6 @@ class BasicAwsIstioStack(AwsBasicStack):
         return null
 
     def _kiali_helm_release(self) -> type(Release):
-
         return Release(
             scope=self,
             id_=self._name(object_type="helm-release-kiali"),
