@@ -94,7 +94,7 @@ class AwsBasicStack(BasicStack):
         )
 
     def _generate_kube_config_eks(
-            self, assume_eks_kubectl_sso_role: bool = True
+        self, assume_eks_kubectl_sso_role: bool = True
     ) -> bytes:
         def _role():
             if assume_eks_kubectl_sso_role:
