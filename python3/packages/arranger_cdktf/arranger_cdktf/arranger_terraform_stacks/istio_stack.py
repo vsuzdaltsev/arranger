@@ -42,10 +42,10 @@ class BasicAwsIstioStack(AwsBasicStack):
 
         # self.crds = self._crds()
 
-    def _istio_system_namespace(self) -> type(Namespace):
+    def _istio_system_namespace(self) -> Namespace:
         return Namespace(
             scope=self,
-            id_=f"istio-system-namespace-{self.globals.cluster_name_alias}",
+            id_=f"istio-system-namespace-{self.globals.tenant}",
             metadata=NamespaceMetadata(name="istio-system"),
             provider=self.k8s_provider,
         )
@@ -53,7 +53,7 @@ class BasicAwsIstioStack(AwsBasicStack):
     def _istio_ingress_namespace(self) -> Namespace:
         return Namespace(
             scope=self,
-            id_=f"istio-ingress-namespace-{self.globals.cluster_name_alias}",
+            id_=f"istio-ingress-namespace-{self.globals.tenant}",
             metadata=NamespaceMetadata(
                 name="istio-ingress", labels={"istio-injection": "enabled"}
             ),
@@ -107,7 +107,7 @@ class BasicAwsIstioStack(AwsBasicStack):
                     SubnetHelper().public_subnet_ids(
                         region=self.globals.aws_region,
                         profile=self.globals.aws_profile,
-                        filter_by=f"vpc-main-subnet-.*-{self.globals.cluster_name_alias}-private",
+                        filter_by=f"vpc-main-subnet-.*-{self.globals.tenant}-private",
                     )
                 )
             )
