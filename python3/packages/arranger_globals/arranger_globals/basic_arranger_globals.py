@@ -60,6 +60,10 @@ class ArrangerMixin(ABC):
         return f"{super().__repr__()}: {self.__dict__}"
 
     @property
+    def eks_kubectl_sso_role(self) -> str:
+        return f"eks-kubectl-sso-role-{self.tenant}"
+
+    @property
     def cli_container_root(self) -> str:
         return "/opt/arranger"
 

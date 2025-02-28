@@ -1,3 +1,4 @@
+import subprocess
 from typing import Any, List
 
 from cdktf import S3Backend, TerraformResourceLifecycle, TerraformStack
@@ -91,3 +92,22 @@ class AwsBasicStack(BasicStack):
             ],
             provider=provider,
         )
+
+    def _generate_kube_config_eks(
+        self, assume_eks_kubectl_sso_role: bool = True
+    ) -> bytes:
+        def _role():
+            if assume_eks_kubectl_sso_role:
+                return f"--assume-role {self.globals.eks_kubectl_sso_role}"
+            return ""
+
+        cmd = (
+            f"cd {self.globals.cli_container_root} && rm -f {self.globals.where_kubeconfig} && "
+            f"inv k8s.update-kubeconfig-eks "
+            f"--tenant {self.globals.tenant} {_role()} "
+            f"&& cd -"
+        )
+        with subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE) as proc:
+            output = proc.stdout.read()
+
+        return output
