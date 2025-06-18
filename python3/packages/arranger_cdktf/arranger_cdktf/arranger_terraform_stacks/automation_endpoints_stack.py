@@ -331,7 +331,7 @@ class AutomationEndpointsStack(AwsBasicStack):
                     "Effect": "Allow",
                     "Action": ["sts:AssumeRole"],
                     # [ERROR] ClientError: An error occurred (AccessDenied) when calling the AssumeRole operation:
-                    # User: arn:aws:sts::465525377090:assumed-role/codebuild-build-status-lambda-execution-role/automation-endpoints-codebuild-build-status-lambda-orchestra2
+                    # User: arn:aws:sts::<>:assumed-role/codebuild-build-status-lambda-execution-role/automation-endpoints-codebuild-build-status-lambda-orchestra2
                     # is not authorized to perform: sts:AssumeRole on resource: arn:aws:iam::<>>:role/trust-orchestrating-account-iam-role-<>
                     "Resource": ["*"],  # TODO: shrink
                 },
